@@ -59,10 +59,36 @@ class LoginPage extends StatelessWidget {
                     child: Column(
                       children: <Widget>[
                         makeInput(label: "Email"),
-                        makeInput(label: "Password"),
+                        makeInput(label: "Password", obscureText: true),
                       ],
                     ),
                   ),
+
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 40),
+                    child: Container(
+                      padding: EdgeInsets.only(top: 3, left: 3),
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(10),
+                      ),
+                      child: MaterialButton(
+                        minWidth: double.infinity,
+                        height: 50,
+                        onPressed: () {},
+                        color: Color(0xFFFF5555),
+                        elevation: 0,
+                        shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(10)
+                        ),
+                        child: Text("Login", style: TextStyle(
+                            fontWeight: FontWeight.w600,
+                            fontSize: 18,
+                          color: Colors.white,
+                        ),),
+                      ),
+                    ),
+                  ),
+
                 ],
               ),
             ],
@@ -97,6 +123,7 @@ class LoginPage extends StatelessWidget {
             ),
           ),
         ),
+        SizedBox(height: 30,),
       ],
     );
   }
