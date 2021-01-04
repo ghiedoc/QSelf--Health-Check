@@ -1,20 +1,22 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_trial_three/login.dart';
 
 void main() => runApp(
     MaterialApp(
       theme: ThemeData(
         fontFamily: "OpenSans",
-        scaffoldBackgroundColor: const Color(0xFFFA8072),
+//        scaffoldBackgroundColor: const Color(0xFFFA8072),
       ),
       debugShowCheckedModeBanner: false,
-      home: HomePage(),
+      home: LoginPage(),
     ));
 
 class HomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color(0xFFFA8072),
       body: SafeArea(
         child: Container(
           width: double.infinity,
@@ -79,6 +81,7 @@ class HomePage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                           side: BorderSide(
                             color: Colors.white,
+                            width: 3,
                           ),
                             borderRadius: BorderRadius.circular(10)
                         ),
