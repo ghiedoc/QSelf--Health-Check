@@ -88,7 +88,23 @@ class LoginPage extends StatelessWidget {
                       ),
                     ),
                   ),
-
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        Text("Don't have an account?", style: TextStyle(
+                          color: Color(0xFF8A8A8A),
+                          fontSize: 14,
+                        ),),
+                        Text("Sign up", style: TextStyle(
+                          fontWeight: FontWeight.w600,
+                          color: Color(0xFF2353FF),
+                          fontSize: 14,
+                        ))
+                      ],
+                    ),
+                  )
                 ],
               ),
             ],
