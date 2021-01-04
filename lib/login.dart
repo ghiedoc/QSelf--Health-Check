@@ -80,7 +80,7 @@ class LoginPage extends StatelessWidget {
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)
                         ),
-                        child: Text("Login", style: TextStyle(
+                        child: Text("Sign in", style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
                           color: Colors.white,
