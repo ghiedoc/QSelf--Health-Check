@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'login.dart';
+import 'start.dart';
+import 'signup.dart';
 
 class LoginPage extends StatefulWidget {
   @override
+  static const routeName = '/login';
   _LoginPageState createState() => _LoginPageState();
 }
 
@@ -17,9 +21,11 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.pop(context);
+            Navigator.of(context).pushReplacementNamed
+              (starts.routeName);
           },
           icon: Icon(Icons.arrow_back_ios, size: 20, color: Color(0xFFFA8072),),
+
         ),
       ),
       body: SingleChildScrollView(
@@ -102,11 +108,19 @@ class _LoginPageState extends State<LoginPage> {
                           color: Color(0xFF8A8A8A),
                           fontSize: 14,
                         ),),
-                        Text("Sign up", style: TextStyle(
+                    InkWell(
+                      onTap:(){
+                        Navigator.of(context).pushReplacementNamed
+                          (SignUpPage.routeName);
+                      },
+                      child: Text("Sign up", style: TextStyle(
                           fontWeight: FontWeight.w600,
                           color: Color(0xFF2353FF),
                           fontSize: 14,
-                        ))
+                        )),
+
+
+),
                       ],
                     ),
                   )
