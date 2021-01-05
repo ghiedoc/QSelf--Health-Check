@@ -2,7 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_trial_three/login.dart';
 import 'package:flutter_trial_three/signup.dart';
-
+import 'package:flutter_trial_three/personalinfo.dart';
+import 'package:flutter_trial_three/contactinfo.dart';
 
 void main() => runApp(
     MaterialApp(
@@ -11,7 +12,7 @@ void main() => runApp(
 //        scaffoldBackgroundColor: const Color(0xFFFA8072),
       ),
       debugShowCheckedModeBanner: false,
-      home: SignUpPage(),
+      home: ContactInfoPage(),
     ));
 
 class HomePage extends StatelessWidget {
