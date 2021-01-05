@@ -10,6 +10,9 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
+  TextEditingController _passwordController = new TextEditingController();
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +33,7 @@ class _SignUpPageState extends State<SignUpPage> {
           child: Container(
             height: MediaQuery.of(context).size.height,
             width: double.infinity,
-            margin: EdgeInsets.only(left: 10, right: 10),
+            margin: EdgeInsets.only(left: 50, right: 50),
             padding: EdgeInsets.symmetric(vertical: 40),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -46,33 +49,90 @@ class _SignUpPageState extends State<SignUpPage> {
 
                         ),),
                         SizedBox(height: 20,),
-                        Container(
-                          height: MediaQuery.of(context).size.height/4,
-                          child: Center(
-                            child: Container(
-                              child: Image.asset('assets/images/qselflogolight.png',
-                                height: 200,
-                                width:  200,
+
+                    Center(
+                      child: Form(
+                        child: SingleChildScrollView(
+                          child: Column(
+                            children: <Widget>[
+                              TextFormField(
+                                decoration: InputDecoration(labelText: 'Email'),
+                                  keyboardType: TextInputType.emailAddress,
+                                validator: (value){
+                                  if(value.isEmpty || value == "@"){
+                                    return 'INVALID EMAIL ADDRESS';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value){
+//                                  database paasok
+                                }
                               ),
-                            ),
-                          ),
-//                        decoration: BoxDecoration(
-//                            image: DecorationImage(
-//                                image: AssetImage('assets/qselflogolight.png')
-//                            )
-//                        )
+                        TextFormField(
+                          decoration: InputDecoration(labelText: 'Password'),
+                          obscureText: true,
+                          controller: _passwordController,
+                          validator: (value){
+                            if(value.isEmpty){
+                              return 'INVALID PASSWORD';
+                            }
+                            return null;
+                          },
+                          onSaved: (value){
+//                                  database paasok
+                          }
                         ),
+                              TextFormField(
+                                decoration: InputDecoration(labelText: 'Confirm Password'),
+                                obscureText: true,
+                                validator: (value){
+                                  if(value.isEmpty || value != _passwordController.text){
+                                    return 'NOT MATCH PASSWORD, PLEASE TRY AGAIN';
+                                  }
+                                  return null;
+                                },
+                                onSaved: (value){
+                                },
+                              ),
+
+
+                            ],
+                          ),
+                        )
+                      )
+
+                        )
+
+
+
+
+//                        Container(
+//                          height: MediaQuery.of(context).size.height/4,
+//                          child: Center(
+//                            child: Container(
+//                              child: Image.asset('assets/images/qselflogolight.png',
+//                                height: 200,
+//                                width:  200,
+//                              ),
+//                            ),
+//                          ),
+////                        decoration: BoxDecoration(
+////                            image: DecorationImage(
+////                                image: AssetImage('assets/qselflogolight.png')
+////                            )
+////                        )
+//                        ),
                       ],
                     ),
-                    Padding(padding: EdgeInsets.symmetric(horizontal: 40),
-                      child: Column(
-                        children: <Widget>[
-                          makeInput(label: "Email"),
-                          makeInput(label: "Password", obscureText: true),
-                          makeInput(label: "Confirm Password", obscureText: true),
-                        ],
-                      ),
-                    ),
+//                    Padding(padding: EdgeInsets.symmetric(horizontal: 40),
+//                      child: Column(
+//                        children: <Widget>[
+//                          makeInput(label: "Email"),
+//                          makeInput(label: "Password", obscureText: true),
+//                          makeInput(label: "Confirm Password", obscureText: true),
+//                        ],
+//                      ),
+//                    ),
 
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -84,7 +144,9 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height: 50,
-                          onPressed: () {},
+                          onPressed: () {
+//                            signUp();
+                          },
                           color: Color(0xFFFF5555),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
@@ -107,11 +169,17 @@ class _SignUpPageState extends State<SignUpPage> {
                             color: Color(0xFF8A8A8A),
                             fontSize: 14,
                           ),),
-                          Text(" Sign in here.", style: TextStyle(
+                      InkWell(
+                        onTap:(){
+                          Navigator.of(context).pushReplacementNamed
+                            (LoginPage.routeName);
+                        },
+                         child: Text(" Sign in here.", style: TextStyle(
                             fontWeight: FontWeight.w600,
                             color: Color(0xFF2353FF),
                             fontSize: 14,
                           ))
+                      ),
                         ],
                       ),
                     )
@@ -124,33 +192,31 @@ class _SignUpPageState extends State<SignUpPage> {
     );
   }
 
-  Widget makeInput({label, obscureText = false}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(label, style: TextStyle(
-          fontSize: 15,
-          color:Color(0xFF8A8A8A),
-        ),),
-        SizedBox(height: 5,),
-        TextField(
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey[400])
-            ),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey[400])
-            ),
-          ),
-        ),
-        SizedBox(height: 30,),
-      ],
-    );
+//  Widget makeInput({label, obscureText = false}) {
+//    return Column(
+//      crossAxisAlignment: CrossAxisAlignment.start,
+//      children: <Widget>[
+//        Text(label, style: TextStyle(
+//          fontSize: 15,
+//          color:Color(0xFF8A8A8A),
+//        ),),
+//        SizedBox(height: 5,),
+//        TextField(
+//          obscureText: obscureText,
+//          decoration: InputDecoration(
+//            filled: true,
+//            fillColor: Colors.white,
+//            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+//            enabledBorder: OutlineInputBorder(
+//                borderRadius: BorderRadius.circular(10),
+//                borderSide: BorderSide(color: Colors.grey[400])
+//            ),
+//            border: OutlineInputBorder(
+//                borderRadius: BorderRadius.circular(10),
+//                borderSide: BorderSide(color: Colors.grey[400])
+//            ),
+//          ),
+//        ),
+//        SizedBox(height: 30,),
+//      ],
   }
-}
