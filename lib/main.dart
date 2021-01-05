@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white,
 
       ),
-      home: CovidUpdatePage(),
+      home: LoginPage(),
       routes: {
         SignUpPage.routeName: (ctx)=> SignUpPage(),
         LoginPage.routeName: (ctx)=> LoginPage(),
