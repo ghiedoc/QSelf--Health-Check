@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'login.dart';
+import 'start.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
+  static const routeName = '/signup';
   _SignUpPageState createState() => _SignUpPageState();
 }
 
@@ -17,7 +20,8 @@ class _SignUpPageState extends State<SignUpPage> {
           backgroundColor: Colors.white,
           leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.of(context).pushReplacementNamed
+                (starts.routeName);
             },
             icon: Icon(Icons.arrow_back_ios, size: 20, color: Color(0xFFFA8072),),
           ),
@@ -42,22 +46,22 @@ class _SignUpPageState extends State<SignUpPage> {
 
                         ),),
                         SizedBox(height: 20,),
-                        Container(
-                          height: MediaQuery.of(context).size.height/4,
-                          child: Center(
-                            child: Container(
-                              child: Image.asset('assets/images/qselflogolight.png',
-                                height: 200,
-                                width:  200,
-                              ),
-                            ),
-                          ),
-//                        decoration: BoxDecoration(
-//                            image: DecorationImage(
-//                                image: AssetImage('assets/qselflogolight.png')
-//                            )
-//                        )
-                        ),
+//                        Container(
+//                          height: MediaQuery.of(context).size.height/4,
+//                          child: Center(
+//                            child: Container(
+//                              child: Image.asset('assets/images/qselflogolight.png',
+//                                height: 200,
+//                                width:  200,
+//                              ),
+//                            ),
+//                          ),
+////                        decoration: BoxDecoration(
+////                            image: DecorationImage(
+////                                image: AssetImage('assets/qselflogolight.png')
+////                            )
+////                        )
+//                        ),
                       ],
                     ),
                     Padding(padding: EdgeInsets.symmetric(horizontal: 40),
@@ -95,7 +99,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       ),
                     ),
                     Padding(
-                      padding: const EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(16.0),
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
