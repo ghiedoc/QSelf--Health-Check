@@ -41,17 +41,19 @@ class _startState extends State<starts> {
                   ),),
                 ],
               ),
-//              Container(
-//                padding: EdgeInsets.symmetric(
-//                    horizontal: 30
-//                ),
-//                height: MediaQuery.of(context).size.height / 3,
-//                decoration: BoxDecoration(
-//                  image: DecorationImage(
-//                    image: AssetImage('assets/qselflogodark.png')
-//                  )
-//                )
-//              ),
+              SizedBox(height: 50,),
+              Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 30
+                ),
+                height: MediaQuery.of(context).size.height / 5,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/qselflogodark.png')
+                  )
+                )
+              ),
+              SizedBox(height: 50,),
               Column(
                 children: <Widget>[
                   MaterialButton(

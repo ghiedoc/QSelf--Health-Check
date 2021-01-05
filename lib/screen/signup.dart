@@ -10,24 +10,7 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
   TextEditingController _passwordController = new TextEditingController();
-  GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
-//
-//  validation field
-  void validate(){
-    if(formkey.currentState.validate()){
-      print("validated");
-    }else{
-      print("not validated");
-    }
-
-  }
-//  function signUp btn
-  void submit(){
-    print("pasok");
-  }
 
 
   @override
@@ -69,7 +52,6 @@ class _SignUpPageState extends State<SignUpPage> {
 
                     Center(
                       child: Form(
-                        key: formkey,
                         child: SingleChildScrollView(
                           child: Column(
                             children: <Widget>[
@@ -77,7 +59,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                 decoration: InputDecoration(labelText: 'Email'),
                                   keyboardType: TextInputType.emailAddress,
                                 validator: (value){
-                                  if(value.isEmpty || !value.contains("@") || !value.contains(".com")){
+                                  if(value.isEmpty || value == "@"){
                                     return 'INVALID EMAIL ADDRESS';
                                   }
                                   return null;
@@ -92,11 +74,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           controller: _passwordController,
                           validator: (value){
                             if(value.isEmpty){
-                              return 'Enter New Passowrd';
-                            }else if (value.length < 8){
-                              return 'Password must be atleast 8 characters long';
-                            }else if(!value.contains("@") && (!value.contains("!") && !value.contains("#") && !value.contains("%"))){
-                              return 'Password must be atkeast 1 character';
+                              return 'INVALID PASSWORD';
                             }
                             return null;
                           },
@@ -166,11 +144,10 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height: 50,
-                          onPressed: (){
-                            validate();
+                          onPressed: () {
 //                            signUp();
                           },
-                          color: Color(0xFFFF5555)  ,
+                          color: Color(0xFFFF5555),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(10)
