@@ -46,22 +46,22 @@ class _SignUpPageState extends State<SignUpPage> {
 
                         ),),
                         SizedBox(height: 20,),
-//                        Container(
-//                          height: MediaQuery.of(context).size.height/4,
-//                          child: Center(
-//                            child: Container(
-//                              child: Image.asset('assets/images/qselflogolight.png',
-//                                height: 200,
-//                                width:  200,
-//                              ),
-//                            ),
-//                          ),
-////                        decoration: BoxDecoration(
-////                            image: DecorationImage(
-////                                image: AssetImage('assets/qselflogolight.png')
-////                            )
-////                        )
-//                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height/4,
+                          child: Center(
+                            child: Container(
+                              child: Image.asset('assets/images/qselflogolight.png',
+                                height: 200,
+                                width:  200,
+                              ),
+                            ),
+                          ),
+//                        decoration: BoxDecoration(
+//                            image: DecorationImage(
+//                                image: AssetImage('assets/qselflogolight.png')
+//                            )
+//                        )
+                        ),
                       ],
                     ),
                     Padding(padding: EdgeInsets.symmetric(horizontal: 40),

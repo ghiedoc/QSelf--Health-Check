@@ -1,17 +1,75 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'login.dart';
+import 'start.dart';
 
-class PersonalInfoPage extends StatefulWidget {
+class ContactInfoPage extends StatefulWidget {
   @override
-  _PersonalInfoPageState createState() => _PersonalInfoPageState();
+  _ContactInfoPageState createState() => _ContactInfoPageState();
 }
 
-class _PersonalInfoPageState extends State<PersonalInfoPage> {
+class _ContactInfoPageState extends State<ContactInfoPage> {
 
   String valueChoose;
-  List country = [
-    "Algeria", "Philippines", "South Korea", "Vietnam", "Japan"
+  List hotel = [
+        "Century Park Hotel",
+        "The Mini Suites-Eton Tower Makati",
+        "The Charter House",
+        "Belmont Hotel Manila",
+        "Citadines Bay City Manila",
+        "Conrad Manila",
+        "Golden Phoenix Hotel Manila",
+        "Hilton Manila",
+        "Holiday Inn Express Manila Newport City",
+        "Hotel 101",
+        "Jen Manila By Shangri-La",
+        "Manila Marriott Hotel",
+        "Microtel By Wyndham Mall of Asia",
+        "Midas Hotel And Casino",
+        "Savoy Hotel Manila",
+        "Sheraton Manila Hotel",
+        "The Heritage Hotel",
+        "Tryp By Wyndham Mall of Asia",
+        "Amelie Hotel Manila",
+        "Bayview Park Hotel Manila",
+        "Diamond Hotel Manila",
+        "Orchid Garden Suites Manila",
+        "Sheraton Manila Bay",
+        "The Bayleaf Intramuros",
+        "Ascott Makati",
+        "Astoria Greenbelt",
+        "Berjaya Hotel Makati",
+        "Citadines Salcedo Makati",
+        "Discovery Primea",
+        "Holiday Inn And Suites Makati",
+        "Hotel Celeste",
+        "Jinjiang Inn- Makati",
+        "Makati Shangri-La, Manila",
+        "New World Makati Hotel",
+        "Oxford Suites Makati",
+        "Seda Residences Makati",
+        "Somerset Millenium Makati",
+        "Somerset Olympia Makati",
+        "Valero Grand Suites By Swiss-Belhotel",
+        "Ascott Bonifacio Global City",
+        "Seda BGC",
+        "Acacia Hotel Manila",
+        "B Hotel Alabang",
+        "Crimson Hotel Filinvest City",
+        "Discovery Suites",
+        "Jinjiang Inn- Ortigas",
+        "Richmonde Hotel Ortigas",
+        "The Linden Suite",
+        "B Hotel Quezon City",
+        "Eastwood Richmonde Hotel",
+        "Hotel Rembrandt",
+        "Luxent Hotel",
+        "Microtel by Wyndham Acropolis",
+        "Microtel by Wyndham UP Technohub",
+        "Novotel Manila Araneta City",
+        "Seda Vertis North",
   ];
+
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +109,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                           Container(
                             margin: EdgeInsets.only(left: 40),
                             child: Text(
-                              "Personal \nInformation",
+                              "Contact \nInformation",
                               style: TextStyle(
                                 fontSize: 36,
                                 fontWeight: FontWeight.bold,
@@ -68,14 +126,16 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
                         children: <Widget>[
-                          makeInput(label: "First Name"),
-                          makeInput(label: "Last Name"),
-                          SizedBox(height: 20.0,),
+                          makeInput(label: "Contact Number"),
+                          makeInput(label: "In case of emergency"),
+                          SizedBox(
+                            height: 20.0,
+                          ),
                           //dropdown
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              "Nationality",
+                              "Quarantine Hotel Checked in",
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Color(0xFF8A8A8A),
@@ -83,8 +143,10 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                             ),
                           ),
                           Container(
+                            margin: const EdgeInsets.only(bottom: 200.0),
                             decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black12, width: 2.0),
+                              border:
+                                  Border.all(color: Colors.black12, width: 2.0),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: DropdownButtonFormField(
@@ -94,15 +156,14 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                   valueChoose = newValue;
                                 });
                               },
-                              items: country.map((valueItem){
+                              items: hotel.map((valueItem) {
                                 return DropdownMenuItem(
-                                 value: valueItem,
-                                 child: Text(valueItem),
+                                  value: valueItem,
+                                  child: Text(valueItem),
                                 );
                               }).toList(),
                             ),
                           ),
-                          makeInput(label: "Passport Number"),
                         ],
                       ),
                     ),
@@ -175,7 +236,3 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     );
   }
 }
-
-//List Strings for the dropdown box
-
-

@@ -1,20 +1,28 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'login.dart';
+import 'start.dart';
 
-class ContactInfoPage extends StatefulWidget {
+class PersonalInfoPage extends StatefulWidget {
   @override
-  _ContactInfoPageState createState() => _ContactInfoPageState();
+  _PersonalInfoPageState createState() => _PersonalInfoPageState();
 }
 
-class _ContactInfoPageState extends State<ContactInfoPage> {
+class _PersonalInfoPageState extends State<PersonalInfoPage> {
 
   String valueChoose;
   List country = [
-    "Algeria", "Philippines", "South Korea", "Vietnam", "Japan"
+    "Algeria",
+    "Philippines",
+    "Indonesia",
+    "Malaysia",
+    "Sri Lanka",
+    "Japan",
+    "South Korea"
   ];
 
-
   @override
+  static const routeName = '/personalinfo';
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
@@ -52,7 +60,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                           Container(
                             margin: EdgeInsets.only(left: 40),
                             child: Text(
-                              "Contact \nInformation",
+                              "Personal \nInformation",
                               style: TextStyle(
                                 fontSize: 36,
                                 fontWeight: FontWeight.bold,
@@ -69,16 +77,14 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
                         children: <Widget>[
-                          makeInput(label: "Contact Number"),
-                          makeInput(label: "In case of emergency"),
-                          SizedBox(
-                            height: 20.0,
-                          ),
+                          makeInput(label: "First Name"),
+                          makeInput(label: "Last Name"),
+                          SizedBox(height: 20.0,),
                           //dropdown
                           Align(
                             alignment: Alignment.centerLeft,
                             child: Text(
-                              "Quarantine Hotel Checked in",
+                              "Nationality",
                               style: TextStyle(
                                 fontSize: 15,
                                 color: Color(0xFF8A8A8A),
@@ -87,8 +93,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                           ),
                           Container(
                             decoration: BoxDecoration(
-                              border:
-                                  Border.all(color: Colors.black12, width: 2.0),
+                              border: Border.all(color: Colors.black12, width: 2.0),
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: DropdownButtonFormField(
@@ -98,14 +103,15 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                   valueChoose = newValue;
                                 });
                               },
-                              items: country.map((valueItem) {
+                              items: country.map((valueItem){
                                 return DropdownMenuItem(
-                                  value: valueItem,
-                                  child: Text(valueItem),
+                                 value: valueItem,
+                                 child: Text(valueItem),
                                 );
                               }).toList(),
                             ),
                           ),
+                          makeInput(label: "Passport Number"),
                         ],
                       ),
                     ),
@@ -178,3 +184,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     );
   }
 }
+
+//List Strings for the dropdown box
+
+
