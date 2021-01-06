@@ -127,34 +127,26 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                           ),
                           SizedBox(height: 30.0,),
                           //dropdown
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Nationality",
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Color(0xFF8A8A8A),
-                              ),
-                            ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black12, width: 2.0),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: DropdownButtonFormField(
-                              value: valueChoose,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  valueChoose = newValue;
-                                });
-                              },
-                              items: country.map((valueItem){
-                                return DropdownMenuItem(
-                                 value: valueItem,
-                                 child: Text(valueItem),
-                                );
-                              }).toList(),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Nationality',
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
                             ),
                           ),
                           SizedBox(height: 30.0,),

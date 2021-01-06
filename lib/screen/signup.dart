@@ -17,7 +17,7 @@ class _SignUpPageState extends State<SignUpPage> {
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final dbHelper = DatabaseHelper.instance;
- static String email,password;
+  static String email,password;
 
 //
 //  validation field
@@ -169,9 +169,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                         return null;
                                       },
                                     onSaved: (val){
-                                        password = val;
+                                      password: val;
                                     }
-
 //                                  database paasok
                                       ),
                                   SizedBox(height: 30,),
@@ -207,15 +206,6 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),),),
                       ],
                     ),
-//                    Padding(padding: EdgeInsets.symmetric(horizontal: 40),
-//                      child: Column(
-//                        children: <Widget>[
-//                          makeInput(label: "Email"),
-//                          makeInput(label: "Password", obscureText: true),
-//                          makeInput(label: "Confirm Password", obscureText: true),
-//                        ],
-//                      ),
-//                    ),
                     SizedBox(height: 30,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -280,32 +270,4 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ));
   }
-
-//  Widget makeInput({label, obscureText = false}) {
-//    return Column(
-//      crossAxisAlignment: CrossAxisAlignment.start,
-//      children: <Widget>[
-//        Text(label, style: TextStyle(
-//          fontSize: 15,
-//          color:Color(0xFF8A8A8A),
-//        ),),
-//        SizedBox(height: 5,),
-//        TextField(
-//          obscureText: obscureText,
-//          decoration: InputDecoration(
-//            filled: true,
-//            fillColor: Colors.white,
-//            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-//            enabledBorder: OutlineInputBorder(
-//                borderRadius: BorderRadius.circular(10),
-//                borderSide: BorderSide(color: Colors.grey[400])
-//            ),
-//            border: OutlineInputBorder(
-//                borderRadius: BorderRadius.circular(10),
-//                borderSide: BorderSide(color: Colors.grey[400])
-//            ),
-//          ),
-//        ),
-//        SizedBox(height: 30,),
-//      ],
 }

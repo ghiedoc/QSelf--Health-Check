@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/services.dart';
 import 'login.dart';
 import 'start.dart';
 
@@ -131,6 +132,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                             height: 10.0,
                           ),
                           TextFormField(
+                            inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                             decoration: InputDecoration(
                               labelText: 'Contact Number',
                               filled: true,
@@ -156,6 +158,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                             height: 30.0,
                           ),
                           TextFormField(
+                            inputFormatters: [WhitelistingTextInputFormatter.digitsOnly],
                             decoration: InputDecoration(
                               labelText: 'In case of emergency',
                               filled: true,

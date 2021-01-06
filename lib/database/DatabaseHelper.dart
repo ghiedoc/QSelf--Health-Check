@@ -50,9 +50,13 @@ class DatabaseHelper{
           )
           ''');
   }
-
   Future<int> insert(Map<String, dynamic> row) async {
     Database db = await instance.database;
     return await db.insert(table, row);
   }
+
+//  Future<int> insert(Map<String, dynamic> row) async {
+//    Database db = await instance.database;
+//    return await db.insert(table, row);
+//  }
 }
