@@ -31,16 +31,16 @@ class DatabaseHelper{
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
     return await openDatabase(path,
-      version: _databaseVersion,
-    onCreate: _onCreate);
+        version: _databaseVersion,
+        onCreate: _onCreate);
 
 
   }
+//  $c__fname TEXT NOT NULL,
+//      $c_lname TEXT NOT NULL,
+//  $c_nationality TEXT NOT NULL,
+//      $c_passport_no TEXT NOT NULL
 
-  //    $c__fname TEXT NOT NULL,
-//    $c_lname TEXT NOT NULL,
-//    $c_nationality TEXT NOT NULL,
-//    $c_passport_no TEXT NOT NULL,
   Future _onCreate(Database db, int version) async{
     await db.execute('''
           CREATE TABLE $table (
@@ -51,9 +51,8 @@ class DatabaseHelper{
           ''');
   }
 
-  Future<int> submit(Map<String, dynamic>row) async {
+  Future<int> insert(Map<String, dynamic> row) async {
     Database db = await instance.database;
-    return await db.insert(table,row);
+    return await db.insert(table, row);
   }
-
 }
