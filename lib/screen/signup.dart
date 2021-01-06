@@ -25,7 +25,7 @@ class _SignUpPageState extends State<SignUpPage> {
     if(formkey.currentState.validate()){
       Navigator.of(context)
           .pushReplacementNamed(PersonalInfoPage.routeName);
-      submit();
+//      submit();
     }else{
       print("not validated");
     }
@@ -42,6 +42,7 @@ class _SignUpPageState extends State<SignUpPage> {
     print("pasok na database: Id is:  $id");
 
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -168,8 +169,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                         }
                                         return null;
                                       },
-                                    onSaved: (val){
-                                        password = val;
+                                    onSaved: (value){
+                                        password = value;
                                     }
 
 //                                  database paasok
@@ -279,7 +280,11 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
         ));
+
   }
+  @override
+  bool get wantKeepAlive => true;
+}
 
 //  Widget makeInput({label, obscureText = false}) {
 //    return Column(
@@ -308,4 +313,3 @@ class _SignUpPageState extends State<SignUpPage> {
 //        ),
 //        SizedBox(height: 30,),
 //      ],
-}

@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'login.dart';
 import 'start.dart';
+import 'signup.dart';
 
 class PersonalInfoPage extends StatefulWidget {
   @override
@@ -34,7 +35,8 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
           backgroundColor: Colors.white,
           leading: IconButton(
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.of(context)
+                  .pushReplacementNamed(SignUpPage.routeName);
             },
             icon: Icon(
               Icons.arrow_back_ios,
@@ -219,6 +221,9 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
           ),
         ));
   }
+  @override
+  bool get wantKeepAlive => true;
+}
 
 //  Widget makeInput({label, obscureText = false}) {
 //    return Column(
@@ -254,7 +259,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
 //      ],
 //    );
 //  }
-}
 
 //List Strings for the dropdown box
 
