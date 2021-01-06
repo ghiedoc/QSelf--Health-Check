@@ -3,6 +3,7 @@ import 'package:flutter/widgets.dart';
 import 'login.dart';
 import 'start.dart';
 import 'package:flutter_trial_three/database/DatabaseHelper.dart';
+import 'personalinfo.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -16,13 +17,15 @@ class _SignUpPageState extends State<SignUpPage> {
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final dbHelper = DatabaseHelper.instance;
- String email,password;
+ static String email,password;
 
 //
 //  validation field
   void validate(){
     if(formkey.currentState.validate()){
-      print("validated");
+      Navigator.of(context)
+          .pushReplacementNamed(PersonalInfoPage.routeName);
+      submit();
     }else{
       print("not validated");
     }
@@ -35,7 +38,7 @@ class _SignUpPageState extends State<SignUpPage> {
       DatabaseHelper.c_password : password,
   };
 
-    final id = await dbHelper.submit(row);
+    final id = await dbHelper.insert(row);
     print("pasok na database: Id is:  $id");
 
   }
@@ -165,6 +168,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                         }
                                         return null;
                                       },
+                                    onSaved: (val){
+                                        password = val;
+                                    }
 
 //                                  database paasok
                                       ),
@@ -195,9 +201,6 @@ class _SignUpPageState extends State<SignUpPage> {
                                       }
                                       return null;
                                     },
-                                    onSaved: (value) {
-                                      password=value;
-                                    }
                                   ),
                                 ],
                               ),
@@ -226,7 +229,7 @@ class _SignUpPageState extends State<SignUpPage> {
                           height: 50,
                           onPressed: () {
                             validate();
-                            submit();
+//                            submit();
 //                            signUp();
                           },
                           color: Color(0xFFFF5555),

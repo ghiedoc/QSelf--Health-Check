@@ -8,10 +8,10 @@ class DatabaseHelper{
   static final _databaseVersion = 1;
   static final table = "user";
   static final c_user_id = "user_id";
-  static final c__fname = "fname";
-  static final c_lname = "lname";
-  static final c_nationality = "nationality";
-  static final c_passport_no = "passoport_no";
+//  static final c__fname = "fname";
+//  static final c_lname = "lname";
+//  static final c_nationality = "nationality";
+//  static final c_passport_no = "passoport_no";
   static final c_email = "email";
   static final c_password = "password";
 
@@ -31,12 +31,15 @@ class DatabaseHelper{
     Directory documentsDirectory = await getApplicationDocumentsDirectory();
     String path = join(documentsDirectory.path, _databaseName);
     return await openDatabase(path,
-      version: _databaseVersion,
-    onCreate: _onCreate);
+        version: _databaseVersion,
+        onCreate: _onCreate);
 
 
   }
-
+//  $c__fname TEXT NOT NULL,
+//      $c_lname TEXT NOT NULL,
+//  $c_nationality TEXT NOT NULL,
+//      $c_passport_no TEXT NOT NULL
 
   Future _onCreate(Database db, int version) async{
     await db.execute('''
@@ -44,10 +47,6 @@ class DatabaseHelper{
             $c_user_id INTEGER PRIMARY KEY,
             $c_email TEXT NOT NULL,
             $c_password TEXT NOT NULL
-            $c__fname TEXT NOT NULL,
-            $c_lname TEXT NOT NULL,
-            $c_nationality TEXT NOT NULL,
-            $c_passport_no TEXT NOT NULL
           )
           ''');
   }
@@ -56,5 +55,4 @@ class DatabaseHelper{
     Database db = await instance.database;
     return await db.insert(table, row);
   }
-
 }
