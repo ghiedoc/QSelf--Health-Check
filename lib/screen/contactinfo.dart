@@ -9,6 +9,7 @@ class ContactInfoPage extends StatefulWidget {
 }
 
 class _ContactInfoPageState extends State<ContactInfoPage> {
+  FocusNode myFocusNode = new FocusNode();
 
   String valueChoose;
   List hotel = [
@@ -126,10 +127,58 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
                         children: <Widget>[
-                          makeInput(label: "Contact Number"),
-                          makeInput(label: "In case of emergency"),
                           SizedBox(
-                            height: 20.0,
+                            height: 10.0,
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Contact Number',
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30.0,
+                          ),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'In case of emergency',
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30.0,
                           ),
                           //dropdown
                           Align(
@@ -199,40 +248,5 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
             ),
           ),
         ));
-  }
-
-  Widget makeInput({label, obscureText = false}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 15,
-            color: Color(0xFF8A8A8A),
-          ),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TextField(
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey[400])),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey[400])),
-          ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-      ],
-    );
   }
 }

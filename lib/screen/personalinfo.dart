@@ -9,16 +9,17 @@ class PersonalInfoPage extends StatefulWidget {
 }
 
 class _PersonalInfoPageState extends State<PersonalInfoPage> {
+  FocusNode myFocusNode = new FocusNode();
 
   String valueChoose;
   List country = [
-    "Algeria",
-    "Philippines",
-    "Indonesia",
-    "Malaysia",
+    "Algerian",
+    "Filipino",
+    "Indonesian",
+    "Malaysian",
     "Sri Lanka",
-    "Japan",
-    "South Korea"
+    "Japanese",
+    "South Korean"
   ];
 
   @override
@@ -77,9 +78,53 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
                         children: <Widget>[
-                          makeInput(label: "First Name"),
-                          makeInput(label: "Last Name"),
-                          SizedBox(height: 20.0,),
+                          SizedBox(height: 30.0,),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'First Name',
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                            ),
+                          ),
+                          SizedBox(height: 30.0,),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Last Name',
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                            ),
+                          ),
+                          SizedBox(height: 30.0,),
                           //dropdown
                           Align(
                             alignment: Alignment.centerLeft,
@@ -111,9 +156,34 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               }).toList(),
                             ),
                           ),
-                          makeInput(label: "Passport Number"),
+                          SizedBox(height: 30.0,),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Passport Number',
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                            ),
+                          ),
                         ],
                       ),
+                    ),
+                    SizedBox(
+                      height: 30,
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -149,40 +219,40 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
         ));
   }
 
-  Widget makeInput({label, obscureText = false}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(
-          label,
-          style: TextStyle(
-            fontSize: 15,
-            color: Color(0xFF8A8A8A),
-          ),
-        ),
-        SizedBox(
-          height: 5,
-        ),
-        TextField(
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
-            enabledBorder: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey[400])),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey[400])),
-          ),
-        ),
-        SizedBox(
-          height: 30,
-        ),
-      ],
-    );
-  }
+//  Widget makeInput({label, obscureText = false}) {
+//    return Column(
+//      crossAxisAlignment: CrossAxisAlignment.start,
+//      children: <Widget>[
+//        Text(
+//          label,
+//          style: TextStyle(
+//            fontSize: 15,
+//            color: Color(0xFF8A8A8A),
+//          ),
+//        ),
+//        SizedBox(
+//          height: 5,
+//        ),
+//        TextField(
+//          obscureText: obscureText,
+//          decoration: InputDecoration(
+//            filled: true,
+//            fillColor: Colors.white,
+//            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
+//            enabledBorder: OutlineInputBorder(
+//                borderRadius: BorderRadius.circular(10),
+//                borderSide: BorderSide(color: Colors.grey[400])),
+//            border: OutlineInputBorder(
+//                borderRadius: BorderRadius.circular(10),
+//                borderSide: BorderSide(color: Colors.grey[400])),
+//          ),
+//        ),
+//        SizedBox(
+//          height: 30,
+//        ),
+//      ],
+//    );
+//  }
 }
 
 //List Strings for the dropdown box
