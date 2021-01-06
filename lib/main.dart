@@ -24,7 +24,7 @@ class MyApp extends StatelessWidget {
         primaryColor: Colors.white,
 
       ),
-      home: TravelHistoryPage(),
+      home: SignUpPage(),
       routes: {
         SignUpPage.routeName: (ctx)=> SignUpPage(),
         LoginPage.routeName: (ctx)=> LoginPage(),
