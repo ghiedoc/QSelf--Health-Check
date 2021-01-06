@@ -84,24 +84,19 @@ class _SignUpPageState extends State<SignUpPage> {
                           ),
                         ),
                         SizedBox(
-                          height: 20,
+                          height: 5,
                         ),
-//                        Container(
-//                          height: MediaQuery.of(context).size.height/4,
-//                          child: Center(
-//                            child: Container(
-//                              child: Image.asset('assets/images/qselflogolight.png',
-//                                height: 170,
-//                                width:  170,
-//                              ),
-//                            ),
-//                          ),
-////                        decoration: BoxDecoration(
-////                            image: DecorationImage(
-////                                image: AssetImage('assets/qselflogolight.png')
-////                            )
-////                        )
-//                        ),
+                        Container(
+                          height: MediaQuery.of(context).size.height/4,
+                          child: Center(
+                            child: Container(
+                              child: Image.asset('assets/images/qselflogolight.png',
+                                height: 170,
+                                width:  170,
+                              ),
+                            ),
+                          ),
+                        ),
                         Center(
                           child: Form(
                             key: formkey,
@@ -168,7 +163,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         }
                                         return null;
                                       },
-                                    onSaved: (val){
+                                    onChanged: (val){
                                       password: val;
                                     }
 //                                  database paasok

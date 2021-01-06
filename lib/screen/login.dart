@@ -24,18 +24,20 @@ class _LoginPageState extends State<LoginPage> {
         backgroundColor: Colors.white,
         leading: IconButton(
           onPressed: () {
-            Navigator.of(context).pushReplacementNamed
-              (starts.routeName);
+            Navigator.of(context).pushReplacementNamed(starts.routeName);
           },
-          icon: Icon(Icons.arrow_back_ios, size: 20, color: Color(0xFFFA8072),),
-
+          icon: Icon(
+            Icons.arrow_back_ios,
+            size: 20,
+            color: Color(0xFFFA8072),
+          ),
         ),
       ),
       body: SingleChildScrollView(
         child: Container(
           height: MediaQuery.of(context).size.height,
           width: double.infinity,
-            margin: EdgeInsets.only(left: 10, right: 10),
+          margin: EdgeInsets.only(left: 10, right: 10),
           padding: EdgeInsets.symmetric(vertical: 40),
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
@@ -47,56 +49,57 @@ class _LoginPageState extends State<LoginPage> {
                     children: <Widget>[
                       Container(
                         margin: EdgeInsets.only(left: 40),
-                        child: Text("QSelf-Health \nCheck", style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.bold,
-
-                        ),),
+                        child: Text(
+                          "QSelf-Health \nCheck",
+                          style: TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
                       ),
-                      SizedBox(height: 20,),
+                      SizedBox(
+                        height: 20,
+                      ),
                       Container(
-                          height: MediaQuery.of(context).size.height/4,
-                          child: Center(
-                            child: Container(
-                              child: Image.asset('assets/images/qselflogolight.png',
-                                height: 200,
-                                width:  200,
-                              ),
+                        height: MediaQuery.of(context).size.height / 5,
+                        child: Center(
+                          child: Container(
+                            child: Image.asset(
+                              'assets/images/qselflogolight.png',
+                              height: 200,
+                              width: 200,
                             ),
                           ),
-//                        decoration: BoxDecoration(
-//                            image: DecorationImage(
-//                                image: AssetImage('assets/qselflogolight.png')
-//                            )
-//                        )
+                        ),
                       ),
                     ],
                   ),
-                  Padding(padding: EdgeInsets.symmetric(horizontal: 40),
+                  Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
-                        SizedBox(height: 20.0,),
+                        SizedBox(
+                          height: 20.0,
+                        ),
                         TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Email',
-                            filled: true,
-                            labelStyle: TextStyle(
-                                color: myFocusNode.hasFocus
-                                    ? Colors.blue
-                                    : Colors.black),
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                    color: Colors.grey[400])),
-                            border: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                    color: Colors.grey[400])),
-                          ),
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
+                            ),
                             keyboardType: TextInputType.emailAddress,
                             validator: (value) {
                               if (value.isEmpty ||
@@ -108,9 +111,10 @@ class _LoginPageState extends State<LoginPage> {
                             },
                             onSaved: (value) {
 //                                  database paasok
-                            }
+                            }),
+                        SizedBox(
+                          height: 30.0,
                         ),
-                        SizedBox(height: 30.0,),
                         TextFormField(
                           decoration: InputDecoration(
                             labelText: 'Password',
@@ -122,24 +126,23 @@ class _LoginPageState extends State<LoginPage> {
                             contentPadding: EdgeInsets.symmetric(
                                 vertical: 0, horizontal: 10),
                             enabledBorder: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                    color: Colors.grey[400])),
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    BorderSide(color: Colors.grey[400])),
                             border: OutlineInputBorder(
-                                borderRadius:
-                                BorderRadius.circular(10),
-                                borderSide: BorderSide(
-                                    color: Colors.grey[400])),
+                                borderRadius: BorderRadius.circular(10),
+                                borderSide:
+                                    BorderSide(color: Colors.grey[400])),
                           ),
                           obscureText: true,
                           controller: _passwordController,
                         ),
-                        SizedBox(height: 30.0,),
+                        SizedBox(
+                          height: 30.0,
+                        ),
                       ],
                     ),
                   ),
-
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Container(
@@ -154,13 +157,15 @@ class _LoginPageState extends State<LoginPage> {
                         color: Color(0xFFFF5555),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)
-                        ),
-                        child: Text("Sign in", style: TextStyle(
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Text(
+                          "Sign in",
+                          style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
-                          color: Colors.white,
-                        ),),
+                            color: Colors.white,
+                          ),
+                        ),
                       ),
                     ),
                   ),
@@ -169,32 +174,34 @@ class _LoginPageState extends State<LoginPage> {
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Text("Don't have an account?", style: TextStyle(
-                          color: Color(0xFF8A8A8A),
-                          fontSize: 14,
-                        ),),
-                    InkWell(
-                      onTap:(){
-                        Navigator.of(context).pushReplacementNamed
-                          (SignUpPage.routeName);
-                      },
-                      child: Text("Sign up", style: TextStyle(
-                          fontWeight: FontWeight.w600,
-                          color: Color(0xFF2353FF),
-                          fontSize: 14,
-                        )),
-
-
-),
+                        Text(
+                          "Don't have an account?",
+                          style: TextStyle(
+                            color: Color(0xFF8A8A8A),
+                            fontSize: 14,
+                          ),
+                        ),
+                        InkWell(
+                          onTap: () {
+                            Navigator.of(context)
+                                .pushReplacementNamed(SignUpPage.routeName);
+                          },
+                          child: Text("Sign up",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                color: Color(0xFF2353FF),
+                                fontSize: 14,
+                              )),
+                        ),
                       ],
                     ),
-                  )
+                  ),
                 ],
               ),
             ],
           ),
         ),
-      )
+      ),
     );
   }
 }

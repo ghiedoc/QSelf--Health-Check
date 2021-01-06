@@ -24,7 +24,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
   ];
 
   @override
-
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,
@@ -79,7 +78,9 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
                         children: <Widget>[
-                          SizedBox(height: 30.0,),
+                          SizedBox(
+                            height: 30.0,
+                          ),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: 'First Name',
@@ -91,18 +92,18 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey[400])),
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
                               border: OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey[400])),
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
                             ),
                           ),
-                          SizedBox(height: 30.0,),
+                          SizedBox(
+                            height: 30.0,
+                          ),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: 'Last Name',
@@ -114,18 +115,18 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey[400])),
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
                               border: OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey[400])),
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
                             ),
                           ),
-                          SizedBox(height: 30.0,),
+                          SizedBox(
+                            height: 30.0,
+                          ),
                           //dropdown
                           TextFormField(
                             decoration: InputDecoration(
@@ -138,18 +139,18 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey[400])),
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
                               border: OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey[400])),
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
                             ),
                           ),
-                          SizedBox(height: 30.0,),
+                          SizedBox(
+                            height: 30.0,
+                          ),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: 'Passport Number',
@@ -161,15 +162,13 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               contentPadding: EdgeInsets.symmetric(
                                   vertical: 0, horizontal: 10),
                               enabledBorder: OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey[400])),
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
                               border: OutlineInputBorder(
-                                  borderRadius:
-                                  BorderRadius.circular(10),
-                                  borderSide: BorderSide(
-                                      color: Colors.grey[400])),
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
                             ),
                           ),
                         ],
@@ -211,43 +210,4 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
           ),
         ));
   }
-
-//  Widget makeInput({label, obscureText = false}) {
-//    return Column(
-//      crossAxisAlignment: CrossAxisAlignment.start,
-//      children: <Widget>[
-//        Text(
-//          label,
-//          style: TextStyle(
-//            fontSize: 15,
-//            color: Color(0xFF8A8A8A),
-//          ),
-//        ),
-//        SizedBox(
-//          height: 5,
-//        ),
-//        TextField(
-//          obscureText: obscureText,
-//          decoration: InputDecoration(
-//            filled: true,
-//            fillColor: Colors.white,
-//            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 5),
-//            enabledBorder: OutlineInputBorder(
-//                borderRadius: BorderRadius.circular(10),
-//                borderSide: BorderSide(color: Colors.grey[400])),
-//            border: OutlineInputBorder(
-//                borderRadius: BorderRadius.circular(10),
-//                borderSide: BorderSide(color: Colors.grey[400])),
-//          ),
-//        ),
-//        SizedBox(
-//          height: 30,
-//        ),
-//      ],
-//    );
-//  }
 }
-
-//List Strings for the dropdown box
-
-
