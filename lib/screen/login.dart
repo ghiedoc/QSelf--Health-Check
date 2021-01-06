@@ -11,6 +11,9 @@ class LoginPage extends StatefulWidget {
 }
 
 class _LoginPageState extends State<LoginPage> {
+  TextEditingController _passwordController = new TextEditingController();
+  FocusNode myFocusNode = new FocusNode();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -72,8 +75,67 @@ class _LoginPageState extends State<LoginPage> {
                   Padding(padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Column(
                       children: <Widget>[
-                        makeInput(label: "Email"),
-                        makeInput(label: "Password", obscureText: true),
+                        SizedBox(height: 20.0,),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Email',
+                            filled: true,
+                            labelStyle: TextStyle(
+                                color: myFocusNode.hasFocus
+                                    ? Colors.blue
+                                    : Colors.black),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                    color: Colors.grey[400])),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                    color: Colors.grey[400])),
+                          ),
+                            keyboardType: TextInputType.emailAddress,
+                            validator: (value) {
+                              if (value.isEmpty ||
+                                  !value.contains("@") ||
+                                  !value.contains(".com")) {
+                                return 'Invalid email address';
+                              }
+                              return null;
+                            },
+                            onSaved: (value) {
+//                                  database paasok
+                            }
+                        ),
+                        SizedBox(height: 30.0,),
+                        TextFormField(
+                          decoration: InputDecoration(
+                            labelText: 'Password',
+                            filled: true,
+                            labelStyle: TextStyle(
+                                color: myFocusNode.hasFocus
+                                    ? Colors.blue
+                                    : Colors.black),
+                            contentPadding: EdgeInsets.symmetric(
+                                vertical: 0, horizontal: 10),
+                            enabledBorder: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                    color: Colors.grey[400])),
+                            border: OutlineInputBorder(
+                                borderRadius:
+                                BorderRadius.circular(10),
+                                borderSide: BorderSide(
+                                    color: Colors.grey[400])),
+                          ),
+                          obscureText: true,
+                          controller: _passwordController,
+                        ),
+                        SizedBox(height: 30.0,),
                       ],
                     ),
                   ),
@@ -133,36 +195,6 @@ class _LoginPageState extends State<LoginPage> {
           ),
         ),
       )
-    );
-  }
-
-  Widget makeInput({label, obscureText = false}) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: <Widget>[
-        Text(label, style: TextStyle(
-          fontSize: 15,
-          color:Color(0xFF8A8A8A),
-        ),),
-        SizedBox(height: 5,),
-        TextField(
-          obscureText: obscureText,
-          decoration: InputDecoration(
-            filled: true,
-            fillColor: Colors.white,
-            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-            enabledBorder: OutlineInputBorder(
-              borderRadius: BorderRadius.circular(10),
-              borderSide: BorderSide(color: Colors.grey[400])
-            ),
-            border: OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: Colors.grey[400])
-            ),
-          ),
-        ),
-        SizedBox(height: 30,),
-      ],
     );
   }
 }

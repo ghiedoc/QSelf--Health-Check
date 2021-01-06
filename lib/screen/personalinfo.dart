@@ -78,7 +78,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Column(
                         children: <Widget>[
-                          SizedBox(height: 20.0,),
+                          SizedBox(height: 30.0,),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: 'First Name',
@@ -101,7 +101,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                       color: Colors.grey[400])),
                             ),
                           ),
-                          SizedBox(height: 20.0,),
+                          SizedBox(height: 30.0,),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: 'Last Name',
@@ -124,7 +124,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                       color: Colors.grey[400])),
                             ),
                           ),
-                          SizedBox(height: 20.0,),
+                          SizedBox(height: 30.0,),
                           //dropdown
                           Align(
                             alignment: Alignment.centerLeft,
@@ -156,7 +156,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               }).toList(),
                             ),
                           ),
-                          SizedBox(height: 20.0,),
+                          SizedBox(height: 30.0,),
                           TextFormField(
                             decoration: InputDecoration(
                               labelText: 'Passport Number',

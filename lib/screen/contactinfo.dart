@@ -153,7 +153,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                             ),
                           ),
                           SizedBox(
-                            height: 20.0,
+                            height: 30.0,
                           ),
                           TextFormField(
                             decoration: InputDecoration(
@@ -178,7 +178,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                             ),
                           ),
                           SizedBox(
-                            height: 20.0,
+                            height: 30.0,
                           ),
                           //dropdown
                           Align(
