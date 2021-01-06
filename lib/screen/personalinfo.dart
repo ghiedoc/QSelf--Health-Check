@@ -5,6 +5,7 @@ import 'start.dart';
 
 class PersonalInfoPage extends StatefulWidget {
   @override
+  static const routeName = '/personalinfo';
   _PersonalInfoPageState createState() => _PersonalInfoPageState();
 }
 
@@ -22,7 +23,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
   ];
 
   @override
-  static const routeName = '/personalinfo';
+
   Widget build(BuildContext context) {
     return Scaffold(
         backgroundColor: Colors.white,

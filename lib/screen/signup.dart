@@ -3,26 +3,29 @@ import 'package:flutter/widgets.dart';
 import 'login.dart';
 import 'start.dart';
 import 'package:flutter_trial_three/database/DatabaseHelper.dart';
+import 'personalinfo.dart';
 
 class SignUpPage extends StatefulWidget {
-  @override
   static const routeName = '/signup';
+  @override
   _SignUpPageState createState() => _SignUpPageState();
 }
 
 class _SignUpPageState extends State<SignUpPage> {
 
+
   TextEditingController _passwordController = new TextEditingController();
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final dbHelper = DatabaseHelper.instance;
- String email,password;
+ static String email,password;
 
 //
 //  validation field
   void validate(){
     if(formkey.currentState.validate()){
-      print("validated");
+      Navigator.of(context).pushReplacementNamed
+        (PersonalInfoPage.routeName);
     }else{
       print("not validated");
     }
@@ -35,8 +38,11 @@ class _SignUpPageState extends State<SignUpPage> {
       DatabaseHelper.c_password : password,
   };
 
-    final id = await dbHelper.submit(row);
+    final id = await dbHelper.insert(row);
     print("pasok na database: Id is:  $id");
+//    print("Name: $email");
+//    print("pass: $password");
+
 
   }
 
@@ -83,22 +89,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         SizedBox(
                           height: 20,
                         ),
-//                        Container(
-//                          height: MediaQuery.of(context).size.height/4,
-//                          child: Center(
-//                            child: Container(
-//                              child: Image.asset('assets/images/qselflogolight.png',
-//                                height: 170,
-//                                width:  170,
-//                              ),
-//                            ),
-//                          ),
-////                        decoration: BoxDecoration(
-////                            image: DecorationImage(
-////                                image: AssetImage('assets/qselflogolight.png')
-////                            )
-////                        )
-//                        ),
+
                         Center(
                           child: Form(
                             key: formkey,
@@ -195,24 +186,16 @@ class _SignUpPageState extends State<SignUpPage> {
                                       }
                                       return null;
                                     },
-                                    onSaved: (value) {
-                                      password=value;
+                                    onSaved: (value){
+                                      password = value;
                                     }
+
                                   ),
                                 ],
                               ),
                             ),),),
                       ],
                     ),
-//                    Padding(padding: EdgeInsets.symmetric(horizontal: 40),
-//                      child: Column(
-//                        children: <Widget>[
-//                          makeInput(label: "Email"),
-//                          makeInput(label: "Password", obscureText: true),
-//                          makeInput(label: "Confirm Password", obscureText: true),
-//                        ],
-//                      ),
-//                    ),
                     SizedBox(height: 30,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -226,7 +209,8 @@ class _SignUpPageState extends State<SignUpPage> {
                           height: 50,
                           onPressed: () {
                             validate();
-                            submit();
+
+
 //                            signUp();
                           },
                           color: Color(0xFFFF5555),
@@ -277,32 +261,7 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ));
   }
-
-//  Widget makeInput({label, obscureText = false}) {
-//    return Column(
-//      crossAxisAlignment: CrossAxisAlignment.start,
-//      children: <Widget>[
-//        Text(label, style: TextStyle(
-//          fontSize: 15,
-//          color:Color(0xFF8A8A8A),
-//        ),),
-//        SizedBox(height: 5,),
-//        TextField(
-//          obscureText: obscureText,
-//          decoration: InputDecoration(
-//            filled: true,
-//            fillColor: Colors.white,
-//            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-//            enabledBorder: OutlineInputBorder(
-//                borderRadius: BorderRadius.circular(10),
-//                borderSide: BorderSide(color: Colors.grey[400])
-//            ),
-//            border: OutlineInputBorder(
-//                borderRadius: BorderRadius.circular(10),
-//                borderSide: BorderSide(color: Colors.grey[400])
-//            ),
-//          ),
-//        ),
-//        SizedBox(height: 30,),
-//      ],
+  @override
+  bool get wantKeepAlive => true;
 }
+
