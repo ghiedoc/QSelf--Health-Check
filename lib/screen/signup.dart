@@ -10,8 +10,25 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-  TextEditingController _passwordController = new TextEditingController();
 
+  TextEditingController _passwordController = new TextEditingController();
+  FocusNode myFocusNode = new FocusNode();
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+//
+//  validation field
+  void validate(){
+    if(formkey.currentState.validate()){
+      print("validated");
+    }else{
+      print("not validated");
+    }
+
+  }
+//  function signUp btn
+  void submit(){
+    print("pasok");
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -23,10 +40,13 @@ class _SignUpPageState extends State<SignUpPage> {
           backgroundColor: Colors.white,
           leading: IconButton(
             onPressed: () {
-              Navigator.of(context).pushReplacementNamed
-                (starts.routeName);
+              Navigator.of(context).pushReplacementNamed(starts.routeName);
             },
-            icon: Icon(Icons.arrow_back_ios, size: 20, color: Color(0xFFFA8072),),
+            icon: Icon(
+              Icons.arrow_back_ios,
+              size: 20,
+              color: Color(0xFFFA8072),
+            ),
           ),
         ),
         body: SingleChildScrollView(
@@ -43,76 +63,23 @@ class _SignUpPageState extends State<SignUpPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: <Widget>[
-                        Text("Sign Up", style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.bold,
-
-                        ),),
-                        SizedBox(height: 20,),
-
-                    Center(
-                      child: Form(
-                        child: SingleChildScrollView(
-                          child: Column(
-                            children: <Widget>[
-                              TextFormField(
-                                decoration: InputDecoration(labelText: 'Email'),
-                                  keyboardType: TextInputType.emailAddress,
-                                validator: (value){
-                                  if(value.isEmpty || value == "@"){
-                                    return 'INVALID EMAIL ADDRESS';
-                                  }
-                                  return null;
-                                },
-                                onSaved: (value){
-//                                  database paasok
-                                }
-                              ),
-                        TextFormField(
-                          decoration: InputDecoration(labelText: 'Password'),
-                          obscureText: true,
-                          controller: _passwordController,
-                          validator: (value){
-                            if(value.isEmpty){
-                              return 'INVALID PASSWORD';
-                            }
-                            return null;
-                          },
-                          onSaved: (value){
-//                                  database paasok
-                          }
-                        ),
-                              TextFormField(
-                                decoration: InputDecoration(labelText: 'Confirm Password'),
-                                obscureText: true,
-                                validator: (value){
-                                  if(value.isEmpty || value != _passwordController.text){
-                                    return 'NOT MATCH PASSWORD, PLEASE TRY AGAIN';
-                                  }
-                                  return null;
-                                },
-                                onSaved: (value){
-                                },
-                              ),
-
-
-                            ],
+                        Text(
+                          "Sign Up",
+                          style: TextStyle(
+                            fontSize: 36,
+                            fontWeight: FontWeight.bold,
                           ),
-                        )
-                      )
-
-                        )
-
-
-
-
+                        ),
+                        SizedBox(
+                          height: 20,
+                        ),
 //                        Container(
 //                          height: MediaQuery.of(context).size.height/4,
 //                          child: Center(
 //                            child: Container(
 //                              child: Image.asset('assets/images/qselflogolight.png',
-//                                height: 200,
-//                                width:  200,
+//                                height: 170,
+//                                width:  170,
 //                              ),
 //                            ),
 //                          ),
@@ -122,6 +89,106 @@ class _SignUpPageState extends State<SignUpPage> {
 ////                            )
 ////                        )
 //                        ),
+                        Center(
+                          child: Form(
+                            key: formkey,
+                            child: SingleChildScrollView(
+                              child: Column(
+                                children: <Widget>[
+                                  SizedBox(height: 5,),
+                                  TextFormField(
+                                      decoration: InputDecoration(
+                                        labelText: 'Email',
+                                        filled: true,
+                                        labelStyle: TextStyle(
+                                            color: myFocusNode.hasFocus ? Colors.blue : Colors.black
+                                        ),
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 0, horizontal: 10),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey[400])),
+                                        border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey[400])),
+                                      ),
+                                      keyboardType: TextInputType.emailAddress,
+                                      validator: (value) {
+                                        if(value.isEmpty || !value.contains("@") || !value.contains(".com")){
+                                          return 'INVALID EMAIL ADDRESS';
+                                        }
+                                        return null;
+                                      },
+                                      onSaved: (value) {
+//                                  database paasok
+                                      }),
+                                  SizedBox(height: 30,),
+                                  TextFormField(
+                                      decoration: InputDecoration(
+                                        labelText: 'Password',
+                                        filled: true,
+                                        labelStyle: TextStyle(
+                                            color: myFocusNode.hasFocus ? Colors.blue : Colors.black
+                                        ),
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 0, horizontal: 10),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey[400])),
+                                        border: OutlineInputBorder(
+                                            borderRadius: BorderRadius.circular(10),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey[400])),
+                                      ),
+                                      obscureText: true,
+                                      controller: _passwordController,
+                                      validator: (value) {
+                                        if (value.isEmpty) {return 'Enter New Passowrd';
+                                        }else if (value.length < 8){
+                                          return 'Password must be atleast 8 characters long';
+                                        }else if(!value.contains("@") && (!value.contains("!") && !value.contains("#") && !value.contains("%"))){
+                                          return 'Password must be atleast 1 character';
+                                        }
+                                        return null;
+                                      },
+                                      onSaved: (value) {
+//                                  database paasok
+                                      }),
+                                  SizedBox(height: 30,),
+                                  TextFormField(
+                                    decoration: InputDecoration(
+                                      labelText: 'Confirm Password',
+                                      filled: true,
+                                      labelStyle: TextStyle(
+                                          color: myFocusNode.hasFocus ? Colors.blue : Colors.black
+                                      ),
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 0, horizontal: 10),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                    ),
+                                    obscureText: true,
+                                    validator: (value) {
+                                      if (value.isEmpty ||
+                                          value != _passwordController.text) {
+                                        return 'NOT MATCH PASSWORD, PLEASE TRY AGAIN';
+                                      }
+                                      return null;
+                                    },
+                                    onSaved: (value) {},
+                                  ),
+                                ],
+                              ),
+                            ),),),
                       ],
                     ),
 //                    Padding(padding: EdgeInsets.symmetric(horizontal: 40),
@@ -133,7 +200,7 @@ class _SignUpPageState extends State<SignUpPage> {
 //                        ],
 //                      ),
 //                    ),
-
+                    SizedBox(height: 30,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Container(
@@ -145,18 +212,22 @@ class _SignUpPageState extends State<SignUpPage> {
                           minWidth: double.infinity,
                           height: 50,
                           onPressed: () {
+                            validate();
+                            submit();
 //                            signUp();
                           },
                           color: Color(0xFFFF5555),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            "Sign up",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
                           ),
-                          child: Text("Sign up", style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Colors.white,
-                          ),),
                         ),
                       ),
                     ),
@@ -165,21 +236,24 @@ class _SignUpPageState extends State<SignUpPage> {
                       child: Row(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: <Widget>[
-                          Text("Already have an account?", style: TextStyle(
-                            color: Color(0xFF8A8A8A),
-                            fontSize: 14,
-                          ),),
-                      InkWell(
-                        onTap:(){
-                          Navigator.of(context).pushReplacementNamed
-                            (LoginPage.routeName);
-                        },
-                         child: Text(" Sign in here.", style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            color: Color(0xFF2353FF),
-                            fontSize: 14,
-                          ))
-                      ),
+                          Text(
+                            "Already have an account?",
+                            style: TextStyle(
+                              color: Color(0xFF8A8A8A),
+                              fontSize: 14,
+                            ),
+                          ),
+                          InkWell(
+                              onTap: () {
+                                Navigator.of(context)
+                                    .pushReplacementNamed(LoginPage.routeName);
+                              },
+                              child: Text(" Sign in here.",
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.w600,
+                                    color: Color(0xFF2353FF),
+                                    fontSize: 14,
+                                  ))),
                         ],
                       ),
                     )
@@ -188,8 +262,7 @@ class _SignUpPageState extends State<SignUpPage> {
               ],
             ),
           ),
-        )
-    );
+        ));
   }
 
 //  Widget makeInput({label, obscureText = false}) {
@@ -219,4 +292,4 @@ class _SignUpPageState extends State<SignUpPage> {
 //        ),
 //        SizedBox(height: 30,),
 //      ],
-  }
+}
