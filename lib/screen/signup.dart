@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'login.dart';
 import 'start.dart';
+import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 
 class SignUpPage extends StatefulWidget {
   @override
@@ -13,6 +14,8 @@ class _SignUpPageState extends State<SignUpPage> {
   TextEditingController _passwordController = new TextEditingController();
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final dbHelper = DatabaseHelper.instance;
+ String email,password;
 
 //
 //  validation field
@@ -25,6 +28,15 @@ class _SignUpPageState extends State<SignUpPage> {
   }
 
 //  function signUp btn
+  void submit() async{
+    Map<String, dynamic> row = {
+    DatabaseHelper.c_email : email,
+      DatabaseHelper.c_password : password,
+  };
+
+    final id = await dbHelper.submit(row);
+    print("pasok na database: Id is:  $id");
+  
   void submit() {
     print("pasok");
   }
@@ -127,8 +139,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                         }
                                         return null;
                                       },
-                                      onSaved: (value) {
-//                                  database paasok
+                                      onChanged: (value) {
+                                        email=value;
+
                                       }),
                                   SizedBox(
                                     height: 30,
@@ -169,8 +182,11 @@ class _SignUpPageState extends State<SignUpPage> {
                                         }
                                         return null;
                                       },
-                                      onSaved: (value) {
+
 //                                  database paasok
+
+                                      ),
+                                  SizedBox(height: 30,),
                                       }),
                                   SizedBox(
                                     height: 30,
@@ -204,7 +220,9 @@ class _SignUpPageState extends State<SignUpPage> {
                                       }
                                       return null;
                                     },
-                                    onSaved: (value) {},
+                                    onSaved: (value) {
+                                      password=value;
+                                    }
                                   ),
                                 ],
                               ),
