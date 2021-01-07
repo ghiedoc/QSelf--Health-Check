@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class AdminDashboardPage extends StatefulWidget {
+class AdminUserListPage extends StatefulWidget {
   @override
-  _AdminDashboardPageState createState() => _AdminDashboardPageState();
+  _AdminUserListPageState createState() => _AdminUserListPageState();
 }
 
-class _AdminDashboardPageState extends State<AdminDashboardPage> {
+class _AdminUserListPageState extends State<AdminUserListPage> {
   @override
   Widget build(BuildContext context) {
 
@@ -23,24 +23,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(""),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // this will be set when a new tab is tapped
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.notifications),
-            title: new Text('Notifications'),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.home),
-            title: new Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.fact_check),
-            title: new Text('Self-Diagnose Form'),
-          ),
-        ],
-
-      ),
+      //BODY
       body: Container(
         padding: EdgeInsets.all(20.0),
         child: ListView(
@@ -66,39 +49,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 20.0, horizontal: 20.0),
                       child: Text(
-                        'Hi, Admin',
-                        style: TextStyle(
-                          fontSize: 32,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-            //USER LIST
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return;
-                    },
-                  ),
-                );
-              },
-              child: Container(
-                height: 90,
-                child: Padding(
-                  padding: padding,
-                  child: Card(
-                    shape: border,
-                    elevation: 3.0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 20.0),
-                      child: Text(
-                        'User List',
+                        'User 1',
                         style: TextStyle(
                           fontSize: 32,
                         ),
@@ -110,6 +61,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
             ),
           ],
         ),
+        //DRAWER
       ),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
