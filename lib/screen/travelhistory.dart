@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter/cupertino.dart';
 import 'login.dart';
 import 'start.dart';
 
@@ -10,8 +11,11 @@ class TravelHistoryPage extends StatefulWidget {
 
 class _TravelHistoryPageState extends State<TravelHistoryPage> {
   FocusNode myFocusNode = new FocusNode();
-
+  DateTime _setDate = DateTime.now();
+  int selectitem = 1;
+  String dateTime;
   String valueChoose;
+
   List country = [
     "Algeria",
     "Philippines",
@@ -22,8 +26,13 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
     "South Korea"
   ];
 
+  
+
   @override
   Widget build(BuildContext context) {
+
+    String dateTime;
+
     return Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -102,6 +111,8 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                                       color: Colors.grey[400])),
                             ),
                           ),
+                          //DATE PICER INSERT HERE
+
                           SizedBox(
                             height: 30.0,
                           ),

@@ -41,62 +41,64 @@ class _startState extends State<starts> {
                   ),),
                 ],
               ),
-              SizedBox(height: 50,),
-//              Container(
-//                padding: EdgeInsets.symmetric(
-//                    horizontal: 30
-//                ),
-//                height: MediaQuery.of(context).size.height / 5,
-//                decoration: BoxDecoration(
-//                  image: DecorationImage(
-//                    image: AssetImage('assets/qselflogodark.png')
-//                  )
-//                )
-//              ),
-              SizedBox(height: 50,),
-              Column(
-                children: <Widget>[
-                  MaterialButton(
-                    minWidth: double.infinity,
-                    height: 60,
-                      onPressed: () {
-                        Navigator.of(context).pushReplacementNamed
-                          (SignUpPage.routeName);
-                      },
-                      color: Color(0xFBB1F1F1F),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10)
-                      ),
-                    child: Text("Get Started", style: TextStyle(
-                      color: Colors.white,
-                      fontSize: 20,
-                    ))
-                  ),
-                  SizedBox(height: 20,),
-                  Container(
-                    decoration: BoxDecoration(
-                    ),
-                    child: MaterialButton(
+              SizedBox(height: 30,),
+              Container(
+                padding: EdgeInsets.symmetric(
+                    horizontal: 30
+                ),
+                height: MediaQuery.of(context).size.height / 5,
+                decoration: BoxDecoration(
+                  image: DecorationImage(
+                    image: AssetImage('assets/qselflogodark.png')
+                  )
+                )
+              ),
+              Expanded(
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: <Widget>[
+                    MaterialButton(
                       minWidth: double.infinity,
                       height: 60,
                         onPressed: () {
                           Navigator.of(context).pushReplacementNamed
-                            (LoginPage.routeName);
+                            (SignUpPage.routeName);
                         },
+                        color: Color(0xFBB1F1F1F),
                         shape: RoundedRectangleBorder(
-                          side: BorderSide(
-                            color: Colors.white,
-                            width: 3,
-                          ),
-                            borderRadius: BorderRadius.circular(10)
+                          borderRadius: BorderRadius.circular(10)
                         ),
-                        child: Text("Sign in", style: TextStyle(
-                          fontSize: 20,
-                          color: Colors.white,
-                        ))
+                      child: Text("Get Started", style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 20,
+                      ))
                     ),
-                  ),
-                ],
+                    SizedBox(height: 20,),
+                    Container(
+                      decoration: BoxDecoration(
+                      ),
+                      child: MaterialButton(
+                        minWidth: double.infinity,
+                        height: 60,
+                          onPressed: () {
+                            Navigator.of(context).pushReplacementNamed
+                              (LoginPage.routeName);
+                          },
+                          shape: RoundedRectangleBorder(
+                            side: BorderSide(
+                              color: Colors.white,
+                              width: 3,
+                            ),
+                              borderRadius: BorderRadius.circular(10)
+                          ),
+                          child: Text("Sign in", style: TextStyle(
+                            fontSize: 20,
+                            color: Colors.white,
+                          ))
+                      ),
+                    ),
+                  ],
+                ),
               )
             ],
           )

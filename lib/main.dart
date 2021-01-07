@@ -7,8 +7,8 @@ import 'package:flutter_trial_three/screen/personalinfo.dart';
 import 'package:flutter_trial_three/screen/contactinfo.dart';
 import 'package:flutter_trial_three/screen/travelhistory.dart';
 import 'package:flutter_trial_three/screen/covidupdates.dart';
-import 'package:flutter_trial_three/screen/personalinfo.dart';
-import 'package:flutter_trial_three/screen/contactinfo.dart';
+import 'package:flutter_trial_three/screen/welcome.dart';
+import 'package:flutter_trial_three/screen/dashboard.dart';
 
 void main() async {
   runApp(MyApp());
@@ -24,7 +24,6 @@ class MyApp extends StatelessWidget {
       title: 'Login App',
       theme: ThemeData(
         primaryColor: Colors.white,
-
       ),
       home: starts(),
       routes: {
