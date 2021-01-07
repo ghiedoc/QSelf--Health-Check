@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'login.dart';
 import 'start.dart';
+import 'package:flutter_trial_three/database/DatabaseHelper.dart';
+import 'data.dart';
 
 class ContactInfoPage extends StatefulWidget {
   static const routeName = '/contactinfo';
@@ -12,7 +14,6 @@ class ContactInfoPage extends StatefulWidget {
 
 class _ContactInfoPageState extends State<ContactInfoPage> {
   FocusNode myFocusNode = new FocusNode();
-
   String valueChoose;
   List hotel = [
         "Century Park Hotel",
@@ -73,6 +74,34 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
         "Seda Vertis North",
   ];
 
+  final dbHelper = DatabaseHelper.instance;
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+//  INSERT DATA
+  void insert() async {
+    Map<String, dynamic> row = {
+      DatabaseHelper.c_contact_no: contactData.contact_number,
+      DatabaseHelper.c_contact_emergency: contactData.contact_emergency,
+      DatabaseHelper.c_quar_hotel: contactData.quar_hotel,
+
+    };
+    final id = await dbHelper.submit(row);
+    print("pasok na database: Id is:  $id");
+  }
+
+//  validation
+  void validate(){
+    if(formkey.currentState.validate()){
+      print("VALIDATE");
+//      Navigator.of(context)
+//          .pushReplacementNamed(ContactInfoPage.routeName);
+      insert();
+    }else{
+      print("not validated");
+    }
+  }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -127,6 +156,8 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
+                      child: Form(
+                        key: formkey,
                       child: Column(
                         children: <Widget>[
                           SizedBox(
@@ -154,6 +185,15 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                   borderSide: BorderSide(
                                       color: Colors.grey[400])),
                             ),
+                            validator: (value) {
+                              if(value.toString().isEmpty || value.length < 11){
+                                return 'INVALID CONTACT NUMBER';
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              contactData.contact_number = value;
+                            },
                           ),
                           SizedBox(
                             height: 30.0,
@@ -180,6 +220,15 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                   borderSide: BorderSide(
                                       color: Colors.grey[400])),
                             ),
+                            validator: (value) {
+                              if(value.toString().isEmpty || value.length < 11){
+                                return 'INVALID EMERGENCY NUMBER';
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              contactData.contact_emergency = value;
+                            },
                           ),
                           SizedBox(
                             height: 30.0,
@@ -216,10 +265,17 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: DropdownButtonFormField(
+                              validator: (newValue) {
+                                if(newValue.toString().isEmpty){
+                                  return 'INVALID QUARANTINE HOTEL';
+                                }
+                                return null;
+                              },
                               value: valueChoose,
                               onChanged: (newValue) {
                                 setState(() {
                                   valueChoose = newValue;
+                                  contactData.quar_hotel = newValue;
                                 });
                               },
                               items: hotel.map((valueItem) {
@@ -233,6 +289,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                         ],
                       ),
                     ),
+                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Container(
@@ -243,7 +300,9 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height: 50,
-                          onPressed: () {},
+                          onPressed: () {
+                            validate();
+                          },
                           color: Color(0xFFFF5555),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
