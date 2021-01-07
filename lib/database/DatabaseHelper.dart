@@ -67,6 +67,7 @@ class DatabaseHelper {
             "FOREIGN KEY ($c_user_id) REFERENCES $table_user ($c_user_id))"
     );
   }
+
   Future<int> submit(Map<String, dynamic> row) async {
     Database db = await instance.database;
     return await db.insert(table_contact_info, row);

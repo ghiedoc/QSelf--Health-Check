@@ -186,7 +186,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                       color: Colors.grey[400])),
                             ),
                             validator: (value) {
-                              if(value.toString().isEmpty){
+                              if(value.toString().isEmpty || value.length < 11){
                                 return 'INVALID CONTACT NUMBER';
                               }
                               return null;
@@ -221,7 +221,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                       color: Colors.grey[400])),
                             ),
                             validator: (value) {
-                              if(value.toString().isEmpty){
+                              if(value.toString().isEmpty || value.length < 11){
                                 return 'INVALID EMERGENCY NUMBER';
                               }
                               return null;
