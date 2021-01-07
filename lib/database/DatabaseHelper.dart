@@ -8,12 +8,12 @@ class DatabaseHelper{
   static final _databaseVersion = 1;
   static final table = "user";
   static final c_user_id = "user_id";
-//  static final c__fname = "fname";
-//  static final c_lname = "lname";
-//  static final c_nationality = "nationality";
-//  static final c_passport_no = "passoport_no";
   static final c_email = "email";
   static final c_password = "password";
+  static final c_fname = "fname";
+  static final c_lname = "lname";
+  static final c_nationality = "nationality";
+  static final c_passport_no = "passport_no";
 
   DatabaseHelper._privateConstructor();
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -36,24 +36,23 @@ class DatabaseHelper{
 
 
   }
-//  $c__fname TEXT NOT NULL,
-//      $c_lname TEXT NOT NULL,
-//  $c_nationality TEXT NOT NULL,
-//      $c_passport_no TEXT NOT NULL
 
+//
   Future _onCreate(Database db, int version) async{
-    await db.execute('''
-          CREATE TABLE $table (
-            $c_user_id INTEGER PRIMARY KEY,
-            $c_email TEXT NOT NULL,
-            $c_password TEXT NOT NULL
-          )
-          ''');
+    await db.execute(
+        "CREATE TABLE $table ("
+            "$c_user_id INTEGER PRIMARY KEY, "
+            "$c_email TEXT, "
+            "$c_password TEXT,"
+            "$c_fname TEXT, "
+            "$c_lname TEXT, "
+            "$c_nationality TEXT, "
+            "$c_passport_no TEXT)"
+        );
   }
 
   Future<int> insert(Map<String, dynamic> row) async {
     Database db = await instance.database;
     return await db.insert(table, row);
   }
-
 }

@@ -3,6 +3,10 @@ import 'package:flutter/widgets.dart';
 import 'login.dart';
 import 'start.dart';
 import 'signup.dart';
+import 'package:flutter_trial_three/database/DatabaseHelper.dart';
+import 'signup.dart';
+import 'data.dart';
+import 'contactinfo.dart';
 
 class PersonalInfoPage extends StatefulWidget {
   @override
@@ -12,17 +16,37 @@ class PersonalInfoPage extends StatefulWidget {
 
 class _PersonalInfoPageState extends State<PersonalInfoPage> {
   FocusNode myFocusNode = new FocusNode();
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final dbHelper = DatabaseHelper.instance;
+
+
+//    function signUp btn
+  void insert() async{
+    Map<String, dynamic> row = {
+      DatabaseHelper.c_email : data.email,
+      DatabaseHelper.c_password : data.password,
+      DatabaseHelper.c_fname : data.fname,
+      DatabaseHelper.c_lname : data.lname,
+      DatabaseHelper.c_nationality : data.nationality,
+      DatabaseHelper.c_passport_no : data.passport_no,
+  };
+
+    final id = await dbHelper.insert(row);
+    print("pasok na database: Id is:  $id");
+
+  }
+//  validation function
+  void validation(){
+    if(formkey.currentState.validate()){
+      Navigator.of(context)
+          .pushReplacementNamed(ContactInfoPage.routeName);
+        insert();
+    }else{
+      print("not validated");
+    }
+  }
 
   String valueChoose;
-  List country = [
-    "Algerian",
-    "Filipino",
-    "Indonesian",
-    "Malaysian",
-    "Sri Lanka",
-    "Japanese",
-    "South Korean"
-  ];
 
   @override
 
@@ -77,8 +101,12 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                         ],
                       ),
                     ),
+
+
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
+                      child: Form(
+                        key: formkey,
                       child: Column(
                         children: <Widget>[
                           SizedBox(height: 30.0,),
@@ -103,6 +131,15 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                   borderSide: BorderSide(
                                       color: Colors.grey[400])),
                             ),
+                              validator: (value) {
+                                if(value.toString().isEmpty){
+                                  return 'INVALID FIRST NAME';
+                                }
+                                return null;
+                              },
+                              onChanged: (value) {
+                                data.email = value;
+                              },
                           ),
                           SizedBox(height: 30.0,),
                           TextFormField(
@@ -126,38 +163,48 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                   borderSide: BorderSide(
                                       color: Colors.grey[400])),
                             ),
+                              validator: (value) {
+                                if(value.toString().isEmpty){
+                                  return 'INVALID LAST NAME';
+                                }
+                                return null;
+                              },
+                            onChanged: (val){
+                              data.lname = val;
+                            }
                           ),
                           SizedBox(height: 30.0,),
                           //dropdown
-                          Align(
-                            alignment: Alignment.centerLeft,
-                            child: Text(
-                              "Nationality",
-                              style: TextStyle(
-                                fontSize: 15,
-                                color: Color(0xFF8A8A8A),
-                              ),
+                          TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Nationality',
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius:
+                                  BorderRadius.circular(10),
+                                  borderSide: BorderSide(
+                                      color: Colors.grey[400])),
                             ),
-                          ),
-                          Container(
-                            decoration: BoxDecoration(
-                              border: Border.all(color: Colors.black12, width: 2.0),
-                              borderRadius: BorderRadius.circular(10),
-                            ),
-                            child: DropdownButtonFormField(
-                              value: valueChoose,
-                              onChanged: (newValue) {
-                                setState(() {
-                                  valueChoose = newValue;
-                                });
+                              validator: (value) {
+                                if(value.toString().isEmpty){
+                                  return 'INVALID NATIONALITY';
+                                }
+                                return null;
                               },
-                              items: country.map((valueItem){
-                                return DropdownMenuItem(
-                                 value: valueItem,
-                                 child: Text(valueItem),
-                                );
-                              }).toList(),
-                            ),
+                            onChanged: (val){
+                              data.nationality = val;
+                            }
                           ),
                           SizedBox(height: 30.0,),
                           TextFormField(
@@ -181,9 +228,19 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                   borderSide: BorderSide(
                                       color: Colors.grey[400])),
                             ),
+                              validator: (value) {
+                                if(value.toString().isEmpty){
+                                  return 'INVALID PASSPORT NUMBER';
+                                }
+                                return null;
+                              },
+                            onChanged: (val){
+                              data.passport_no = val;
+                            }
                           ),
                         ],
                       ),
+                    ),
                     ),
                     SizedBox(
                       height: 30,
@@ -198,7 +255,9 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height: 50,
-                          onPressed: () {},
+                          onPressed: () {
+                            validation();
+                          },
                           color: Color(0xFFFF5555),
                           elevation: 0,
                           shape: RoundedRectangleBorder(
@@ -211,9 +270,9 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               color: Colors.white,
                             ),
                           ),
+                          ),
                         ),
                       ),
-                    ),
                   ],
                 ),
               ],

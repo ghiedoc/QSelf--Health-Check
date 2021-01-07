@@ -4,8 +4,10 @@ import 'login.dart';
 import 'start.dart';
 import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 import 'personalinfo.dart';
+import 'data.dart';
 
 class SignUpPage extends StatefulWidget {
+  data d = new data();
   @override
   static const routeName = '/signup';
   _SignUpPageState createState() => _SignUpPageState();
@@ -17,7 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final dbHelper = DatabaseHelper.instance;
- static String email,password;
+
 
 //
 //  validation field
@@ -32,17 +34,16 @@ class _SignUpPageState extends State<SignUpPage> {
 
   }
 //  function signUp btn
-  void submit() async{
-    Map<String, dynamic> row = {
-    DatabaseHelper.c_email : email,
-      DatabaseHelper.c_password : password,
-  };
-
-    final id = await dbHelper.insert(row);
-    print("pasok na database: Id is:  $id");
-
-  }
-
+//  void submit() async{
+//    Map<String, dynamic> row = {
+//    DatabaseHelper.c_email : email,
+//      DatabaseHelper.c_password : password,
+//  };
+//
+//    final id = await dbHelper.insert(row);
+//    print("pasok na database: Id is:  $id");
+//
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -136,7 +137,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         return null;
                                       },
                                       onChanged: (value) {
-                                        email=value;
+                                       data.email = value;
 
                                       }),
                                   SizedBox(height: 30,),
@@ -169,8 +170,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                         }
                                         return null;
                                       },
-                                    onSaved: (value){
-                                        password = value;
+                                    onChanged: (val){
+                                        data.password = val;
                                     }
 
 //                                  database paasok
@@ -280,11 +281,7 @@ class _SignUpPageState extends State<SignUpPage> {
             ),
           ),
         ));
-
   }
-  @override
-  bool get wantKeepAlive => true;
-}
 
 //  Widget makeInput({label, obscureText = false}) {
 //    return Column(
@@ -313,3 +310,4 @@ class _SignUpPageState extends State<SignUpPage> {
 //        ),
 //        SizedBox(height: 30,),
 //      ],
+}
