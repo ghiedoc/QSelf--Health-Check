@@ -28,12 +28,92 @@ class MyHomePage extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color(0xFFFA8072),
       appBar: AppBar(
-          elevation: 0, backgroundColor: Color(0xFFFA8072), iconTheme: IconThemeData(color: Colors.black), title: Text(title)),
+          elevation: 0,
+          backgroundColor: Color(0xFFFA8072),
+          iconTheme: IconThemeData(color: Colors.black),
+          title: Text(title)),
+      bottomNavigationBar: new Theme(
+        data: Theme.of(context).copyWith(
+          canvasColor: Color(0xFFFA8072),
+        ),
+        child: BottomNavigationBar(
+          currentIndex: 0, // this will be set when a new tab is tapped
+          items: [
+            BottomNavigationBarItem(
+              icon: IconTheme(
+                child: new Icon(Icons.notifications),
+                data: IconThemeData(color: Colors.white),
+              ),
+              title: IconTheme(
+                child: new Text(
+                  'Notifications',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
+                ),
+                data: IconThemeData(color: Colors.white),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: IconTheme(
+                child: new Icon(Icons.home),
+                data: IconThemeData(color: Colors.white),
+              ),
+              title: new Text(
+                'Home',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+            BottomNavigationBarItem(
+              icon: IconTheme(
+                child: new Icon(Icons.fact_check),
+                data: IconThemeData(color: Colors.white),
+              ),
+              title: new Text(
+                'Self-Diagnose Form',
+                style: TextStyle(
+                  color: Colors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
       body: Container(
         height: MediaQuery.of(context).size.height,
         width: double.infinity,
         margin: EdgeInsets.only(left: 10, right: 10),
-
+        child: Column(
+          children: <Widget>[
+            Align(
+              alignment: Alignment.centerLeft,
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  SizedBox(
+                    height: 20.0,
+                  ),
+                  Container(
+                    margin: EdgeInsets.only(left: 40),
+                    child: Text(
+                      "COVID-19 Statistics",
+                      style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 36,
+                        fontWeight: FontWeight.bold,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: 10,
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
       ),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
