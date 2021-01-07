@@ -4,6 +4,7 @@ import 'login.dart';
 import 'start.dart';
 
 class TravelHistoryPage extends StatefulWidget {
+  static const routeName = '/travelhistory';
   @override
   _TravelHistoryPageState createState() => _TravelHistoryPageState();
 }
