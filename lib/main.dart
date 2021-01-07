@@ -31,6 +31,9 @@ class MyApp extends StatelessWidget {
         LoginPage.routeName: (ctx)=> LoginPage(),
         starts.routeName: (ctx)=> starts(),
         PersonalInfoPage.routeName: (ctx) => PersonalInfoPage(),
+        ContactInfoPage.routeName: (ctx) => ContactInfoPage(),
+
+
 //        HomeScreen.routeName: (ctx)=> HomeScreen(),
       },
     );

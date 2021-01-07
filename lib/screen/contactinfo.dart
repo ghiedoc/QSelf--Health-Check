@@ -5,6 +5,7 @@ import 'login.dart';
 import 'start.dart';
 
 class ContactInfoPage extends StatefulWidget {
+  static const routeName = '/contactinfo';
   @override
   _ContactInfoPageState createState() => _ContactInfoPageState();
 }

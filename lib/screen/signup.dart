@@ -4,8 +4,10 @@ import 'login.dart';
 import 'start.dart';
 import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 import 'personalinfo.dart';
+import 'data.dart';
 
 class SignUpPage extends StatefulWidget {
+  data d = new data();
   @override
   static const routeName = '/signup';
   _SignUpPageState createState() => _SignUpPageState();
@@ -17,7 +19,7 @@ class _SignUpPageState extends State<SignUpPage> {
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final dbHelper = DatabaseHelper.instance;
-  static String email,password;
+
 
 //
 //  validation field
@@ -25,23 +27,23 @@ class _SignUpPageState extends State<SignUpPage> {
     if(formkey.currentState.validate()){
       Navigator.of(context)
           .pushReplacementNamed(PersonalInfoPage.routeName);
-      submit();
+//      submit();
     }else{
       print("not validated");
     }
 
   }
 //  function signUp btn
-  void submit() async{
-    Map<String, dynamic> row = {
-    DatabaseHelper.c_email : email,
-      DatabaseHelper.c_password : password,
-  };
-
-    final id = await dbHelper.insert(row);
-    print("pasok na database: Id is:  $id");
-
-  }
+//  void submit() async{
+//    Map<String, dynamic> row = {
+//    DatabaseHelper.c_email : email,
+//      DatabaseHelper.c_password : password,
+//  };
+//
+//    final id = await dbHelper.insert(row);
+//    print("pasok na database: Id is:  $id");
+//
+//  }
 
   @override
   Widget build(BuildContext context) {
@@ -130,7 +132,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         return null;
                                       },
                                       onChanged: (value) {
-                                        email=value;
+                                       data.email = value;
 
                                       }),
                                   SizedBox(height: 30,),
@@ -164,8 +166,10 @@ class _SignUpPageState extends State<SignUpPage> {
                                         return null;
                                       },
                                     onChanged: (val){
+                                        data.password = val;
                                       password: val;
                                     }
+
 //                                  database paasok
                                       ),
                                   SizedBox(height: 30,),
@@ -201,6 +205,15 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),),),
                       ],
                     ),
+//                    Padding(padding: EdgeInsets.symmetric(horizontal: 40),
+//                      child: Column(
+//                        children: <Widget>[
+//                          makeInput(label: "Email"),
+//                          makeInput(label: "Password", obscureText: true),
+//                          makeInput(label: "Confirm Password", obscureText: true),
+//                        ],
+//                      ),
+//                    ),
                     SizedBox(height: 30,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -265,4 +278,32 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ));
   }
+
+//  Widget makeInput({label, obscureText = false}) {
+//    return Column(
+//      crossAxisAlignment: CrossAxisAlignment.start,
+//      children: <Widget>[
+//        Text(label, style: TextStyle(
+//          fontSize: 15,
+//          color:Color(0xFF8A8A8A),
+//        ),),
+//        SizedBox(height: 5,),
+//        TextField(
+//          obscureText: obscureText,
+//          decoration: InputDecoration(
+//            filled: true,
+//            fillColor: Colors.white,
+//            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
+//            enabledBorder: OutlineInputBorder(
+//                borderRadius: BorderRadius.circular(10),
+//                borderSide: BorderSide(color: Colors.grey[400])
+//            ),
+//            border: OutlineInputBorder(
+//                borderRadius: BorderRadius.circular(10),
+//                borderSide: BorderSide(color: Colors.grey[400])
+//            ),
+//          ),
+//        ),
+//        SizedBox(height: 30,),
+//      ],
 }
