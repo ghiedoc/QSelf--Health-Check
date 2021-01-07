@@ -233,6 +233,19 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                           SizedBox(
                             height: 30.0,
                           ),
+                          Text(
+                            "Quarantine Hotel",
+                            style: TextStyle(
+                              fontSize: 16,
+                              fontWeight: FontWeight.w500,
+                            ),
+                          ),
+                          Divider(
+                            color: Colors.black54,
+                          ),
+                          SizedBox(
+                            height: 20.0,
+                          ),
                           //dropdown
                           Align(
                             alignment: Alignment.centerLeft,
@@ -245,7 +258,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                             ),
                           ),
                           Container(
-                            margin: const EdgeInsets.only(bottom: 200.0),
+                            margin: const EdgeInsets.only(bottom: 100.0),
                             decoration: BoxDecoration(
                               border:
                                   Border.all(color: Colors.black12, width: 2.0),
