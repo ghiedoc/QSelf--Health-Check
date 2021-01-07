@@ -1,21 +1,21 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class DashboardPage extends StatefulWidget {
+class AdminDashboardPage extends StatefulWidget {
   @override
-  _DashboardPageState createState() => _DashboardPageState();
+  _AdminDashboardPageState createState() => _AdminDashboardPageState();
 }
 
-class _DashboardPageState extends State<DashboardPage> {
+class _AdminDashboardPageState extends State<AdminDashboardPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEFEFEF),
       appBar: AppBar(
-          backgroundColor: Color(0xFFEFEFEF),
-          elevation: 0,
-          iconTheme: IconThemeData(color: Colors.black),
-          title: Text(""),
+        backgroundColor: Color(0xFFEFEFEF),
+        elevation: 0,
+        iconTheme: IconThemeData(color: Colors.black),
+        title: Text(""),
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: 0, // this will be set when a new tab is tapped
@@ -55,6 +55,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       "Dashboard",
                       style: TextStyle(
                         fontSize: 36,
+                        color: Color(0xFFFA8072),
                         fontWeight: FontWeight.bold,
                       ),
                     ),

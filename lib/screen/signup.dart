@@ -278,32 +278,4 @@ class _SignUpPageState extends State<SignUpPage> {
           ),
         ));
   }
-
-//  Widget makeInput({label, obscureText = false}) {
-//    return Column(
-//      crossAxisAlignment: CrossAxisAlignment.start,
-//      children: <Widget>[
-//        Text(label, style: TextStyle(
-//          fontSize: 15,
-//          color:Color(0xFF8A8A8A),
-//        ),),
-//        SizedBox(height: 5,),
-//        TextField(
-//          obscureText: obscureText,
-//          decoration: InputDecoration(
-//            filled: true,
-//            fillColor: Colors.white,
-//            contentPadding: EdgeInsets.symmetric(vertical: 0, horizontal: 10),
-//            enabledBorder: OutlineInputBorder(
-//                borderRadius: BorderRadius.circular(10),
-//                borderSide: BorderSide(color: Colors.grey[400])
-//            ),
-//            border: OutlineInputBorder(
-//                borderRadius: BorderRadius.circular(10),
-//                borderSide: BorderSide(color: Colors.grey[400])
-//            ),
-//          ),
-//        ),
-//        SizedBox(height: 30,),
-//      ],
 }
