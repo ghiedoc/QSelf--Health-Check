@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class AdminDashboardPage extends StatefulWidget {
+  static const routeName = '/adminDashboard';
   @override
   _AdminDashboardPageState createState() => _AdminDashboardPageState();
 }

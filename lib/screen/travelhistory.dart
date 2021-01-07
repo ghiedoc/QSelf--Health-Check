@@ -3,6 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'login.dart';
 import 'start.dart';
+import 'package:flutter_trial_three/database/DatabaseHelper.dart';
+import 'data.dart';
+import 'welcome.dart';
 
 class TravelHistoryPage extends StatefulWidget {
   static const routeName = '/travelhistory';
@@ -12,6 +15,9 @@ class TravelHistoryPage extends StatefulWidget {
 
 class _TravelHistoryPageState extends State<TravelHistoryPage> {
   FocusNode myFocusNode = new FocusNode();
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
+  final dbHelper = DatabaseHelper.instance;
+
   DateTime _setDate = DateTime.now();
   int selectitem = 1;
   String dateTime;
@@ -26,6 +32,28 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
     "Japan",
     "South Korea"
   ];
+
+  //    function signUp btn
+  void insert() async{
+    Map<String, dynamic> row = {
+      DatabaseHelper.c_travel_arrival_date : travelData.travel_arrival_date,
+      DatabaseHelper.c_travel_departure_country : travelData.travel_country,
+    };
+
+    final id = await dbHelper.submitTravel(row);
+    print("pasok na database: Id is:  $id");
+
+  }
+//  validation function
+  void validation(){
+    if(formkey.currentState.validate()){
+      Navigator.of(context)
+          .pushReplacementNamed(WelcomePage.routeName);
+      insert();
+    }else{
+      print("not validated");
+    }
+  }
 
   
 
@@ -85,6 +113,8 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
+                      child: Form(
+                        key: formkey,
                       child: Column(
                         children: <Widget>[
                           SizedBox(
@@ -111,6 +141,15 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                                   borderSide: BorderSide(
                                       color: Colors.grey[400])),
                             ),
+                            validator: (value) {
+                              if(value.toString().isEmpty){
+                                return 'INVALID DATE';
+                              }
+                              return null;
+                            },
+                            onChanged: (value) {
+                              travelData.travel_arrival_date = value;
+                            },
                           ),
                           //DATE PICER INSERT HERE
 
@@ -136,10 +175,17 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: DropdownButtonFormField(
+                              validator: (newValue) {
+                                if(newValue.toString().isEmpty){
+                                  return 'INVALID COUNTRY';
+                                }
+                                return null;
+                              },
                               value: valueChoose,
                               onChanged: (newValue) {
                                 setState(() {
                                   valueChoose = newValue;
+                                  travelData.travel_country = newValue;
                                 });
                               },
                               items: country.map((valueItem) {
@@ -152,6 +198,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                           ),
                         ],
                       ),
+                      ),
                     ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -163,7 +210,9 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height: 50,
-                          onPressed: () {},
+                          onPressed: () {
+                            validation();
+                          },
                           color: Color(0xFFFF5555),
                           elevation: 0,
                           shape: RoundedRectangleBorder(

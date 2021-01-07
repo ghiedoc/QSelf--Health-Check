@@ -5,6 +5,7 @@ import 'login.dart';
 import 'start.dart';
 import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 import 'data.dart';
+import 'travelhistory.dart';
 
 class ContactInfoPage extends StatefulWidget {
   static const routeName = '/contactinfo';
@@ -93,8 +94,8 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
   void validate(){
     if(formkey.currentState.validate()){
       print("VALIDATE");
-//      Navigator.of(context)
-//          .pushReplacementNamed(ContactInfoPage.routeName);
+      Navigator.of(context)
+          .pushReplacementNamed(TravelHistoryPage.routeName);
       insert();
     }else{
       print("not validated");

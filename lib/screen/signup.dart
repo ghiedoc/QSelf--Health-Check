@@ -131,8 +131,8 @@ class _SignUpPageState extends State<SignUpPage> {
                                         }
                                         return null;
                                       },
-                                      onChanged: (value) {
-                                       data.email = value;
+                                      onChanged: (val) {
+                                       data.email = val;
 
                                       }),
                                   SizedBox(height: 30,),
