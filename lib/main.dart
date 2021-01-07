@@ -39,10 +39,6 @@ class MyApp extends StatelessWidget {
         TravelHistoryPage.routeName: (ctx) => TravelHistoryPage(),
         WelcomePage.routeName: (ctx) => WelcomePage(),
         AdminDashboardPage.routeName: (ctx) => AdminDashboardPage(),
-
-
-
-//        HomeScreen.routeName: (ctx)=> HomeScreen(),
       },
     );
   }
