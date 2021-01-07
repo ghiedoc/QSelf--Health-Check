@@ -24,6 +24,12 @@ class DatabaseHelper {
   static final c_contact_emergency = "contact_emergency";
   static final c_quar_hotel = "quar_hotel";
 
+//  TRAVEL INFO VARIABLE
+  static final table_travel_info = "travel_info";
+  static final c_travel_id = "travel_id";
+  static final c_travel_departure_country = "departure_country";
+  static final c_travel_arrival_date = "arrival_date";
+
   DatabaseHelper._privateConstructor();
 
   static final DatabaseHelper instance = DatabaseHelper._privateConstructor();
@@ -63,10 +69,25 @@ class DatabaseHelper {
             "$c_contact_no TEXT,"
             "$c_contact_emergency,"
             "$c_quar_hotel TEXT,"
-            "$c_user_id TEXT,"
+            "$c_user_id INTEGER,"
             "FOREIGN KEY ($c_user_id) REFERENCES $table_user ($c_user_id))"
     );
+    await db.execute(
+      "CREATE TABLE $table_travel_info ("
+          "$c_travel_id INTEGER PRIMARY KEY, "
+          "$c_travel_departure_country, TEXT,"
+          "$c_travel_arrival_date, DATE,"
+          "$c_user_id, INTEGER,"
+          "FOREIGN KEY ($c_user_id) REFERENCES $table_user ($c_user_id))"
+
+    );
   }
+
+  Future<int> submitTravel(Map<String, dynamic> row) async {
+    Database db = await instance.database;
+    return await db.insert(table_travel_info, row);
+  }
+
 
   Future<int> submit(Map<String, dynamic> row) async {
     Database db = await instance.database;

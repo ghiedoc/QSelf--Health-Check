@@ -20,7 +20,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
   final dbHelper = DatabaseHelper.instance;
 
 
-//    function signUp btn
+//    function personal info btn
   void insert() async{
     Map<String, dynamic> row = {
       DatabaseHelper.c_email : data.email,
