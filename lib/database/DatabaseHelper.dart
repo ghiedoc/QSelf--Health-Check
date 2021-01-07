@@ -56,12 +56,12 @@ class DatabaseHelper {
     await db.execute(
         "CREATE TABLE $table_user ("
             "$c_user_id INTEGER PRIMARY KEY, "
-            "$c_email TEXT, "
-            "$c_password TEXT,"
-            "$c_fname TEXT, "
-            "$c_lname TEXT, "
-            "$c_nationality TEXT, "
-            "$c_passport_no TEXT)"
+            "$c_email TEXT NOT NULL, "
+            "$c_password TEXT NOT NULL,"
+            "$c_fname TEXT NOT NULL, "
+            "$c_lname TEXT NOT NULL, "
+            "$c_nationality TEXT NOT NULL, "
+            "$c_passport_no TEXT NOT NULL)"
     );
     await db.execute(
         "CREATE TABLE $table_contact_info ("
@@ -98,5 +98,14 @@ class DatabaseHelper {
     Database db = await instance.database;
     return await db.insert(table_user, row);
   }
+
+//  fetch data
+
+ Future<List<Map<String, dynamic>>> queryAllRows() async{
+    Database db = await instance.database;
+    return await db.query(table_user);
+
+}
+
 }
 

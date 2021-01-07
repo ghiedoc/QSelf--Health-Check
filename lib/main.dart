@@ -12,6 +12,8 @@ import 'package:flutter_trial_three/screen/dashboard.dart';
 import 'package:flutter_trial_three/screen/admin_dashboard.dart';
 import 'package:flutter_trial_three/screen/travelhistory.dart';
 import'package:flutter_trial_three/screen/welcome.dart';
+import 'package:flutter_trial_three/screen/admin_dashboard.dart';
+
 void main() async {
   runApp(MyApp());
 }
@@ -36,6 +38,7 @@ class MyApp extends StatelessWidget {
         ContactInfoPage.routeName: (ctx) => ContactInfoPage(),
         TravelHistoryPage.routeName: (ctx) => TravelHistoryPage(),
         WelcomePage.routeName: (ctx) => WelcomePage(),
+        AdminDashboardPage.routeName: (ctx) => AdminDashboardPage(),
 
 
 

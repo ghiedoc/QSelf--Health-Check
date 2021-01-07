@@ -38,12 +38,19 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
 //  validation function
   void validation(){
     if(formkey.currentState.validate()){
-      Navigator.of(context)
-          .pushReplacementNamed(ContactInfoPage.routeName);
+//      Navigator.of(context)
+//          .pushReplacementNamed(ContactInfoPage.routeName);
         insert();
+        fetch();
     }else{
       print("not validated");
     }
+  }
+
+  fetch() async{
+    final allRows = await dbHelper.queryAllRows();
+    print("data : $allRows");
+
   }
 
   String valueChoose;
@@ -136,8 +143,8 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                 }
                                 return null;
                               },
-                              onChanged: (value) {
-                                data.email = value;
+                              onChanged: (val) {
+                                data.fname = val;
                               },
                           ),
                           SizedBox(
