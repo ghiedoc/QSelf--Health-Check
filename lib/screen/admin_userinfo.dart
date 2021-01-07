@@ -1,13 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
-class AdminDashboardPage extends StatefulWidget {
-  static const routeName = '/adminDashboard';
+class AdminUserInfoPage extends StatefulWidget {
   @override
-  _AdminDashboardPageState createState() => _AdminDashboardPageState();
+  _AdminUserInfoPageState createState() => _AdminUserInfoPageState();
 }
 
-class _AdminDashboardPageState extends State<AdminDashboardPage> {
+class _AdminUserInfoPageState extends State<AdminUserInfoPage> {
   @override
   Widget build(BuildContext context) {
 
@@ -24,24 +23,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
         iconTheme: IconThemeData(color: Colors.black),
         title: Text(""),
       ),
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: 0, // this will be set when a new tab is tapped
-        items: [
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.notifications),
-            title: new Text('Notifications'),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.home),
-            title: new Text('Home'),
-          ),
-          BottomNavigationBarItem(
-            icon: new Icon(Icons.fact_check),
-            title: new Text('Self-Diagnose Form'),
-          ),
-        ],
-
-      ),
+      //BODY
       body: Container(
         padding: EdgeInsets.all(20.0),
         child: ListView(
@@ -57,7 +39,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 );
               },
               child: Container(
-                height: 130,
+                height: 200,
                 child: Padding(
                   padding: padding,
                   child: Card(
@@ -67,9 +49,11 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 20.0, horizontal: 20.0),
                       child: Text(
-                        'Hi, Admin',
+                        'Contact Information',
                         style: TextStyle(
+                          fontWeight: FontWeight.bold,
                           fontSize: 32,
+                          color: Color(0xFFF494949),
                         ),
                       ),
                     ),
@@ -77,7 +61,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 ),
               ),
             ),
-            //USER LIST
+            //TRAVEL HISTORY
             GestureDetector(
               onTap: () {
                 Navigator.of(context).push(
@@ -89,7 +73,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 );
               },
               child: Container(
-                height: 90,
+                height: 200,
                 child: Padding(
                   padding: padding,
                   child: Card(
@@ -99,9 +83,47 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                       padding: const EdgeInsets.symmetric(
                           vertical: 20.0, horizontal: 20.0),
                       child: Text(
-                        'User List',
+                        'Travel History',
                         style: TextStyle(
+                          fontWeight: FontWeight.bold,
                           fontSize: 32,
+                          color: Color(0xFFF494949),
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+            ),
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return;
+                    },
+                  ),
+                );
+              },
+              child: Container(
+                height: 100,
+                child: Padding(
+                  padding: padding,
+                  child: Card(
+                    shape: border,
+                    elevation: 3.0,
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(
+                          vertical: 20.0, horizontal: 20.0),
+                      child: Align(
+                        alignment: Alignment.center,
+                        child: Text(
+                          'Quarantine Status',
+                          style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 32,
+                            color: Color(0xFFF494949),
+                          ),
                         ),
                       ),
                     ),
@@ -111,6 +133,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
             ),
           ],
         ),
+        //DRAWER
       ),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
