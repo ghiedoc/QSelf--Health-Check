@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'travelhistory.dart';
 
 class WelcomePage extends StatelessWidget {
+  static const routeName = '/welcome';
   @override
   Widget build(BuildContext context) {
     return Scaffold(
