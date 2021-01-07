@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:path/path.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:sqflite/sqflite.dart';
+import 'package:flutter_trial_three/screen/data.dart';
 
 class DatabaseHelper {
   static final _databaseName = "Database.db";
@@ -73,12 +74,12 @@ class DatabaseHelper {
             "FOREIGN KEY ($c_user_id) REFERENCES $table_user ($c_user_id))"
     );
     await db.execute(
-      "CREATE TABLE $table_travel_info ("
-          "$c_travel_id INTEGER PRIMARY KEY, "
-          "$c_travel_departure_country, TEXT,"
-          "$c_travel_arrival_date, DATE,"
-          "$c_user_id, INTEGER,"
-          "FOREIGN KEY ($c_user_id) REFERENCES $table_user ($c_user_id))"
+        "CREATE TABLE $table_travel_info ("
+            "$c_travel_id INTEGER PRIMARY KEY, "
+            "$c_travel_departure_country, TEXT,"
+            "$c_travel_arrival_date, DATE,"
+            "$c_user_id, INTEGER,"
+            "FOREIGN KEY ($c_user_id) REFERENCES $table_user ($c_user_id))"
 
     );
   }
@@ -101,11 +102,21 @@ class DatabaseHelper {
 
 //  fetch data
 
- Future<List<Map<String, dynamic>>> queryAllRows() async{
+  Future<List<Map<String, dynamic>>> queryAllRows() async{
     Database db = await instance.database;
     return await db.query(table_user);
 
-}
+  }
+  Future<List<userList>> getUserList() async{
+    List<Map<String,dynamic>> mapList = await queryAllRows();
+
+    List<userList> user = new List();
+
+    for(int i = 0; i<mapList.length ; i++ ){
+      user.add(userList.fromMap(mapList[i]));
+    }
+
+    return user;
+  }
 
 }
-

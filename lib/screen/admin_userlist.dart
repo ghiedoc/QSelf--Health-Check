@@ -1,14 +1,32 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
+import 'package:sticky_headers/sticky_headers/widget.dart';
+import 'package:flutter_trial_three/database/DatabaseHelper.dart';
+import 'data.dart';
+
 class AdminUserListPage extends StatefulWidget {
+  static const routeName = '/adminuserlist';
+
   @override
   _AdminUserListPageState createState() => _AdminUserListPageState();
 }
 
 class _AdminUserListPageState extends State<AdminUserListPage> {
+  final dbHelper = DatabaseHelper.instance;
+
+  List<userList> _userList = null;
+
+  int count = 0;
+
+  GlobalKey<ScaffoldState> _globalKey = new GlobalKey();
+
   @override
   Widget build(BuildContext context) {
+    if (_userList == null) {
+      _userList = new List();
+      updateListView();
+    }
 
     final border = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -24,45 +42,7 @@ class _AdminUserListPageState extends State<AdminUserListPage> {
         title: Text(""),
       ),
       //BODY
-      body: Container(
-        padding: EdgeInsets.all(20.0),
-        child: ListView(
-          children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return;
-                    },
-                  ),
-                );
-              },
-              child: Container(
-                height: 130,
-                child: Padding(
-                  padding: padding,
-                  child: Card(
-                    shape: border,
-                    elevation: 3.0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 20.0),
-                      child: Text(
-                        'User 1',
-                        style: TextStyle(
-                          fontSize: 32,
-                        ),
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
-        //DRAWER
-      ),
+      body: populateListView(),
       drawer: Drawer(
         // Add a ListView to the drawer. This ensures the user can scroll
         // through the options in the drawer if there isn't enough vertical
@@ -99,5 +79,55 @@ class _AdminUserListPageState extends State<AdminUserListPage> {
         ),
       ),
     );
+  }
+
+  updateListView() async {
+    _userList = await dbHelper.getUserList();
+
+    setState(() {
+      _userList = _userList;
+      count = _userList.length;
+    });
+  }
+
+
+  ListView populateListView() {
+    return (ListView.builder(
+        itemCount: count,
+        itemBuilder: (context, index) {
+          userList UserList = this._userList[index];
+//          title: Text(UserList.fname),
+//          subtitle: Text(UserList.lname),
+
+          return Container  (
+            height: 130,
+              child: Padding(
+              padding: EdgeInsets.all(10.0),
+                child: Card(
+                child: ListTile(
+                  title: Text(UserList.fname,
+                    style: TextStyle(
+                fontSize: 32,
+      ),
+                  ),
+//                  subtitle: Text(UserList.lname),
+//              elevation: 3.0,
+//                   child: Padding(
+//                padding: const EdgeInsets.symmetric(
+//                    vertical: 20.0, horizontal: 20.0),
+//                        child: Text(UserList.fname,
+//                style: TextStyle(
+//                fontSize: 32,
+//                ),
+//              ),
+//            ),
+                ),
+
+            ),
+            ),
+          );
+
+        }
+    ));
   }
 }

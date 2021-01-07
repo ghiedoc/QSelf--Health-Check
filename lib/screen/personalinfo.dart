@@ -6,8 +6,9 @@ import 'signup.dart';
 import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 import 'signup.dart';
 import 'data.dart';
-import 'contactinfo.dart';
-
+//import 'contactinfo.dart';
+//import 'admin_userinfo.dart';
+import 'admin_userlist.dart';
 class PersonalInfoPage extends StatefulWidget {
   @override
   static const routeName = '/personalinfo';
@@ -38,19 +39,12 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
 //  validation function
   void validation(){
     if(formkey.currentState.validate()){
-//      Navigator.of(context)
-//          .pushReplacementNamed(ContactInfoPage.routeName);
+      Navigator.of(context)
+          .pushReplacementNamed(AdminUserListPage.routeName);
         insert();
-        fetch();
     }else{
       print("not validated");
     }
-  }
-
-  fetch() async{
-    final allRows = await dbHelper.queryAllRows();
-    print("data : $allRows");
-
   }
 
   String valueChoose;

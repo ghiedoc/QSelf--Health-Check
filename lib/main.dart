@@ -20,6 +20,7 @@ void main() async {
  *  pantawag sa mga file
  */
 class MyApp extends StatelessWidget {
+  static const routeName = '/personalinfo';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: AdminUserInfoPage(),
+      home: LoginPage(),
       routes: {
         SignUpPage.routeName: (ctx)=> SignUpPage(),
         LoginPage.routeName: (ctx)=> LoginPage(),
@@ -38,6 +39,8 @@ class MyApp extends StatelessWidget {
         TravelHistoryPage.routeName: (ctx) => TravelHistoryPage(),
         WelcomePage.routeName: (ctx) => WelcomePage(),
         AdminDashboardPage.routeName: (ctx) => AdminDashboardPage(),
+        AdminUserInfoPage.routeName: (ctx) => AdminUserInfoPage(),
+        AdminUserListPage.routeName: (ctx) => AdminUserListPage(),
       },
     );
   }
