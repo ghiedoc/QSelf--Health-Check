@@ -55,8 +55,6 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
     }
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
 
@@ -68,16 +66,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
           elevation: 0,
           brightness: Brightness.light,
           backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-              color: Color(0xFFFA8072),
-            ),
-          ),
+
         ),
         body: SingleChildScrollView(
           child: Container(
