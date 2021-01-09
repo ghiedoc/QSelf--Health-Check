@@ -30,16 +30,20 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: ChangePasswordPage(),
+      home: ContactInfoPage(),
       routes: {
-        SignUpPage.routeName: (ctx)=> SignUpPage(),
-        LoginPage.routeName: (ctx)=> LoginPage(),
         starts.routeName: (ctx)=> starts(),
+        LoginPage.routeName: (ctx)=> LoginPage(),
+        SignUpPage.routeName: (ctx)=> SignUpPage(),
         PersonalInfoPage.routeName: (ctx) => PersonalInfoPage(),
         ContactInfoPage.routeName: (ctx) => ContactInfoPage(),
         TravelHistoryPage.routeName: (ctx) => TravelHistoryPage(),
         WelcomePage.routeName: (ctx) => WelcomePage(),
         AdminDashboardPage.routeName: (ctx) => AdminDashboardPage(),
+        AdminUserInfoPage.routeName: (ctx) => AdminUserInfoPage(),
+        AdminUserListPage.routeName: (ctx) => AdminUserListPage(),
+        DashboardPage.routeName: (ctx) => DashboardPage(),
+        SelfDiagnosisFormPage.routeName: (ctx) => SelfDiagnosisFormPage(),
 
 
 

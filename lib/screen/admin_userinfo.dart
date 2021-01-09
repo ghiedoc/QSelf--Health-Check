@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 class AdminUserInfoPage extends StatefulWidget {
   @override
   _AdminUserInfoPageState createState() => _AdminUserInfoPageState();
+  static const routeName = '/adminUserInfo';
 }
 
 class _AdminUserInfoPageState extends State<AdminUserInfoPage> {

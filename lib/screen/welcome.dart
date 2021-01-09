@@ -15,22 +15,31 @@ class WelcomePage extends StatelessWidget {
               child: Column(
                 children: <Widget>[
                   Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Align(
-                        alignment: Alignment.centerLeft,
-                        child: Text("Welcome \nDiagnose yourself \for 14 days.",
-                          textAlign: TextAlign.left,
+                        alignment: Alignment.center,
+                        child: Text("Welcome",
+                          textAlign: TextAlign.center,
                           style: TextStyle(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
-                              fontSize: 36
+                              fontSize: 48,
+                          ),),
+                      ),
+                      SizedBox(height: 30),
+                      Align(
+                        alignment: Alignment.center,
+                        child: Text("Diagnose yourself for 14 days",
+                          textAlign: TextAlign.center,
+                          style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16,
                           ),),
                       ),
                     ],
                   ),
-                  SizedBox(height: 50,),
+                  SizedBox(height: 70,),
                 Container(
                   padding: EdgeInsets.symmetric(
                       horizontal: 30

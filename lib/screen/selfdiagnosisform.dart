@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class SelfDiagnosisFormPage extends StatefulWidget {
+  static const routeName = '/selfDiagnosisForm';
   @override
   _SelfDiagnosisFormPageState createState() => _SelfDiagnosisFormPageState();
 }

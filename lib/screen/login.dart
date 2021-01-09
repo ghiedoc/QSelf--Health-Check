@@ -40,17 +40,15 @@ class _LoginPageState extends State<LoginPage> {
           margin: EdgeInsets.only(left: 10, right: 10),
           padding: EdgeInsets.symmetric(vertical: 40),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
             children: <Widget>[
               Column(
                 children: [
                   Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
                     children: <Widget>[
                       Container(
-                        margin: EdgeInsets.only(left: 40),
                         child: Text(
-                          "QSelf-Health \nCheck",
+                          "QSelf-Health Check",
                           style: TextStyle(
                             fontSize: 36,
                             fontWeight: FontWeight.bold,
@@ -186,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                             Navigator.of(context)
                                 .pushReplacementNamed(SignUpPage.routeName);
                           },
-                          child: Text("Sign up",
+                          child: Text(" Sign up here.",
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 color: Color(0xFF2353FF),

@@ -87,14 +87,12 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                 Column(
                   children: [
                     Align(
-                      alignment: Alignment.centerLeft,
+                      alignment: Alignment.center,
                       child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: <Widget>[
                           Container(
-                            margin: EdgeInsets.only(left: 40),
                             child: Text(
-                              "Personal \nInformation",
+                              "Personal Information",
                               style: TextStyle(
                                 fontSize: 36,
                                 fontWeight: FontWeight.bold,
