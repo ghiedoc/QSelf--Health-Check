@@ -40,48 +40,22 @@ class _AdminUserInfoPageState extends State<AdminUserInfoPage> {
                 );
               },
               child: Container(
-                height: 200,
+                height: 150,
                 child: Padding(
                   padding: padding,
                   child: Card(
                     shape: border,
                     elevation: 3.0,
                     child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[
-                        Row(
-                          children: <Widget>[
-                            Container(
-                              child: Row(
-                                children: <Widget> [
-                                  Padding(
-                                    padding: new EdgeInsets.only(left: 40.0),
-                                    child: Icon(
-                                      Icons.call,
-                                      size: 70.0,
-                                    ),
-                                  ),
-                                ],
-                              ),
-//                              child: Padding(
-//                                padding: const EdgeInsets.symmetric(
-//                                    vertical: 20.0, horizontal: 20.0),
-//                                child: Text(
-//                                  'Contact Information',
-//                                  style: TextStyle(
-//                                    fontWeight: FontWeight.bold,
-//                                    fontSize: 32,
-//                                    color: Color(0xFFF494949),
-//                                  ),
-//                                ),
-//                              ),
-                            ),
-                          ],
+                        const ListTile(
+                          leading: Icon(Icons.call, size: 70),
+                          title: Text('Contact Information', style: TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold)),
+                          subtitle: Text('09354412563 \n09875542185\n Shangri-La Makati', style: TextStyle(color: Colors.black)),
                         ),
                       ],
                     ),
-
                   ),
                 ),
               ),
