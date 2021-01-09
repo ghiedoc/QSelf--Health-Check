@@ -3,9 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'login.dart';
 import 'start.dart';
-import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 import 'data.dart';
 import 'travelhistory.dart';
+import 'package:flutter_trial_three/authenticate/auth.dart';
 
 class ContactInfoPage extends StatefulWidget {
   static const routeName = '/contactinfo';
@@ -75,28 +75,16 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
         "Seda Vertis North",
   ];
 
-  final dbHelper = DatabaseHelper.instance;
+  final AuthService auth = AuthService();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-//  INSERT DATA
-  void insert() async {
-    Map<String, dynamic> row = {
-      DatabaseHelper.c_contact_no: contactData.contact_number,
-      DatabaseHelper.c_contact_emergency: contactData.contact_emergency,
-      DatabaseHelper.c_quar_hotel: contactData.quar_hotel,
 
-    };
-    final id = await dbHelper.submit(row);
-    print("pasok na database: Id is:  $id");
-  }
 
 //  validation
-  void validate(){
-    if(formkey.currentState.validate()){
-      print("VALIDATE");
+  void validate() async {
+    if(formkey.currentState.validate())  {
       Navigator.of(context)
           .pushReplacementNamed(TravelHistoryPage.routeName);
-      insert();
     }else{
       print("not validated");
     }

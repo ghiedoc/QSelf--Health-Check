@@ -3,10 +3,10 @@ import 'package:flutter/widgets.dart';
 import 'login.dart';
 import 'start.dart';
 import 'signup.dart';
-import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 import 'signup.dart';
 import 'data.dart';
-//import 'contactinfo.dart';
+import 'package:flutter_trial_three/authenticate/auth.dart';
+import 'contactinfo.dart';
 //import 'admin_userinfo.dart';
 import 'admin_userlist.dart';
 class PersonalInfoPage extends StatefulWidget {
@@ -18,30 +18,15 @@ class PersonalInfoPage extends StatefulWidget {
 class _PersonalInfoPageState extends State<PersonalInfoPage> {
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  final dbHelper = DatabaseHelper.instance;
+  final AuthService auth = AuthService();
 
 
-//    function personal info btn
-  void insert() async{
-    Map<String, dynamic> row = {
-      DatabaseHelper.c_email : data.email,
-      DatabaseHelper.c_password : data.password,
-      DatabaseHelper.c_fname : data.fname,
-      DatabaseHelper.c_lname : data.lname,
-      DatabaseHelper.c_nationality : data.nationality,
-      DatabaseHelper.c_passport_no : data.passport_no,
-  };
 
-    final id = await dbHelper.insert(row);
-    print("pasok na database: Id is:  $id");
-
-  }
 //  validation function
-  void validation(){
+  void validation() async{
     if(formkey.currentState.validate()){
       Navigator.of(context)
-          .pushReplacementNamed(AdminUserListPage.routeName);
-        insert();
+          .pushReplacementNamed(ContactInfoPage.routeName);
     }else{
       print("not validated");
     }

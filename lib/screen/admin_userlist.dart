@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 import 'package:sticky_headers/sticky_headers/widget.dart';
-import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 import 'data.dart';
 
 class AdminUserListPage extends StatefulWidget {
@@ -13,7 +12,7 @@ class AdminUserListPage extends StatefulWidget {
 }
 
 class _AdminUserListPageState extends State<AdminUserListPage> {
-  final dbHelper = DatabaseHelper.instance;
+//  final dbHelper = DatabaseHelper.instance;
 
   List<userList> _userList = null;
 
@@ -82,12 +81,12 @@ class _AdminUserListPageState extends State<AdminUserListPage> {
   }
 
   updateListView() async {
-    _userList = await dbHelper.getUserList();
-
-    setState(() {
-      _userList = _userList;
-      count = _userList.length;
-    });
+//    _userList = await dbHelper.getUserList();
+//
+//    setState(() {
+//      _userList = _userList;
+//      count = _userList.length;
+//    });
   }
 
 

@@ -3,9 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'login.dart';
 import 'start.dart';
-import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 import 'data.dart';
 import 'welcome.dart';
+import 'package:flutter_trial_three/authenticate/auth.dart';
 
 class TravelHistoryPage extends StatefulWidget {
   static const routeName = '/travelhistory';
@@ -16,7 +16,8 @@ class TravelHistoryPage extends StatefulWidget {
 class _TravelHistoryPageState extends State<TravelHistoryPage> {
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  final dbHelper = DatabaseHelper.instance;
+
+  final AuthService auth = AuthService();
 
   DateTime _setDate = DateTime.now();
   int selectitem = 1;
@@ -34,22 +35,14 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
   ];
 
   //    function signUp btn
-  void insert() async{
-    Map<String, dynamic> row = {
-      DatabaseHelper.c_travel_arrival_date : travelData.travel_arrival_date,
-      DatabaseHelper.c_travel_departure_country : travelData.travel_country,
-    };
 
-    final id = await dbHelper.submitTravel(row);
-    print("pasok na database: Id is:  $id");
-
-  }
 //  validation function
-  void validation(){
+  void validation() async{
     if(formkey.currentState.validate()){
-      Navigator.of(context)
-          .pushReplacementNamed(WelcomePage.routeName);
-      insert();
+      dynamic result = await auth.signUp(data.email,data.password);
+      print("pasok na: $result");
+//      Navigator.of(context)
+//          .pushReplacementNamed(WelcomePage.routeName);
     }else{
       print("not validated");
     }

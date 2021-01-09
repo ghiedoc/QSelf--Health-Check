@@ -41,6 +41,7 @@ class MyApp extends StatelessWidget {
         AdminDashboardPage.routeName: (ctx) => AdminDashboardPage(),
         AdminUserInfoPage.routeName: (ctx) => AdminUserInfoPage(),
         AdminUserListPage.routeName: (ctx) => AdminUserListPage(),
+        DashboardPage.routeName: (ctx) => DashboardPage(),
       },
     );
   }

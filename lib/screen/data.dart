@@ -1,3 +1,17 @@
+class User{
+   final String uid;
+
+   User({this.uid});
+}
+
+
+
+
+
+
+
+
+
 
 class data{
 static String fname,lname, nationality, passport_no, email, password;
