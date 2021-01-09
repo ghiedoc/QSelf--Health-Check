@@ -29,7 +29,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: SelfDiagnosisFormPage(),
+      home: starts(),
       routes: {
         SignUpPage.routeName: (ctx)=> SignUpPage(),
         LoginPage.routeName: (ctx)=> LoginPage(),
