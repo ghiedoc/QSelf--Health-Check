@@ -31,7 +31,6 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
             title: new Text('Self-Diagnose Form'),
           ),
         ],
-
       ),
       body: SingleChildScrollView(
         child: new Container(

@@ -41,7 +41,6 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
             title: new Text('Self-Diagnose Form'),
           ),
         ],
-
       ),
       body: Container(
         padding: EdgeInsets.all(20.0),
