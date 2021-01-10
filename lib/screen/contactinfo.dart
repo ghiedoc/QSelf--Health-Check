@@ -3,9 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'login.dart';
 import 'start.dart';
-import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 import 'data.dart';
 import 'travelhistory.dart';
+import 'package:flutter_trial_three/authenticate/auth.dart';
 
 class ContactInfoPage extends StatefulWidget {
   static const routeName = '/contactinfo';
@@ -75,9 +75,16 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Seda Vertis North",
   ];
 
-  final dbHelper = DatabaseHelper.instance;
+  final AuthService auth = AuthService();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
+
+//  validation
+  void validate() async {
+    if(formkey.currentState.validate())  {
+      Navigator.of(context)
+          .pushReplacementNamed(TravelHistoryPage.routeName);
+    }else{
 //  INSERT DATA
   void insert() async {
     Map<String, dynamic> row = {

@@ -22,6 +22,7 @@ void main() async {
  *  pantawag sa mga file
  */
 class MyApp extends StatelessWidget {
+  static const routeName = '/personalinfo';
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -30,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: AdminUserInfoPage(),
+      home: LoginPage(),
       routes: {
         starts.routeName: (ctx)=> starts(),
         LoginPage.routeName: (ctx)=> LoginPage(),
@@ -44,9 +45,6 @@ class MyApp extends StatelessWidget {
         AdminUserListPage.routeName: (ctx) => AdminUserListPage(),
         DashboardPage.routeName: (ctx) => DashboardPage(),
         SelfDiagnosisFormPage.routeName: (ctx) => SelfDiagnosisFormPage(),
-
-
-
 //        HomeScreen.routeName: (ctx)=> HomeScreen(),
       },
     );

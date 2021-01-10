@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class DashboardPage extends StatefulWidget {
-  static const routeName = '/userDashboard';
+  
+  static const routeName = '/dash';
+  
   @override
   _DashboardPageState createState() => _DashboardPageState();
 }

@@ -2,9 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'login.dart';
 import 'start.dart';
-import 'package:flutter_trial_three/database/DatabaseHelper.dart';
 import 'personalinfo.dart';
 import 'data.dart';
+import 'package:flutter_trial_three/authenticate/auth.dart';
 
 class SignUpPage extends StatefulWidget {
   data d = new data();
@@ -14,17 +14,19 @@ class SignUpPage extends StatefulWidget {
 }
 
 class _SignUpPageState extends State<SignUpPage> {
-
-  TextEditingController _passwordController = new TextEditingController();
-  FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-  final dbHelper = DatabaseHelper.instance;
+  TextEditingController _passwordController = new TextEditingController();
+  final AuthService auth = AuthService();
+
+  FocusNode myFocusNode = new FocusNode();
 
 
 //
 //  validation field
-  void validate(){
+  void validate() async {
     if(formkey.currentState.validate()){
+//      dynamic result = await auth.signUp(data.email, data.password);
+//      print("pasok na: $result");
       Navigator.of(context)
           .pushReplacementNamed(PersonalInfoPage.routeName);
 //      submit();
@@ -33,18 +35,6 @@ class _SignUpPageState extends State<SignUpPage> {
     }
 
   }
-//  function signUp btn
-//  void submit() async{
-//    Map<String, dynamic> row = {
-//    DatabaseHelper.c_email : email,
-//      DatabaseHelper.c_password : password,
-//  };
-//
-//    final id = await dbHelper.insert(row);
-//    print("pasok na database: Id is:  $id");
-//
-//  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -204,15 +194,6 @@ class _SignUpPageState extends State<SignUpPage> {
                             ),),),
                       ],
                     ),
-//                    Padding(padding: EdgeInsets.symmetric(horizontal: 40),
-//                      child: Column(
-//                        children: <Widget>[
-//                          makeInput(label: "Email"),
-//                          makeInput(label: "Password", obscureText: true),
-//                          makeInput(label: "Confirm Password", obscureText: true),
-//                        ],
-//                      ),
-//                    ),
                     SizedBox(height: 30,),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
@@ -224,7 +205,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         child: MaterialButton(
                           minWidth: double.infinity,
                           height: 50,
-                          onPressed: () {
+                          onPressed: () async {
                             validate();
 //                            submit();
 //                            signUp();
