@@ -31,7 +31,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: starts(),
+      home: LoginPage(),
       routes: {
         starts.routeName: (ctx)=> starts(),
         LoginPage.routeName: (ctx)=> LoginPage(),

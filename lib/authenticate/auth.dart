@@ -50,8 +50,6 @@ class AuthService{
 
        await dbService(uid: user.uid).updateUserData
          (data.id,data.fname,data.lname,data.nationality, data.passport_no,);
-//
-//       await  dbService(uid: user.uid).updateTravel( travelData.travel_arrival_date,travelData.travel_country);
 
 
        return _userFromdb(user);
@@ -70,9 +68,6 @@ class AuthService{
            contactData.quar_hotel);
 
 
-
-//       await dbService(uid: user.uid).submitForm("1", "no", "no", "no", "no", "no", "no");
-
       return _userFromdb(user);
     }catch(e){
       print(e.toString());
@@ -86,6 +81,22 @@ class AuthService{
       FirebaseUser user = res.user;
 
        await  dbService(uid: user.uid).updateTravel( travelData.travel_arrival_date,travelData.travel_country);
+
+
+      return _userFromdb(user);
+    }catch(e){
+      print(e.toString());
+      return null;
+
+    }
+  }
+  Future insertForm(String email, String password) async{
+    try{
+      AuthResult res = await _auth.signInWithEmailAndPassword(email: email, password: password);
+      FirebaseUser user = res.user;
+
+      await dbService(uid: user.uid).submitForm(1,diagnoseForm.fever,diagnoseForm.cough,
+          diagnoseForm.diff_breathing, diagnoseForm.sore_throat, diagnoseForm.heacache, diagnoseForm.body_weaknesses);
 
 
       return _userFromdb(user);

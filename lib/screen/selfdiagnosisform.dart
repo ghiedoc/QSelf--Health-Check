@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'data.dart';
+import 'package:flutter_trial_three/authenticate/auth.dart';
 
 class SelfDiagnosisFormPage extends StatefulWidget {
   static const routeName = '/selfDiagnosisForm';
@@ -8,6 +10,72 @@ class SelfDiagnosisFormPage extends StatefulWidget {
 }
 
 class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
+
+  final AuthService auth = AuthService();
+ int _day = 0;
+  void _dayIncreement(){
+//   int _day = diagnoseForm.day;
+    _day++;
+//    _day = Day(getDay._day);
+    print("DAAAY: ${_day}");
+  }
+
+  void validation() async{
+    try{
+      dynamic result = await auth.insertForm(data.email,data.password);
+      print("pasok na: $result");
+    }catch(e){
+//      print(e.toStrinng());
+      print(null);
+    }
+  }
+
+  int selectedRadio;
+  int selectedRadio2;
+  int selectedRadio3;
+  int selectedRadio4;
+  int selectedRadio5;
+  int selectedRadio6;
+  @override
+  void initState(){
+    super.initState();
+    selectedRadio = 0;
+  }
+
+  setSelectedRadio(int val){
+    setState((){
+   selectedRadio = val;
+    });
+  }
+  setSelectedRadio2(int val){
+    setState((){
+      selectedRadio2 =val;
+    });
+  }
+  setSelectedRadio3(int val){
+    setState((){
+      selectedRadio3 =val;
+    });
+  }
+
+  setSelectedRadio4(int val){
+    setState((){
+      selectedRadio4 =val;
+    });
+  }
+  setSelectedRadio5(int val){
+    setState((){
+      selectedRadio5 =val;
+    });
+  }
+  setSelectedRadio6(int val){
+    setState((){
+      selectedRadio6 =val;
+    });
+  }
+
+
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -103,21 +171,31 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget> [
-                    new Radio(
-                      value: 0,
+                    Radio(
+                      value : 1,
+                      groupValue: selectedRadio,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.fever = "yes";
+                        setSelectedRadio(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'Yes',
                       style: new TextStyle(fontSize: 16.0),
                     ),
-                    new Radio(
-                      value: 1,
+                    Radio(
+                      value : 2,
+                      groupValue: selectedRadio,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.fever = "no";
+                        setSelectedRadio(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'No',
-                      style: new TextStyle(
-                        fontSize: 16.0,
-                      ),
+                      style: new TextStyle(fontSize: 16.0),
                     ),
                   ],
                 ),
@@ -159,21 +237,31 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget> [
-                    new Radio(
-                      value: 0,
+                    Radio(
+                      value : 3,
+                      groupValue: selectedRadio2,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.cough = "yes";
+                        setSelectedRadio2(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'Yes',
                       style: new TextStyle(fontSize: 16.0),
                     ),
-                    new Radio(
-                      value: 1,
+                    Radio(
+                      value : 4,
+                      groupValue: selectedRadio2,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.cough = "no";
+                        setSelectedRadio2(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'No',
-                      style: new TextStyle(
-                        fontSize: 16.0,
-                      ),
+                      style: new TextStyle(fontSize: 16.0),
                     ),
                   ],
                 ),
@@ -215,21 +303,31 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget> [
-                    new Radio(
-                      value: 0,
+                    Radio(
+                      value : 5,
+                      groupValue: selectedRadio3,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.diff_breathing = "yes";
+                        setSelectedRadio3(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'Yes',
                       style: new TextStyle(fontSize: 16.0),
                     ),
-                    new Radio(
-                      value: 1,
+                    Radio(
+                      value : 6,
+                      groupValue: selectedRadio3,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.diff_breathing = "no";
+                        setSelectedRadio3(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'No',
-                      style: new TextStyle(
-                        fontSize: 16.0,
-                      ),
+                      style: new TextStyle(fontSize: 16.0),
                     ),
                   ],
                 ),
@@ -271,21 +369,31 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget> [
-                    new Radio(
-                      value: 0,
+                    Radio(
+                      value : 7,
+                      groupValue: selectedRadio4,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.sore_throat = "yes";
+                        setSelectedRadio4(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'Yes',
                       style: new TextStyle(fontSize: 16.0),
                     ),
-                    new Radio(
-                      value: 1,
+                    Radio(
+                      value : 8,
+                      groupValue: selectedRadio4,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.sore_throat = "no";
+                        setSelectedRadio4(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'No',
-                      style: new TextStyle(
-                        fontSize: 16.0,
-                      ),
+                      style: new TextStyle(fontSize: 16.0),
                     ),
                   ],
                 ),
@@ -327,21 +435,31 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget> [
-                    new Radio(
-                      value: 0,
+                    Radio(
+                      value : 8,
+                      groupValue: selectedRadio5,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.heacache = "yes";
+                        setSelectedRadio5(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'Yes',
                       style: new TextStyle(fontSize: 16.0),
                     ),
-                    new Radio(
-                      value: 1,
+                    Radio(
+                      value : 9,
+                      groupValue: selectedRadio5,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.heacache = "no";
+                        setSelectedRadio5(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'No',
-                      style: new TextStyle(
-                        fontSize: 16.0,
-                      ),
+                      style: new TextStyle(fontSize: 16.0),
                     ),
                   ],
                 ),
@@ -383,21 +501,31 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget> [
-                    new Radio(
-                      value: 0,
+                    Radio(
+                      value : 10,
+                      groupValue: selectedRadio6,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.body_weaknesses = "yes";
+                        setSelectedRadio6(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'Yes',
                       style: new TextStyle(fontSize: 16.0),
                     ),
-                    new Radio(
-                      value: 1,
+                    Radio(
+                      value : 11,
+                      groupValue: selectedRadio6,
+                      activeColor: Colors.blue,
+                      onChanged: (val){
+                        diagnoseForm.body_weaknesses = "no";
+                        setSelectedRadio6(val);
+                      },
                     ),
-                    new Text(
+                    Text(
                       'No',
-                      style: new TextStyle(
-                        fontSize: 16.0,
-                      ),
+                      style: new TextStyle(fontSize: 16.0),
                     ),
                   ],
                 ),
@@ -427,7 +555,10 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                       color: Colors.white,
                     ),
                   ),
-                  onPressed: () => {},
+                  onPressed: () => {
+                    validation(),
+                    _dayIncreement(),
+                  },
                 ),
               ),
             ],

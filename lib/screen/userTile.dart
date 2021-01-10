@@ -13,8 +13,9 @@ class userTile extends StatelessWidget {
       child: Card(
         margin: EdgeInsets.fromLTRB(20.0, 6.0, 20.0, 0.0),
         child: ListTile(
-          title: Text('Name: ${user_t.fname}' + " " +'${user_t.lname}'),
-            subtitle: Text(user_t.nationality),
+          title: Text('Name: ${user_t.fname}' + " " +'${user_t.lname} \n'
+              "Passport Number: ${user_t.passport_no}"),
+            subtitle: Text("Nationality: " + user_t.nationality),
         ),
 
       ),
