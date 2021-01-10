@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 
 class AdminUserInfoPage extends StatefulWidget {
+
   static const routeName = '/adminuserinfo';
+
   @override
   _AdminUserInfoPageState createState() => _AdminUserInfoPageState();
-  static const routeName = '/adminUserInfo';
+
 }
 
 class _AdminUserInfoPageState extends State<AdminUserInfoPage> {
@@ -73,23 +75,21 @@ class _AdminUserInfoPageState extends State<AdminUserInfoPage> {
                 );
               },
               child: Container(
-                height: 200,
+                height: 150,
                 child: Padding(
                   padding: padding,
                   child: Card(
                     shape: border,
                     elevation: 3.0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 20.0),
-                      child: Text(
-                        'Travel History',
-                        style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 32,
-                          color: Color(0xFFF494949),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const ListTile(
+                          leading: Icon(Icons.flight, size: 70),
+                          title: Text('Travel History', style: TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold)),
+                          subtitle: Text('09354412563 \n09875542185\n Shangri-La Makati', style: TextStyle(color: Colors.black)),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),
@@ -112,20 +112,14 @@ class _AdminUserInfoPageState extends State<AdminUserInfoPage> {
                   child: Card(
                     shape: border,
                     elevation: 3.0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 20.0),
-                      child: Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Quarantine Status',
-                          style: TextStyle(
-                            fontWeight: FontWeight.bold,
-                            fontSize: 32,
-                            color: Color(0xFFF494949),
-                          ),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: <Widget>[
+                        const ListTile(
+                          leading: Icon(Icons.coronavirus, size: 50),
+                          title: Text('Quarantine Status', style: TextStyle(color: Colors.black, fontSize: 32, fontWeight: FontWeight.bold)),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),

@@ -5,11 +5,11 @@ import 'package:sticky_headers/sticky_headers/widget.dart';
 import 'data.dart';
 
 class AdminUserListPage extends StatefulWidget {
+
   static const routeName = '/adminuserlist';
 
   @override
   _AdminUserListPageState createState() => _AdminUserListPageState();
-  static const routeName = '/adminUserList';
 }
 
 class _AdminUserListPageState extends State<AdminUserListPage> {

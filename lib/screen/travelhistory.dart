@@ -6,6 +6,7 @@ import 'start.dart';
 import 'data.dart';
 import 'welcome.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
+import 'package:dio/dio.dart';
 
 class TravelHistoryPage extends StatefulWidget {
   static const routeName = '/travelhistory';
@@ -35,8 +36,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
   ];
 
   //    function signUp btn
-
-//  validation function
+  //  validation function
   void validation() async{
     if(formkey.currentState.validate()){
       dynamic result = await auth.signUp(data.email,data.password);
@@ -47,6 +47,8 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
       print("not validated");
     }
   }
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -155,7 +157,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                             child: DropdownButtonFormField(
                               validator: (newValue) {
                                 if(newValue.toString().isEmpty){
-                                  return 'INVALID COUNTRY';
+                                  return 'Invalid Country';
                                 }
                                 return null;
                               },

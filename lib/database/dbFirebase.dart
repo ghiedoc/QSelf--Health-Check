@@ -41,7 +41,5 @@ Future submitForm(String day, String fever, String cough, String diff_breathing,
       'headache' : heacache,
       'body_weaknesses' : body_weaknesses,
     });
-
 }
-
 }
