@@ -81,31 +81,13 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
 
 //  validation
   void validate() async {
-    if(formkey.currentState.validate())  {
-      dynamic result = await auth.contact_info(data.email,data.password);
+      if(formkey.currentState.validate())  {
+        dynamic result = await auth.contact_info(data.email,data.password);
 //    , contactData.contact_number, contactData.contact_emergency,
 //    contactData.quar_hotel
-      print("pasok na: $result");
-      Navigator.of(context)
-          .pushReplacementNamed(TravelHistoryPage.routeName);
-    }else{
-//  INSERT DATA
-  void insert() async {
-    Map<String, dynamic> row = {
-      DatabaseHelper.c_contact_no: contactData.contact_number,
-      DatabaseHelper.c_contact_emergency: contactData.contact_emergency,
-      DatabaseHelper.c_quar_hotel: contactData.quar_hotel,
-    };
-    final id = await dbHelper.submit(row);
-    print("pasok na database: Id is:  $id");
-  }
-
-//  validation
-  void validate() {
-    if (formkey.currentState.validate()) {
-      print("VALIDATE");
-      Navigator.of(context).pushReplacementNamed(TravelHistoryPage.routeName);
-      insert();
+        print("pasok na: $result");
+        Navigator.of(context)
+            .pushReplacementNamed(TravelHistoryPage.routeName);
     } else {
       print("not validated");
     }

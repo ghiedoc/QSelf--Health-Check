@@ -5,7 +5,6 @@ class AdminUserInfoPage extends StatefulWidget {
   static const routeName = '/adminuserinfo';
   @override
   _AdminUserInfoPageState createState() => _AdminUserInfoPageState();
-  static const routeName = '/adminUserInfo';
 }
 
 class _AdminUserInfoPageState extends State<AdminUserInfoPage> {
