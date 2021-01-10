@@ -22,15 +22,14 @@ class _startState extends State<starts> {
           child: Column(
             children: <Widget>[
               Column(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 children: <Widget>[
-                  Text("Get Started. \nYour Health \nMatters.",
-                    textAlign: TextAlign.left,
+                  Text("Your Health Matters",
+                    textAlign: TextAlign.center,
                     style: TextStyle(
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
-                    fontSize: 36
+                    fontSize: 42
                   ),),
                   SizedBox(height: 20,),
                   Text("an application that helps you self-diagnose for 14-days",
@@ -41,7 +40,7 @@ class _startState extends State<starts> {
                   ),),
                 ],
               ),
-              SizedBox(height: 30,),
+              SizedBox(height: 70),
               Container(
                 padding: EdgeInsets.symmetric(
                     horizontal: 30

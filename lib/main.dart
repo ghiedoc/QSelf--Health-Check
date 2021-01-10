@@ -12,6 +12,8 @@ import 'package:flutter_trial_three/screen/dashboard.dart';
 import 'package:flutter_trial_three/screen/admin_dashboard.dart';
 import 'package:flutter_trial_three/screen/admin_userlist.dart';
 import 'package:flutter_trial_three/screen/admin_userinfo.dart';
+import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
+import 'package:flutter_trial_three/screen/changepassword.dart';
 
 void main() async {
   runApp(MyApp());
@@ -31,9 +33,9 @@ class MyApp extends StatelessWidget {
       ),
       home: LoginPage(),
       routes: {
-        SignUpPage.routeName: (ctx)=> SignUpPage(),
-        LoginPage.routeName: (ctx)=> LoginPage(),
         starts.routeName: (ctx)=> starts(),
+        LoginPage.routeName: (ctx)=> LoginPage(),
+        SignUpPage.routeName: (ctx)=> SignUpPage(),
         PersonalInfoPage.routeName: (ctx) => PersonalInfoPage(),
         ContactInfoPage.routeName: (ctx) => ContactInfoPage(),
         TravelHistoryPage.routeName: (ctx) => TravelHistoryPage(),
@@ -42,6 +44,8 @@ class MyApp extends StatelessWidget {
         AdminUserInfoPage.routeName: (ctx) => AdminUserInfoPage(),
         AdminUserListPage.routeName: (ctx) => AdminUserListPage(),
         DashboardPage.routeName: (ctx) => DashboardPage(),
+        SelfDiagnosisFormPage.routeName: (ctx) => SelfDiagnosisFormPage(),
+//        HomeScreen.routeName: (ctx)=> HomeScreen(),
       },
     );
   }

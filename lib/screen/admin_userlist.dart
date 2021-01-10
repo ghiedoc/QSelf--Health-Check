@@ -9,6 +9,7 @@ class AdminUserListPage extends StatefulWidget {
 
   @override
   _AdminUserListPageState createState() => _AdminUserListPageState();
+  static const routeName = '/adminUserList';
 }
 
 class _AdminUserListPageState extends State<AdminUserListPage> {
