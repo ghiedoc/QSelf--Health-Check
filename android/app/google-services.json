@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "706969802998",
+    "project_id": "selfhealthcheck",
+    "storage_bucket": "selfhealthcheck.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:706969802998:android:aff99ffa1f07eddf4b74d7",
+        "android_client_info": {
+          "package_name": "demo.dokibooms.org.flutter_trial_three"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "706969802998-8ui9ov010okupj9d6mctoba4ail0k14j.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyB_JSlUNHzw_Sw9kAzxrrXqgHDiD0DNmMc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "706969802998-8ui9ov010okupj9d6mctoba4ail0k14j.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
