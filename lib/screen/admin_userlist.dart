@@ -24,12 +24,11 @@ class _AdminUserListPageState extends State<AdminUserListPage> {
   @override
   Widget build(BuildContext context) {
 
-
-
     final border = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     );
     final padding = const EdgeInsets.all(4.0);
+
     return StreamProvider<List<userList>>.value(
       value: dbService().user,
       child: Scaffold(
@@ -80,8 +79,4 @@ class _AdminUserListPageState extends State<AdminUserListPage> {
       ),
     );
   }
-
-
-
-
 }

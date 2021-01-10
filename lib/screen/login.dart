@@ -8,7 +8,6 @@ import 'data.dart';
 import 'dashboard.dart';
 import 'data.dart';
 
-
 class LoginPage extends StatefulWidget {
   @override
   static const routeName = '/login';
@@ -20,11 +19,9 @@ class _LoginPageState extends State<LoginPage> {
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
-  final AuthService _auth =  AuthService();
+  final AuthService _auth = AuthService();
 
-  void validate() async {
-
-  }
+  void validate() async {}
 
   @override
   Widget build(BuildContext context) {
@@ -83,130 +80,108 @@ class _LoginPageState extends State<LoginPage> {
                         ),
                       ),
                       Center(
-           child: Form(
-            key: formkey,
-            child: SingleChildScrollView(
-              child: Column(
-                children: <Widget>[
-                  SizedBox(height: 5,),
-                  TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Email',
-                        filled: true,
-                        labelStyle: TextStyle(
-                            color: myFocusNode.hasFocus ? Colors.blue : Colors.black
-                        ),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 10),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                                color: Colors.grey[400])),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                                color: Colors.grey[400])),
-                      ),
-                      keyboardType: TextInputType.emailAddress,
-                      validator: (value) {
-                        if(value.isEmpty || !value.contains("@") || !value.contains(".com")){
-                          return 'INVALID EMAIL ADDRESS';
-                        }
-                        return null;
-                      },
-                      onChanged: (val) {
-                        data.email = val;
-
-                      }),
-                  SizedBox(height: 30,),
-                  TextFormField(
-                      decoration: InputDecoration(
-                        labelText: 'Password',
-                        filled: true,
-                        labelStyle: TextStyle(
-                            color: myFocusNode.hasFocus ? Colors.blue : Colors.black
-                        ),
-                        contentPadding: EdgeInsets.symmetric(
-                            vertical: 0, horizontal: 10),
-                        enabledBorder: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                                color: Colors.grey[400])),
-                        border: OutlineInputBorder(
-                            borderRadius: BorderRadius.circular(10),
-                            borderSide: BorderSide(
-                                color: Colors.grey[400])),
-                      ),
-                      obscureText: true,
-                      controller: _passwordController,
-                      validator: (value) {
-                        if (value.isEmpty) {return 'Enter New Passowrd';
-                        }else if (value.length < 8){
-                          return 'Password must be atleast 8 characters long';
-                        }else if(!value.contains("@") && (!value.contains("!") && !value.contains("#") && !value.contains("%"))){
-                          return 'Password must be atleast 1 character';
-                        }
-                        return null;
-                      },
-                      onChanged: (val){
-                        data.password = val;
-                        password: val;
-                      }
-                  ),
+                        child: Form(
+                          key: formkey,
+                          child: SingleChildScrollView(
+                            child: Column(
+                              children: <Widget>[
+                                SizedBox(
+                                  height: 5,
+                                ),
+                                Container(
+                                  width: 300.0,
+                                  child: TextFormField(
+                                      decoration: InputDecoration(
+                                        labelText: 'Email',
+                                        filled: true,
+                                        labelStyle: TextStyle(
+                                            color: myFocusNode.hasFocus
+                                                ? Colors.blue
+                                                : Colors.black),
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 0, horizontal: 10),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey[400])),
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey[400])),
+                                      ),
+                                      keyboardType: TextInputType.emailAddress,
+                                      validator: (value) {
+                                        if (value.isEmpty ||
+                                            !value.contains("@") ||
+                                            !value.contains(".com")) {
+                                          return 'INVALID EMAIL ADDRESS';
+                                        }
+                                        return null;
+                                      },
+                                      onChanged: (val) {
+                                        data.email = val;
+                                      }),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
+                                Container(
+                                  width: 300.0,
+                                  child: TextFormField(
+                                      decoration: InputDecoration(
+                                        labelText: 'Password',
+                                        filled: true,
+                                        labelStyle: TextStyle(
+                                            color: myFocusNode.hasFocus
+                                                ? Colors.blue
+                                                : Colors.black),
+                                        contentPadding: EdgeInsets.symmetric(
+                                            vertical: 0, horizontal: 10),
+                                        enabledBorder: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey[400])),
+                                        border: OutlineInputBorder(
+                                            borderRadius:
+                                                BorderRadius.circular(10),
+                                            borderSide: BorderSide(
+                                                color: Colors.grey[400])),
+                                      ),
+                                      obscureText: true,
+                                      controller: _passwordController,
+                                      validator: (value) {
+                                        if (value.isEmpty) {
+                                          return 'Enter New Passowrd';
+                                        } else if (value.length < 8) {
+                                          return 'Password must be atleast 8 characters long';
+                                        } else if (!value.contains("@") &&
+                                            (!value.contains("!") &&
+                                                !value.contains("#") &&
+                                                !value.contains("%"))) {
+                                          return 'Password must be atleast 1 character';
+                                        }
+                                        return null;
+                                      },
+                                      onChanged: (val) {
+                                        data.password = val;
+                                        password:
+                                        val;
+                                      }),
+                                ),
+                                SizedBox(
+                                  height: 30,
+                                ),
 //                                  database paasok
-                ],
-              ),
-            ),
-                ),
+                              ],
+                            ),
+                          ),
+                        ),
                       ),
                     ],
                   ),
-//                  Padding(
-//                    padding: EdgeInsets.symmetric(horizontal: 40),
-//                    child: Column(
-//                      children: <Widget>[
-//                        SizedBox(
-//                          height: 20.0,
-//                        ),
-
-//                        TextFormField(
-//                          decoration: InputDecoration(
-//                            labelText: 'Password',
-//                            filled: true,
-//                            labelStyle: TextStyle(
-//                                color: myFocusNode.hasFocus
-//                                    ? Colors.blue
-//                                    : Colors.black),
-//                            contentPadding: EdgeInsets.symmetric(
-//                                vertical: 0, horizontal: 10),
-//                            enabledBorder: OutlineInputBorder(
-//                                borderRadius: BorderRadius.circular(10),
-//                                borderSide:
-//                                    BorderSide(color: Colors.grey[400])),
-//                            border: OutlineInputBorder(
-//                                borderRadius: BorderRadius.circular(10),
-//                                borderSide:
-//                                    BorderSide(color: Colors.grey[400])),
-//                          ),
-//                          obscureText: true,
-//                          controller: _passwordController,
-//                            validator: (value) {
-//                              if (value.isEmpty){
-//                                return 'Fill this Field';
-//                              }
-//                              return null;
-//                            },
-//                            onSaved: (value) {
-//                              data.password = value;
-//
-//                            }
-//                        ),
-//                        SizedBox(
-//                          height: 30.0,
-//                        ),
-//                      ],
-//                    ),
-//                  ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
                     child: Container(
@@ -215,15 +190,16 @@ class _LoginPageState extends State<LoginPage> {
                         borderRadius: BorderRadius.circular(10),
                       ),
                       child: MaterialButton(
-                        minWidth: double.infinity,
+                        minWidth: 300,
                         height: 50,
                         onPressed: () async {
-                          if(formkey.currentState.validate()){
-                            dynamic result = await _auth.signIn(data.email, data.password);
+                          if (formkey.currentState.validate()) {
+                            dynamic result =
+                                await _auth.signIn(data.email, data.password);
                             print("pasok na: $result");
                             Navigator.of(context)
                                 .pushReplacementNamed(DashboardPage.routeName);
-                          }else{
+                          } else {
                             print("not validated");
                           }
                         },
@@ -243,7 +219,7 @@ class _LoginPageState extends State<LoginPage> {
                     ),
                   ),
                   Padding(
-                    padding: const EdgeInsets.all(8.0),
+                    padding: const EdgeInsets.all(16.0),
                     child: Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: <Widget>[

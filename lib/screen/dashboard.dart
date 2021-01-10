@@ -29,8 +29,8 @@ class _DashboardPageState extends State<DashboardPage> {
         currentIndex: 0, // this will be set when a new tab is tapped
         items: [
           BottomNavigationBarItem(
-            icon: new Icon(Icons.notifications),
-            title: new Text('Notifications'),
+            icon: new Icon(Icons.coronavirus),
+            title: new Text('COVID19'),
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.home),
