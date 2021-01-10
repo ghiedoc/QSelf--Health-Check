@@ -7,7 +7,6 @@ class AdminUserInfoPage extends StatefulWidget {
 
   @override
   _AdminUserInfoPageState createState() => _AdminUserInfoPageState();
-
 }
 
 class _AdminUserInfoPageState extends State<AdminUserInfoPage> {

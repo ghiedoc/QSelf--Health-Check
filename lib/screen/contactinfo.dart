@@ -80,10 +80,14 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
 
 
 //  validation
-  void validate() {
-    if (formkey.currentState.validate()) {
-      print("VALIDATE");
-      Navigator.of(context).pushReplacementNamed(TravelHistoryPage.routeName);
+  void validate() async {
+      if(formkey.currentState.validate())  {
+        dynamic result = await auth.contact_info(data.email,data.password);
+//    , contactData.contact_number, contactData.contact_emergency,
+//    contactData.quar_hotel
+        print("pasok na: $result");
+        Navigator.of(context)
+            .pushReplacementNamed(TravelHistoryPage.routeName);
     } else {
       print("not validated");
     }
