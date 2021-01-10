@@ -2,18 +2,19 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_trial_three/screen/data.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
 import 'package:flutter_trial_three/screen/data.dart';
-class AuthService{
 
+class AuthService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
-   User _userFromdb(FirebaseUser user){
-    return user !=null ? User(uid: user.uid) : null;
+  User _userFromdb(FirebaseUser user) {
+    return user != null ? User(uid: user.uid) : null;
   }
 
-  Stream<User> get user{
-     return _auth.onAuthStateChanged.
+  Stream<User> get user {
+    return _auth.onAuthStateChanged
+        .
 //     map((FirebaseUser user) => _userFromdb(user));
-  map(_userFromdb);
+        map(_userFromdb);
   }
 
   Future auth() async {
@@ -21,25 +22,23 @@ class AuthService{
       AuthResult result = await _auth.signInAnonymously();
       FirebaseUser user = result.user;
       return user;
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
     }
   }
-  
+
 //  sign in user
-  Future signIn(String email, String password) async{
-    try{
-      AuthResult res = await _auth.signInWithEmailAndPassword(email: email, password:password);
+  Future signIn(String email, String password) async {
+    try {
+      AuthResult res = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       FirebaseUser user = res.user;
       return _userFromdb(user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
-
     }
-
-
   }
 
 //  register user
@@ -53,13 +52,12 @@ class AuthService{
 //
 //       await  dbService(uid: user.uid).updateTravel( travelData.travel_arrival_date,travelData.travel_country);
 
-
-       return _userFromdb(user);
-     }catch(e){
-       print(e.toString());
-       return null;
-
-     }
+      return _userFromdb(user);
+       
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
   }
   Future contact_info(String email, String password) async{
     try{
@@ -96,15 +94,13 @@ class AuthService{
     }
   }
 
-
 //  signout
-Future signOut() async {
-try{
-  return await _auth.signOut();
-}catch(e){
-  print(e.toString());
-  return null;
-}
-}
-
+  Future signOut() async {
+    try {
+      return await _auth.signOut();
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
 }

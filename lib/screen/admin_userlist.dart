@@ -7,6 +7,7 @@ import 'data.dart';
 import 'package:flutter_trial_three/screen/userList.dart';
 
 class AdminUserListPage extends StatefulWidget {
+
   static const routeName = '/adminuserlist';
 
   @override
