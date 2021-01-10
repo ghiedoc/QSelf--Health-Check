@@ -49,9 +49,11 @@ class AuthService{
        FirebaseUser user = res.user;
 
        await dbService(uid: user.uid).updateUserData
-         (data.fname,data.lname,data.nationality, data.passport_no,contactData.contact_number,contactData.contact_emergency,
+         (data.id,data.fname,data.lname,data.nationality, data.passport_no,contactData.contact_number,contactData.contact_emergency,
        contactData.quar_hotel,travelData.travel_arrival_date,travelData.travel_country);
-//       await dbService(uid: user.uid).updateContact("contact_no", "contact_emergency_no", "quar_hotel");
+
+       await dbService(uid: user.uid).submitForm("1", "no", "no", "no", "no", "no", "no");
+
        return _userFromdb(user);
      }catch(e){
        print(e.toString());

@@ -4,17 +4,13 @@ class User{
    User({this.uid});
 }
 
-
-
-
-
-
-
-
-
-
 class data{
 static String fname,lname, nationality, passport_no, email, password;
+static String id = "1";
+}
+class diagnoseForm{
+static String fever,  cough,  diff_breathing,  sore_throat,  heacache, body_weaknesses;
+
 }
 
 class contactData{
