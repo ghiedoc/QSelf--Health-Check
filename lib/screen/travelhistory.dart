@@ -50,8 +50,6 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
     }
   }
 
-  
-
   @override
   Widget build(BuildContext context) {
 
@@ -63,16 +61,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
           elevation: 0,
           brightness: Brightness.light,
           backgroundColor: Colors.white,
-          leading: IconButton(
-            onPressed: () {
-              Navigator.pop(context);
-            },
-            icon: Icon(
-              Icons.arrow_back_ios,
-              size: 20,
-              color: Color(0xFFFA8072),
-            ),
-          ),
+
         ),
         body: SingleChildScrollView(
           child: Container(
@@ -85,15 +74,12 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
               children: <Widget>[
                 Column(
                   children: [
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: <Widget>[
                           Container(
-                            margin: EdgeInsets.only(left: 40),
                             child: Text(
-                              "Travel \nHistory",
+                              "Travel History",
                               style: TextStyle(
                                 fontSize: 36,
                                 fontWeight: FontWeight.bold,
@@ -105,7 +91,6 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                           ),
                         ],
                       ),
-                    ),
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Form(

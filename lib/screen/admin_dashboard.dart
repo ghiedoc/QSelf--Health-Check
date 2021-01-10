@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_trial_three/screen/admin_userinfo.dart';
 
 class AdminDashboardPage extends StatefulWidget {
   static const routeName = '/adminDashboard';
@@ -40,7 +41,6 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
             title: new Text('Self-Diagnose Form'),
           ),
         ],
-
       ),
       body: Container(
         padding: EdgeInsets.all(20.0),
@@ -51,7 +51,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return;
+                      return ;
                     },
                   ),
                 );
@@ -83,7 +83,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return;
+                      return AdminUserInfoPage();
                     },
                   ),
                 );

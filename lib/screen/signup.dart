@@ -61,12 +61,11 @@ class _SignUpPageState extends State<SignUpPage> {
             margin: EdgeInsets.only(left: 50, right: 50),
             padding: EdgeInsets.symmetric(vertical: 40),
             child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
               children: <Widget>[
                 Column(
                   children: [
                     Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
                       children: <Widget>[
                         Text(
                           "Sign Up",
