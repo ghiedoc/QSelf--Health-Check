@@ -13,7 +13,8 @@ import 'package:flutter_trial_three/screen/admin_dashboard.dart';
 import 'package:flutter_trial_three/screen/admin_userlist.dart';
 import 'package:flutter_trial_three/screen/admin_userinfo.dart';
 import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
-import 'package:flutter_trial_three/screen/changepassword.dart';
+import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
+import 'package:flutter_trial_three/screen/admin_result.dart';
 
 void main() async {
   runApp(MyApp());
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         AdminUserListPage.routeName: (ctx) => AdminUserListPage(),
         DashboardPage.routeName: (ctx) => DashboardPage(),
         SelfDiagnosisFormPage.routeName: (ctx) => SelfDiagnosisFormPage(),
+        AdminResultPage.routeName: (ctx) => AdminResultPage(),
 //        HomeScreen.routeName: (ctx)=> HomeScreen(),
       },
     );
