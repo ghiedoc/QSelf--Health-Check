@@ -569,8 +569,8 @@ void disabledBtn(){
                   ),
                   onPressed: () => {
 
-//                    validation(),
-//                    _dayIncreement(),
+                    validation(),
+                    _dayIncreement(),
                   },
                 ),
               ),
