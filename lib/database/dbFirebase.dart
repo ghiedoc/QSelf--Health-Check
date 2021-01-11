@@ -48,7 +48,7 @@ class dbService {
   }
 
 // user diagnose_form
-  Future submitForm(String day, String fever, String cough,
+  Future submitForm(int day, String fever, String cough,
       String diff_breathing, String sore_throat,
       String heacache, String body_weaknesses) async {
     return await diagnoseForm.document(uid).setData({

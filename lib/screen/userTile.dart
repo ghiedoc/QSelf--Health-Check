@@ -17,11 +17,9 @@ class userTile extends StatelessWidget {
             size: 50,
             color: Color(0xFFFA8072),
           ),
-          title: Text(
-            'Name: ${user_t.fname}' + " " + '${user_t.lname}',
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-          subtitle: Text('Nationality: ${user_t.nationality}' + " | " + 'Passport No. ${user_t.passport_no}'),
+          title: Text('Name: ${user_t.fname}' + " " +'${user_t.lname} \n'
+              "Passport Number: ${user_t.passport_no}"),
+            subtitle: Text("Nationality: " + user_t.nationality),
         ),
       ),
     );

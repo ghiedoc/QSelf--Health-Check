@@ -6,7 +6,7 @@ import 'signup.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'data.dart';
 import 'dashboard.dart';
-import 'data.dart';
+import 'selfdiagnosisform.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -198,8 +198,8 @@ class _LoginPageState extends State<LoginPage> {
                                 await _auth.signIn(data.email, data.password);
                             print("pasok na: $result");
                             Navigator.of(context)
-                                .pushReplacementNamed(DashboardPage.routeName);
-                          } else {
+                                .pushReplacementNamed(SelfDiagnosisFormPage.routeName);
+                          }else{
                             print("not validated");
                           }
                         },

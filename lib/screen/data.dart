@@ -8,8 +8,21 @@ class data{
 static String fname,lname, nationality, passport_no, email, password;
 static String id = "1";
 }
-class diagnoseForm{
-static String fever,  cough,  diff_breathing,  sore_throat,  heacache, body_weaknesses;
+class diagnoseForm {
+  static String fever, cough, diff_breathing, sore_throat, heacache,
+      body_weaknesses;
+
+
+   static int Day;
+   static int count;
+
+   static set Days(int temp){
+     count = temp;
+   }
+
+  static int get Days {
+    return count;
+  }
 
 }
 
@@ -25,6 +38,4 @@ class userList {
 
  final String fname, lname, nationality, passport_no;
   userList({this.fname, this.lname, this.nationality, this.passport_no});
-
-
 }
