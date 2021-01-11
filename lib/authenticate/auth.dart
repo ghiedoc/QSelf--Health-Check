@@ -95,7 +95,8 @@ class AuthService{
       AuthResult res = await _auth.signInWithEmailAndPassword(email: email, password: password);
       FirebaseUser user = res.user;
 
-      await dbService(uid: user.uid).submitForm(1,diagnoseForm.fever,diagnoseForm.cough,
+      await dbService(uid: user.uid).submitForm
+        (diagnoseForm.Days  ,diagnoseForm.fever,diagnoseForm.cough,
           diagnoseForm.diff_breathing, diagnoseForm.sore_throat, diagnoseForm.heacache, diagnoseForm.body_weaknesses);
 
 

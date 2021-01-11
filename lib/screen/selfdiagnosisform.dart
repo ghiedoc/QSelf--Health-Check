@@ -12,12 +12,24 @@ class SelfDiagnosisFormPage extends StatefulWidget {
 class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
 
   final AuthService auth = AuthService();
- int _day = 0;
+
+
+void disabledBtn(){
+//  WAITS
+}
+
+
+  int _day;
   void _dayIncreement(){
-//   int _day = diagnoseForm.day;
-    _day++;
-//    _day = Day(getDay._day);
-    print("DAAAY: ${_day}");
+    try{
+      diagnoseForm.Days = _day;
+   _day++;
+    print("DAAAY: ${diagnoseForm.Days}");
+
+    }catch(e){
+      print("${e}null");
+    }
+
   }
 
   void validation() async{
@@ -26,7 +38,7 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
       print("pasok na: $result");
     }catch(e){
 //      print(e.toStrinng());
-      print(null);
+      print("${e}null");
     }
   }
 
@@ -556,8 +568,9 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                     ),
                   ),
                   onPressed: () => {
-                    validation(),
-                    _dayIncreement(),
+
+//                    validation(),
+//                    _dayIncreement(),
                   },
                 ),
               ),

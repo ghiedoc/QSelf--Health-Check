@@ -11,7 +11,18 @@ static String id = "1";
 class diagnoseForm {
   static String fever, cough, diff_breathing, sore_throat, heacache,
       body_weaknesses;
-  int day;
+
+
+   static int Day;
+   static int count;
+
+   static set Days(int temp){
+     count = temp;
+   }
+
+  static int get Days {
+    return count;
+  }
 
 }
 
