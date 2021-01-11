@@ -32,7 +32,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: starts(),
+      home: DashboardPage(),
       routes: {
         starts.routeName: (ctx)=> starts(),
         LoginPage.routeName: (ctx)=> LoginPage(),
