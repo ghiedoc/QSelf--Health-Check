@@ -35,7 +35,14 @@ class travelData{
 }
 
 class userList {
-
  final String fname, lname, nationality, passport_no;
   userList({this.fname, this.lname, this.nationality, this.passport_no});
+}
+
+class userform{
+  final String fever, cough, diff_breathing, sore_throat, heacache,
+      body_weaknesses;
+  final int day;
+ userform({this.day, this.fever, this.cough, this.diff_breathing, this.sore_throat, this.heacache, this.body_weaknesses});
+
 }

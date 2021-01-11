@@ -14,10 +14,6 @@ class _userInfoState extends State<userInfo> {
   Widget build(BuildContext context) {
     final user = Provider.of<List<userList>>(context);
     user.forEach((user){
-//      print(user.fname);
-//      print(user.lname);
-//      print(user.nationality);
-//      print(user.passport_no);
     });
 
     return ListView.builder(

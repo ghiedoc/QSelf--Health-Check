@@ -17,10 +17,6 @@ class AdminUserListPage extends StatefulWidget {
 class _AdminUserListPageState extends State<AdminUserListPage> {
   final AuthService _auth = AuthService();
 
-  int count = 0;
-
-  GlobalKey<ScaffoldState> _globalKey = new GlobalKey();
-
   @override
   Widget build(BuildContext context) {
 

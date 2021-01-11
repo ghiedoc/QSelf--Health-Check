@@ -9,9 +9,11 @@ class dbService {
 
   final CollectionReference userCollect = Firestore.instance.collection("user");
 
-  final CollectionReference userContact = Firestore.instance.collection("contact_info");
+  final CollectionReference userContact = Firestore.instance.collection(
+      "contact_info");
 
-  final CollectionReference travel_histo = Firestore.instance.collection("travel_histo");
+  final CollectionReference travel_histo = Firestore.instance.collection(
+      "travel_histo");
 
   final CollectionReference diagnoseForm = Firestore.instance.collection(
       'diagnose_form');
@@ -64,9 +66,13 @@ class dbService {
 
   Stream<List<userList>> get user {
     return userCollect.snapshots()
-    .map(_userList);
+        .map(_userList);
   }
 
+  Stream<List<userform>> get diagnose {
+    return diagnoseForm.snapshots()
+        .map(_formList);
+  }
 
   List<userList> _userList(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
@@ -77,5 +83,18 @@ class dbService {
           passport_no: doc.data['passport_no'] ?? ''
       );
     }).toList();
+  }
+//  this.diff_breathing, this.sore_throat, this.heacache, this.body_weaknesses
+  List<userform> _formList(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return userform(
+          day : doc.data['day'],
+          fever : doc.data['fever'],
+          cough :  doc.data['cough'],
+          diff_breathing : doc.data['diff_breathing'],
+          sore_throat : doc.data['sore_throat'],
+          heacache : doc.data['headache'],
+          body_weaknesses : doc.data['body_weaknesses']);
+    });
   }
 }

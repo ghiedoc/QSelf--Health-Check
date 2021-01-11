@@ -7,6 +7,7 @@ import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'data.dart';
 import 'dashboard.dart';
 import 'selfdiagnosisform.dart';
+import 'admin_result.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -167,8 +168,6 @@ class _LoginPageState extends State<LoginPage> {
                                       },
                                       onChanged: (val) {
                                         data.password = val;
-                                        password:
-                                        val;
                                       }),
                                 ),
                                 SizedBox(
@@ -198,7 +197,7 @@ class _LoginPageState extends State<LoginPage> {
                                 await _auth.signIn(data.email, data.password);
                             print("pasok na: $result");
                             Navigator.of(context)
-                                .pushReplacementNamed(SelfDiagnosisFormPage.routeName);
+                                .pushReplacementNamed(AdminResultPage.routeName);
                           }else{
                             print("not validated");
                           }
