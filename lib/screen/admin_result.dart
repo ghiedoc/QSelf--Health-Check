@@ -2,8 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'data.dart';
-import 'form_list.dart';
+import 'formList.dart';
 class AdminResultPage extends StatefulWidget {
   static const routeName = '/adminResult';
   @override
@@ -20,7 +21,7 @@ class _AdminResultPageState extends State<AdminResultPage> {
     final padding = const EdgeInsets.all(4.0);
 
     return StreamProvider<List<userform>>.value(
-      value: dbService().diagnose,
+      value: dbService().Form,
       child: Scaffold(
         backgroundColor: Color(0xFFEFEFEF),
         appBar: AppBar(

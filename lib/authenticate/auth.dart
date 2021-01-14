@@ -12,9 +12,7 @@ class AuthService {
 
   Stream<User> get user {
     return _auth.onAuthStateChanged
-        .
-//     map((FirebaseUser user) => _userFromdb(user));
-        map(_userFromdb);
+        .map(_userFromdb);
   }
 
   Future auth() async {

@@ -16,7 +16,7 @@ class dbService {
       "travel_histo");
 
   final CollectionReference diagnoseForm = Firestore.instance.collection(
-      'diagnose_form');
+      "diagnose_form");
 
 
 //user info
@@ -69,10 +69,10 @@ class dbService {
         .map(_userList);
   }
 
-  Stream<List<userform>> get diagnose {
-    return diagnoseForm.snapshots()
-        .map(_formList);
-  }
+//  Stream<List<userform>> get diagnose {
+//    return diagnoseForm.snapshots()
+//        .map(_formList);
+//  }
 
   List<userList> _userList(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
@@ -84,17 +84,29 @@ class dbService {
       );
     }).toList();
   }
-//  this.diff_breathing, this.sore_throat, this.heacache, this.body_weaknesses
-  List<userform> _formList(QuerySnapshot snapshot) {
-    return snapshot.documents.map((doc) {
+
+  Stream<List<userform>> get Form{
+    return diagnoseForm.snapshots().
+    map(dataForm);
+  }
+
+  List<userform> dataForm(QuerySnapshot snapshot){
+    return snapshot.documents.map((doc){
       return userform(
           day : doc.data['day'],
           fever : doc.data['fever'],
           cough :  doc.data['cough'],
           diff_breathing : doc.data['diff_breathing'],
           sore_throat : doc.data['sore_throat'],
-          heacache : doc.data['headache'],
-          body_weaknesses : doc.data['body_weaknesses']);
-    });
+          headache : doc.data['headache'],
+          body_weaknesses : doc.data['body_weaknesses']
+      );
+    }).toList();
   }
+////  this.diff_breathing, this.sore_throat, this.heacache, this.body_weaknesses
+//  List<userform> _formList(QuerySnapshot snapshot) {
+//    return snapshot.documents.map((doc) {
+//      return userform(
+
+//  }
 }

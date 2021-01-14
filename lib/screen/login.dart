@@ -22,7 +22,9 @@ class _LoginPageState extends State<LoginPage> {
 
   final AuthService _auth = AuthService();
 
-  void validate() async {}
+  void validate() async {
+
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -40,9 +40,9 @@ class userList {
 }
 
 class userform{
-  final String fever, cough, diff_breathing, sore_throat, heacache,
+  final String fever, cough, diff_breathing, sore_throat, headache,
       body_weaknesses;
   final int day;
- userform({this.day, this.fever, this.cough, this.diff_breathing, this.sore_throat, this.heacache, this.body_weaknesses});
+ userform({this.day, this.fever, this.cough, this.diff_breathing, this.sore_throat, this.headache, this.body_weaknesses});
 
 }
