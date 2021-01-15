@@ -15,6 +15,7 @@ import 'package:flutter_trial_three/screen/admin_userinfo.dart';
 import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
 import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
 import 'package:flutter_trial_three/screen/admin_result.dart';
+import 'package:flutter_trial_three/screen/homePage.dart';
 
 void main() async {
   runApp(MyApp());
@@ -32,7 +33,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: LoginPage(),
+      home: HomePage(),
       routes: {
         starts.routeName: (ctx)=> starts(),
         LoginPage.routeName: (ctx)=> LoginPage(),
@@ -47,6 +48,8 @@ class MyApp extends StatelessWidget {
         DashboardPage.routeName: (ctx) => DashboardPage(),
         SelfDiagnosisFormPage.routeName: (ctx) => SelfDiagnosisFormPage(),
         AdminResultPage.routeName: (ctx) => AdminResultPage(),
+        CovidUpdatePage.routeName: (ctx) => CovidUpdatePage(),
+        HomePage.routeName: (ctx) => HomePage(),
 //        HomeScreen.routeName: (ctx)=> HomeScreen(),
       },
     );
