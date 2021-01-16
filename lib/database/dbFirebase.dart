@@ -1,8 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_trial_three/screen/data.dart';
 import 'package:flutter_trial_three/screen/userList.dart';
+
 class dbService {
 
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final String uid;
 
   dbService({this.uid});
@@ -17,6 +20,7 @@ class dbService {
 
   final CollectionReference diagnoseForm = Firestore.instance.collection(
       "diagnose_form");
+
 
 
 //user info
@@ -69,11 +73,6 @@ class dbService {
         .map(_userList);
   }
 
-//  Stream<List<userform>> get diagnose {
-//    return diagnoseForm.snapshots()
-//        .map(_formList);
-//  }
-
   List<userList> _userList(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return userList(
@@ -85,6 +84,7 @@ class dbService {
     }).toList();
   }
 
+
   Stream<List<userform>> get Form{
     return diagnoseForm.snapshots().
     map(dataForm);
@@ -93,7 +93,7 @@ class dbService {
   List<userform> dataForm(QuerySnapshot snapshot){
     return snapshot.documents.map((doc){
       return userform(
-          day : doc.data['day'],
+          day : doc.data['day'] ?? 0,
           fever : doc.data['fever'],
           cough :  doc.data['cough'],
           diff_breathing : doc.data['diff_breathing'],
@@ -103,10 +103,9 @@ class dbService {
       );
     }).toList();
   }
-////  this.diff_breathing, this.sore_throat, this.heacache, this.body_weaknesses
-//  List<userform> _formList(QuerySnapshot snapshot) {
-//    return snapshot.documents.map((doc) {
-//      return userform(
 
-//  }
+  Future<String> getCurrentUID() async {
+    return (await _firebaseAuth.currentUser()).uid;
+
+  }
 }

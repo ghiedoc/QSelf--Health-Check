@@ -8,6 +8,7 @@ import 'data.dart';
 import 'dashboard.dart';
 import 'selfdiagnosisform.dart';
 import 'admin_result.dart';
+import 'admin_userlist.dart';
 
 class LoginPage extends StatefulWidget {
   @override
@@ -199,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                                 await _auth.signIn(data.email, data.password);
                             print("pasok na: $result");
                             Navigator.of(context)
-                                .pushReplacementNamed(AdminResultPage.routeName);
+                                .pushReplacementNamed(AdminUserListPage.routeName);
                           }else{
                             print("not validated");
                           }

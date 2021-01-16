@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'data.dart';
+import 'admin_result.dart';
 
 class userTile extends StatelessWidget {
   final userList user_t;
@@ -20,7 +21,7 @@ class userTile extends StatelessWidget {
           title: Text('Name: ${user_t.fname}' + " " +'${user_t.lname} \n'
               "Passport Number: ${user_t.passport_no}"),
             subtitle: Text("Nationality: " + user_t.nationality),
-//          onTap: ,
+          onTap: () => Navigator.of(context).pushNamed(AdminResultPage.routeName),
         ),
       ),
     );

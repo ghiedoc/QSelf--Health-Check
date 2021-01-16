@@ -18,7 +18,7 @@ class FormTile extends StatelessWidget {
             child: Align(
               alignment: Alignment.center,
               child: Center(
-                child: Text(
+                child: Text(' Day - ${userRes.day} \n'
                   ' Fever - ${userRes.fever} \n Cough - ${userRes
                       .cough} \n Diffculty in Breathing - ${userRes
                       .diff_breathing} \n Sore Throat - ${userRes
