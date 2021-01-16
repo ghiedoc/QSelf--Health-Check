@@ -42,67 +42,78 @@ class AuthService {
   }
 
 //  register user
-  Future signUp(String email, String password) async{
-     try{
-       AuthResult res = await _auth.createUserWithEmailAndPassword(email: email, password: password);
-       FirebaseUser user = res.user;
+  Future signUp(String email, String password) async {
+    try {
+      AuthResult res = await _auth.createUserWithEmailAndPassword(
+          email: email, password: password);
+      FirebaseUser user = res.user;
 
-       await dbService(uid: user.uid).updateUserData
-         (data.id,data.fname,data.lname,data.nationality, data.passport_no,);
+      await dbService(uid: user.uid).updateUserData(
+        data.id,
+        data.fname,
+        data.lname,
+        data.nationality,
+        data.passport_no,
+      );
 
       return _userFromdb(user);
-       
     } catch (e) {
       print(e.toString());
       return null;
     }
   }
-  Future contact_info(String email, String password) async{
-    try{
-      AuthResult res = await _auth.signInWithEmailAndPassword(email: email, password: password);
+
+  Future contact_info(String email, String password) async {
+    try {
+      AuthResult res = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       FirebaseUser user = res.user;
 
-       await dbService(uid: user.uid).updateContact(contactData.contact_number,contactData.contact_emergency,
-           contactData.quar_hotel);
-
+      await dbService(uid: user.uid).updateContact(contactData.contact_number,
+          contactData.contact_emergency, contactData.quar_hotel);
 
       return _userFromdb(user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
-
     }
   }
-  Future tralvel_histo(String email, String password) async{
-    try{
-      AuthResult res = await _auth.signInWithEmailAndPassword(email: email, password: password);
+
+  Future tralvel_histo(String email, String password) async {
+    try {
+      AuthResult res = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       FirebaseUser user = res.user;
 
-       await  dbService(uid: user.uid).updateTravel( travelData.travel_arrival_date,travelData.travel_country);
-
+      await dbService(uid: user.uid).updateTravel(
+          travelData.travel_arrival_date, travelData.travel_country);
 
       return _userFromdb(user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
-
     }
   }
-  Future insertForm(String email, String password) async{
-    try{
-      AuthResult res = await _auth.signInWithEmailAndPassword(email: email, password: password);
+
+  Future insertForm(String email, String password) async {
+    try {
+      AuthResult res = await _auth.signInWithEmailAndPassword(
+          email: email, password: password);
       FirebaseUser user = res.user;
 
-      await dbService(uid: user.uid).submitForm
-        (diagnoseForm.Days  ,diagnoseForm.fever,diagnoseForm.cough,
-          diagnoseForm.diff_breathing, diagnoseForm.sore_throat, diagnoseForm.heacache, diagnoseForm.body_weaknesses);
-
+      await dbService(uid: user.uid).submitForm(
+          diagnoseForm.Days,
+          diagnoseForm.fever,
+          diagnoseForm.cough,
+          diagnoseForm.diff_breathing,
+          diagnoseForm.sore_throat,
+          diagnoseForm.heacache,
+          diagnoseForm.body_weaknesses);
 
       return _userFromdb(user);
-    }catch(e){
+    } catch (e) {
       print(e.toString());
       return null;
-
     }
   }
 

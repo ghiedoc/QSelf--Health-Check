@@ -1,18 +1,32 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'package:flutter_trial_three/screen/changepassword.dart';
 
 class ChangePasswordPage extends StatefulWidget {
+  static const routeName = '/changepass';
   @override
   _ChangePasswordPageState createState() => _ChangePasswordPageState();
 }
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
-  TextEditingController _passwordController = new TextEditingController();
+  TextEditingController _currentpasswordController = new TextEditingController();
+  TextEditingController _newpasswordController = new TextEditingController();
+  final AuthService _auth = AuthService();
+
   FocusNode myFocusNode = new FocusNode();
 
   @override
-  static const routeName = '/';
+  static const routeName = '/changepass';
+
+  var _formKey = GlobalKey<FormState>();
+
+  bool checkCurrentPasswordValid = true;
+
+  String _email;
+  final auth = FirebaseAuth.instance;
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -53,62 +67,92 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Column(
-                      children: <Widget>[
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Password',
-                            filled: true,
-                            labelStyle: TextStyle(
-                                color: myFocusNode.hasFocus
-                                    ? Colors.blue
-                                    : Colors.black),
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide:
-                                BorderSide(color: Colors.grey[400])),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide:
-                                BorderSide(color: Colors.grey[400])),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 20.0,
                           ),
-                          obscureText: true,
-                          controller: _passwordController,
-                        ),
-                        SizedBox(
-                          height: 30.0,
-                        ),
-                        TextFormField(
-                          decoration: InputDecoration(
-                            labelText: 'Confirm Password',
-                            filled: true,
-                            labelStyle: TextStyle(
-                                color: myFocusNode.hasFocus
-                                    ? Colors.blue
-                                    : Colors.black),
-                            contentPadding: EdgeInsets.symmetric(
-                                vertical: 0, horizontal: 10),
-                            enabledBorder: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide:
-                                BorderSide(color: Colors.grey[400])),
-                            border: OutlineInputBorder(
-                                borderRadius: BorderRadius.circular(10),
-                                borderSide:
-                                BorderSide(color: Colors.grey[400])),
+                          TextFormField(
+                            onChanged: (value) {
+                              setState(() {
+                                _email = value.trim();
+                              });
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              errorText: checkCurrentPasswordValid ? null : "Please double check your current email",
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                  BorderSide(color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                  BorderSide(color: Colors.grey[400])),
+                            ),
                           ),
-                          obscureText: true,
-                          controller: _passwordController,
-                        ),
-                        SizedBox(
-                          height: 30.0,
-                        ),
-                      ],
+//                          TextFormField(
+//                            decoration: InputDecoration(
+//                              labelText: 'Currrent Password',
+//                              errorText: checkCurrentPasswordValid ? null : "Please double check your current password",
+//                              filled: true,
+//                              labelStyle: TextStyle(
+//                                  color: myFocusNode.hasFocus
+//                                      ? Colors.blue
+//                                      : Colors.black),
+//                              contentPadding: EdgeInsets.symmetric(
+//                                  vertical: 0, horizontal: 10),
+//                              enabledBorder: OutlineInputBorder(
+//                                  borderRadius: BorderRadius.circular(10),
+//                                  borderSide:
+//                                  BorderSide(color: Colors.grey[400])),
+//                              border: OutlineInputBorder(
+//                                  borderRadius: BorderRadius.circular(10),
+//                                  borderSide:
+//                                  BorderSide(color: Colors.grey[400])),
+//                            ),
+//                            obscureText: true,
+//                            controller: _currentpasswordController,
+//                          ),
+//                          SizedBox(
+//                            height: 30.0,
+//                          ),
+//                          TextFormField(
+//                            decoration: InputDecoration(
+//                              labelText: 'Confirm Password',
+//                              filled: true,
+//                              labelStyle: TextStyle(
+//                                  color: myFocusNode.hasFocus
+//                                      ? Colors.blue
+//                                      : Colors.black),
+//                              contentPadding: EdgeInsets.symmetric(
+//                                  vertical: 0, horizontal: 10),
+//                              enabledBorder: OutlineInputBorder(
+//                                  borderRadius: BorderRadius.circular(10),
+//                                  borderSide:
+//                                  BorderSide(color: Colors.grey[400])),
+//                              border: OutlineInputBorder(
+//                                  borderRadius: BorderRadius.circular(10),
+//                                  borderSide:
+//                                  BorderSide(color: Colors.grey[400])),
+//                            ),
+//                            obscureText: true,
+//                            controller: _newpasswordController,
+//                          ),
+                          SizedBox(
+                            height: 30.0,
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                   Padding(
@@ -118,16 +162,21 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.circular(10),
                       ),
+                      //----------------PASSWORD HERE-----------------
                       child: MaterialButton(
+                        onPressed: ()  {
+                          auth.sendPasswordResetEmail(email: _email);
+                          Navigator.of(context).pop();
+                          print('reset email sent');
+                        },
                         minWidth: double.infinity,
                         height: 50,
-                        onPressed: () {},
                         color: Color(0xFF1F1F1F),
                         elevation: 0,
                         shape: RoundedRectangleBorder(
                             borderRadius: BorderRadius.circular(10)),
                         child: Text(
-                          "Sign in",
+                          "Send Request",
                           style: TextStyle(
                             fontWeight: FontWeight.w600,
                             fontSize: 18,
@@ -135,10 +184,17 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                           ),
                         ),
                       ),
+
                     ),
                   ),
+
                 ],
               ),
+              SizedBox(
+                height: 20.0,
+              ),
+
+
             ],
           ),
         ),

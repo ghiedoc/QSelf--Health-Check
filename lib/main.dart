@@ -13,11 +13,22 @@ import 'package:flutter_trial_three/screen/admin_dashboard.dart';
 import 'package:flutter_trial_three/screen/admin_userlist.dart';
 import 'package:flutter_trial_three/screen/admin_userinfo.dart';
 import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
-import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
 import 'package:flutter_trial_three/screen/admin_result.dart';
 import 'package:flutter_trial_three/screen/homePage.dart';
+import 'package:flutter_trial_three/screen/changepassword.dart';
+import 'package:get_it/get_it.dart';
 
 void main() async {
+
+  /*  WidgetsFlutterBinding.ensureInitialized() is required in Flutter v1.9.4+
+ *  before using any plugins if the code is executed before runApp.
+ */
+  WidgetsFlutterBinding.ensureInitialized();
+
+
+// Configure injecction
+//  await setupLocator();
+
   runApp(MyApp());
 }
 /**
@@ -33,7 +44,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primaryColor: Colors.white,
       ),
-      home: HomePage(),
+      home: starts(),
       routes: {
         starts.routeName: (ctx)=> starts(),
         LoginPage.routeName: (ctx)=> LoginPage(),
@@ -50,6 +61,7 @@ class MyApp extends StatelessWidget {
         AdminResultPage.routeName: (ctx) => AdminResultPage(),
         CovidUpdatePage.routeName: (ctx) => CovidUpdatePage(),
         HomePage.routeName: (ctx) => HomePage(),
+        ChangePasswordPage.routeName: (ctx) => ChangePasswordPage(),
 //        HomeScreen.routeName: (ctx)=> HomeScreen(),
       },
     );
