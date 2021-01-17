@@ -54,8 +54,8 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
 //    , travelData.travel_arrival_date, travelData.
 //    travel_country
       print("pasok na: $result");
-//      Navigator.of(context)
-//          .pushReplacementNamed(WelcomePage.routeName);
+      Navigator.of(context)
+          .pushReplacementNamed(WelcomePage.routeName);
     }else{
       print("not validated");
     }

@@ -8,6 +8,8 @@ import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'data.dart';
 import 'dashboard.dart';
 import 'selfdiagnosisform.dart';
+import 'admin_result.dart';
+import 'admin_userlist.dart';
 import 'homePage.dart';
 
 enum AuthFormType {reset}
@@ -25,7 +27,9 @@ class _LoginPageState extends State<LoginPage> {
 
   final AuthService _auth = AuthService();
 
-  void validate() async {}
+  void validate() async {
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -171,8 +175,6 @@ class _LoginPageState extends State<LoginPage> {
                                       },
                                       onChanged: (val) {
                                         data.password = val;
-                                        password:
-                                        val;
                                       }),
                                 ),
                                 SizedBox(

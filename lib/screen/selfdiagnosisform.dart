@@ -1,5 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:shared_preferences/shared_preferences.dart';
 import 'data.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 
@@ -16,23 +18,70 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
 
   final AuthService auth = AuthService();
 
+  int _counter = 0;
+  _loadCounter() async {
+    SharedPreferences prefs = await SharedPreferences.getInstance();
+    setState(() {
+      _counter = (prefs.getInt('counter') ?? 0);
+    });
+  }
 
 void disabledBtn(){
 //  WAITS
 }
 
-
-  int _day;
-  void _dayIncreement(){
-    try{
-      diagnoseForm.Days = _day;
-   _day++;
-    print("DAAAY: ${diagnoseForm.Days}");
-
-    }catch(e){
-      print("${e}null");
+   _dayIncreement() async {
+    int days = diagnoseForm.day;
+    if (days == 0) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 1;
+    } else if (days == 1) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 2;
+    } else if (days == 2) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 3;
+    } else if (days == 3) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 4;
+    } else if (days == 4) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 5;
+    } else if (days == 5) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 6;
+    } else if (days == 6) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 7;
+    } else if (days == 7) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 8;
+    } else if (days == 8) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 9;
+    } else if (days == 9) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 10;
+    } else if (days == 10) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 10;
+    } else if (days == 11) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 11;
+    } else if (days == 12) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 12;
+    } else if (days == 13) {
+      days = diagnoseForm.day;
+      return diagnoseForm.day = 14;
+    }else{
+      return null ;
     }
-
+//    setState((){
+//      days++;
+//      diagnoseForm.day = days;
+//      print('DAY: ${diagnoseForm.day}');
+//    });
   }
 
   void validation() async{
@@ -542,6 +591,11 @@ void disabledBtn(){
                     shape: new RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(10),
                     ),
+                  ),
+                  onPressed: () {
+                    _dayIncreement();
+                    validation();
+                  },
                     child: new Text(
                       'Submit Form',
                       style: new TextStyle(
@@ -550,11 +604,6 @@ void disabledBtn(){
                         color: Colors.white,
                       ),
                     ),
-                    onPressed: () => {
-
-//                    validation(),
-//                    _dayIncreement(),
-                    },
                   ),
                 ),
               ],

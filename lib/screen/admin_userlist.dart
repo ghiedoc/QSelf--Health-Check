@@ -17,10 +17,6 @@ class AdminUserListPage extends StatefulWidget {
 class _AdminUserListPageState extends State<AdminUserListPage> {
   final AuthService _auth = AuthService();
 
-  int count = 0;
-
-  GlobalKey<ScaffoldState> _globalKey = new GlobalKey();
-
   @override
   Widget build(BuildContext context) {
 
@@ -28,7 +24,6 @@ class _AdminUserListPageState extends State<AdminUserListPage> {
       borderRadius: BorderRadius.circular(10.0),
     );
     final padding = const EdgeInsets.all(4.0);
-
     return StreamProvider<List<userList>>.value(
       value: dbService().user,
       child: Scaffold(

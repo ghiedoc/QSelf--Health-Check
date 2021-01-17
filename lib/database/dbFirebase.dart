@@ -1,20 +1,26 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_trial_three/screen/data.dart';
 import 'package:flutter_trial_three/screen/userList.dart';
+
 class dbService {
 
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final String uid;
 
   dbService({this.uid});
 
   final CollectionReference userCollect = Firestore.instance.collection("user");
 
-  final CollectionReference userContact = Firestore.instance.collection("contact_info");
+  final CollectionReference userContact = Firestore.instance.collection(
+      "contact_info");
 
-  final CollectionReference travel_histo = Firestore.instance.collection("travel_histo");
+  final CollectionReference travel_histo = Firestore.instance.collection(
+      "travel_histo");
 
   final CollectionReference diagnoseForm = Firestore.instance.collection(
-      'diagnose_form');
+      "diagnose_form");
+
 
 
 //user info
@@ -74,9 +80,8 @@ class dbService {
 
   Stream<List<userList>> get user {
     return userCollect.snapshots()
-    .map(_userList);
+        .map(_userList);
   }
-
 
   List<userList> _userList(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
@@ -88,4 +93,25 @@ class dbService {
       );
     }).toList();
   }
+
+
+  Stream<List<userform>> get Form{
+    return diagnoseForm.snapshots().
+    map(dataForm);
+  }
+
+  List<userform> dataForm(QuerySnapshot snapshot){
+    return snapshot.documents.map((doc){
+      return userform(
+          day : doc.data['day'] ?? 0,
+          fever : doc.data['fever'],
+          cough :  doc.data['cough'],
+          diff_breathing : doc.data['diff_breathing'],
+          sore_throat : doc.data['sore_throat'],
+          headache : doc.data['headache'],
+          body_weaknesses : doc.data['body_weaknesses']
+      );
+    }).toList();
+  }
+
 }

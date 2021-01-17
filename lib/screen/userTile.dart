@@ -1,9 +1,19 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'data.dart';
+import 'admin_result.dart';
+import 'package:flutter_trial_three/database/dbFirebase.dart';
 
 class userTile extends StatelessWidget {
+  final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final userList user_t;
   userTile({this.user_t});
+
+   userList get userT {
+     print('dito ${user_t.uid}');
+    return user_t;
+
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,9 +29,22 @@ class userTile extends StatelessWidget {
           ),
           title: Text('Name: ${user_t.fname}' + " " +'${user_t.lname} \n'
               "Passport Number: ${user_t.passport_no}"),
-            subtitle: Text("Nationality: " + user_t.nationality),
+          subtitle: Text("Nationality: " + user_t.nationality),
+          onTap: (){
+//            print('DITO ${getCurrentUID()}');
+//            userT;
+
+            Navigator.of(context).pushNamed(AdminResultPage.routeName);
+          }
+//
+
         ),
       ),
     );
+  }
+
+  Future<String> getCurrentUID() async {
+    return (await _firebaseAuth.currentUser()).uid;
+
   }
 }

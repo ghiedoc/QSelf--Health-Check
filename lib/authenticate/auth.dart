@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_trial_three/screen/data.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
@@ -12,9 +13,7 @@ class AuthService {
 
   Stream<User> get user {
     return _auth.onAuthStateChanged
-        .
-//     map((FirebaseUser user) => _userFromdb(user));
-        map(_userFromdb);
+        .map(_userFromdb);
   }
 
   Future auth() async {
@@ -94,21 +93,16 @@ class AuthService {
       return null;
     }
   }
-
+      
   Future insertForm(String email, String password) async {
     try {
       AuthResult res = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = res.user;
 
-      await dbService(uid: user.uid).submitForm(
-          diagnoseForm.Days,
-          diagnoseForm.fever,
-          diagnoseForm.cough,
-          diagnoseForm.diff_breathing,
-          diagnoseForm.sore_throat,
-          diagnoseForm.heacache,
-          diagnoseForm.body_weaknesses);
+    await dbService(uid: user.uid).submitForm
+        (diagnoseForm.day,diagnoseForm.fever,diagnoseForm.cough,
+          diagnoseForm.diff_breathing, diagnoseForm.sore_throat, diagnoseForm.heacache, diagnoseForm.body_weaknesses);
 
       return _userFromdb(user);
     } catch (e) {
@@ -126,4 +120,5 @@ class AuthService {
       return null;
     }
   }
+
 }
