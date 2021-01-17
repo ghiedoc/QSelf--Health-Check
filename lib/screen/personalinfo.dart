@@ -9,6 +9,7 @@ import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'contactinfo.dart';
 //import 'admin_userinfo.dart';
 import 'admin_userlist.dart';
+
 class PersonalInfoPage extends StatefulWidget {
   @override
   static const routeName = '/personalinfo';
@@ -20,16 +21,13 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final AuthService auth = AuthService();
 
-
-
 //  validation function
-  void validation() async{
-    if(formkey.currentState.validate()){
-      dynamic result = await auth.signUp(data.email,data.password);
+  void validation() async {
+    if (formkey.currentState.validate()) {
+      dynamic result = await auth.signUp(data.email, data.password);
       print("pasok na: $result");
-      Navigator.of(context)
-          .pushReplacementNamed(ContactInfoPage.routeName);
-    }else{
+      Navigator.of(context).pushReplacementNamed(ContactInfoPage.routeName);
+    } else {
       print("not validated");
     }
   }
@@ -86,146 +84,156 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                         ],
                       ),
                     ),
-
-
                     Padding(
                       padding: EdgeInsets.symmetric(horizontal: 40),
                       child: Form(
                         key: formkey,
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'First Name',
-                              filled: true,
-                              labelStyle: TextStyle(
-                                  color: myFocusNode.hasFocus
-                                      ? Colors.blue
-                                      : Colors.black),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 10),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[400])),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[400])),
+                        child: Column(
+                          children: <Widget>[
+                            SizedBox(
+                              height: 30.0,
                             ),
+                            TextFormField(
+                              decoration: InputDecoration(
+                                labelText: 'First Name',
+                                filled: true,
+                                labelStyle: TextStyle(
+                                    color: myFocusNode.hasFocus
+                                        ? Colors.blue
+                                        : Colors.black),
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 0, horizontal: 10),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide:
+                                        BorderSide(color: Colors.grey[400])),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide:
+                                        BorderSide(color: Colors.grey[400])),
+                              ),
                               validator: (value) {
-                                if(value.toString().isEmpty){
-                                  return 'INVALID FIRST NAME';
+                                Pattern pattern = r'^[a-zA-Z]+$';
+                                RegExp regex = RegExp(pattern);
+
+                                if (value.toString().isEmpty ) {
+                                  return 'Invalid entry';
+                                } else if(!regex.hasMatch(value)) {
+                                  return 'Must contain letters only';
                                 }
                                 return null;
                               },
                               onChanged: (val) {
                                 data.fname = val;
                               },
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Last Name',
-                              filled: true,
-                              labelStyle: TextStyle(
-                                  color: myFocusNode.hasFocus
-                                      ? Colors.blue
-                                      : Colors.black),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 10),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[400])),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[400])),
                             ),
-                              validator: (value) {
-                                if(value.toString().isEmpty){
-                                  return 'INVALID LAST NAME';
-                                }
-                                return null;
-                              },
-                            onChanged: (val){
-                              data.lname = val;
-                            }
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          //dropdown
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Nationality',
-                              filled: true,
-                              labelStyle: TextStyle(
-                                  color: myFocusNode.hasFocus
-                                      ? Colors.blue
-                                      : Colors.black),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 10),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[400])),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[400])),
+                            SizedBox(
+                              height: 30.0,
                             ),
-                              validator: (value) {
-                                if(value.toString().isEmpty){
-                                  return 'INVALID NATIONALITY';
-                                }
-                                return null;
-                              },
-                            onChanged: (val){
-                              data.nationality = val;
-                            }
-                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                          TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Passport Number',
-                              filled: true,
-                              labelStyle: TextStyle(
-                                  color: myFocusNode.hasFocus
-                                      ? Colors.blue
-                                      : Colors.black),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 10),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[400])),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[400])),
+                            TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: 'Last Name',
+                                  filled: true,
+                                  labelStyle: TextStyle(
+                                      color: myFocusNode.hasFocus
+                                          ? Colors.blue
+                                          : Colors.black),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 10),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                ),
+                                validator: (value) {
+                                  Pattern pattern = r'^[a-zA-Z]+$';
+                                  RegExp regex = RegExp(pattern);
+
+                                  if (value.toString().isEmpty ) {
+                                    return 'Invalid entry';
+                                  } else if(!regex.hasMatch(value)) {
+                                    return 'Must contain letters only';
+                                  }
+                                  return null;
+                                },
+                                onChanged: (val) {
+                                  data.lname = val;
+                                }),
+                            SizedBox(
+                              height: 30.0,
                             ),
-                              validator: (value) {
-                                if(value.toString().isEmpty){
-                                  return 'INVALID PASSPORT NUMBER';
-                                }
-                                return null;
-                              },
-                            onChanged: (val){
-                              data.passport_no = val;
-                            }
-                          ),
-                        ],
+                            //dropdown
+                            TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: 'Nationality',
+                                  filled: true,
+                                  labelStyle: TextStyle(
+                                      color: myFocusNode.hasFocus
+                                          ? Colors.blue
+                                          : Colors.black),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 10),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                ),
+                                validator: (value) {
+                                  if (value.toString().isEmpty) {
+                                    return 'INVALID NATIONALITY';
+                                  }
+                                  return null;
+                                },
+                                onChanged: (val) {
+                                  data.nationality = val;
+                                }),
+                            SizedBox(
+                              height: 30.0,
+                            ),
+                            TextFormField(
+                                decoration: InputDecoration(
+                                  labelText: 'Passport Number',
+                                  filled: true,
+                                  labelStyle: TextStyle(
+                                      color: myFocusNode.hasFocus
+                                          ? Colors.blue
+                                          : Colors.black),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 10),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                ),
+                                validator: (value) {
+                                  Pattern pattern = r'^[A-PR-WY][1-9]\d\s?\d{4}[1-9]$';
+                                  RegExp regex = RegExp(pattern);
+
+                                  if (value.toString().isEmpty) {
+                                    return 'Invalid passport number';
+                                  }else if(!regex.hasMatch(value)){
+                                    return 'Invalid passport number format';
+                                  }
+                                  return null;
+                                },
+                                onChanged: (val) {
+                                  data.passport_no = val;
+                                }),
+                          ],
+                        ),
                       ),
-                    ),
                     ),
                     SizedBox(
                       height: 30,
@@ -255,9 +263,9 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               color: Colors.white,
                             ),
                           ),
-                          ),
                         ),
                       ),
+                    ),
                   ],
                 ),
               ],
@@ -266,4 +274,3 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
         ));
   }
 }
-
