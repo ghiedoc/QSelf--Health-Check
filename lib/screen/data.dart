@@ -11,7 +11,7 @@ static String id = "1";
 class diagnoseForm {
   static String fever, cough, diff_breathing, sore_throat, heacache,
       body_weaknesses;
-    static int day;
+    static int day = 0;
 
 }
 

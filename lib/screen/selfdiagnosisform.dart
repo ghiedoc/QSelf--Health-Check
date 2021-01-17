@@ -4,6 +4,7 @@ import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'data.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
+import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 
 class SelfDiagnosisFormPage extends StatefulWidget {
 
@@ -17,7 +18,7 @@ class SelfDiagnosisFormPage extends StatefulWidget {
 class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
 
   final AuthService auth = AuthService();
-
+  bool singleTap = true;
   int _counter = 0;
   _loadCounter() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -587,28 +588,46 @@ void disabledBtn(){
               *  DITO YUNG SA BUTTON
               *  raised button ginamit ko kasi ayaw ng material btn ewan ko bakit
               */
-              ButtonTheme(
-                minWidth: double.infinity,
-                height: 50.0,
-                child: new RaisedButton(
-                  color: Color(0xFFFF5555),
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  child: new Text(
-                    'Submit Form',
-                    style: new TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.white,
-                    ),
-                  ),
-                  onPressed: () {
-                    _dayIncreement();
-                    validation();
+               ArgonTimerButton(
+                  height: 69,
+                  width: MediaQuery.of(context).size.width,
+                  minWidth: MediaQuery.of(context).size.width * 0.30,
+                  highlightColor: Colors.transparent,
+                  highlightElevation: 0,
+                  roundLoadingShape: false,
+                  onTap: (startTimer, btnState) {;
+                    if (btnState == ButtonState.Idle) {
+                      startTimer(60);
+                      _dayIncreement();
+                      validation();
+                    }
+                    setState(() {
+                      singleTap = false; // update bool
+                    });
                   },
+                  // initialTimer: 10,
+                  child: Text(
+                    "Submit Form",
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.bold),
+                  ),
+                  loader: (timeLeft) {
+                    return Text(
+                      "Wait | $timeLeft",
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold),
+                    );
+                  },
+                  borderRadius: 10.0,
+                 color: Color(0xFFFF5555),
+                  elevation: 0,
+                  borderSide: BorderSide(color: Colors.black, width: 1.5),
                 ),
-              ),
+
             ],
           ),
         ),
