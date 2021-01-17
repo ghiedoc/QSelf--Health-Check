@@ -67,6 +67,16 @@ class dbService {
       'body_weaknesses': body_weaknesses,
     });
   }
+  
+  //update password
+//  changePassword(){
+//    DocumentReference documentReference =
+//    Firestore.instance.collection("user").document(uid);
+//
+//    Map<String, dynamic> users = {
+//      ""
+//    };
+//  }
 
   Stream<List<userList>> get user {
     return userCollect.snapshots()

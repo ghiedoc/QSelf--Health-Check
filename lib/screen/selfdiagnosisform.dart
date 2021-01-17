@@ -144,472 +144,470 @@ void disabledBtn(){
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEFEFEF),
-      appBar: AppBar(
-        backgroundColor: Color(0xFFFF5555),
-        title: Text('Yow Sample'),
-      ),
-
-      body: SingleChildScrollView(
-        child: new Container(
-          child: new Column(
-            children: <Widget> [
-              new SizedBox(
-                height: 10,
-              ),
-              new Text (
-                'Daily Self-Check',
-                style: new TextStyle(
-                  fontSize: 36,
-                  fontWeight: FontWeight.bold,
+      body: SafeArea(
+        child: SingleChildScrollView(
+          child: new Container(
+            child: new Column(
+              children: <Widget> [
+                new SizedBox(
+                  height: 10,
                 ),
-              ),
-              new Text (
-                'Do you have any of the following symptoms today?',
-                style: new TextStyle(
-                  fontSize: 20,
-                  fontWeight: FontWeight.bold,
-                  color: Color(0xFFF757575),
-                ),
-              ),
-              new SizedBox(
-                height: 5,
-              ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
-              Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 5),
-                  /**
-                   * Label lang 'to nung FEVER pero tignan
-                   * mo naman ang daming naka-wrap HAHAHHAA
-                   */
-                  child: Row(
-                    children: [
-                      new Text(
-                        'Fever',
-                        style: new TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                          color: Color(0xFFFFF5555),
-                        ),
-                      ),
-                      new Text(
-                        ' (more than 38 degree Celsius)',
-                        style: new TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 12.0,
-                          color: Color(0xFF8A8A8A),
-                        ),
-                      ),
-                    ],
+                new Text (
+                  'Daily Self-Check',
+                  style: new TextStyle(
+                    fontSize: 36,
+                    fontWeight: FontWeight.bold,
                   ),
                 ),
-              ),
-
-              /**
-               * Radio Button para sa FEVER
-               * yung value 0 is YES
-               * yung value 1 is NO
-               */
-              Container(
-                color: Colors.white,
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
-                    Radio(
-                      value : 1,
-                      groupValue: selectedRadio,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.fever = "yes";
-                        setSelectedRadio(val);
-                      },
-                    ),
-                    Text(
-                      'Yes',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                    Radio(
-                      value : 2,
-                      groupValue: selectedRadio,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.fever = "no";
-                        setSelectedRadio(val);
-                      },
-                    ),
-                    Text(
-                      'No',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                  ],
+                new Text (
+                  'Do you have any of the following symptoms today?',
+                  style: new TextStyle(
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold,
+                    color: Color(0xFFF757575),
+                  ),
                 ),
-              ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
-
-              /**
-               * Label ng COUGH
-               */
-              Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 5),
-                  child: Row(
-                    children: [
-                      new Text(
-                        'Cough',
-                        style: new TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                          color: Color(0xFFFFF5555),
+                new SizedBox(
+                  height: 5,
+                ),
+                new Divider(
+                    height: 5.0,
+                    color: Colors.black
+                ),
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 5),
+                    /**
+                     * Label lang 'to nung FEVER pero tignan
+                     * mo naman ang daming naka-wrap HAHAHHAA
+                     */
+                    child: Row(
+                      children: [
+                        new Text(
+                          'Fever',
+                          style: new TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Color(0xFFFFF5555),
+                          ),
                         ),
+                        new Text(
+                          ' (more than 38 degree Celsius)',
+                          style: new TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 12.0,
+                            color: Color(0xFF8A8A8A),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                /**
+                 * Radio Button para sa FEVER
+                 * yung value 0 is YES
+                 * yung value 1 is NO
+                 */
+                Container(
+                  color: Colors.white,
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget> [
+                      Radio(
+                        value : 1,
+                        groupValue: selectedRadio,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.fever = "yes";
+                          setSelectedRadio(val);
+                        },
+                      ),
+                      Text(
+                        'Yes',
+                        style: new TextStyle(fontSize: 16.0),
+                      ),
+                      Radio(
+                        value : 2,
+                        groupValue: selectedRadio,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.fever = "no";
+                          setSelectedRadio(val);
+                        },
+                      ),
+                      Text(
+                        'No',
+                        style: new TextStyle(fontSize: 16.0),
                       ),
                     ],
                   ),
                 ),
-              ),
-
-              /**
-               * Radio Button para sa COUGH
-               * yung value 0 is YES
-               * yung value 1 is NO
-               */
-              Container(
-                color: Colors.white,
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
-                    Radio(
-                      value : 3,
-                      groupValue: selectedRadio2,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.cough = "yes";
-                        setSelectedRadio2(val);
-                      },
-                    ),
-                    Text(
-                      'Yes',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                    Radio(
-                      value : 4,
-                      groupValue: selectedRadio2,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.cough = "no";
-                        setSelectedRadio2(val);
-                      },
-                    ),
-                    Text(
-                      'No',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                  ],
+                new Divider(
+                    height: 5.0,
+                    color: Colors.black
                 ),
-              ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
 
-              /**
-               * Label ng DIFFICULTY IN BREATHING
-               */
-              Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 5),
-                  child: Row(
-                    children: [
-                      new Text(
-                        'Difficulty in Breathing',
-                        style: new TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                          color: Color(0xFFFFF5555),
+                /**
+                 * Label ng COUGH
+                 */
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 5),
+                    child: Row(
+                      children: [
+                        new Text(
+                          'Cough',
+                          style: new TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Color(0xFFFFF5555),
+                          ),
                         ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                /**
+                 * Radio Button para sa COUGH
+                 * yung value 0 is YES
+                 * yung value 1 is NO
+                 */
+                Container(
+                  color: Colors.white,
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget> [
+                      Radio(
+                        value : 3,
+                        groupValue: selectedRadio2,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.cough = "yes";
+                          setSelectedRadio2(val);
+                        },
+                      ),
+                      Text(
+                        'Yes',
+                        style: new TextStyle(fontSize: 16.0),
+                      ),
+                      Radio(
+                        value : 4,
+                        groupValue: selectedRadio2,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.cough = "no";
+                          setSelectedRadio2(val);
+                        },
+                      ),
+                      Text(
+                        'No',
+                        style: new TextStyle(fontSize: 16.0),
                       ),
                     ],
                   ),
                 ),
-              ),
-
-              /**
-               * Radio Button para sa DIFFICULTY IN BREATHING
-               * yung value 0 is YES
-               * yung value 1 is NO
-               */
-              Container(
-                color: Colors.white,
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
-                    Radio(
-                      value : 5,
-                      groupValue: selectedRadio3,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.diff_breathing = "yes";
-                        setSelectedRadio3(val);
-                      },
-                    ),
-                    Text(
-                      'Yes',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                    Radio(
-                      value : 6,
-                      groupValue: selectedRadio3,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.diff_breathing = "no";
-                        setSelectedRadio3(val);
-                      },
-                    ),
-                    Text(
-                      'No',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                  ],
+                new Divider(
+                    height: 5.0,
+                    color: Colors.black
                 ),
-              ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
 
-              /**
-               * Label ng SORETHROAT
-               */
-              Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 5),
-                  child: Row(
-                    children: [
-                      new Text(
-                        'Sorethroat',
-                        style: new TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                          color: Color(0xFFFFF5555),
+                /**
+                 * Label ng DIFFICULTY IN BREATHING
+                 */
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 5),
+                    child: Row(
+                      children: [
+                        new Text(
+                          'Difficulty in Breathing',
+                          style: new TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Color(0xFFFFF5555),
+                          ),
                         ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                /**
+                 * Radio Button para sa DIFFICULTY IN BREATHING
+                 * yung value 0 is YES
+                 * yung value 1 is NO
+                 */
+                Container(
+                  color: Colors.white,
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget> [
+                      Radio(
+                        value : 5,
+                        groupValue: selectedRadio3,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.diff_breathing = "yes";
+                          setSelectedRadio3(val);
+                        },
+                      ),
+                      Text(
+                        'Yes',
+                        style: new TextStyle(fontSize: 16.0),
+                      ),
+                      Radio(
+                        value : 6,
+                        groupValue: selectedRadio3,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.diff_breathing = "no";
+                          setSelectedRadio3(val);
+                        },
+                      ),
+                      Text(
+                        'No',
+                        style: new TextStyle(fontSize: 16.0),
                       ),
                     ],
                   ),
                 ),
-              ),
-
-              /**
-               * Radio Button para sa SORETHROAT
-               * yung value 0 is YES
-               * yung value 1 is NO
-               */
-              Container(
-                color: Colors.white,
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
-                    Radio(
-                      value : 7,
-                      groupValue: selectedRadio4,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.sore_throat = "yes";
-                        setSelectedRadio4(val);
-                      },
-                    ),
-                    Text(
-                      'Yes',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                    Radio(
-                      value : 8,
-                      groupValue: selectedRadio4,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.sore_throat = "no";
-                        setSelectedRadio4(val);
-                      },
-                    ),
-                    Text(
-                      'No',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                  ],
+                new Divider(
+                    height: 5.0,
+                    color: Colors.black
                 ),
-              ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
 
-              /**
-               * Label ng HEADACHE
-               */
-              Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 5),
-                  child: Row(
-                    children: [
-                      new Text(
-                        'Headache',
-                        style: new TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                          color: Color(0xFFFFF5555),
+                /**
+                 * Label ng SORETHROAT
+                 */
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 5),
+                    child: Row(
+                      children: [
+                        new Text(
+                          'Sorethroat',
+                          style: new TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Color(0xFFFFF5555),
+                          ),
                         ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                /**
+                 * Radio Button para sa SORETHROAT
+                 * yung value 0 is YES
+                 * yung value 1 is NO
+                 */
+                Container(
+                  color: Colors.white,
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget> [
+                      Radio(
+                        value : 7,
+                        groupValue: selectedRadio4,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.sore_throat = "yes";
+                          setSelectedRadio4(val);
+                        },
+                      ),
+                      Text(
+                        'Yes',
+                        style: new TextStyle(fontSize: 16.0),
+                      ),
+                      Radio(
+                        value : 8,
+                        groupValue: selectedRadio4,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.sore_throat = "no";
+                          setSelectedRadio4(val);
+                        },
+                      ),
+                      Text(
+                        'No',
+                        style: new TextStyle(fontSize: 16.0),
                       ),
                     ],
                   ),
                 ),
-              ),
-
-              /**
-               * Radio Button para sa HEADACHE
-               * yung value 0 is YES
-               * yung value 1 is NO
-               */
-              Container(
-                color: Colors.white,
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
-                    Radio(
-                      value : 8,
-                      groupValue: selectedRadio5,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.heacache = "yes";
-                        setSelectedRadio5(val);
-                      },
-                    ),
-                    Text(
-                      'Yes',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                    Radio(
-                      value : 9,
-                      groupValue: selectedRadio5,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.heacache = "no";
-                        setSelectedRadio5(val);
-                      },
-                    ),
-                    Text(
-                      'No',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                  ],
+                new Divider(
+                    height: 5.0,
+                    color: Colors.black
                 ),
-              ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
 
-              /*
-              * Label ng BODY WEAKNESS
-              */
-              Container(
-                color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 5),
-                  child: Row(
-                    children: [
-                      new Text(
-                        'Body Weakness',
-                        style: new TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                          color: Color(0xFFFFF5555),
+                /**
+                 * Label ng HEADACHE
+                 */
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 5),
+                    child: Row(
+                      children: [
+                        new Text(
+                          'Headache',
+                          style: new TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Color(0xFFFFF5555),
+                          ),
                         ),
+                      ],
+                    ),
+                  ),
+                ),
+
+                /**
+                 * Radio Button para sa HEADACHE
+                 * yung value 0 is YES
+                 * yung value 1 is NO
+                 */
+                Container(
+                  color: Colors.white,
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget> [
+                      Radio(
+                        value : 8,
+                        groupValue: selectedRadio5,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.heacache = "yes";
+                          setSelectedRadio5(val);
+                        },
+                      ),
+                      Text(
+                        'Yes',
+                        style: new TextStyle(fontSize: 16.0),
+                      ),
+                      Radio(
+                        value : 9,
+                        groupValue: selectedRadio5,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.heacache = "no";
+                          setSelectedRadio5(val);
+                        },
+                      ),
+                      Text(
+                        'No',
+                        style: new TextStyle(fontSize: 16.0),
                       ),
                     ],
                   ),
                 ),
-              ),
-
-              /**
-               * Radio Button para sa BODY WEAKNESS
-               * yung value 0 is YES
-               * yung value 1 is NO
-               */
-              Container(
-                color: Colors.white,
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
-                    Radio(
-                      value : 10,
-                      groupValue: selectedRadio6,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.body_weaknesses = "yes";
-                        setSelectedRadio6(val);
-                      },
-                    ),
-                    Text(
-                      'Yes',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                    Radio(
-                      value : 11,
-                      groupValue: selectedRadio6,
-                      activeColor: Colors.blue,
-                      onChanged: (val){
-                        diagnoseForm.body_weaknesses = "no";
-                        setSelectedRadio6(val);
-                      },
-                    ),
-                    Text(
-                      'No',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                  ],
+                new Divider(
+                    height: 5.0,
+                    color: Colors.black
                 ),
-              ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
 
-              /*
-              *  DITO YUNG SA BUTTON
-              *  raised button ginamit ko kasi ayaw ng material btn ewan ko bakit
-              */
-              ButtonTheme(
-                minWidth: double.infinity,
-                height: 50.0,
-                child: new RaisedButton(
-                  color: Color(0xFFFF5555),
-                  shape: new RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
+                /*
+                * Label ng BODY WEAKNESS
+                */
+                Container(
+                  color: Colors.white,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 5),
+                    child: Row(
+                      children: [
+                        new Text(
+                          'Body Weakness',
+                          style: new TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Color(0xFFFFF5555),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
-                  child: new Text(
-                    'Submit Form',
-                    style: new TextStyle(
-                      fontSize: 16.0,
-                      fontWeight: FontWeight.normal,
-                      color: Colors.white,
+                ),
+
+                /**
+                 * Radio Button para sa BODY WEAKNESS
+                 * yung value 0 is YES
+                 * yung value 1 is NO
+                 */
+                Container(
+                  color: Colors.white,
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget> [
+                      Radio(
+                        value : 10,
+                        groupValue: selectedRadio6,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.body_weaknesses = "yes";
+                          setSelectedRadio6(val);
+                        },
+                      ),
+                      Text(
+                        'Yes',
+                        style: new TextStyle(fontSize: 16.0),
+                      ),
+                      Radio(
+                        value : 11,
+                        groupValue: selectedRadio6,
+                        activeColor: Colors.blue,
+                        onChanged: (val){
+                          diagnoseForm.body_weaknesses = "no";
+                          setSelectedRadio6(val);
+                        },
+                      ),
+                      Text(
+                        'No',
+                        style: new TextStyle(fontSize: 16.0),
+                      ),
+                    ],
+                  ),
+                ),
+                new Divider(
+                    height: 5.0,
+                    color: Colors.black
+                ),
+
+                /*
+                *  DITO YUNG SA BUTTON
+                *  raised button ginamit ko kasi ayaw ng material btn ewan ko bakit
+                */
+                ButtonTheme(
+                  minWidth: double.infinity,
+                  height: 50.0,
+                  child: new RaisedButton(
+                    color: Color(0xFFFF5555),
+                    shape: new RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(10),
                     ),
                   ),
                   onPressed: () {
                     _dayIncreement();
                     validation();
                   },
+                    child: new Text(
+                      'Submit Form',
+                      style: new TextStyle(
+                        fontSize: 16.0,
+                        fontWeight: FontWeight.normal,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ],
+              ],
+            ),
           ),
         ),
       ),

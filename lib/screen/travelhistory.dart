@@ -15,15 +15,26 @@ class TravelHistoryPage extends StatefulWidget {
 }
 
 class _TravelHistoryPageState extends State<TravelHistoryPage> {
+
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
   final AuthService auth = AuthService();
+  TextEditingController _dateController = TextEditingController();
 
-  DateTime _setDate = DateTime.now();
+  DateTime pickedDate;
   int selectitem = 1;
   String dateTime;
   String valueChoose;
+  var currentItemSelected = "Algeria";
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    pickedDate = DateTime.now();
+
+  }
+
 
   List country = [
     "Algeria",
@@ -49,8 +60,6 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
       print("not validated");
     }
   }
-
-
 
   @override
   Widget build(BuildContext context) {
@@ -125,16 +134,20 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                             ),
                             validator: (value) {
                               if(value.toString().isEmpty){
-                                return 'INVALID DATE';
+                                return 'Invalid date';
                               }
                               return null;
                             },
+                            controller: _dateController,
                             onChanged: (value) {
                               travelData.travel_arrival_date = value;
                             },
+                            onTap: () {
+                              FocusScope.of(context).requestFocus(new FocusNode());
+                              _pickDate();
+                            },
+                            keyboardType: TextInputType.datetime,
                           ),
-                          //DATE PICER INSERT HERE
-
                           SizedBox(
                             height: 30.0,
                           ),
@@ -157,13 +170,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                               borderRadius: BorderRadius.circular(10),
                             ),
                             child: DropdownButtonFormField(
-                              validator: (newValue) {
-                                if(newValue.toString().isEmpty){
-                                  return 'Invalid Country';
-                                }
-                                return null;
-                              },
-                              value: valueChoose,
+                              value: currentItemSelected,
                               onChanged: (newValue) {
                                 setState(() {
                                   valueChoose = newValue;
@@ -176,6 +183,13 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                                   child: Text(valueItem),
                                 );
                               }).toList(),
+                              validator: (newValue) {
+                                if(newValue.toString().isEmpty){
+                                  return 'Invalid Country';
+                                }
+                                print("VALUE COMBOBOX: " + newValue);
+                                return null;
+                              },
                             ),
                           ),
                         ],
@@ -216,5 +230,20 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
             ),
           ),
         ));
+  }
+
+  _pickDate() async {
+    DateTime date = await showDatePicker(
+      context: context,
+      firstDate: DateTime(DateTime.now().year-1),
+      lastDate: DateTime(DateTime.now().year+1),
+      initialDate: pickedDate,
+    );
+    if(date != null)
+      setState(() {
+        pickedDate = date;
+        var dateText = "${pickedDate.year}/${pickedDate.month}/${pickedDate.day}";
+        _dateController.text = dateText;
+      });
   }
 }

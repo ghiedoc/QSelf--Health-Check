@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'changepassword.dart';
 import 'login.dart';
 import 'start.dart';
 import 'signup.dart';
@@ -9,6 +10,9 @@ import 'dashboard.dart';
 import 'selfdiagnosisform.dart';
 import 'admin_result.dart';
 import 'admin_userlist.dart';
+import 'homePage.dart';
+
+enum AuthFormType {reset}
 
 class LoginPage extends StatefulWidget {
   @override
@@ -120,7 +124,7 @@ class _LoginPageState extends State<LoginPage> {
                                         if (value.isEmpty ||
                                             !value.contains("@") ||
                                             !value.contains(".com")) {
-                                          return 'INVALID EMAIL ADDRESS';
+                                          return 'Incorrect Password or Email';
                                         }
                                         return null;
                                       },
@@ -158,14 +162,14 @@ class _LoginPageState extends State<LoginPage> {
                                       controller: _passwordController,
                                       validator: (value) {
                                         if (value.isEmpty) {
-                                          return 'Enter New Passowrd';
+                                          return 'Enter Passowrd';
                                         } else if (value.length < 8) {
-                                          return 'Password must be atleast 8 characters long';
+                                          return 'Incorrect Password or Email';
                                         } else if (!value.contains("@") &&
                                             (!value.contains("!") &&
                                                 !value.contains("#") &&
                                                 !value.contains("%"))) {
-                                          return 'Password must be atleast 1 character';
+                                          return 'Incorrect Password or Email';
                                         }
                                         return null;
                                       },
@@ -174,9 +178,23 @@ class _LoginPageState extends State<LoginPage> {
                                       }),
                                 ),
                                 SizedBox(
-                                  height: 30,
+                                  height: 20,
                                 ),
-//                                  database paasok
+                                InkWell(
+                                  onTap: () {
+                                    Navigator.of(context)
+                                        .push(MaterialPageRoute(builder: (context) => ChangePasswordPage()));
+                                  },
+                                  child: Text("Forgot Password?",
+                                      style: TextStyle(
+                                        fontWeight: FontWeight.w600,
+                                        color: Color(0xFF2353FF),
+                                        fontSize: 14,
+                                      )),
+                                ),
+                                SizedBox(
+                                  height: 10,
+                                ),
                               ],
                             ),
                           ),
@@ -198,9 +216,9 @@ class _LoginPageState extends State<LoginPage> {
                           if (formkey.currentState.validate()) {
                             dynamic result =
                                 await _auth.signIn(data.email, data.password);
-                            print("pasok na: $result");
+                            print("pasok na naka log-in na siya: $result");
                             Navigator.of(context)
-                                .pushReplacementNamed(SelfDiagnosisFormPage.routeName);
+                                .pushReplacementNamed(HomePage.routeName);
                           }else{
                             print("not validated");
                           }
@@ -255,4 +273,19 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
+
+//  Widget showForgotPassword(bool visible){
+//    return Visibility(
+//      child: FlatButton(
+//        child: Text("Forgot Password?",),
+//        onPressed: (){
+//          setState(() {
+//            authFormType = AuthFormType.reset;
+//          });
+//        },
+//      ),
+//    );
+//
+//  }
+
 }
