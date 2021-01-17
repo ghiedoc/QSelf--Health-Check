@@ -11,18 +11,7 @@ static String id = "1";
 class diagnoseForm {
   static String fever, cough, diff_breathing, sore_throat, heacache,
       body_weaknesses;
-
-
-   static int Day;
-   static int count;
-
-   static set Days(int temp){
-     count = temp;
-   }
-
-  static int get Days {
-    return count;
-  }
+    static int day;
 
 }
 
@@ -34,15 +23,29 @@ class travelData{
   static String travel_arrival_date,travel_country;
 }
 
+
 class userList {
  final String fname, lname, nationality, passport_no;
-  userList({this.fname, this.lname, this.nationality, this.passport_no});
+ final String uid;
+  userList({this.uid,this.fname, this.lname, this.nationality, this.passport_no});
+
 }
 
 class userform{
-  final String fever, cough, diff_breathing, sore_throat, headache,
+  final String uid,fever, cough, diff_breathing, sore_throat, headache,
       body_weaknesses;
   final int day;
- userform({this.day, this.fever, this.cough, this.diff_breathing, this.sore_throat, this.headache, this.body_weaknesses});
+ userform({this.uid,this.day, this.fever, this.cough, this.diff_breathing, this.sore_throat, this.headache, this.body_weaknesses});
 
 }
+
+//class todo{
+//  final String key;
+//  int day;
+//
+//  todo.fromJson(this.key, Map data){
+//    day = data['day'];
+//    if( day == null){
+//      day = 0;
+//    }
+//  }

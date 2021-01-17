@@ -104,8 +104,4 @@ class dbService {
     }).toList();
   }
 
-  Future<String> getCurrentUID() async {
-    return (await _firebaseAuth.currentUser()).uid;
-
-  }
 }

@@ -26,7 +26,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
   void validation() async{
     if(formkey.currentState.validate()){
       dynamic result = await auth.signUp(data.email,data.password);
-      print("pasok na: $result");
+//      print("pasok na: $result");
       Navigator.of(context)
           .pushReplacementNamed(ContactInfoPage.routeName);
     }else{

@@ -200,7 +200,7 @@ class _LoginPageState extends State<LoginPage> {
                                 await _auth.signIn(data.email, data.password);
                             print("pasok na: $result");
                             Navigator.of(context)
-                                .pushReplacementNamed(AdminUserListPage.routeName);
+                                .pushReplacementNamed(SelfDiagnosisFormPage.routeName);
                           }else{
                             print("not validated");
                           }

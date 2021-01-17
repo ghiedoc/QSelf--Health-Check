@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'travelhistory.dart';
-
+import 'selfdiagnosisform.dart';
 class WelcomePage extends StatelessWidget {
   static const routeName = '/welcome';
   @override
@@ -60,8 +60,8 @@ class WelcomePage extends StatelessWidget {
                             minWidth: double.infinity,
                             height: 60,
                             onPressed: () {
-//                            Navigator.of(context).pushReplacementNamed
-//                              (SignUpPage.routeName);
+                            Navigator.of(context).pushReplacementNamed
+                              (SelfDiagnosisFormPage.routeName);
                             },
                             color: Color(0xFBB1F1F1F),
                             shape: RoundedRectangleBorder(

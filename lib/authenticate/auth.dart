@@ -1,3 +1,4 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter_trial_three/screen/data.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
@@ -92,7 +93,7 @@ class AuthService {
       FirebaseUser user = res.user;
 
       await dbService(uid: user.uid).submitForm
-        (diagnoseForm.Days  ,diagnoseForm.fever,diagnoseForm.cough,
+        (diagnoseForm.day,diagnoseForm.fever,diagnoseForm.cough,
           diagnoseForm.diff_breathing, diagnoseForm.sore_throat, diagnoseForm.heacache, diagnoseForm.body_weaknesses);
 
 
@@ -113,4 +114,5 @@ class AuthService {
       return null;
     }
   }
+
 }
