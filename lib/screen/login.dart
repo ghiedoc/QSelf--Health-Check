@@ -33,15 +33,26 @@ class _LoginPageState extends State<LoginPage> {
   String password = '';
   String error = '';
 
+
+
   void validate() async {
-    if (formkey.currentState.validate()) {
-      dynamic result =
-      await _auth.signIn(data.email, data.password);
-      print("pasok na naka log-in na siya: $result");
-      Navigator.of(context)
-          .pushReplacementNamed(HomePage.routeName);
-    }else{
-      print("not validated");
+      try {
+        if (formkey.currentState.validate()) {
+          dynamic result = await _auth.signIn(data.email, data.password);
+          print("pasok na naka log-in na siya: $result");
+          if(result == null){
+            unsuccessfulToast();
+            print("ERROR");
+          }else{
+            successfulToast();
+            Navigator.of(context).pushReplacementNamed(HomePage.routeName);
+          }
+        } else {
+          print("not validated");
+        }
+      } catch (e) {
+        return e;
+//      }
     }
   }
 
