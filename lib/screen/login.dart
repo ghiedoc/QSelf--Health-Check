@@ -12,6 +12,7 @@ import 'selfdiagnosisform.dart';
 import 'admin_result.dart';
 import 'admin_userlist.dart';
 import 'homePage.dart';
+import 'package:flutter_trial_three/database/dbFirebase.dart';
 
 enum AuthFormType { reset }
 
@@ -36,17 +37,11 @@ class _LoginPageState extends State<LoginPage> {
     if (formkey.currentState.validate()) {
       dynamic result =
       await _auth.signIn(data.email, data.password);
-      print("PASOK NA NAKA-LOG IN NA: $result");
+      print("pasok na naka log-in na siya: $result");
       Navigator.of(context)
           .pushReplacementNamed(HomePage.routeName);
-      //successfulToast();
-    } else {
-      setState(() {
-        //unsuccessfulToast();
-        print('COULD NOT SIGN IN WITH THOSE CREDENTIALS');
-      });
-      //unsuccessfulToast();
-      return print("ERROR KUNG SAN");
+    }else{
+      print("not validated");
     }
   }
 
@@ -310,19 +305,5 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-//  Widget showForgotPassword(bool visible){
-//    return Visibility(
-//      child: FlatButton(
-//        child: Text("Forgot Password?",),
-//        onPressed: (){
-//          setState(() {
-//            authFormType = AuthFormType.reset;
-//          });
-//        },
-//      ),
-//    );
-//
-//  }
 
 }

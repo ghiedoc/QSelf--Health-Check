@@ -93,16 +93,22 @@ class AuthService {
       return null;
     }
   }
-      
+
   Future insertForm(String email, String password) async {
     try {
       AuthResult res = await _auth.signInWithEmailAndPassword(
           email: email, password: password);
       FirebaseUser user = res.user;
 
-    await dbService(uid: user.uid).submitForm
-        (diagnoseForm.day,diagnoseForm.fever,diagnoseForm.cough,
-          diagnoseForm.diff_breathing, diagnoseForm.sore_throat, diagnoseForm.heacache, diagnoseForm.body_weaknesses);
+      await dbService(uid: user.uid).submitForm
+        (
+          diagnoseForm.day,
+          diagnoseForm.fever,
+          diagnoseForm.cough,
+          diagnoseForm.diff_breathing,
+          diagnoseForm.sore_throat,
+          diagnoseForm.heacache,
+          diagnoseForm.body_weaknesses);
 
       return _userFromdb(user);
     } catch (e) {
@@ -120,5 +126,13 @@ class AuthService {
       return null;
     }
   }
+
+  Future<String> getCurrentUID() async {
+    return (await _auth.currentUser()).uid;
+  }
+  Future getCurrentUser() async {
+    return _auth.currentUser;
+  }
+
 
 }

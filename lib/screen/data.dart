@@ -11,7 +11,7 @@ static String id = "1";
 class diagnoseForm {
   static String fever, cough, diff_breathing, sore_throat, heacache,
       body_weaknesses;
-    static int day;
+    static int day = 0;
 
 }
 
@@ -39,13 +39,4 @@ class userform{
 
 }
 
-//class todo{
-//  final String key;
-//  int day;
-//
-//  todo.fromJson(this.key, Map data){
-//    day = data['day'];
-//    if( day == null){
-//      day = 0;
-//    }
-//  }
+

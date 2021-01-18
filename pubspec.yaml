@@ -32,7 +32,9 @@ dependencies:
   provider: ^4.3.2+3
   dio: ^3.0.10
   shared_preferences: ^0.5.12+4
+  argon_buttons_flutter: ^1.0.6
   fluttertoast: ^7.1.6
+
 
 dev_dependencies:
   flutter_test:
