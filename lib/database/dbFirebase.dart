@@ -6,8 +6,8 @@ import 'package:flutter_trial_three/screen/userList.dart';
 class dbService {
 
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
-  final String uid;
 
+  final String uid;
   dbService({this.uid});
 
   final CollectionReference userCollect = Firestore.instance.collection("user");
@@ -67,6 +67,16 @@ class dbService {
       'body_weaknesses': body_weaknesses,
     });
   }
+  
+  //update password
+//  changePassword(){
+//    DocumentReference documentReference =
+//    Firestore.instance.collection("user").document(uid);
+//
+//    Map<String, dynamic> users = {
+//      ""
+//    };
+//  }
 
   Stream<List<userList>> get user {
     return userCollect.snapshots()
@@ -104,4 +114,16 @@ class dbService {
     }).toList();
   }
 
+  Stream<userList> get userData{
+    return userCollect.document(uid).snapshots()
+    .map(_userData);
+  }
+
+  userList _userData(DocumentSnapshot snapshot){
+    return userList(
+      uid: uid,
+      fname: snapshot.data['fname'],
+      lname: snapshot.data['lname']
+    );
+  }
 }

@@ -16,6 +16,8 @@ class ContactInfoPage extends StatefulWidget {
 class _ContactInfoPageState extends State<ContactInfoPage> {
   FocusNode myFocusNode = new FocusNode();
   String valueChoose;
+  var currentItemSelected = "Century Park Hotel";
+
   List hotel = [
     "Century Park Hotel",
     "The Mini Suites-Eton Tower Makati",
@@ -162,7 +164,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                               validator: (value) {
                                 if (value.toString().isEmpty ||
                                     value.length < 11) {
-                                  return 'INVALID CONTACT NUMBER';
+                                  return 'Invalid mobile number';
                                 }
                                 return null;
                               },
@@ -198,7 +200,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                               validator: (value) {
                                 if (value.toString().isEmpty ||
                                     value.length < 11) {
-                                  return 'INVALID EMERGENCY NUMBER';
+                                  return 'Invalid emergency number';
                                 }
                                 return null;
                               },
@@ -247,7 +249,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                   }
                                   return null;
                                 },
-                                value: valueChoose,
+                                value: currentItemSelected,
                                 onChanged: (newValue) {
                                   setState(() {
                                     valueChoose = newValue;
