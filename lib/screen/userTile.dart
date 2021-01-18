@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'data.dart';
 import 'admin_result.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
@@ -14,6 +15,7 @@ class userTile extends StatelessWidget {
     return user_t;
 
   }
+  final AuthService _auth = AuthService();
 
   @override
   Widget build(BuildContext context) {
@@ -30,10 +32,10 @@ class userTile extends StatelessWidget {
           title: Text('Name: ${user_t.fname}' + " " +'${user_t.lname} \n'
               "Passport Number: ${user_t.passport_no}"),
           subtitle: Text("Nationality: " + user_t.nationality),
-          onTap: (){
-//            print('DITO ${getCurrentUID()}');
-//            userT;
-
+          onTap: () async {
+            dynamic result =
+                await _auth.signUp(data.fname, data.lname);
+            print("pasok na naka log-in na siya: $result");
             Navigator.of(context).pushNamed(AdminResultPage.routeName);
           }
 //

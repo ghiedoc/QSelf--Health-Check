@@ -114,16 +114,34 @@ class dbService {
     }).toList();
   }
 
+//USER INFO
   Stream<userList> get userData{
     return userCollect.document(uid).snapshots()
     .map(_userData);
   }
-
   userList _userData(DocumentSnapshot snapshot){
     return userList(
       uid: uid,
       fname: snapshot.data['fname'],
       lname: snapshot.data['lname']
     );
+  }
+//  USER RESULT
+  Stream<userform> get userRes{
+    return diagnoseForm.document(uid).snapshots()
+        .map(_userRes);
+  }
+  userform _userRes(DocumentSnapshot snapshot){
+    return userform(
+      uid: uid,
+      day: snapshot.data['day'],
+      fever: snapshot.data['fever'],
+      cough: snapshot.data['cough'],
+      diff_breathing: snapshot.data['diff_breathing'],
+      sore_throat: snapshot.data['sore_throat'],
+      headache: snapshot.data['headache'],
+      body_weaknesses: snapshot.data['body_weaknesses']
+    );
+
   }
 }
