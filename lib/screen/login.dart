@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'changepassword.dart';
 import 'login.dart';
 import 'start.dart';
@@ -13,7 +14,7 @@ import 'admin_userlist.dart';
 import 'homePage.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
 
-enum AuthFormType {reset}
+enum AuthFormType { reset }
 
 class LoginPage extends StatefulWidget {
   @override
@@ -28,6 +29,10 @@ class _LoginPageState extends State<LoginPage> {
 
   final AuthService _auth = AuthService();
 
+  String email = '';
+  String password = '';
+  String error = '';
+
   void validate() async {
     if (formkey.currentState.validate()) {
       dynamic result =
@@ -38,8 +43,30 @@ class _LoginPageState extends State<LoginPage> {
     }else{
       print("not validated");
     }
-
   }
+
+  void successfulToast() {
+    Fluttertoast.showToast(
+        msg: "Sign in Successfully",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  void unsuccessfulToast() {
+    Fluttertoast.showToast(
+        msg: "Error Signing in!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
 
   @override
   Widget build(BuildContext context) {
@@ -109,38 +136,41 @@ class _LoginPageState extends State<LoginPage> {
                                 Container(
                                   width: 300.0,
                                   child: TextFormField(
-                                      decoration: InputDecoration(
-                                        labelText: 'Email',
-                                        filled: true,
-                                        labelStyle: TextStyle(
-                                            color: myFocusNode.hasFocus
-                                                ? Colors.blue
-                                                : Colors.black),
-                                        contentPadding: EdgeInsets.symmetric(
-                                            vertical: 0, horizontal: 10),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey[400])),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey[400])),
-                                      ),
-                                      keyboardType: TextInputType.emailAddress,
-                                      validator: (value) {
-                                        if (value.isEmpty ||
-                                            !value.contains("@") ||
-                                            !value.contains(".com")) {
-                                          return 'Incorrect Password or Email';
-                                        }
-                                        return null;
-                                      },
-                                      onChanged: (val) {
+                                    decoration: InputDecoration(
+                                      labelText: 'Email',
+                                      filled: true,
+                                      labelStyle: TextStyle(
+                                          color: myFocusNode.hasFocus
+                                              ? Colors.blue
+                                              : Colors.black),
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 0, horizontal: 10),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey[400])),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey[400])),
+                                    ),
+                                    keyboardType: TextInputType.emailAddress,
+                                    onChanged: (val) {
+                                      setState(() {
                                         data.email = val;
-                                      }),
+                                      });
+                                    },
+                                    validator: (value) {
+                                      if (value.isEmpty ||
+                                          !value.contains("@") ||
+                                          !value.contains(".com")) {
+                                        return 'Incorrect Email or Password';
+                                      }
+                                      return null;
+                                    },
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 30,
@@ -148,52 +178,50 @@ class _LoginPageState extends State<LoginPage> {
                                 Container(
                                   width: 300.0,
                                   child: TextFormField(
-                                      decoration: InputDecoration(
-                                        labelText: 'Password',
-                                        filled: true,
-                                        labelStyle: TextStyle(
-                                            color: myFocusNode.hasFocus
-                                                ? Colors.blue
-                                                : Colors.black),
-                                        contentPadding: EdgeInsets.symmetric(
-                                            vertical: 0, horizontal: 10),
-                                        enabledBorder: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey[400])),
-                                        border: OutlineInputBorder(
-                                            borderRadius:
-                                                BorderRadius.circular(10),
-                                            borderSide: BorderSide(
-                                                color: Colors.grey[400])),
-                                      ),
-                                      obscureText: true,
-                                      controller: _passwordController,
-                                      validator: (value) {
-                                        if (value.isEmpty) {
-                                          return 'Enter Passowrd';
-                                        } else if (value.length < 8) {
-                                          return 'Incorrect Password or Email';
-                                        } else if (!value.contains("@") &&
-                                            (!value.contains("!") &&
-                                                !value.contains("#") &&
-                                                !value.contains("%"))) {
-                                          return 'Incorrect Password or Email';
-                                        }
-                                        return null;
-                                      },
-                                      onChanged: (val) {
+                                    decoration: InputDecoration(
+                                      labelText: 'Password',
+                                      filled: true,
+                                      labelStyle: TextStyle(
+                                          color: myFocusNode.hasFocus
+                                              ? Colors.blue
+                                              : Colors.black),
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 0, horizontal: 10),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey[400])),
+                                      border: OutlineInputBorder(
+                                          borderRadius:
+                                              BorderRadius.circular(10),
+                                          borderSide: BorderSide(
+                                              color: Colors.grey[400])),
+                                    ),
+                                    obscureText: true,
+                                    controller: _passwordController,
+                                    onChanged: (val) {
+                                      setState(() {
                                         data.password = val;
-                                      }),
+                                      });
+                                    },
+                                    validator: (value) {
+                                      if (value.isEmpty) {
+                                        return 'Incorrect Email or Password';
+                                      }
+                                      return null;
+                                    },
+                                  ),
                                 ),
                                 SizedBox(
                                   height: 20,
                                 ),
                                 InkWell(
                                   onTap: () {
-                                    Navigator.of(context)
-                                        .push(MaterialPageRoute(builder: (context) => ChangePasswordPage()));
+                                    Navigator.of(context).push(
+                                        MaterialPageRoute(
+                                            builder: (context) =>
+                                                ChangePasswordPage()));
                                   },
                                   child: Text("Forgot Password?",
                                       style: TextStyle(
@@ -223,6 +251,8 @@ class _LoginPageState extends State<LoginPage> {
                         minWidth: 300,
                         height: 50,
                         onPressed: () async {
+                          print(data.email);
+                          print(data.password);
                           validate();
                         },
                         color: Color(0xFFFF5555),
@@ -275,19 +305,5 @@ class _LoginPageState extends State<LoginPage> {
       ),
     );
   }
-
-//  Widget showForgotPassword(bool visible){
-//    return Visibility(
-//      child: FlatButton(
-//        child: Text("Forgot Password?",),
-//        onPressed: (){
-//          setState(() {
-//            authFormType = AuthFormType.reset;
-//          });
-//        },
-//      ),
-//    );
-//
-//  }
 
 }

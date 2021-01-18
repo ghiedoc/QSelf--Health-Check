@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'login.dart';
 import 'start.dart';
 import 'data.dart';
@@ -85,12 +86,38 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
   void validate() async {
       if(formkey.currentState.validate())  {
         dynamic result = await auth.contact_info(data.email,data.password);
+        successfulToast();
         print("pasok na: $result");
         Navigator.of(context)
             .pushReplacementNamed(TravelHistoryPage.routeName);
     } else {
-      print("not validated");
+        unsuccessfulToast();
+        print("not validated");
     }
+  }
+
+  void successfulToast(){
+    Fluttertoast.showToast(
+        msg: "Added Successfully!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
+  void unsuccessfulToast() {
+    Fluttertoast.showToast(
+        msg: "Error Adding Input!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
   }
 
   @override

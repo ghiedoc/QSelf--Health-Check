@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 import 'login.dart';
 import 'start.dart';
 import 'personalinfo.dart';
@@ -26,11 +27,35 @@ class _SignUpPageState extends State<SignUpPage> {
     if (formkey.currentState.validate()) {
 //      dynamic result = await auth.signUp(data.email, data.password);
 //      print("pasok na: $result");
+      successfulToast();
       Navigator.of(context).pushReplacementNamed(PersonalInfoPage.routeName);
 //      submit();
     } else {
+      unsuccessfulToast();
       print("not validated");
     }
+  }
+
+  void successfulToast() {
+    Fluttertoast.showToast(
+        msg: "Sign up Successfully",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  void unsuccessfulToast() {
+    Fluttertoast.showToast(
+        msg: "Error Signing up!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
   }
 
   @override
