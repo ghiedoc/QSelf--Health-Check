@@ -16,7 +16,6 @@ import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
 import 'package:flutter_trial_three/screen/admin_result.dart';
 import 'package:flutter_trial_three/screen/homePage.dart';
 import 'package:flutter_trial_three/screen/changepassword.dart';
-import 'package:get_it/get_it.dart';
 
 void main() async {
 

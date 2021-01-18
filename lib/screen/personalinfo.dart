@@ -7,6 +7,7 @@ import 'signup.dart';
 import 'data.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'contactinfo.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 //import 'admin_userinfo.dart';
 import 'admin_userlist.dart';
 
@@ -26,10 +27,36 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
     if (formkey.currentState.validate()) {
       dynamic result = await auth.signUp(data.email, data.password);
       print("pasok na: $result");
+      successfulToast();
       Navigator.of(context).pushReplacementNamed(ContactInfoPage.routeName);
     } else {
+      unsuccessfulToast();
       print("not validated");
     }
+  }
+
+  void successfulToast(){
+    Fluttertoast.showToast(
+        msg: "Added Successfully!",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
+  }
+
+  void unsuccessfulToast() {
+    Fluttertoast.showToast(
+        msg: "Error Adding Input!",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        timeInSecForIosWeb: 1,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0
+    );
   }
 
   String valueChoose;
@@ -266,6 +293,17 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                         ),
                       ),
                     ),
+                    MaterialButton(
+                      onPressed: () {
+                        successfulToast();
+                      },
+                      child: Text(
+                        "enter"
+                      ),
+                      shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10)),
+                    ),
+
                   ],
                 ),
               ],
