@@ -7,7 +7,6 @@ import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 
 class SelfDiagnosisFormPage extends StatefulWidget {
-
   SelfDiagnosisFormPage({Key key}) : super(key: key);
 
   static const routeName = '/selfDiagnosisForm';
@@ -16,7 +15,6 @@ class SelfDiagnosisFormPage extends StatefulWidget {
 }
 
 class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
-
   final AuthService auth = AuthService();
   bool singleTap = true;
   int _counter = 0;
@@ -27,11 +25,11 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
     });
   }
 
-void disabledBtn(){
+  void disabledBtn() {
 //  WAITS
-}
+  }
 
-   _dayIncreement() async {
+  _dayIncreement() async {
     int days = diagnoseForm.day;
     if (days == 0) {
       days = diagnoseForm.day;
@@ -75,8 +73,8 @@ void disabledBtn(){
     } else if (days == 13) {
       days = diagnoseForm.day;
       return diagnoseForm.day = 14;
-    }else{
-      return null ;
+    } else {
+      return null;
     }
 //    setState((){
 //      days++;
@@ -85,11 +83,11 @@ void disabledBtn(){
 //    });
   }
 
-  void validation() async{
-    try{
-      dynamic result = await auth.insertForm(data.email,data.password);
+  void validation() async {
+    try {
+      dynamic result = await auth.insertForm(data.email, data.password);
       print("pasok na: $result");
-    }catch(e){
+    } catch (e) {
 //      print(e.toStrinng());
       print("${e}null");
     }
@@ -102,69 +100,66 @@ void disabledBtn(){
   int selectedRadio5;
   int selectedRadio6;
   @override
-  void initState(){
+  void initState() {
     super.initState();
     selectedRadio = 0;
   }
 
-  setSelectedRadio(int val){
-    setState((){
-   selectedRadio = val;
-    });
-  }
-  setSelectedRadio2(int val){
-    setState((){
-      selectedRadio2 =val;
-    });
-  }
-  setSelectedRadio3(int val){
-    setState((){
-      selectedRadio3 =val;
+  setSelectedRadio(int val) {
+    setState(() {
+      selectedRadio = val;
     });
   }
 
-  setSelectedRadio4(int val){
-    setState((){
-      selectedRadio4 =val;
-    });
-  }
-  setSelectedRadio5(int val){
-    setState((){
-      selectedRadio5 =val;
-    });
-  }
-  setSelectedRadio6(int val){
-    setState((){
-      selectedRadio6 =val;
+  setSelectedRadio2(int val) {
+    setState(() {
+      selectedRadio2 = val;
     });
   }
 
+  setSelectedRadio3(int val) {
+    setState(() {
+      selectedRadio3 = val;
+    });
+  }
 
+  setSelectedRadio4(int val) {
+    setState(() {
+      selectedRadio4 = val;
+    });
+  }
+
+  setSelectedRadio5(int val) {
+    setState(() {
+      selectedRadio5 = val;
+    });
+  }
+
+  setSelectedRadio6(int val) {
+    setState(() {
+      selectedRadio6 = val;
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xFFEFEFEF),
-      appBar: AppBar(
-        backgroundColor: Color(0xFFFF5555),
-        title: Text('Yow Sample'),
-      ),
-
       body: SingleChildScrollView(
         child: new Container(
           child: new Column(
-            children: <Widget> [
+            children: <Widget>[
               new SizedBox(
                 height: 10,
               ),
-              new Text (
+              new Text(
                 'Daily Self-Check',
                 style: new TextStyle(
                   fontSize: 36,
                   fontWeight: FontWeight.bold,
                 ),
               ),
-              new Text (
+              new Text(
                 'Do you have any of the following symptoms today?',
                 style: new TextStyle(
                   fontSize: 20,
@@ -175,10 +170,7 @@ void disabledBtn(){
               new SizedBox(
                 height: 5,
               ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
+              new Divider(height: 5.0, color: Colors.black),
               Container(
                 color: Colors.white,
                 child: Padding(
@@ -219,12 +211,12 @@ void disabledBtn(){
                 color: Colors.white,
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
+                  children: <Widget>[
                     Radio(
-                      value : 1,
+                      value: 1,
                       groupValue: selectedRadio,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.fever = "yes";
                         setSelectedRadio(val);
                       },
@@ -234,10 +226,10 @@ void disabledBtn(){
                       style: new TextStyle(fontSize: 16.0),
                     ),
                     Radio(
-                      value : 2,
+                      value: 2,
                       groupValue: selectedRadio,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.fever = "no";
                         setSelectedRadio(val);
                       },
@@ -249,10 +241,7 @@ void disabledBtn(){
                   ],
                 ),
               ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
+              new Divider(height: 5.0, color: Colors.black),
 
               /**
                * Label ng COUGH
@@ -285,12 +274,12 @@ void disabledBtn(){
                 color: Colors.white,
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
+                  children: <Widget>[
                     Radio(
-                      value : 3,
+                      value: 3,
                       groupValue: selectedRadio2,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.cough = "yes";
                         setSelectedRadio2(val);
                       },
@@ -300,10 +289,10 @@ void disabledBtn(){
                       style: new TextStyle(fontSize: 16.0),
                     ),
                     Radio(
-                      value : 4,
+                      value: 4,
                       groupValue: selectedRadio2,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.cough = "no";
                         setSelectedRadio2(val);
                       },
@@ -315,10 +304,7 @@ void disabledBtn(){
                   ],
                 ),
               ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
+              new Divider(height: 5.0, color: Colors.black),
 
               /**
                * Label ng DIFFICULTY IN BREATHING
@@ -351,12 +337,12 @@ void disabledBtn(){
                 color: Colors.white,
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
+                  children: <Widget>[
                     Radio(
-                      value : 5,
+                      value: 5,
                       groupValue: selectedRadio3,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.diff_breathing = "yes";
                         setSelectedRadio3(val);
                       },
@@ -366,10 +352,10 @@ void disabledBtn(){
                       style: new TextStyle(fontSize: 16.0),
                     ),
                     Radio(
-                      value : 6,
+                      value: 6,
                       groupValue: selectedRadio3,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.diff_breathing = "no";
                         setSelectedRadio3(val);
                       },
@@ -381,10 +367,7 @@ void disabledBtn(){
                   ],
                 ),
               ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
+              new Divider(height: 5.0, color: Colors.black),
 
               /**
                * Label ng SORETHROAT
@@ -417,12 +400,12 @@ void disabledBtn(){
                 color: Colors.white,
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
+                  children: <Widget>[
                     Radio(
-                      value : 7,
+                      value: 7,
                       groupValue: selectedRadio4,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.sore_throat = "yes";
                         setSelectedRadio4(val);
                       },
@@ -432,10 +415,10 @@ void disabledBtn(){
                       style: new TextStyle(fontSize: 16.0),
                     ),
                     Radio(
-                      value : 8,
+                      value: 8,
                       groupValue: selectedRadio4,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.sore_throat = "no";
                         setSelectedRadio4(val);
                       },
@@ -447,10 +430,7 @@ void disabledBtn(){
                   ],
                 ),
               ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
+              new Divider(height: 5.0, color: Colors.black),
 
               /**
                * Label ng HEADACHE
@@ -483,12 +463,12 @@ void disabledBtn(){
                 color: Colors.white,
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
+                  children: <Widget>[
                     Radio(
-                      value : 8,
+                      value: 8,
                       groupValue: selectedRadio5,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.heacache = "yes";
                         setSelectedRadio5(val);
                       },
@@ -498,10 +478,10 @@ void disabledBtn(){
                       style: new TextStyle(fontSize: 16.0),
                     ),
                     Radio(
-                      value : 9,
+                      value: 9,
                       groupValue: selectedRadio5,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.heacache = "no";
                         setSelectedRadio5(val);
                       },
@@ -513,10 +493,7 @@ void disabledBtn(){
                   ],
                 ),
               ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
+              new Divider(height: 5.0, color: Colors.black),
 
               /*
               * Label ng BODY WEAKNESS
@@ -549,12 +526,12 @@ void disabledBtn(){
                 color: Colors.white,
                 child: new Row(
                   mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget> [
+                  children: <Widget>[
                     Radio(
-                      value : 10,
+                      value: 10,
                       groupValue: selectedRadio6,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.body_weaknesses = "yes";
                         setSelectedRadio6(val);
                       },
@@ -564,10 +541,10 @@ void disabledBtn(){
                       style: new TextStyle(fontSize: 16.0),
                     ),
                     Radio(
-                      value : 11,
+                      value: 11,
                       groupValue: selectedRadio6,
                       activeColor: Colors.blue,
-                      onChanged: (val){
+                      onChanged: (val) {
                         diagnoseForm.body_weaknesses = "no";
                         setSelectedRadio6(val);
                       },
@@ -579,55 +556,52 @@ void disabledBtn(){
                   ],
                 ),
               ),
-              new Divider(
-                  height: 5.0,
-                  color: Colors.black
-              ),
+              new Divider(height: 5.0, color: Colors.black),
 
               /*
               *  DITO YUNG SA BUTTON
               *  raised button ginamit ko kasi ayaw ng material btn ewan ko bakit
               */
-               ArgonTimerButton(
-                  height: 69,
-                  width: MediaQuery.of(context).size.width,
-                  minWidth: MediaQuery.of(context).size.width * 0.30,
-                  highlightColor: Colors.transparent,
-                  highlightElevation: 0,
-                  roundLoadingShape: false,
-                  onTap: (startTimer, btnState) {;
-                    if (btnState == ButtonState.Idle) {
-                      startTimer(60);
-                      _dayIncreement();
-                      validation();
-                    }
-                    setState(() {
-                      singleTap = false; // update bool
-                    });
-                  },
-                  // initialTimer: 10,
-                  child: Text(
-                    "Submit Form",
+              ArgonTimerButton(
+                height: 69,
+                width: MediaQuery.of(context).size.width,
+                minWidth: MediaQuery.of(context).size.width * 0.30,
+                highlightColor: Colors.transparent,
+                highlightElevation: 0,
+                roundLoadingShape: false,
+                onTap: (startTimer, btnState) {
+                  ;
+                  if (btnState == ButtonState.Idle) {
+                    startTimer(60);
+                    _dayIncreement();
+                    validation();
+                  }
+                  setState(() {
+                    singleTap = false; // update bool
+                  });
+                },
+                // initialTimer: 10,
+                child: Text(
+                  "Submit Form",
+                  style: TextStyle(
+                      color: Colors.white,
+                      fontSize: 16.0,
+                      fontWeight: FontWeight.bold),
+                ),
+                loader: (timeLeft) {
+                  return Text(
+                    "Wait | $timeLeft",
                     style: TextStyle(
                         color: Colors.white,
-                        fontSize: 16.0,
+                        fontSize: 16,
                         fontWeight: FontWeight.bold),
-                  ),
-                  loader: (timeLeft) {
-                    return Text(
-                      "Wait | $timeLeft",
-                      style: TextStyle(
-                          color: Colors.white,
-                          fontSize: 16,
-                          fontWeight: FontWeight.bold),
-                    );
-                  },
-                  borderRadius: 10.0,
-                 color: Color(0xFFFF5555),
-                  elevation: 0,
-                  borderSide: BorderSide(color: Colors.black, width: 1.5),
-                ),
-
+                  );
+                },
+                borderRadius: 10.0,
+                color: Color(0xFFFF5555),
+                elevation: 0,
+                borderSide: BorderSide(color: Colors.black, width: 1.5),
+              ),
             ],
           ),
         ),
@@ -636,7 +610,6 @@ void disabledBtn(){
       /**
        * HAMBURGER DRAWER LOCATED HERE
        */
-
     );
   }
 }
