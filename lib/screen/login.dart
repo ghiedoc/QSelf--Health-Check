@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_trial_three/screen/admin_dashboard.dart';
+import 'package:flutter_trial_three/screen/homePage.dart';
+import 'package:flutter_trial_three/screen/homePage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'changepassword.dart';
 import 'login.dart';
@@ -13,6 +16,7 @@ import 'admin_result.dart';
 import 'admin_userlist.dart';
 import 'homePage.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
+import 'formList.dart';
 
 enum AuthFormType { reset }
 
@@ -29,19 +33,34 @@ class _LoginPageState extends State<LoginPage> {
 
   final AuthService _auth = AuthService();
 
-  String email = '';
-  String password = '';
-  String error = '';
+//  String email = '';
+//  String password = '';
+//  String error = '';
 
+
+//ERROR PA DITO
   void validate() async {
-    if (formkey.currentState.validate()) {
-      dynamic result =
-      await _auth.signIn(data.email, data.password);
-      print("pasok na naka log-in na siya: $result");
-      Navigator.of(context)
-          .pushReplacementNamed(HomePage.routeName);
-    }else{
-      print("not validated");
+    var result = formkey.currentState.validate();
+      try {
+        if (formkey.currentState.validate()) {
+          dynamic result = await _auth.signIn(data.email, data.password);
+          print("pasok na naka log-in na siya: $result");
+          if (result == null) {
+            unsuccessfulToast();
+            print(result);
+        }else{
+            successfulToast();
+            Navigator.of(context).pushReplacementNamed(HomePage.routeName);
+          }
+        }else if(result == "admin@email.com" && result == "123456"){
+          successfulToast();
+          Navigator.of(context).pushReplacementNamed(AdminResultPage.routeName);
+        } else {
+          print("not validated");
+        }
+      } catch (e) {
+        return e;
+//      }
     }
   }
 
