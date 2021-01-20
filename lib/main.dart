@@ -40,9 +40,9 @@ class MyApp extends StatelessWidget {
   static const routeName = '/personalinfo';
   @override
   Widget build(BuildContext context) {
-    return StreamProvider<User>.value(
+    return  StreamProvider<User>.value(
       value: AuthService().user,
-        child: MaterialApp(
+      child :MaterialApp(
           debugShowCheckedModeBanner: false,
           title: 'Login App',
           theme: ThemeData(
@@ -68,7 +68,7 @@ class MyApp extends StatelessWidget {
             ChangePasswordPage.routeName: (ctx) => ChangePasswordPage(),
 //        HomeScreen.routeName: (ctx)=> HomeScreen(),
           },
-        ),
+    ),
     );
   }
 }
