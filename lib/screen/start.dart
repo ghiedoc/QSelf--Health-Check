@@ -54,7 +54,7 @@ class _startState extends State<starts> {
               ),
               Expanded(
                 child: Column(
-                  mainAxisAlignment: MainAxisAlignment.end,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     MaterialButton(
                       minWidth: double.infinity,
@@ -72,10 +72,8 @@ class _startState extends State<starts> {
                         fontSize: 20,
                       ))
                     ),
-                    SizedBox(height: 20,),
+                    SizedBox(height: 15,),
                     Container(
-                      decoration: BoxDecoration(
-                      ),
                       child: MaterialButton(
                         minWidth: double.infinity,
                         height: 60,

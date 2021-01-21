@@ -30,11 +30,11 @@ class _DashboardPageState extends State<DashboardPage> {
     final padding = const EdgeInsets.all(4.0);
 
     return Scaffold(
-      body: StreamBuilder<userform>(
-          stream: dbService(uid: form.uid).userRes,
+      body: StreamBuilder<userList>(
+          stream: dbService(uid: form.uid).userData,
           builder: (context, snapshot) {
             try{
-              userform user_form = snapshot.data;
+              userList user_list = snapshot.data;
               return Container(
                 padding: EdgeInsets.all(20.0),
                 child: ListView(
@@ -74,7 +74,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 Align(
                                   alignment: Alignment.topLeft,
                                   child: Text(
-                                    'Record',
+                                    'Hello',
                                     style: TextStyle(
                                       fontSize: 18,
                                     ),
@@ -83,7 +83,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 Row(
                                   children: [
                                     Text(
-                                      'Day ${user_form.day}',
+                                      '${user_list.fname} ${user_list.lname}',
                                       style: TextStyle(
                                         fontSize: 32,
                                         fontWeight: FontWeight.bold,
@@ -94,7 +94,7 @@ class _DashboardPageState extends State<DashboardPage> {
                                 Align(
                                   alignment: Alignment.bottomRight,
                                   child: Text(
-                                    '2/14',
+                                    '',
                                     style: TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
