@@ -112,13 +112,11 @@ class _DashboardPageState extends State<DashboardPage> {
                      */
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return;
-                            },
-                          ),
-                        );
+                        Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                                builder: (context) =>
+                                new CovidUpdatePage()));
                       },
                       child: Container(
                         height: 90,

@@ -161,13 +161,13 @@ class _HomePageState extends State<HomePage> {
                         child: Text('${user_List.fname} ${user_List.lname}'),
                       ),
                       new ListTile(
-                        title: new Text('${user_List.fname}'),
+                        title: new Text('COVID 19 UPDATES'),
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (context) =>
-                                  new ChangePasswordPage()));
+//                          Navigator.push(
+//                              context,
+//                              new MaterialPageRoute(
+//                                  builder: (context) =>
+//                                  new CovidUpdatePage()));
                         },
                       ),
                       new ListTile(
