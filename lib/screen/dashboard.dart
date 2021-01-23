@@ -73,33 +73,39 @@ class _DashboardPageState extends State<DashboardPage> {
                               children: [
                                 Align(
                                   alignment: Alignment.topLeft,
-                                  child: Text(
-                                    'Record',
-                                    style: TextStyle(
-                                      fontSize: 18,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'Record',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Row(
                                   children: [
-                                    Text(
-                                      'Day ${user_form.day}',
-                                      style: TextStyle(
-                                        fontSize: 32,
-                                        fontWeight: FontWeight.bold,
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        'Day ${user_form.day}',
+                                        style: TextStyle(
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ],
                                 ),
                                 Align(
                                   alignment: Alignment.bottomRight,
-                                  child: Text(
-                                    '2/14',
-                                    style: TextStyle(
-                                      fontSize: 18,
-                                      fontWeight: FontWeight.bold,
-                                    ),
-                                  ),
+//                                  child: Text(
+//                                    '2/14',
+//                                    style: TextStyle(
+//                                      fontSize: 18,
+//                                      fontWeight: FontWeight.bold,
+//                                    ),
+//                                  ),
                                 ),
                               ],
                             ),
@@ -124,23 +130,23 @@ class _DashboardPageState extends State<DashboardPage> {
                         height: 90,
                         child: Padding(
                           padding: padding,
-                          child: Card(
-                            color: Color(0xFFF78977),
-                            shape: border,
-                            elevation: 3.0,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'COVID-19 Updates',
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+//                          child: Card(
+//                            color: Color(0xFFF78977),
+//                            shape: border,
+//                            elevation: 3.0,
+//                            child: Column(
+//                              mainAxisAlignment: MainAxisAlignment.center,
+//                              children: [
+//                                Text(
+//                                  'COVID-19 Updates',
+//                                  style: TextStyle(
+//                                    fontSize: 30,
+//                                    color: Colors.white,
+//                                  ),
+//                                ),
+//                              ],
+//                            ),
+//                          ),
                         ),
                       ),
                     ),
@@ -161,23 +167,23 @@ class _DashboardPageState extends State<DashboardPage> {
                         height: 90,
                         child: Padding(
                           padding: padding,
-                          child: Card(
-                            color: Color(0xFFFF8A94D),
-                            shape: border,
-                            elevation: 3.0,
-                            child: Column(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  'Guidelines',
-                                  style: TextStyle(
-                                    fontSize: 30,
-                                    color: Colors.white,
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
+//                          child: Card(
+//                            color: Color(0xFFFF8A94D),
+//                            shape: border,
+//                            elevation: 3.0,
+//                            child: Column(
+//                              mainAxisAlignment: MainAxisAlignment.center,
+//                              children: [
+//                                Text(
+//                                  'Guidelines',
+//                                  style: TextStyle(
+//                                    fontSize: 30,
+//                                    color: Colors.white,
+//                                  ),
+//                                ),
+//                              ],
+//                            ),
+//                          ),
                         ),
                       ),
                     ),

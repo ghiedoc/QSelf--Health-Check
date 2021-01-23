@@ -39,27 +39,24 @@ class _HomePageState extends State<HomePage> {
 
   final AuthService _auth = AuthService();
 
-  createConfirmation(BuildContext context){
+  createConfirmation(BuildContext context) {
     Widget cancelButton = FlatButton(
       child: Text("Cancel"),
-      onPressed:  () {
+      onPressed: () {
         Navigator.of(context).pop(false);
       },
     );
     Widget continueButton = FlatButton(
       child: Text("Continue"),
-      onPressed:  () async {
+      onPressed: () async {
         try {
 //          await _auth.signOut();
-          Navigator.push(
-              context,
-              new MaterialPageRoute(
-                  builder: (context) => new LoginPage()));
-        }catch(e){
+          Navigator.push(context,
+              new MaterialPageRoute(builder: (context) => new LoginPage()));
+        } catch (e) {
           return Container();
         }
       },
-
     );
 
     // set up the AlertDialog
@@ -80,7 +77,6 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
-
 
   @override
   Widget build(BuildContext context) {
@@ -152,7 +148,7 @@ class _HomePageState extends State<HomePage> {
                   elevation: 0,
                   backgroundColor: Color(0xFFFA8072),
                   iconTheme: IconThemeData(color: Colors.black),
-                  title: Text("AppBar"),
+                  title: Text(""),
                 ),
                 drawer: Drawer(
                   child: ListView(
@@ -167,7 +163,7 @@ class _HomePageState extends State<HomePage> {
                               context,
                               new MaterialPageRoute(
                                   builder: (context) =>
-                                  new ChangePasswordPage()));
+                                      new ChangePasswordPage()));
                         },
                       ),
                       new ListTile(
@@ -181,14 +177,12 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             );
-          }catch(e) {
+          } catch (e) {
             return Container();
           }
-        }
-    );
+        });
   }
 }
-
 
 //import 'package:flutter/material.dart';
 //import 'package:flutter_trial_three/authenticate/auth.dart';
