@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_trial_three/screen/homePage.dart';
 import 'travelhistory.dart';
 import 'selfdiagnosisform.dart';
 class WelcomePage extends StatelessWidget {
@@ -61,7 +62,7 @@ class WelcomePage extends StatelessWidget {
                             height: 60,
                             onPressed: () {
                             Navigator.of(context).pushReplacementNamed
-                              (SelfDiagnosisFormPage.routeName);
+                              (HomePage.routeName);
                             },
                             color: Color(0xFBB1F1F1F),
                             shape: RoundedRectangleBorder(

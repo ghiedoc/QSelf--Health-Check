@@ -30,11 +30,11 @@ class _DashboardPageState extends State<DashboardPage> {
     final padding = const EdgeInsets.all(4.0);
 
     return Scaffold(
-      body: StreamBuilder<userform>(
-          stream: dbService(uid: form.uid).userRes,
+      body: StreamBuilder<userList>(
+          stream: dbService(uid: form.uid).userData,
           builder: (context, snapshot) {
             try{
-              userform user_form = snapshot.data;
+              userList user_list = snapshot.data;
               return Container(
                 padding: EdgeInsets.all(20.0),
                 child: ListView(
@@ -73,39 +73,33 @@ class _DashboardPageState extends State<DashboardPage> {
                               children: [
                                 Align(
                                   alignment: Alignment.topLeft,
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(8.0),
-                                    child: Text(
-                                      'Record',
-                                      style: TextStyle(
-                                        fontSize: 18,
-                                      ),
+                                  child: Text(
+                                    'Hello',
+                                    style: TextStyle(
+                                      fontSize: 18,
                                     ),
                                   ),
                                 ),
                                 Row(
                                   children: [
-                                    Padding(
-                                      padding: const EdgeInsets.all(8.0),
-                                      child: Text(
-                                        'Day ${user_form.day}',
-                                        style: TextStyle(
-                                          fontSize: 32,
-                                          fontWeight: FontWeight.bold,
-                                        ),
+                                    Text(
+                                      '${user_list.fname} ${user_list.lname}',
+                                      style: TextStyle(
+                                        fontSize: 32,
+                                        fontWeight: FontWeight.bold,
                                       ),
                                     ),
                                   ],
                                 ),
                                 Align(
                                   alignment: Alignment.bottomRight,
-//                                  child: Text(
-//                                    '2/14',
-//                                    style: TextStyle(
-//                                      fontSize: 18,
-//                                      fontWeight: FontWeight.bold,
-//                                    ),
-//                                  ),
+                                  child: Text(
+                                    '',
+                                    style: TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
                                 ),
                               ],
                             ),
@@ -118,35 +112,33 @@ class _DashboardPageState extends State<DashboardPage> {
                      */
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return;
-                            },
-                          ),
-                        );
+                        Navigator.push(
+                            context,
+                            new MaterialPageRoute(
+                                builder: (context) =>
+                                new CovidUpdatePage()));
                       },
                       child: Container(
                         height: 90,
                         child: Padding(
                           padding: padding,
-//                          child: Card(
-//                            color: Color(0xFFF78977),
-//                            shape: border,
-//                            elevation: 3.0,
-//                            child: Column(
-//                              mainAxisAlignment: MainAxisAlignment.center,
-//                              children: [
-//                                Text(
-//                                  'COVID-19 Updates',
-//                                  style: TextStyle(
-//                                    fontSize: 30,
-//                                    color: Colors.white,
-//                                  ),
-//                                ),
-//                              ],
-//                            ),
-//                          ),
+                          child: Card(
+                            color: Color(0xFFF78977),
+                            shape: border,
+                            elevation: 3.0,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'COVID-19 Updates',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
@@ -167,23 +159,23 @@ class _DashboardPageState extends State<DashboardPage> {
                         height: 90,
                         child: Padding(
                           padding: padding,
-//                          child: Card(
-//                            color: Color(0xFFFF8A94D),
-//                            shape: border,
-//                            elevation: 3.0,
-//                            child: Column(
-//                              mainAxisAlignment: MainAxisAlignment.center,
-//                              children: [
-//                                Text(
-//                                  'Guidelines',
-//                                  style: TextStyle(
-//                                    fontSize: 30,
-//                                    color: Colors.white,
-//                                  ),
-//                                ),
-//                              ],
-//                            ),
-//                          ),
+                          child: Card(
+                            color: Color(0xFFFF8A94D),
+                            shape: border,
+                            elevation: 3.0,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Text(
+                                  'Guidelines',
+                                  style: TextStyle(
+                                    fontSize: 30,
+                                    color: Colors.white,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
                         ),
                       ),
                     ),
