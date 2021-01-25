@@ -40,24 +40,27 @@ class _HomePageState extends State<HomePage> {
 
   final AuthService _auth = AuthService();
 
-  createConfirmation(BuildContext context) {
+  createConfirmation(BuildContext context){
     Widget cancelButton = FlatButton(
       child: Text("Cancel"),
-      onPressed: () {
+      onPressed:  () {
         Navigator.of(context).pop(false);
       },
     );
     Widget continueButton = FlatButton(
       child: Text("Continue"),
-      onPressed: () async {
+      onPressed:  () async {
         try {
-//          await _auth.signOut();
-          Navigator.push(context,
-              new MaterialPageRoute(builder: (context) => new LoginPage()));
-        } catch (e) {
+          await _auth.signOut();
+          Navigator.push(
+              context,
+              new MaterialPageRoute(
+                  builder: (context) => new LoginPage()));
+        }catch(e){
           return Container();
         }
       },
+
     );
 
     // set up the AlertDialog
@@ -78,6 +81,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -149,7 +153,7 @@ class _HomePageState extends State<HomePage> {
                   elevation: 0,
                   backgroundColor: Color(0xFFFA8072),
                   iconTheme: IconThemeData(color: Colors.black),
-                  title: Text(""),
+                  title: Text("AppBar"),
                 ),
                 drawer: Drawer(
                   child: ListView(
@@ -160,16 +164,16 @@ class _HomePageState extends State<HomePage> {
                       new ListTile(
                         title: new Text('Setting'),
                         onTap: () {
-                          Navigator.push(
-                              context,
-                              new MaterialPageRoute(
-                                  builder: (context) =>
-                                      new ChangePasswordPage()));
+//                          Navigator.push(
+//                              context,
+//                              new MaterialPageRoute(
+//                                  builder: (context) =>
+//                                  new CovidUpdatePage()));
                         },
                       ),
                       new ListTile(
                         title: new Text('Log out'),
-                        onTap: () {
+                        onTap: () async {
                           createConfirmation(context);
                         },
                       ),
@@ -178,9 +182,10 @@ class _HomePageState extends State<HomePage> {
                 ),
               ),
             );
-          } catch (e) {
+          }catch(e) {
             return Container();
           }
-        });
+        }
+    );
   }
 }

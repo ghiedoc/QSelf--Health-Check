@@ -11,7 +11,7 @@ class userTile extends StatelessWidget {
   userTile({this.user_t});
 
    userList get userT {
-     print('dito ${user_t.uid}');
+//     print('dito ${user_t.uid}');
     return user_t;
 
   }
@@ -33,20 +33,12 @@ class userTile extends StatelessWidget {
               "Passport Number: ${user_t.passport_no}"),
           subtitle: Text("Nationality: " + user_t.nationality),
           onTap: () async {
-            dynamic result =
-                await _auth.signUp(data.fname, data.lname);
-            print("pasok na naka log-in na siya: $result");
-            Navigator.of(context).pushNamed(AdminResultPage.routeName);
+            print(user_t.uid);
+//            print("pasok na naka log-in na siya: $result");
+//            Navigator.of(context).pushNamed(AdminResultPage.routeName);
           }
-//
-
         ),
       ),
     );
-  }
-
-  Future<String> getCurrentUID() async {
-    return (await _firebaseAuth.currentUser()).uid;
-
   }
 }

@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_trial_three/screen/homePage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'data.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 
 class SelfDiagnosisFormPage extends StatefulWidget {
   SelfDiagnosisFormPage({Key key}) : super(key: key);
@@ -84,20 +87,7 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
 //    });
   }
 
-  void validation() async {
-    final form = formkey.currentState;
-    try {
-      if(form.validate()) {
-        dynamic result = await auth.insertForm(data.email, data.password);
-        print("pasok na: $result");
-      }else if(selectedRadio == null){
-        print("ERROR");
-      }
-    } catch (e) {
-//      print(e.toStrinng());
-      print("${e}null");
-    }
-  }
+
 
   int selectedRadio;
   int selectedRadio2;
@@ -108,7 +98,7 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
   @override
   void initState() {
     super.initState();
-    selectedRadio = 0;
+    initialize();
   }
 
   setSelectedRadio(int val) {
@@ -146,6 +136,126 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
       selectedRadio6 = val;
     });
   }
+
+  createConfirmation(context){ // set up the buttons
+    Widget cancelButton = FlatButton(
+      child: Text("Cancel"),
+      onPressed:  () {
+        Navigator.of(context).pop(false);
+      },
+    );
+    Widget continueButton = FlatButton(
+      child: Text("Continue"),
+      onPressed:  () async {
+        dynamic result = await auth.insertForm(data.email, data.password);
+          print("pasok na: $result");
+          Navigator.of(context).pop(false);
+      },
+    );
+    // set up the AlertDialog
+    AlertDialog alert = AlertDialog(
+      title: Text("AlertDialog"),
+      content: Text("Would you like to continue learning how to use Flutter alerts?"),
+      actions: [
+        cancelButton,
+        continueButton,
+      ],
+    );
+    // show the dialog
+    showDialog(
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
+  }
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  FlutterLocalNotificationsPlugin();
+  AndroidFlutterLocalNotificationsPlugin androidFlutterLocalNotificationsPlugin;
+  AndroidInitializationSettings androidInitializationSettings;
+  IOSInitializationSettings iosInitializationSettings;
+
+  InitializationSettings initializationSettings;
+
+  void initialize() async {
+    androidInitializationSettings = AndroidInitializationSettings('qlogo');
+    iosInitializationSettings = IOSInitializationSettings(
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    initializationSettings = InitializationSettings(
+        android: androidInitializationSettings, iOS: iosInitializationSettings);
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+  void _showNotifications() async {
+    await notification();
+  }
+
+  void _showNotificationsAfterSecond() async {
+    await notificationAfterSec();
+  }
+
+  Future<void> notification() async {
+    AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails(
+        'Channel ID', 'Channel title', 'channel body',
+        priority: Priority.high,
+        importance: Importance.max,
+        ticker: 'test');
+
+    IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
+
+    NotificationDetails notificationDetails =
+    NotificationDetails(android: androidNotificationDetails, iOS: iosNotificationDetails);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'Hello there', 'please subscribe my channel', notificationDetails);
+  }
+
+  Future<void> notificationAfterSec() async {
+    var timeDelayed = DateTime.now().add(Duration(seconds: 5));
+    AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails(
+        'second channel ID', 'second Channel title', 'second channel body',
+        priority: Priority.high,
+        importance: Importance.max,
+        ticker: 'test');
+
+    IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
+
+    NotificationDetails notificationDetails =
+    NotificationDetails(android: androidNotificationDetails, iOS: iosNotificationDetails);
+    await flutterLocalNotificationsPlugin.schedule(1, 'Hello there',
+        'please fill up your form thank you :)', timeDelayed, notificationDetails);
+  }
+
+  Future onSelectNotification(String payLoad) {
+    if (payLoad != null) {
+      print(payLoad);
+    }
+
+    // we can set navigator to navigate another screen
+  }
+
+  Future onDidReceiveLocalNotification(
+      int id, String title, String body, String payload) async {
+    return CupertinoAlertDialog(
+      title: Text(title),
+      content: Text(body),
+      actions: <Widget>[
+        CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              print("");
+            },
+            child: Text("Okay")),
+      ],
+    );
+  }
+
+
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -213,41 +323,39 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                * yung value 0 is YES
                * yung value 1 is NO
                */
+
               Container(
                 color: Colors.white,
-                child: Form(
-                  key: formkey,
-                  child: new Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: <Widget>[
-                      Radio(
-                        value: 1,
-                        groupValue: selectedRadio,
-                        activeColor: Colors.blue,
-                        onChanged: (val) {
-                          diagnoseForm.fever = "yes";
-                          setSelectedRadio(val);
-                        },
-                      ),
-                      Text(
-                        'Yes',
-                        style: new TextStyle(fontSize: 16.0),
-                      ),
-                      Radio(
-                        value: 2,
-                        groupValue: selectedRadio,
-                        activeColor: Colors.blue,
-                        onChanged: (val) {
-                          diagnoseForm.fever = "no";
-                          setSelectedRadio(val);
-                        },
-                      ),
-                      Text(
-                        'No',
-                        style: new TextStyle(fontSize: 16.0),
-                      ),
-                    ],
-                  ),
+                child: new Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    Radio(
+                      value: 1,
+                      groupValue: selectedRadio,
+                      activeColor: Colors.blue,
+                      onChanged: (val) {
+                        diagnoseForm.fever = "yes";
+                        setSelectedRadio(val);
+                      },
+                    ),
+                    Text(
+                      'Yes',
+                      style: new TextStyle(fontSize: 16.0),
+                    ),
+                    Radio(
+                      value: 2,
+                      groupValue: selectedRadio,
+                      activeColor: Colors.blue,
+                      onChanged: (val) {
+                        diagnoseForm.fever = "no";
+                        setSelectedRadio(val);
+                      },
+                    ),
+                    Text(
+                      'No',
+                      style: new TextStyle(fontSize: 16.0),
+                    ),
+                  ],
                 ),
               ),
               new Divider(height: 5.0, color: Colors.black),
@@ -257,19 +365,22 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                */
               Container(
                 color: Colors.white,
-                child: Padding(
-                  padding: const EdgeInsets.only(left: 30, top: 5),
-                  child: Row(
-                    children: [
-                      new Text(
-                        'Cough',
-                        style: new TextStyle(
-                          fontWeight: FontWeight.bold,
-                          fontSize: 18.0,
-                          color: Color(0xFFFFF5555),
+                child: Form(
+                  key: formkey,
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 30, top: 5),
+                    child: Row(
+                      children: [
+                        new Text(
+                          'Cough',
+                          style: new TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 18.0,
+                            color: Color(0xFFFFF5555),
+                          ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ),
               ),
@@ -579,11 +690,12 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                 highlightElevation: 0,
                 roundLoadingShape: false,
                 onTap: (startTimer, btnState) {
-                  ;
                   if(btnState == ButtonState.Idle) {
-                    startTimer(60);
-                    _dayIncreement();
-                    validation();
+//                    startTimer(60);
+//                    _dayIncreement();
+                    _showNotificationsAfterSecond();
+                    print("hey");
+//                    createConfirmation(context);
                   }
                   setState(() {
                     singleTap = false; // update bool

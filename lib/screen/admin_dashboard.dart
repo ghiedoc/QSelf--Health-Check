@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_trial_three/screen/admin_userinfo.dart';
+import 'package:flutter_trial_three/screen/admin_userlist.dart';
 
 class AdminDashboardPage extends StatefulWidget {
   static const routeName = '/adminDashboard';
@@ -83,7 +84,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return AdminUserInfoPage();
+                      return AdminUserListPage();
                     },
                   ),
                 );

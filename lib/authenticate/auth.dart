@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_trial_three/screen/data.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
 import 'package:flutter_trial_three/screen/data.dart';
@@ -26,6 +27,16 @@ class AuthService {
       return null;
     }
   }
+  Future listTile() async {
+    try {
+      final FirebaseUser user = await _auth.currentUser();
+      dbService(uid: user.uid);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
 
 //  sign in user
   Future signIn(String email, String password) async {
@@ -123,7 +134,7 @@ class AuthService {
       return await _auth.signOut();
     } catch (e) {
       print(e.toString());
-      return null;
+      return Container();
     }
   }
 
@@ -133,6 +144,8 @@ class AuthService {
   Future getCurrentUser() async {
     return _auth.currentUser;
   }
+
+//
 
 
 }

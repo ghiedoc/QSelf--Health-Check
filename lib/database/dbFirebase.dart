@@ -23,12 +23,21 @@ class dbService {
 
 
 
+  Future getUserId() async {
+    try {
+      return diagnoseForm.document(uid);
+    } catch (e) {
+      print(e.toString());
+      return null;
+    }
+  }
+
+
 //user info
   Future updateUserData(String id, String fname, String lname,
       String nationality,
       String passport_no) async {
     return await userCollect.document(uid).setData({
-      'id': id,
       'fname': fname,
       'lname': lname,
       'nationality': nationality,
@@ -86,6 +95,7 @@ class dbService {
   List<userList> _userList(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
       return userList(
+          uid: doc.documentID,
           fname: doc.data['fname'] ?? '',
           lname: doc.data['lname'] ?? '',
           nationality: doc.data['nationality'] ?? '',
@@ -103,13 +113,14 @@ class dbService {
   List<userform> dataForm(QuerySnapshot snapshot){
     return snapshot.documents.map((doc){
       return userform(
+          uid: doc.documentID,
           day : doc.data['day'] ?? 0,
-          fever : doc.data['fever'],
-          cough :  doc.data['cough'],
-          diff_breathing : doc.data['diff_breathing'],
-          sore_throat : doc.data['sore_throat'],
+          fever : doc.data['fever'] ?? '',
+          cough :  doc.data['cough'] ?? '',
+          diff_breathing : doc.data['diff_breathing'] ?? '',
+          sore_throat : doc.data['sore_throat'] ?? '',
           headache : doc.data['headache'],
-          body_weaknesses : doc.data['body_weaknesses']
+          body_weaknesses : doc.data['body_weaknesses' ?? '']
       );
     }).toList();
   }
@@ -121,7 +132,7 @@ class dbService {
   }
   userList _userData(DocumentSnapshot snapshot){
     return userList(
-      uid: uid,
+      uid: snapshot.documentID,
       fname: snapshot.data['fname'],
       lname: snapshot.data['lname']
     );
@@ -133,7 +144,7 @@ class dbService {
   }
   userform _userRes(DocumentSnapshot snapshot){
     return userform(
-      uid: uid,
+      uid: snapshot.documentID,
       day: snapshot.data['day'],
       fever: snapshot.data['fever'],
       cough: snapshot.data['cough'],
@@ -143,5 +154,9 @@ class dbService {
       body_weaknesses: snapshot.data['body_weaknesses']
     );
 
+  }
+
+  Future<String> getCurrentUID() async{
+    return (await _firebaseAuth.currentUser()).uid;
   }
 }

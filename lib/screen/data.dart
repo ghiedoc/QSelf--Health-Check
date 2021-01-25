@@ -1,17 +1,16 @@
 class User{
    final String uid;
-
    User({this.uid});
 }
 
 class data{
 static String fname,lname, nationality, passport_no, email, password;
-static String id = "1";
+static String id;
 }
 class diagnoseForm {
   static String fever, cough, diff_breathing, sore_throat, heacache,
       body_weaknesses;
-    static int day = 0;
+    static int day;
 
 }
 

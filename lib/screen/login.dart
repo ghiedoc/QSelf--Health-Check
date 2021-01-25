@@ -40,9 +40,9 @@ class _LoginPageState extends State<LoginPage> {
 
 //ERROR PA DITO
   void validate() async {
-    var result = formkey.currentState.validate();
+    var results = formkey.currentState.validate();
       try {
-        if (formkey.currentState.validate()) {
+        if (results) {
           dynamic result = await _auth.signIn(data.email, data.password);
           print("pasok na naka log-in na siya: $result");
           if (result == null) {
@@ -52,9 +52,6 @@ class _LoginPageState extends State<LoginPage> {
             successfulToast();
             Navigator.of(context).pushReplacementNamed(HomePage.routeName);
           }
-        }else if(result == "admin@email.com" && result == "123456"){
-          successfulToast();
-          Navigator.of(context).pushReplacementNamed(AdminResultPage.routeName);
         } else {
           print("not validated");
         }
@@ -272,9 +269,12 @@ class _LoginPageState extends State<LoginPage> {
                         minWidth: 300,
                         height: 50,
                         onPressed: () async {
-                          print(data.email);
-                          print(data.password);
-                          validate();
+                          if(data.email == "admin@email.com" && data.password == "123456"){
+                            successfulToast();
+                            Navigator.of(context).pushReplacementNamed(AdminDashboardPage.routeName);
+                          }else{
+                            validate();
+                          }
                         },
                         color: Color(0xFFFF5555),
                         elevation: 0,
