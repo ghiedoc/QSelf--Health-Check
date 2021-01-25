@@ -152,7 +152,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
+                      //onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -171,13 +171,12 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         fillColor: Colors.red,
                       ),
                       attribute: "cough",
-                      //leadingInput: true,
                       onChanged: (val){
                         diagnoseForm.cough = val;
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
+                      //onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -193,13 +192,12 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                       decoration:
                       InputDecoration(labelText: 'Difficulty in Breathing'),
                       attribute: "dif_breathing",
-                      //leadingInput: true,
                       onChanged: (val){
                         diagnoseForm.diff_breathing = val;
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
+                      //onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -215,13 +213,12 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                       decoration:
                       InputDecoration(labelText: 'Sorethroat'),
                       attribute: "sore_throat",
-                      //leadingInput: true,
                       onChanged: (val){
                         diagnoseForm.sore_throat = val;
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
+                      //onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -237,13 +234,12 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                       decoration:
                       InputDecoration(labelText: 'Headache'),
                       attribute: "headache",
-                      //leadingInput: true,
                       onChanged: (val){
                         diagnoseForm.heacache = val;
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
+                      //onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -259,13 +255,12 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                       decoration:
                       InputDecoration(labelText: 'Body Weakness'),
                       attribute: "body_weakness",
-                      //leadingInput: true,
                       onChanged: (val){
                         diagnoseForm.body_weaknesses = val;
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
+                      //onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
