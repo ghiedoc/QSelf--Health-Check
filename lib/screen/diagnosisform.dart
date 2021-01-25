@@ -142,7 +142,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                 readOnly: false,
                 child: Column(
                   children: <Widget>[
-                    FormBuilderRadioGroup(
+                    FormBuilderRadio(
                       activeColor: Color(0xFFFFF5555),
                       decoration:
                       InputDecoration(labelText: 'Fever (more than 38 degree Celsius)'),
@@ -151,6 +151,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         diagnoseForm.fever = val;
                         print(val);
                       },
+                      leadingInput: true,
+                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -161,7 +163,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                           ))
                           .toList(growable: false),
                     ),
-                    FormBuilderRadioGroup(
+                    FormBuilderRadio(
                       activeColor: Color(0xFFFFF5555),
                       decoration:
                       InputDecoration(
@@ -174,6 +176,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         diagnoseForm.cough = val;
                         print(val);
                       },
+                      leadingInput: true,
+                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -184,7 +188,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                           ))
                           .toList(growable: false),
                     ),
-                    FormBuilderRadioGroup(
+                    FormBuilderRadio(
                       activeColor: Color(0xFFFFF5555),
                       decoration:
                       InputDecoration(labelText: 'Difficulty in Breathing'),
@@ -194,6 +198,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         diagnoseForm.diff_breathing = val;
                         print(val);
                       },
+                      leadingInput: true,
+                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -204,7 +210,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                           ))
                           .toList(growable: false),
                     ),
-                    FormBuilderRadioGroup(
+                    FormBuilderRadio(
                       activeColor: Color(0xFFFFF5555),
                       decoration:
                       InputDecoration(labelText: 'Sorethroat'),
@@ -214,6 +220,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         diagnoseForm.sore_throat = val;
                         print(val);
                       },
+                      leadingInput: true,
+                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -224,7 +232,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                           ))
                           .toList(growable: false),
                     ),
-                    FormBuilderRadioGroup(
+                    FormBuilderRadio(
                       activeColor: Color(0xFFFFF5555),
                       decoration:
                       InputDecoration(labelText: 'Headache'),
@@ -234,6 +242,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         diagnoseForm.heacache = val;
                         print(val);
                       },
+                      leadingInput: true,
+                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -244,7 +254,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                           ))
                           .toList(growable: false),
                     ),
-                    FormBuilderRadioGroup(
+                    FormBuilderRadio(
                       activeColor: Color(0xFFFFF5555),
                       decoration:
                       InputDecoration(labelText: 'Body Weakness'),
@@ -254,6 +264,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         diagnoseForm.body_weaknesses = val;
                         print(val);
                       },
+                      leadingInput: true,
+                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -283,6 +295,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                           _fbKey.currentState.reset();
                           _showNotificationsAfterSecond();
 //                          print(_fbKey.currentState.value);
+                          print(_fbKey.currentState.value);
+                          _fbKey.currentState.reset();
                         } else {
                           print(_fbKey.currentState.value);
                           print("validation failed");
