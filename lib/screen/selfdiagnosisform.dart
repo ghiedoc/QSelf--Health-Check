@@ -222,12 +222,7 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                     children: <Widget>[
                       Radio(
                         value: 1,
-                        groupValue: (val){
-                          if(val == selectedRadio){
-
-                          }
-
-                        },
+                        groupValue: selectedRadio,
                         activeColor: Colors.blue,
                         onChanged: (val) {
                           diagnoseForm.fever = "yes";
