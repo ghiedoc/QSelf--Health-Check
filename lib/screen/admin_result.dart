@@ -9,6 +9,13 @@ class AdminResultPage extends StatefulWidget {
   _AdminResultPageState createState() => _AdminResultPageState();
 }
 
+userList user_t;
+
+userList get userT {
+  return user_t;
+
+}
+
 class _AdminResultPageState extends State<AdminResultPage> {
   @override
   Widget build(BuildContext context) {
@@ -23,75 +30,81 @@ class _AdminResultPageState extends State<AdminResultPage> {
         if (snapshot.hasData) {
           userform user_form  = snapshot.data;
           print('HEY ${user_form.cough}');
-          return Scaffold(
-            backgroundColor: Color(0xFFEFEFEF),
-            appBar: AppBar(
-              backgroundColor: Color(0xFFEFEFEF),
-              elevation: 0,
-              iconTheme: IconThemeData(color: Colors.black),
-              title: Text(""),
-            ),
-            body: Container(
-              padding: EdgeInsets.all(20.0),
-              child: ListView(
-                children: <Widget>[
-                  Container(
-                    height: 130,
-                    child: Padding(
-                      padding: padding,
-                      child: Card(
-                        shape: border,
-                        elevation: 3.0,
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: <Widget>[
-                            Center(
-                              child: const ListTile(
-                                leading: Icon(Icons.wb_sunny, size: 60),
-                                title: Text(''),
+          return StreamBuilder<userList>(
+              stream: dbService(uid: form.uid).userData,
+            builder: (context, snapshot) {
+              userList user = snapshot.data;
+              return Scaffold(
+                backgroundColor: Color(0xFFEFEFEF),
+                appBar: AppBar(
+                  backgroundColor: Color(0xFFEFEFEF),
+                  elevation: 0,
+                  iconTheme: IconThemeData(color: Colors.black),
+                  title: Text(""),
+                ),
+                body: Container(
+                  padding: EdgeInsets.all(20.0),
+                  child: ListView(
+                    children: <Widget>[
+                      Container(
+                        height: 130,
+                        child: Padding(
+                          padding: padding,
+                          child: Card(
+                            shape: border,
+                            elevation: 3.0,
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: <Widget>[
+                                Center(
+                                  child: ListTile(
+                                    leading: Icon(Icons.wb_sunny, size: 60),
+                                    title: Text(''),
 //                                    style: TextStyle(
 //                                        color: Colors.black,
 //                                        fontSize: 32,
 //                                        fontWeight: FontWeight.bold)),
-                                subtitle: Text('Steve Rogers',
-                                    style: TextStyle(color: Colors.black)),
-                              ),
+                                    subtitle: Text('${user.fname}',
+                                        style: TextStyle(color: Colors.black)),
+                                  ),
+                                ),
+                              ],
                             ),
-                          ],
+                          ),
                         ),
                       ),
-                    ),
-                  ),
-                  Container(
-                    height: 250,
-                    child: Padding(
-                      padding: padding,
-                      child: Card(
-                        shape: border,
-                        elevation: 3.0,
+                      Container(
+                        height: 250,
                         child: Padding(
-                          padding: const EdgeInsets.symmetric(
-                              vertical: 20.0, horizontal: 20.0),
-                          child: Align(
-                            alignment: Alignment.center,
-                            child: Text(' Day - ${user_form.day} \n'
-                                ' Fever - ${user_form.fever} \n Cough - ${user_form
-                                .cough} \n Diffculty in Breathing - ${user_form
-                                .diff_breathing} \n Sore Throat - ${user_form
-                                .sore_throat} \n Headache - ${user_form.headache} \n '
-                                'Body Weakness - ${user_form.sore_throat} ',
-                              style: TextStyle(
-                                fontSize: 20,
+                          padding: padding,
+                          child: Card(
+                            shape: border,
+                            elevation: 3.0,
+                            child: Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 20.0, horizontal: 20.0),
+                              child: Align(
+                                alignment: Alignment.center,
+                                child: Text(' Day - ${user_form.day} \n'
+                                    ' Fever - ${user_form.fever} \n Cough - ${user_form
+                                    .cough} \n Diffculty in Breathing - ${user_form
+                                    .diff_breathing} \n Sore Throat - ${user_form
+                                    .sore_throat} \n Headache - ${user_form.headache} \n '
+                                    'Body Weakness - ${user_form.sore_throat} ',
+                                  style: TextStyle(
+                                    fontSize: 20,
+                                  ),
+                                ),
                               ),
                             ),
                           ),
                         ),
                       ),
-                    ),
+                    ],
                   ),
-                ],
-              ),
-            ),
+                ),
+              );
+            }
           );
         } else {
           return null;

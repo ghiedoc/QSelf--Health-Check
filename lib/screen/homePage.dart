@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       child: Text("Continue"),
       onPressed:  () async {
         try {
-//          await _auth.signOut();
+          await _auth.signOut();
           Navigator.push(
               context,
               new MaterialPageRoute(
@@ -172,7 +172,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       new ListTile(
                         title: new Text('Log out'),
-                        onTap: () {
+                        onTap: () async {
                           createConfirmation(context);
                         },
                       ),
