@@ -5,6 +5,7 @@ import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
 import 'package:flutter_trial_three/screen/covidupdates.dart';
 import 'package:provider/provider.dart';
 import 'data.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key key}) : super(key: key);
@@ -19,6 +20,22 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   void initState() {
     super.initState();
+  }
+
+  opencovidupdateURL() async {
+    if(await canLaunch('https://www.cnnphilippines.com/news/2021/1/24/Live-updates-COVID-19-pandemic.html')){
+      await launch('https://www.cnnphilippines.com/news/2021/1/24/Live-updates-COVID-19-pandemic.html');
+    }else{
+      throw 'Could not launch COVID19 Updates';
+    }
+  }
+
+  openGuidelinesURL() async {
+    if(await canLaunch('https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/coronavirus-safety.html')){
+      await launch('https://www.redcross.org/get-help/how-to-prepare-for-emergencies/types-of-emergencies/coronavirus-safety.html');
+    }else{
+      throw 'Could not launch COVID19 Guidelines';
+    }
   }
 
   @override
@@ -41,13 +58,13 @@ class _DashboardPageState extends State<DashboardPage> {
                   children: <Widget>[
                     Container(
                       margin: EdgeInsets.only(left: 10, bottom: 10),
-                      child: Text(
-                        "Dashboard",
-                        style: TextStyle(
-                          fontSize: 36,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      ),
+//                      child: Text(
+//                        "Dashboard",
+//                        style: TextStyle(
+//                          fontSize: 36,
+//                          fontWeight: FontWeight.bold,
+//                        ),
+//                      ),
                     ),
                     GestureDetector(
                       onTap: () {
@@ -73,20 +90,26 @@ class _DashboardPageState extends State<DashboardPage> {
                               children: [
                                 Align(
                                   alignment: Alignment.topLeft,
-                                  child: Text(
-                                    'Hello',
-                                    style: TextStyle(
-                                      fontSize: 18,
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Text(
+                                      'Hello,',
+                                      style: TextStyle(
+                                        fontSize: 18,
+                                      ),
                                     ),
                                   ),
                                 ),
                                 Row(
                                   children: [
-                                    Text(
-                                      '${user_list.fname} ${user_list.lname}',
-                                      style: TextStyle(
-                                        fontSize: 32,
-                                        fontWeight: FontWeight.bold,
+                                    Padding(
+                                      padding: const EdgeInsets.all(8.0),
+                                      child: Text(
+                                        '${user_list.fname} ${user_list.lname}',
+                                        style: TextStyle(
+                                          fontSize: 32,
+                                          fontWeight: FontWeight.bold,
+                                        ),
                                       ),
                                     ),
                                   ],
@@ -112,11 +135,7 @@ class _DashboardPageState extends State<DashboardPage> {
                      */
                     GestureDetector(
                       onTap: () {
-                        Navigator.push(
-                            context,
-                            new MaterialPageRoute(
-                                builder: (context) =>
-                                new CovidUpdatePage()));
+                        opencovidupdateURL();
                       },
                       child: Container(
                         height: 90,
@@ -130,7 +149,7 @@ class _DashboardPageState extends State<DashboardPage> {
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
-                                  'COVID-19 Updates',
+                                  'COVID-19 News',
                                   style: TextStyle(
                                     fontSize: 30,
                                     color: Colors.white,
@@ -142,18 +161,13 @@ class _DashboardPageState extends State<DashboardPage> {
                         ),
                       ),
                     ),
+
                     /**
                      * CONTAINER 3
                      */
                     GestureDetector(
                       onTap: () {
-                        Navigator.of(context).push(
-                          MaterialPageRoute(
-                            builder: (context) {
-                              return;
-                            },
-                          ),
-                        );
+                        openGuidelinesURL();
                       },
                       child: Container(
                         height: 90,

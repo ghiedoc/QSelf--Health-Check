@@ -125,6 +125,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     width: 300,
                                     child: TextFormField(
                                         decoration: InputDecoration(
+                                          icon: new Icon(Icons.email),
                                           labelText: 'Email',
                                           filled: true,
                                           labelStyle: TextStyle(
@@ -165,6 +166,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     width: 300,
                                     child: TextFormField(
                                         decoration: InputDecoration(
+                                          icon: new Icon(Icons.lock),
                                           labelText: 'Password',
                                           filled: true,
                                           labelStyle: TextStyle(
@@ -214,6 +216,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                     width: 300,
                                     child: TextFormField(
                                       decoration: InputDecoration(
+                                        icon: new Icon(Icons.lock),
                                         labelText: 'Confirm Password',
                                         filled: true,
                                         labelStyle: TextStyle(

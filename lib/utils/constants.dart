@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 
 Color kPrimaryColor = Color(0xFF166DE0);
 Color kConfirmedColor = Color(0xFFFF1242);
-Color body = Color(0xFFFF8A65);
+Color body = Color(0xFFFA8072);
 Color kActiveColor = Color(0xFF017BFF);
 Color kRecoveredColor = Color(0xFF29A746);
 Color kDeathColor = Color(0xFF6D757D);

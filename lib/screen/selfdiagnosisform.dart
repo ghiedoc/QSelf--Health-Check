@@ -734,7 +734,3 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
     );
   }
 }
-
-
-
-

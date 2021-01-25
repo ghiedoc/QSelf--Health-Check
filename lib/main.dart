@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
+import 'package:flutter_trial_three/screen/diagnosisform.dart';
 import 'package:flutter_trial_three/screen/login.dart';
 import 'package:flutter_trial_three/screen/signup.dart';
 import 'package:flutter_trial_three/screen/start.dart';
@@ -66,6 +67,7 @@ class MyApp extends StatelessWidget {
             CovidUpdatePage.routeName: (ctx) => CovidUpdatePage(),
             HomePage.routeName: (ctx) => HomePage(),
             ChangePasswordPage.routeName: (ctx) => ChangePasswordPage(),
+            DiagnosisForm.routeName: (ctx) => DiagnosisForm(),
 //        HomeScreen.routeName: (ctx)=> HomeScreen(),
           },
     ),

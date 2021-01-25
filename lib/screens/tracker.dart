@@ -29,7 +29,7 @@ class _TrackerState extends State<Tracker> {
         backgroundColor: body,
         elevation: 0,
         title: Text(
-          "COVID-19 Updates",
+          "COVID-19 Live Updates",
         ),
 
         centerTitle: true,
@@ -56,7 +56,7 @@ class _TrackerState extends State<Tracker> {
           ),
 
           Container(
-            height: size.height * 0.1,
+            height: size.height * 0.06,
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[

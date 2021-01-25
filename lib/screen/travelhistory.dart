@@ -25,7 +25,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
   int selectitem = 1;
   String dateTime;
   String valueChoose;
-  var currentItemSelected = "Algeria";
+  var currentItemSelected = "Afghanistan";
 
   @override
   void initState() {
