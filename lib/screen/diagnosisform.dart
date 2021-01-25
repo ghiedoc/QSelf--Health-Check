@@ -5,6 +5,8 @@ import 'data.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:flutter/cupertino.dart';
 
 class DiagnosisForm extends StatefulWidget {
 
@@ -28,7 +30,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
     });
   }
 
-  var data;
+//  var data;
   bool autoValidate = true;
   bool readOnly = false;
   bool showSegmentedControl = true;
@@ -38,6 +40,91 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
 
   // ONCHANGED HERE
   ValueChanged _onChanged = (val) => print(val);
+
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+  FlutterLocalNotificationsPlugin();
+  AndroidFlutterLocalNotificationsPlugin androidFlutterLocalNotificationsPlugin;
+  AndroidInitializationSettings androidInitializationSettings;
+  IOSInitializationSettings iosInitializationSettings;
+
+  InitializationSettings initializationSettings;
+
+  void initialize() async {
+    androidInitializationSettings = AndroidInitializationSettings('qlogo');
+    iosInitializationSettings = IOSInitializationSettings(
+        onDidReceiveLocalNotification: onDidReceiveLocalNotification);
+    initializationSettings = InitializationSettings(
+        android: androidInitializationSettings, iOS: iosInitializationSettings);
+    await flutterLocalNotificationsPlugin.initialize(initializationSettings,
+        onSelectNotification: onSelectNotification);
+  }
+  void _showNotifications() async {
+    await notification();
+  }
+
+  void _showNotificationsAfterSecond() async {
+    await notificationAfterSec();
+  }
+
+  Future<void> notification() async {
+    AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails(
+        'Channel ID', 'Channel title', 'channel body',
+        priority: Priority.high,
+        importance: Importance.max,
+        ticker: 'test');
+
+    IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
+
+    NotificationDetails notificationDetails =
+    NotificationDetails(android: androidNotificationDetails, iOS: iosNotificationDetails);
+    await flutterLocalNotificationsPlugin.show(
+        0, 'Hello there', 'please subscribe my channel', notificationDetails);
+  }
+
+  Future<void> notificationAfterSec() async {
+    var timeDelayed = DateTime.now().add(Duration(seconds: 5));
+    AndroidNotificationDetails androidNotificationDetails =
+    AndroidNotificationDetails(
+        'second channel ID', 'second Channel title', 'second channel body',
+        priority: Priority.high,
+        importance: Importance.max,
+        ticker: 'test');
+
+    IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
+
+    NotificationDetails notificationDetails =
+    NotificationDetails(android: androidNotificationDetails, iOS: iosNotificationDetails);
+    await flutterLocalNotificationsPlugin.schedule(1, 'Hello there',
+        'please fill up your form thank you :)', timeDelayed, notificationDetails);
+  }
+
+  Future onSelectNotification(String payLoad) {
+    if (payLoad != null) {
+      print(payLoad);
+    }
+
+    // we can set navigator to navigate another screen
+  }
+
+  Future onDidReceiveLocalNotification(
+      int id, String title, String body, String payload) async {
+    return CupertinoAlertDialog(
+      title: Text(title),
+      content: Text(body),
+      actions: <Widget>[
+        CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              print("");
+            },
+            child: Text("Okay")),
+      ],
+    );
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -60,6 +147,10 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                       decoration:
                       InputDecoration(labelText: 'Fever (more than 38 degree Celsius)'),
                       attribute: "fever",
+                      onChanged: (val){
+                        diagnoseForm.fever = val;
+                        print(val);
+                      },
                       leadingInput: true,
                       onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
@@ -80,6 +171,11 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         fillColor: Colors.red,
                       ),
                       attribute: "cough",
+                      //leadingInput: true,
+                      onChanged: (val){
+                        diagnoseForm.cough = val;
+                        print(val);
+                      },
                       leadingInput: true,
                       onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
@@ -97,6 +193,11 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                       decoration:
                       InputDecoration(labelText: 'Difficulty in Breathing'),
                       attribute: "dif_breathing",
+                      //leadingInput: true,
+                      onChanged: (val){
+                        diagnoseForm.diff_breathing = val;
+                        print(val);
+                      },
                       leadingInput: true,
                       onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
@@ -114,6 +215,11 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                       decoration:
                       InputDecoration(labelText: 'Sorethroat'),
                       attribute: "sore_throat",
+                      //leadingInput: true,
+                      onChanged: (val){
+                        diagnoseForm.sore_throat = val;
+                        print(val);
+                      },
                       leadingInput: true,
                       onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
@@ -131,6 +237,11 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                       decoration:
                       InputDecoration(labelText: 'Headache'),
                       attribute: "headache",
+                      //leadingInput: true,
+                      onChanged: (val){
+                        diagnoseForm.heacache = val;
+                        print(val);
+                      },
                       leadingInput: true,
                       onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
@@ -148,6 +259,11 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                       decoration:
                       InputDecoration(labelText: 'Body Weakness'),
                       attribute: "body_weakness",
+                      //leadingInput: true,
+                      onChanged: (val){
+                        diagnoseForm.body_weaknesses = val;
+                        print(val);
+                      },
                       leadingInput: true,
                       onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
@@ -172,8 +288,13 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         "Submit",
                         style: TextStyle(color: Colors.white),
                       ),
-                      onPressed: () {
+                      onPressed: () async {
                         if (_fbKey.currentState.saveAndValidate()) {
+                          dynamic result = await auth.insertForm(data.email, data.password);
+                            print("pasok na: $result");
+                          _fbKey.currentState.reset();
+                          _showNotificationsAfterSecond();
+//                          print(_fbKey.currentState.value);
                           print(_fbKey.currentState.value);
                           _fbKey.currentState.reset();
                         } else {
