@@ -35,7 +35,7 @@ class userTile extends StatelessWidget {
           onTap: () async {
             print(user_t.uid);
 //            print("pasok na naka log-in na siya: $result");
-            Navigator.of(context).pushNamed(AdminResultPage.routeName);
+//            Navigator.of(context).pushNamed(AdminResultPage.routeName);
           }
         ),
       ),

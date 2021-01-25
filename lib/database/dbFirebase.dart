@@ -115,12 +115,12 @@ class dbService {
       return userform(
           uid: doc.documentID,
           day : doc.data['day'] ?? 0,
-          fever : doc.data['fever'],
-          cough :  doc.data['cough'],
-          diff_breathing : doc.data['diff_breathing'],
-          sore_throat : doc.data['sore_throat'],
+          fever : doc.data['fever'] ?? '',
+          cough :  doc.data['cough'] ?? '',
+          diff_breathing : doc.data['diff_breathing'] ?? '',
+          sore_throat : doc.data['sore_throat'] ?? '',
           headache : doc.data['headache'],
-          body_weaknesses : doc.data['body_weaknesses']
+          body_weaknesses : doc.data['body_weaknesses' ?? '']
       );
     }).toList();
   }

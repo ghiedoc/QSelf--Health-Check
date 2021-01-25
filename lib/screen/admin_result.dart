@@ -9,9 +9,10 @@ class AdminResultPage extends StatefulWidget {
   _AdminResultPageState createState() => _AdminResultPageState();
 }
 
-userList user_t;
 
+userList user_t;
 userList get userT {
+  print('dito ${user_t.uid}');
   return user_t;
 
 }
@@ -29,7 +30,8 @@ class _AdminResultPageState extends State<AdminResultPage> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           userform user_form  = snapshot.data;
-          print('HEY ${user_form.cough}');
+//          print(userT);
+//          print('HEY ${user_form.cough}');
           return StreamBuilder<userList>(
               stream: dbService(uid: form.uid).userData,
             builder: (context, snapshot) {
