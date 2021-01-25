@@ -16,6 +16,7 @@ class SelfDiagnosisFormPage extends StatefulWidget {
 
 class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
   final AuthService auth = AuthService();
+  GlobalKey<FormState> formkey = GlobalKey<FormState>();
   bool singleTap = true;
   int _counter = 0;
   _loadCounter() async {
@@ -84,9 +85,14 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
   }
 
   void validation() async {
+    final form = formkey.currentState;
     try {
-      dynamic result = await auth.insertForm(data.email, data.password);
-      print("pasok na: $result");
+      if(form.validate()) {
+        dynamic result = await auth.insertForm(data.email, data.password);
+        print("pasok na: $result");
+      }else if(selectedRadio == null){
+        print("ERROR");
+      }
     } catch (e) {
 //      print(e.toStrinng());
       print("${e}null");
@@ -209,36 +215,39 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                */
               Container(
                 color: Colors.white,
-                child: new Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    Radio(
-                      value: 1,
-                      groupValue: selectedRadio,
-                      activeColor: Colors.blue,
-                      onChanged: (val) {
-                        diagnoseForm.fever = "yes";
-                        setSelectedRadio(val);
-                      },
-                    ),
-                    Text(
-                      'Yes',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                    Radio(
-                      value: 2,
-                      groupValue: selectedRadio,
-                      activeColor: Colors.blue,
-                      onChanged: (val) {
-                        diagnoseForm.fever = "no";
-                        setSelectedRadio(val);
-                      },
-                    ),
-                    Text(
-                      'No',
-                      style: new TextStyle(fontSize: 16.0),
-                    ),
-                  ],
+                child: Form(
+                  key: formkey,
+                  child: new Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: <Widget>[
+                      Radio(
+                        value: 1,
+                        groupValue: selectedRadio,
+                        activeColor: Colors.blue,
+                        onChanged: (val) {
+                          diagnoseForm.fever = "yes";
+                          setSelectedRadio(val);
+                        },
+                      ),
+                      Text(
+                        'Yes',
+                        style: new TextStyle(fontSize: 16.0),
+                      ),
+                      Radio(
+                        value: 2,
+                        groupValue: selectedRadio,
+                        activeColor: Colors.blue,
+                        onChanged: (val) {
+                          diagnoseForm.fever = "no";
+                          setSelectedRadio(val);
+                        },
+                      ),
+                      Text(
+                        'No',
+                        style: new TextStyle(fontSize: 16.0),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               new Divider(height: 5.0, color: Colors.black),
@@ -571,7 +580,7 @@ class _SelfDiagnosisFormPageState extends State<SelfDiagnosisFormPage> {
                 roundLoadingShape: false,
                 onTap: (startTimer, btnState) {
                   ;
-                  if (btnState == ButtonState.Idle) {
+                  if(btnState == ButtonState.Idle) {
                     startTimer(60);
                     _dayIncreement();
                     validation();

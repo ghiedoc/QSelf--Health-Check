@@ -4,6 +4,7 @@ import 'package:flutter_trial_three/screen/covidupdates.dart';
 import 'package:flutter_trial_three/screen/dashboard.dart';
 import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
 import 'package:flutter_trial_three/screen/changepassword.dart';
+import 'package:flutter_trial_three/screen/diagnosisform.dart';
 import 'package:flutter_trial_three/screen/login.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
@@ -21,7 +22,7 @@ class _HomePageState extends State<HomePage> {
 
   List<Widget> _screens = [
     DashboardPage(),
-    SelfDiagnosisFormPage(),
+    DiagnosisForm(),
     CovidUpdatePage()
   ];
 
@@ -157,7 +158,7 @@ class _HomePageState extends State<HomePage> {
                         child: Text('${user_List.fname} ${user_List.lname}'),
                       ),
                       new ListTile(
-                        title: new Text('COVID 19 UPDATES'),
+                        title: new Text('Setting'),
                         onTap: () {
                           Navigator.push(
                               context,

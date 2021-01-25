@@ -158,6 +158,7 @@ class _LoginPageState extends State<LoginPage> {
                                     decoration: InputDecoration(
                                       labelText: 'Email',
                                       filled: true,
+                                        icon: new Icon(Icons.account_circle),
                                       labelStyle: TextStyle(
                                           color: myFocusNode.hasFocus
                                               ? Colors.blue
@@ -198,6 +199,7 @@ class _LoginPageState extends State<LoginPage> {
                                   width: 300.0,
                                   child: TextFormField(
                                     decoration: InputDecoration(
+                                      icon: new Icon(Icons.lock),
                                       labelText: 'Password',
                                       filled: true,
                                       labelStyle: TextStyle(

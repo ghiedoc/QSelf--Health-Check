@@ -19,9 +19,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   @override
   static const routeName = '/changepass';
-
   var _formKey = GlobalKey<FormState>();
-
   bool checkCurrentPasswordValid = true;
 
   String _email;
@@ -100,54 +98,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                                   BorderSide(color: Colors.grey[400])),
                             ),
                           ),
-//                          TextFormField(
-//                            decoration: InputDecoration(
-//                              labelText: 'Currrent Password',
-//                              errorText: checkCurrentPasswordValid ? null : "Please double check your current password",
-//                              filled: true,
-//                              labelStyle: TextStyle(
-//                                  color: myFocusNode.hasFocus
-//                                      ? Colors.blue
-//                                      : Colors.black),
-//                              contentPadding: EdgeInsets.symmetric(
-//                                  vertical: 0, horizontal: 10),
-//                              enabledBorder: OutlineInputBorder(
-//                                  borderRadius: BorderRadius.circular(10),
-//                                  borderSide:
-//                                  BorderSide(color: Colors.grey[400])),
-//                              border: OutlineInputBorder(
-//                                  borderRadius: BorderRadius.circular(10),
-//                                  borderSide:
-//                                  BorderSide(color: Colors.grey[400])),
-//                            ),
-//                            obscureText: true,
-//                            controller: _currentpasswordController,
-//                          ),
-//                          SizedBox(
-//                            height: 30.0,
-//                          ),
-//                          TextFormField(
-//                            decoration: InputDecoration(
-//                              labelText: 'Confirm Password',
-//                              filled: true,
-//                              labelStyle: TextStyle(
-//                                  color: myFocusNode.hasFocus
-//                                      ? Colors.blue
-//                                      : Colors.black),
-//                              contentPadding: EdgeInsets.symmetric(
-//                                  vertical: 0, horizontal: 10),
-//                              enabledBorder: OutlineInputBorder(
-//                                  borderRadius: BorderRadius.circular(10),
-//                                  borderSide:
-//                                  BorderSide(color: Colors.grey[400])),
-//                              border: OutlineInputBorder(
-//                                  borderRadius: BorderRadius.circular(10),
-//                                  borderSide:
-//                                  BorderSide(color: Colors.grey[400])),
-//                            ),
-//                            obscureText: true,
-//                            controller: _newpasswordController,
-//                          ),
                           SizedBox(
                             height: 30.0,
                           ),
@@ -167,7 +117,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                         onPressed: ()  {
                           auth.sendPasswordResetEmail(email: _email);
                           Navigator.of(context).pop();
-                          print('reset email sent');
+                          print('RESET EMAIL SENT');
                         },
                         minWidth: double.infinity,
                         height: 50,
