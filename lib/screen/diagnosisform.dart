@@ -152,7 +152,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -177,7 +176,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -199,7 +197,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -221,7 +218,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -243,7 +239,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
@@ -265,7 +260,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         print(val);
                       },
                       leadingInput: true,
-                      onChanged: _onChanged,
                       validators: [FormBuilderValidators.required()],
                       options:
                       ["Yes", "No"]
