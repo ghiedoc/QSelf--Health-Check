@@ -51,7 +51,7 @@ class _HomePageState extends State<HomePage> {
       child: Text("Continue"),
       onPressed:  () async {
         try {
-          await _auth.signOut();
+//          await _auth.signOut();
           Navigator.push(
               context,
               new MaterialPageRoute(
