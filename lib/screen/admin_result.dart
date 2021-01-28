@@ -30,8 +30,6 @@ class _AdminResultPageState extends State<AdminResultPage> {
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           userform user_form  = snapshot.data;
-//          print(userT);
-//          print('HEY ${user_form.cough}');
           return StreamBuilder<userList>(
               stream: dbService(uid: form.uid).userData,
             builder: (context, snapshot) {

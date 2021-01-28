@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
       child: Text("Yes"),
       onPressed:  () async {
         try {
-          //await _auth.signOut();
+//          await _auth.signOut();        
           setState() {
             loading = true;
           };
