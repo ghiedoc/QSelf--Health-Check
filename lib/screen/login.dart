@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_trial_three/screen/admin_dashboard.dart';
 import 'package:flutter_trial_three/screen/homePage.dart';
-import 'package:flutter_trial_three/screen/homePage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'changepassword.dart';
-import 'login.dart';
+import 'loading.dart';
 import 'start.dart';
 import 'signup.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
@@ -30,6 +29,8 @@ class _LoginPageState extends State<LoginPage> {
   TextEditingController _passwordController = new TextEditingController();
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
+
+  bool loading = false;
 
   final AuthService _auth = AuthService();
 
@@ -86,7 +87,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,
@@ -273,6 +274,9 @@ class _LoginPageState extends State<LoginPage> {
                             successfulToast();
                             Navigator.of(context).pushReplacementNamed(AdminDashboardPage.routeName);
                           }else{
+                            setState() {
+                              loading = true;
+                            };
                             validate();
                           }
                         },

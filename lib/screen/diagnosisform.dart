@@ -50,7 +50,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
   InitializationSettings initializationSettings;
 
   void initialize() async {
-    androidInitializationSettings = AndroidInitializationSettings('qlogo');
+    androidInitializationSettings =
+        AndroidInitializationSettings('ic_launcher');
     iosInitializationSettings = IOSInitializationSettings(
         onDidReceiveLocalNotification: onDidReceiveLocalNotification);
     initializationSettings = InitializationSettings(
@@ -122,6 +123,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
       ],
     );
   }
+
 
 
 
