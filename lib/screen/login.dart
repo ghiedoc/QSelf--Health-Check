@@ -16,7 +16,6 @@ import 'admin_result.dart';
 import 'admin_userlist.dart';
 import 'homePage.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
-import 'catch.dart';
 
 enum AuthFormType { reset }
 

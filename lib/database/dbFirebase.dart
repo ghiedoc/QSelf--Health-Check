@@ -22,7 +22,6 @@ class dbService {
       "diagnose_form");
 
 
-
   Future getUserId() async {
     try {
       return diagnoseForm.document(uid);
@@ -137,6 +136,8 @@ class dbService {
       lname: snapshot.data['lname']
     );
   }
+
+
 //  USER RESULT
   Stream<userform> get userRes{
     return diagnoseForm.document(uid).snapshots()
@@ -155,6 +156,13 @@ class dbService {
     );
 
   }
+  Future<String> getName() async{
+    int day;
+    DocumentSnapshot ds = await
+    Firestore.instance.collection('users').document(uid).get();
+    day = ds.data['day'];
+  }
+
 
   Future<String> getCurrentUID() async{
     return (await _firebaseAuth.currentUser()).uid;

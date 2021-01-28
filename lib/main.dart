@@ -62,7 +62,7 @@ class MyApp extends StatelessWidget {
             AdminUserInfoPage.routeName: (ctx) => AdminUserInfoPage(),
             AdminUserListPage.routeName: (ctx) => AdminUserListPage(),
             DashboardPage.routeName: (ctx) => DashboardPage(),
-            SelfDiagnosisFormPage.routeName: (ctx) => SelfDiagnosisFormPage(),
+//            SelfDiagnosisFormPage.routeName: (ctx) => SelfDiagnosisFormPage(),
             AdminResultPage.routeName: (ctx) => AdminResultPage(),
             CovidUpdatePage.routeName: (ctx) => CovidUpdatePage(),
             HomePage.routeName: (ctx) => HomePage(),
