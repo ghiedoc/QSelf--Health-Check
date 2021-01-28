@@ -53,7 +53,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
   InitializationSettings initializationSettings;
 
   void initialize() async {
-    androidInitializationSettings = AndroidInitializationSettings('qlogo');
+    androidInitializationSettings =
+        AndroidInitializationSettings('ic_launcher');
     iosInitializationSettings = IOSInitializationSettings(
         onDidReceiveLocalNotification: onDidReceiveLocalNotification);
     initializationSettings = InitializationSettings(
@@ -138,6 +139,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
       );
     }
   }
+
 
   @override
   Widget build(BuildContext context) {
@@ -308,7 +310,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                   print("pasok na: $result");
                                   _fbKey.currentState.reset();
                                   _dayIncreement(user_form.day);
-                                  _showNotificationsAfterSecond();
+//                                  _showNotificationsAfterSecond();
 //                          print(_fbKey.currentState.value);
                                   print(_fbKey.currentState.value);
                                   _fbKey.currentState.reset();

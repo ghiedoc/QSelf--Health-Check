@@ -27,12 +27,12 @@ class _AdminUserListPageState extends State<AdminUserListPage> {
     return StreamProvider<List<userList>>.value(
       value: dbService().user,
       child: Scaffold(
-        backgroundColor: Color(0xFFEFEFEF),
+        backgroundColor: Color(0xFFFA8072),
         appBar: AppBar(
-          backgroundColor: Color(0xFFEFEFEF),
+          backgroundColor: Color(0xFFFA8072),
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black),
-          title: Text(""),
+          title: Text("User List"),
         ),
         //BODY
         body: userInfo(),
