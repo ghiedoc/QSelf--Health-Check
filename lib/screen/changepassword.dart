@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
-import 'package:flutter_trial_three/screen/changepassword.dart';
+import 'package:flutter_trial_three/screen/AlertDialog.dart';
+import 'data.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   static const routeName = '/changepass';
@@ -73,10 +74,18 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             height: 20.0,
                           ),
                           TextFormField(
-                            onChanged: (value) {
+                            onChanged: (val) {
                               setState(() {
-                                _email = value.trim();
+                                data.email = val;
                               });
+                            },
+                            validator: (val){
+                              if (val.isEmpty ||
+                                  !val.contains("@") ||
+                                  !val.contains(".com")) {
+                                return 'Incorrect Email or Password';
+                              }
+                              return createSuccessDialog(context);
                             },
                             decoration: InputDecoration(
                               labelText: 'Email',
@@ -114,9 +123,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       ),
                       //----------------PASSWORD HERE-----------------
                       child: MaterialButton(
-                        onPressed: ()  {
+                        onPressed: () async {
                           auth.sendPasswordResetEmail(email: _email);
                           Navigator.of(context).pop();
+                          createSuccessDialog(context);
                           print('RESET EMAIL SENT');
                         },
                         minWidth: double.infinity,
@@ -134,17 +144,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                           ),
                         ),
                       ),
-
                     ),
                   ),
-
                 ],
               ),
-              SizedBox(
-                height: 20.0,
-              ),
-
-
             ],
           ),
         ),

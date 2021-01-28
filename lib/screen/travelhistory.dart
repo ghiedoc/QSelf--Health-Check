@@ -8,6 +8,7 @@ import 'data.dart';
 import 'welcome.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'package:dio/dio.dart';
+import 'loading.dart';
 
 class TravelHistoryPage extends StatefulWidget {
   static const routeName = '/travelhistory';
@@ -26,6 +27,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
   String dateTime;
   String valueChoose;
   var currentItemSelected = "Afghanistan";
+  bool loading = false;
 
   @override
   void initState() {
@@ -237,10 +239,12 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
     if (formkey.currentState.validate()) {
       dynamic result = await auth.tralvel_histo(data.email, data.password);
       successfulToast();
+      setState(() => loading = true);
       print("pasok na: $result");
       Navigator.of(context).pushReplacementNamed(WelcomePage.routeName);
     } else {
       unsuccessfulToast();
+      loading = false;
       print("not validated");
     }
   }
@@ -271,7 +275,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
   Widget build(BuildContext context) {
     String dateTime;
 
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,

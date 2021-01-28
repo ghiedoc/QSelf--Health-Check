@@ -7,6 +7,7 @@ import 'start.dart';
 import 'data.dart';
 import 'travelhistory.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
+import 'loading.dart';
 
 class ContactInfoPage extends StatefulWidget {
   static const routeName = '/contactinfo';
@@ -80,18 +81,20 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
 
   final AuthService auth = AuthService();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
-
+  bool loading = false;
 
 //  validation
   void validate() async {
       if(formkey.currentState.validate())  {
         dynamic result = await auth.contact_info(data.email,data.password);
         successfulToast();
+        setState(() => loading = true);
         print("pasok na: $result");
         Navigator.of(context)
             .pushReplacementNamed(TravelHistoryPage.routeName);
     } else {
         unsuccessfulToast();
+        loading = false;
         print("not validated");
     }
   }
@@ -122,7 +125,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
