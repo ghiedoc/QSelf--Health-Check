@@ -52,6 +52,12 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
 
   InitializationSettings initializationSettings;
 
+  @override
+  void initState() {
+    super.initState();
+    initialize();
+  }
+
   void initialize() async {
     androidInitializationSettings = AndroidInitializationSettings('qlogo');
     iosInitializationSettings = IOSInitializationSettings(
@@ -139,6 +145,14 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
     }
   }
 
+  bool isEnabled = false;
+
+  disabled(){
+    setState(() {
+      isEnabled = true;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     final form= Provider.of<User>(context);
@@ -147,9 +161,10 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
         builder: (context, snapshot) {
           try{
             userform user_form  = snapshot.data;
-            print(user_form.day);
+//            print(user_form.day);
             return Scaffold(
               backgroundColor: Color(0xFFEFEFEF),
+
               body: Padding(
                 padding: EdgeInsets.all(10),
                 child: SingleChildScrollView(
@@ -307,6 +322,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                   dynamic result = await auth.insertForm(data.email, data.password);
                                   print("pasok na: $result");
                                   _fbKey.currentState.reset();
+                                  disabled();
                                   _dayIncreement(user_form.day);
                                   _showNotificationsAfterSecond();
 //                          print(_fbKey.currentState.value);
