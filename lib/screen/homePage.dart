@@ -40,7 +40,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   final AuthService _auth = AuthService();
-  bool loading = false;
+  bool loading = true;
 
   createConfirmation(BuildContext context){
     Widget cancelButton = FlatButton(
@@ -53,10 +53,7 @@ class _HomePageState extends State<HomePage> {
       child: Text("Yes"),
       onPressed:  () async {
         try {
-//          await _auth.signOut();        
-          setState() {
-            loading = true;
-          };
+//          await _auth.signOut();
           Navigator.push(
               context,
               new MaterialPageRoute(
@@ -96,7 +93,7 @@ class _HomePageState extends State<HomePage> {
           try {
             userList user_List = snapshot.data;
             print('HEY ${user_List.fname}');
-            return  loading ? Loading() : MaterialApp(
+            return MaterialApp(
               color: Color(0xFFFA8072),
               home: Scaffold(
 //        body: Drawable(),
@@ -189,7 +186,7 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }catch(e) {
-            return Container();
+            return  loading ? Loading() : Container();
           }
         }
     );

@@ -31,7 +31,6 @@ class _TrackerState extends State<Tracker> {
         title: Text(
           "COVID-19 Live Updates",
         ),
-
         centerTitle: true,
       ),
       body: Column(
