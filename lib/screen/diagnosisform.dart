@@ -44,6 +44,12 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
   // ONCHANGED HERE
   ValueChanged _onChanged = (val) => print(val);
 
+  @override
+  void initState() {
+    super.initState();
+    initialize();
+  }
+
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
   AndroidFlutterLocalNotificationsPlugin androidFlutterLocalNotificationsPlugin;
   AndroidInitializationSettings androidInitializationSettings;
@@ -53,7 +59,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
 
   void initialize() async {
     androidInitializationSettings =
-        AndroidInitializationSettings('@mipmap/icon');
+        AndroidInitializationSettings('qlogo');
     iosInitializationSettings = IOSInitializationSettings(
         onDidReceiveLocalNotification: onDidReceiveLocalNotification);
     initializationSettings = InitializationSettings(
@@ -81,8 +87,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
 
     NotificationDetails notificationDetails =
     NotificationDetails(android: androidNotificationDetails, iOS: iosNotificationDetails);
-    await flutterLocalNotificationsPlugin.schedule(1, 'Hello there',
-        'please fill up your form thank you :)', timeDelayed, notificationDetails);
+    await flutterLocalNotificationsPlugin.schedule(1, 'You are done for today!',
+        'You have filled up the form, Thank you :)', timeDelayed, notificationDetails);
   }
 
   Future onSelectNotification(String payLoad) {
@@ -350,7 +356,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                   print("pasok na: $result");
                                   _fbKey.currentState.reset();
                                   _dayIncreement(user_form.day);
-//                                  _showNotificationsAfterSecond();
+                                  _showNotificationsAfterSecond();
 //                          print(_fbKey.currentState.value);
                                   print(_fbKey.currentState.value);
                                   _fbKey.currentState.reset();
