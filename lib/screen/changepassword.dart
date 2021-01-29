@@ -68,54 +68,48 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          FormBuilder(
-                            child: FormBuilderTextField(
-                              validators: [
-                                (val){
-                                  if(val.toString().isEmpty || val == null){
-                                    return null;
-                                  }
-                                },
-                                FormBuilderValidators.required(),
-                                FormBuilderValidators.email(),
-                              ],
-                              onChanged: (val) {
-                                setState(() {
-                                  data.email = val;
-                                });
-                              },
-                              decoration: InputDecoration(
-                                labelText: 'Email',
-                                errorText: checkCurrentPasswordValid
-                                    ? null
-                                    : "Please double check your input email",
-                                filled: true,
-                                labelStyle: TextStyle(
-                                    color: myFocusNode.hasFocus
-                                        ? Colors.blue
-                                        : Colors.black),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide:
-                                    BorderSide(color: Colors.grey[400])),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide:
-                                    BorderSide(color: Colors.grey[400])),
-                              ),
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        FormBuilder(
+                          key: _formKey,
+                          child: FormBuilderTextField(
+                            validators: [
+                              FormBuilderValidators.required(),
+                              FormBuilderValidators.email(),
+                            ],
+                            onChanged: (val) {
+                              setState(() {
+                                data.email = val;
+                              });
+                            },
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              errorText: checkCurrentPasswordValid
+                                  ? null
+                                  : "Please double check your input email",
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                  BorderSide(color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                  BorderSide(color: Colors.grey[400])),
                             ),
                           ),
+                        ),
 //                          TextFormField(
-//                            //autovalidate: true,
+//                            autovalidate: true,
 //                            keyboardType: TextInputType.text,
 //                            onChanged: (val) {
 //                              setState(() {
@@ -152,11 +146,10 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 //                                      BorderSide(color: Colors.grey[400])),
 //                            ),
 //                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                        ],
-                      ),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
@@ -169,7 +162,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       //----------------PASSWORD HERE-----------------
                       child: MaterialButton(
                         onPressed: () async {
-                          auth.sendPasswordResetEmail(email: _email);
+                          auth.sendPasswordResetEmail(email: data.email);
                           Navigator.of(context).pop();
                           //createSuccessDialog(context);
                           print('RESET EMAIL SENT');
