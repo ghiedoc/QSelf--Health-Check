@@ -50,7 +50,20 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         fontSize: 16.0);
   }
 
+  void unsuccessfulToasts() {
+    Fluttertoast.showToast(
+        msg: "Invalid input",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+
+
   Widget build(BuildContext context) {
+    dynamic res = auth.sendPasswordResetEmail(email: data.email);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -125,8 +138,12 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                               });
                             },
                             validator: (value) {
-                              if (value.toString().isEmpty || value == null) {
+                              if (value.toString().isEmpty || value == null ||
+                              !value.contains("@") ||
+                              !value.contains(".com")) {
                                 return "INVALID YOUR EMAIL";
+                                }else if(res == null){
+                                return "Your email is not Register";
                               } else {
                                 return null;
                               }
@@ -163,6 +180,7 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                               }
                             } else {
                               print("not validated");
+                              unsuccessfulToasts();
                             }
                           } catch (e) {
                             return e;
