@@ -44,22 +44,22 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
   // ONCHANGED HERE
   ValueChanged _onChanged = (val) => print(val);
 
-  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
-  FlutterLocalNotificationsPlugin();
-  AndroidFlutterLocalNotificationsPlugin androidFlutterLocalNotificationsPlugin;
-  AndroidInitializationSettings androidInitializationSettings;
-  IOSInitializationSettings iosInitializationSettings;
-
-  InitializationSettings initializationSettings;
-
   @override
   void initState() {
     super.initState();
     initialize();
   }
 
+  final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
+  AndroidFlutterLocalNotificationsPlugin androidFlutterLocalNotificationsPlugin;
+  AndroidInitializationSettings androidInitializationSettings;
+  IOSInitializationSettings iosInitializationSettings;
+
+  InitializationSettings initializationSettings;
+
   void initialize() async {
-    androidInitializationSettings = AndroidInitializationSettings('qlogo');
+    androidInitializationSettings =
+        AndroidInitializationSettings('qlogo');
     iosInitializationSettings = IOSInitializationSettings(
         onDidReceiveLocalNotification: onDidReceiveLocalNotification);
     initializationSettings = InitializationSettings(
@@ -67,29 +67,11 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
     await flutterLocalNotificationsPlugin.initialize(initializationSettings,
         onSelectNotification: onSelectNotification);
   }
-  void _showNotifications() async {
-    await notification();
-  }
 
   void _showNotificationsAfterSecond() async {
     await notificationAfterSec();
   }
 
-  Future<void> notification() async {
-    AndroidNotificationDetails androidNotificationDetails =
-    AndroidNotificationDetails(
-        'Channel ID', 'Channel title', 'channel body',
-        priority: Priority.high,
-        importance: Importance.max,
-        ticker: 'test');
-
-    IOSNotificationDetails iosNotificationDetails = IOSNotificationDetails();
-
-    NotificationDetails notificationDetails =
-    NotificationDetails(android: androidNotificationDetails, iOS: iosNotificationDetails);
-    await flutterLocalNotificationsPlugin.show(
-        0, 'Hello there', 'please subscribe my channel', notificationDetails);
-  }
 
   Future<void> notificationAfterSec() async {
     var timeDelayed = DateTime.now().
@@ -105,8 +87,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
 
     NotificationDetails notificationDetails =
     NotificationDetails(android: androidNotificationDetails, iOS: iosNotificationDetails);
-    await flutterLocalNotificationsPlugin.schedule(1, 'Hello there',
-        'please fill up your form thank you :)', timeDelayed, notificationDetails);
+    await flutterLocalNotificationsPlugin.schedule(1, 'You are done for today!',
+        'You have filled up the form, Thank you :)', timeDelayed, notificationDetails);
   }
 
   Future onSelectNotification(String payLoad) {
@@ -133,8 +115,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
     );
   }
 
-
-
   _dayIncreement(int count) async {
     if(count <=14){
       return diagnoseForm.day =diagnoseForm.day+1;
@@ -143,14 +123,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
         child: Text('COMPLETE'),
       );
     }
-  }
-
-  bool isEnabled = false;
-
-  disabled(){
-    setState(() {
-      isEnabled = true;
-    });
   }
 
   @override
@@ -163,149 +135,210 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
             userform user_form  = snapshot.data;
 //            print(user_form.day);
             return Scaffold(
-              backgroundColor: Color(0xFFEFEFEF),
-
+//              backgroundColor: Color(0xFFEFEFEF),
               body: Padding(
                 padding: EdgeInsets.all(10),
                 child: SingleChildScrollView(
                   child: Column(
                     children: <Widget>[
-                      FormBuilder(
-                        // context,
-                        key: _fbKey,
+                      Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: FormBuilder(
+                          // context,
+                          key: _fbKey,
 //                autovalidate: true,
-                        readOnly: false,
-                        child: Column(
-                          children: <Widget>[
-                            FormBuilderRadio(
-                              activeColor: Color(0xFFFFF5555),
-                              decoration:
-                              InputDecoration(labelText: 'Fever (more than 38 degree Celsius)'),
-                              attribute: "fever",
-                              onChanged: (val){
-                                diagnoseForm.fever = val;
-                                print(val);
-                              },
-                              leadingInput: true,
-                              validators: [FormBuilderValidators.required()],
-                              options:
-                              ["Yes", "No"]
-                                  .map((diagnose) =>
-                                  FormBuilderFieldOption(
-                                    value: diagnose,
-                                    child: Text('$diagnose'),
-                                  ))
-                                  .toList(growable: false),
-                            ),
-                            FormBuilderRadio(
-                              activeColor: Color(0xFFFFF5555),
-                              decoration:
-                              InputDecoration(
-                                labelText: 'Cough',
-                                fillColor: Colors.red,
+                          readOnly: false,
+                          child: Column(
+                            children: <Widget>[
+                              Text(
+                                'Daily Self-Check',
+                                style: TextStyle(
+                                  fontSize: 32,
+                                  fontWeight: FontWeight.w400,
+                                ),
                               ),
-                              attribute: "cough",
-                              //leadingInput: true,
-                              onChanged: (val){
-                                diagnoseForm.cough = val;
-                                print(val);
-                              },
-                              leadingInput: true,
-                              validators: [FormBuilderValidators.required()],
-                              options:
-                              ["Yes", "No"]
-                                  .map((diagnose) =>
-                                  FormBuilderFieldOption(
-                                    value: diagnose,
-                                    child: Text('$diagnose'),
-                                  ))
-                                  .toList(growable: false),
-                            ),
-                            FormBuilderRadio(
-                              activeColor: Color(0xFFFFF5555),
-                              decoration:
-                              InputDecoration(labelText: 'Difficulty in Breathing'),
-                              attribute: "dif_breathing",
-                              //leadingInput: true,
-                              onChanged: (val){
-                                diagnoseForm.diff_breathing = val;
-                                print(val);
-                              },
-                              leadingInput: true,
-                              validators: [FormBuilderValidators.required()],
-                              options:
-                              ["Yes", "No"]
-                                  .map((diagnose) =>
-                                  FormBuilderFieldOption(
-                                    value: diagnose,
-                                    child: Text('$diagnose'),
-                                  ))
-                                  .toList(growable: false),
-                            ),
-                            FormBuilderRadio(
-                              activeColor: Color(0xFFFFF5555),
-                              decoration:
-                              InputDecoration(labelText: 'Sorethroat'),
-                              attribute: "sore_throat",
-                              //leadingInput: true,
-                              onChanged: (val){
-                                diagnoseForm.sore_throat = val;
-                                print(val);
-                              },
-                              leadingInput: true,
-                              validators: [FormBuilderValidators.required()],
-                              options:
-                              ["Yes", "No"]
-                                  .map((diagnose) =>
-                                  FormBuilderFieldOption(
-                                    value: diagnose,
-                                    child: Text('$diagnose'),
-                                  ))
-                                  .toList(growable: false),
-                            ),
-                            FormBuilderRadio(
-                              activeColor: Color(0xFFFFF5555),
-                              decoration:
-                              InputDecoration(labelText: 'Headache'),
-                              attribute: "headache",
-                              //leadingInput: true,
-                              onChanged: (val){
-                                diagnoseForm.heacache = val;
-                                print(val);
-                              },
-                              leadingInput: true,
-                              validators: [FormBuilderValidators.required()],
-                              options:
-                              ["Yes", "No"]
-                                  .map((diagnose) =>
-                                  FormBuilderFieldOption(
-                                    value: diagnose,
-                                    child: Text('$diagnose'),
-                                  ))
-                                  .toList(growable: false),
-                            ),
-                            FormBuilderRadio(
-                              activeColor: Color(0xFFFFF5555),
-                              decoration:
-                              InputDecoration(labelText: 'Body Weakness'),
-                              attribute: "body_weakness",
-                              //leadingInput: true,
-                              onChanged: (val){
-                                diagnoseForm.body_weaknesses = val;
-                                print(val);
-                              },
-                              leadingInput: true,
-                              validators: [FormBuilderValidators.required()],
-                              options:
-                              ["Yes", "No"]
-                                  .map((diagnose) =>
-                                  FormBuilderFieldOption(
-                                    value: diagnose,
-                                    child: Text('$diagnose'),
-                                  ))
-                                  .toList(growable: false),
-                            ),
-                          ],
+                              Text(
+                                  'Do you have any of the following symptoms today?',
+                                style: TextStyle(
+                                  fontSize: 18,
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.black54,
+                                ),
+                              ),
+                              SizedBox(
+                                height: 20,
+                              ),
+                              Container(
+                                child: FormBuilderRadio(
+                                  activeColor: Color(0xFFFFF5555),
+                                  decoration:
+                                  InputDecoration(
+                                    labelText: 'Fever (more than 38 degree Celsius)',
+                                    labelStyle: TextStyle(
+                                      color: Color(0xFFFA8072),
+                                      fontSize: 24,
+                                      fontWeight: FontWeight.bold,
+                                    ),
+                                  ),
+                                  attribute: "fever",
+                                  onChanged: (val){
+                                    diagnoseForm.fever = val;
+                                    print(val);
+                                  },
+                                  leadingInput: true,
+                                  validators: [FormBuilderValidators.required()],
+                                  options:
+                                  ["Yes", "No"]
+                                      .map((diagnose) =>
+                                      FormBuilderFieldOption(
+                                        value: diagnose,
+                                        child: Text('$diagnose'),
+                                      ))
+                                      .toList(growable: false),
+                                ),
+                              ),
+                              FormBuilderRadio(
+                                activeColor: Color(0xFFFFF5555),
+                                decoration:
+                                InputDecoration(
+                                  labelText: 'Cough',
+                                  labelStyle: TextStyle(
+                                    color: Color(0xFFFA8072),
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                attribute: "cough",
+                                //leadingInput: true,
+                                onChanged: (val){
+                                  diagnoseForm.cough = val;
+                                  print(val);
+                                },
+                                leadingInput: true,
+                                validators: [FormBuilderValidators.required()],
+                                options:
+                                ["Yes", "No"]
+                                    .map((diagnose) =>
+                                    FormBuilderFieldOption(
+                                      value: diagnose,
+                                      child: Text('$diagnose'),
+                                    ))
+                                    .toList(growable: false),
+                              ),
+                              FormBuilderRadio(
+                                activeColor: Color(0xFFFFF5555),
+                                decoration:
+                                InputDecoration(
+                                  labelText: 'Difficulty in Breathing',
+                                  labelStyle: TextStyle(
+                                    color: Color(0xFFFA8072),
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                attribute: "dif_breathing",
+                                //leadingInput: true,
+                                onChanged: (val){
+                                  diagnoseForm.diff_breathing = val;
+                                  print(val);
+                                },
+                                leadingInput: true,
+                                validators: [FormBuilderValidators.required()],
+                                options:
+                                ["Yes", "No"]
+                                    .map((diagnose) =>
+                                    FormBuilderFieldOption(
+                                      value: diagnose,
+                                      child: Text('$diagnose'),
+                                    ))
+                                    .toList(growable: false),
+                              ),
+                              FormBuilderRadio(
+                                activeColor: Color(0xFFFFF5555),
+                                decoration:
+                                InputDecoration(
+                                  labelText: 'Sorethroat',
+                                  labelStyle: TextStyle(
+                                    color: Color(0xFFFA8072),
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                attribute: "sore_throat",
+                                //leadingInput: true,
+                                onChanged: (val){
+                                  diagnoseForm.sore_throat = val;
+                                  print(val);
+                                },
+                                leadingInput: true,
+                                validators: [FormBuilderValidators.required()],
+                                options:
+                                ["Yes", "No"]
+                                    .map((diagnose) =>
+                                    FormBuilderFieldOption(
+                                      value: diagnose,
+                                      child: Text('$diagnose'),
+                                    ))
+                                    .toList(growable: false),
+                              ),
+                              FormBuilderRadio(
+                                activeColor: Color(0xFFFFF5555),
+                                decoration:
+                                InputDecoration(
+                                  labelText: 'Headache',
+                                  labelStyle: TextStyle(
+                                    color: Color(0xFFFA8072),
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                attribute: "headache",
+                                //leadingInput: true,
+                                onChanged: (val){
+                                  diagnoseForm.heacache = val;
+                                  print(val);
+                                },
+                                leadingInput: true,
+                                validators: [FormBuilderValidators.required()],
+                                options:
+                                ["Yes", "No"]
+                                    .map((diagnose) =>
+                                    FormBuilderFieldOption(
+                                      value: diagnose,
+                                      child: Text('$diagnose'),
+                                    ))
+                                    .toList(growable: false),
+                              ),
+                              FormBuilderRadio(
+                                activeColor: Color(0xFFFFF5555),
+                                decoration:
+                                InputDecoration(
+                                  labelText: 'Body Weakness',
+                                  labelStyle: TextStyle(
+                                    color: Color(0xFFFA8072),
+                                    fontSize: 24,
+                                    fontWeight: FontWeight.bold,
+                                  ),
+                                ),
+                                attribute: "body_weakness",
+                                //leadingInput: true,
+                                onChanged: (val){
+                                  diagnoseForm.body_weaknesses = val;
+                                  print(val);
+                                },
+                                leadingInput: true,
+                                validators: [FormBuilderValidators.required()],
+                                options:
+                                ["Yes", "No"]
+                                    .map((diagnose) =>
+                                    FormBuilderFieldOption(
+                                      value: diagnose,
+                                      child: Text('$diagnose'),
+                                    ))
+                                    .toList(growable: false),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                       Row(
@@ -322,7 +355,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                   dynamic result = await auth.insertForm(data.email, data.password);
                                   print("pasok na: $result");
                                   _fbKey.currentState.reset();
-                                  disabled();
                                   _dayIncreement(user_form.day);
                                   _showNotificationsAfterSecond();
 //                          print(_fbKey.currentState.value);

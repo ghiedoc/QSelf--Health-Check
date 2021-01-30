@@ -10,6 +10,7 @@ import 'contactinfo.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 //import 'admin_userinfo.dart';
 import 'admin_userlist.dart';
+import 'loading.dart';
 
 class PersonalInfoPage extends StatefulWidget {
   @override
@@ -22,16 +23,19 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
   final AuthService auth = AuthService();
 
+  bool loading = false;
+
 //  validation function
   void validation() async {
-
     if (formkey.currentState.validate()) {
       dynamic result = await auth.signUp(data.email, data.password);
       print("pasok na: $result");
       successfulToast();
+      setState(() => loading = true);
       Navigator.of(context).pushReplacementNamed(ContactInfoPage.routeName);
     } {
       unsuccessfulToast();
+      loading = false;
       print("not validated");
     }
   }
@@ -64,7 +68,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
@@ -295,17 +299,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                         ),
                       ),
                     ),
-                    MaterialButton(
-                      onPressed: () {
-                        successfulToast();
-                      },
-                      child: Text(
-                        "enter"
-                      ),
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(10)),
-                    ),
-
                   ],
                 ),
               ],

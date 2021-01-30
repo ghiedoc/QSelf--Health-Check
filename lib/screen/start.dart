@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_trial_three/screen/login.dart';
 import 'login.dart';
 import 'signup.dart';
+import 'loading.dart';
 
 class starts extends StatefulWidget {
   @override
@@ -10,6 +11,9 @@ class starts extends StatefulWidget {
 }
 
 class _startState extends State<starts> {
+
+  bool loading = false;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(

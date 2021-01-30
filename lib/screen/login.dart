@@ -2,10 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_trial_three/screen/admin_dashboard.dart';
 import 'package:flutter_trial_three/screen/homePage.dart';
-import 'package:flutter_trial_three/screen/homePage.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'changepassword.dart';
-import 'login.dart';
+import 'loading.dart';
 import 'start.dart';
 import 'signup.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
@@ -30,6 +29,8 @@ class _LoginPageState extends State<LoginPage> {
   FocusNode myFocusNode = new FocusNode();
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
+  bool loading = false;
+
   final AuthService _auth = AuthService();
 
 //  String email = '';
@@ -48,6 +49,7 @@ class _LoginPageState extends State<LoginPage> {
             unsuccessfulToast();
             print(result);
         }else{
+            setState(() => loading = true);
             successfulToast();
             Navigator.of(context).pushReplacementNamed(HomePage.routeName);
           }
@@ -65,7 +67,6 @@ class _LoginPageState extends State<LoginPage> {
         msg: "Sign in Successfully",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
         backgroundColor: Colors.green,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -76,7 +77,6 @@ class _LoginPageState extends State<LoginPage> {
         msg: "Error Signing in!",
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -85,7 +85,7 @@ class _LoginPageState extends State<LoginPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
         elevation: 0,

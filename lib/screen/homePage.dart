@@ -9,6 +9,7 @@ import 'package:flutter_trial_three/screen/login.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
 import 'data.dart';
+import 'loading.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
@@ -39,6 +40,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   final AuthService _auth = AuthService();
+  bool loading = true;
 
   createConfirmation(BuildContext context){
     Widget cancelButton = FlatButton(
@@ -48,7 +50,7 @@ class _HomePageState extends State<HomePage> {
       },
     );
     Widget continueButton = FlatButton(
-      child: Text("Continue"),
+      child: Text("Yes"),
       onPressed:  () async {
         try {
 //          await _auth.signOut();
@@ -65,8 +67,7 @@ class _HomePageState extends State<HomePage> {
 
     // set up the AlertDialog
     AlertDialog alert = AlertDialog(
-      title: Text("AlertDialog"),
-      content: Text("Logout"),
+      title: Text("Are you sure you want to log out?"),
       actions: [
         cancelButton,
         continueButton,
@@ -153,7 +154,7 @@ class _HomePageState extends State<HomePage> {
                   elevation: 0,
                   backgroundColor: Color(0xFFFA8072),
                   iconTheme: IconThemeData(color: Colors.black),
-                  title: Text("AppBar"),
+                  title: Text(""),
                 ),
                 drawer: Drawer(
                   child: ListView(
@@ -162,16 +163,18 @@ class _HomePageState extends State<HomePage> {
                         child: Text('${user_List.fname} ${user_List.lname}'),
                       ),
                       new ListTile(
+                        leading: new Icon(Icons.settings),
                         title: new Text('Setting'),
                         onTap: () {
-//                          Navigator.push(
-//                              context,
-//                              new MaterialPageRoute(
-//                                  builder: (context) =>
-//                                  new CovidUpdatePage()));
+                          Navigator.push(
+                              context,
+                              new MaterialPageRoute(
+                                  builder: (context) =>
+                                  new ChangePasswordPage()));
                         },
                       ),
                       new ListTile(
+                        leading: new Icon(Icons.exit_to_app),
                         title: new Text('Log out'),
                         onTap: () async {
                           createConfirmation(context);
@@ -183,7 +186,7 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }catch(e) {
-            return Container();
+            return  loading ? Loading() : Container();
           }
         }
     );

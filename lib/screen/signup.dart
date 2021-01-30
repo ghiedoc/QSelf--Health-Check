@@ -6,6 +6,7 @@ import 'start.dart';
 import 'personalinfo.dart';
 import 'data.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
+import 'loading.dart';
 
 class SignUpPage extends StatefulWidget {
   data d = new data();
@@ -20,6 +21,7 @@ class _SignUpPageState extends State<SignUpPage> {
   final AuthService auth = AuthService();
 
   FocusNode myFocusNode = new FocusNode();
+  bool loading = false;
 
 //
 //  validation field
@@ -28,10 +30,12 @@ class _SignUpPageState extends State<SignUpPage> {
 //      dynamic result = await auth.signUp(data.email, data.password);
 //      print("pasok na: $result");
       successfulToast();
+      setState(() => loading = true);
       Navigator.of(context).pushReplacementNamed(PersonalInfoPage.routeName);
 //      submit();
     } else {
       unsuccessfulToast();
+      loading = false;
       print("not validated");
     }
   }
@@ -41,7 +45,6 @@ class _SignUpPageState extends State<SignUpPage> {
         msg: "Sign up Successfully",
         toastLength: Toast.LENGTH_SHORT,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
         backgroundColor: Colors.green,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -52,7 +55,6 @@ class _SignUpPageState extends State<SignUpPage> {
         msg: "Error Signing up!",
         toastLength: Toast.LENGTH_LONG,
         gravity: ToastGravity.BOTTOM,
-        timeInSecForIosWeb: 1,
         backgroundColor: Colors.red,
         textColor: Colors.white,
         fontSize: 16.0);
@@ -60,7 +62,7 @@ class _SignUpPageState extends State<SignUpPage> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return loading ? Loading() : Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
           elevation: 0,
