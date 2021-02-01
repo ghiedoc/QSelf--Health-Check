@@ -13,11 +13,7 @@ class ChangePasswordPage extends StatefulWidget {
 }
 
 class _ChangePasswordPageState extends State<ChangePasswordPage> {
-  TextEditingController _currentpasswordController =
-      new TextEditingController();
-  TextEditingController _newpasswordController = new TextEditingController();
   final AuthService _auth = AuthService();
-
   FocusNode myFocusNode = new FocusNode();
 
   @override
@@ -25,8 +21,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   //var _formKey = GlobalKey<FormState>();
   bool checkCurrentPasswordValid = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
-
-  String _email;
   final auth = FirebaseAuth.instance;
 
   Widget build(BuildContext context) {
@@ -162,12 +156,15 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       //----------------PASSWORD HERE-----------------
                       child: MaterialButton(
                         onPressed: () async {
-                          auth.sendPasswordResetEmail(email: data.email);
-                          Navigator.of(context).pop();
-                          //createSuccessDialog(context);
-                          print('RESET EMAIL SENT');
-
-//                          validate();
+                          _formKey.currentState.save();
+                          if (_formKey.currentState.validate()) {
+                            auth.sendPasswordResetEmail(email: data.email);
+                            Navigator.of(context).pop();
+                            //createSuccessDialog(context);
+                            print('RESET EMAIL SENT');
+                          } else {
+                            print("NOT VALIDATED");
+                          }
                         },
                         minWidth: double.infinity,
                         height: 50,
