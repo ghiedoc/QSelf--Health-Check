@@ -5,6 +5,7 @@ import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'package:flutter_trial_three/screen/AlertDialog.dart';
 import 'data.dart';
 import 'package:flutter_trial_three/screen/login.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class ChangePasswordPage extends StatefulWidget {
   static const routeName = '/changepass';
@@ -29,7 +30,40 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   String _email;
   final auth = FirebaseAuth.instance;
 
+  void successfulToast() {
+    Fluttertoast.showToast(
+        msg: "Send Success",
+        toastLength: Toast.LENGTH_SHORT,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.green,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  void unsuccessfulToast() {
+    Fluttertoast.showToast(
+        msg: "Your Email Not Register",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+  void unsuccessfulToasts() {
+    Fluttertoast.showToast(
+        msg: "Invalid input",
+        toastLength: Toast.LENGTH_LONG,
+        gravity: ToastGravity.BOTTOM,
+        backgroundColor: Colors.red,
+        textColor: Colors.white,
+        fontSize: 16.0);
+  }
+
+
+
   Widget build(BuildContext context) {
+    dynamic res = auth.sendPasswordResetEmail(email: data.email);
     return Scaffold(
       backgroundColor: Colors.white,
       appBar: AppBar(
@@ -68,95 +102,58 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                   ),
                   Padding(
                     padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        children: <Widget>[
-                          SizedBox(
-                            height: 20.0,
-                          ),
-                          FormBuilder(
-                            child: FormBuilderTextField(
-                              validators: [
-                                (val){
-                                  if(val.toString().isEmpty || val == null){
-                                    return null;
-                                  }
-                                },
-                                FormBuilderValidators.required(),
-                                FormBuilderValidators.email(),
-                              ],
-                              onChanged: (val) {
-                                setState(() {
-                                  data.email = val;
-                                });
-                              },
-                              decoration: InputDecoration(
-                                labelText: 'Email',
-                                errorText: checkCurrentPasswordValid
-                                    ? null
-                                    : "Please double check your input email",
-                                filled: true,
-                                labelStyle: TextStyle(
-                                    color: myFocusNode.hasFocus
-                                        ? Colors.blue
-                                        : Colors.black),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide:
-                                    BorderSide(color: Colors.grey[400])),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide:
-                                    BorderSide(color: Colors.grey[400])),
-                              ),
+                    child: Column(
+                      children: <Widget>[
+                        SizedBox(
+                          height: 20.0,
+                        ),
+                        Form(
+                          key: _formKey,
+                          child: TextFormField(
+                            decoration: InputDecoration(
+                              labelText: 'Email',
+                              errorText: checkCurrentPasswordValid
+                                  ? null
+                                  : "Please double check your input email",
+                              filled: true,
+                              labelStyle: TextStyle(
+                                  color: myFocusNode.hasFocus
+                                      ? Colors.blue
+                                      : Colors.black),
+                              contentPadding: EdgeInsets.symmetric(
+                                  vertical: 0, horizontal: 10),
+                              enabledBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
+                              border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(10),
+                                  borderSide:
+                                      BorderSide(color: Colors.grey[400])),
                             ),
+                            keyboardType: TextInputType.emailAddress,
+                            onChanged: (val) {
+                              setState(() {
+                                data.email = val;
+                              });
+                            },
+                            validator: (value) {
+                              if (value.toString().isEmpty || value == null ||
+                              !value.contains("@") ||
+                              !value.contains(".com")) {
+                                return "INVALID YOUR EMAIL";
+                                }else if(res == null){
+                                return "Your email is not Register";
+                              } else {
+                                return null;
+                              }
+                            },
                           ),
-//                          TextFormField(
-//                            //autovalidate: true,
-//                            keyboardType: TextInputType.text,
-//                            onChanged: (val) {
-//                              setState(() {
-//                                data.email = val;
-//                              });
-//                            },
-//                            validator: (val) {
-//                              if (val.isEmpty ||
-//                                  !val.contains("@") ||
-//                                  !val.contains(".com")) {
-//                                return 'Incorrect Email or Password';
-//                              }
-//                              return createSuccessDialog(context);
-//                            },
-//                            decoration: InputDecoration(
-//                              labelText: 'Email',
-//                              errorText: checkCurrentPasswordValid
-//                                  ? null
-//                                  : "Please double check your current email",
-//                              filled: true,
-//                              labelStyle: TextStyle(
-//                                  color: myFocusNode.hasFocus
-//                                      ? Colors.blue
-//                                      : Colors.black),
-//                              contentPadding: EdgeInsets.symmetric(
-//                                  vertical: 0, horizontal: 10),
-//                              enabledBorder: OutlineInputBorder(
-//                                  borderRadius: BorderRadius.circular(10),
-//                                  borderSide:
-//                                      BorderSide(color: Colors.grey[400])),
-//                              border: OutlineInputBorder(
-//                                  borderRadius: BorderRadius.circular(10),
-//                                  borderSide:
-//                                      BorderSide(color: Colors.grey[400])),
-//                            ),
-//                          ),
-                          SizedBox(
-                            height: 30.0,
-                          ),
-                        ],
-                      ),
+                        ),
+                        SizedBox(
+                          height: 30.0,
+                        ),
+                      ],
                     ),
                   ),
                   Padding(
@@ -169,12 +166,26 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                       //----------------PASSWORD HERE-----------------
                       child: MaterialButton(
                         onPressed: () async {
-                          auth.sendPasswordResetEmail(email: _email);
-                          Navigator.of(context).pop();
-                          //createSuccessDialog(context);
-                          print('RESET EMAIL SENT');
-
-//                          validate();
+                          var results = _formKey.currentState.validate();
+                          try {
+                            if (results) {
+                              dynamic result = auth.sendPasswordResetEmail(email: data.email);
+                              print("pasok na naka log-in na siya: $result");
+                              if (result == null) {
+                                unsuccessfulToast();
+                                print(result);
+                              } else {
+                                successfulToast();
+//                                Navigator.of(context).pop();
+                              }
+                            } else {
+                              print("not validated");
+                              unsuccessfulToasts();
+                            }
+                          } catch (e) {
+                            return e;
+//      }
+                          }
                         },
                         minWidth: double.infinity,
                         height: 50,
