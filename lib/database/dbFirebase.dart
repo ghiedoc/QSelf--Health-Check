@@ -64,8 +64,9 @@ class dbService {
 // user diagnose_form
   Future submitForm(int day, String fever, String cough,
       String diff_breathing, String sore_throat,
-      String heacache, String body_weaknesses) async {
-    return await diagnoseForm.document(uid).setData({
+      String heacache, String body_weaknesses,String userID) async {
+    return await diagnoseForm.document().setData({
+      'userID' : userID,
       'day': day,
       'fever': fever,
       'cough': cough,
@@ -75,16 +76,8 @@ class dbService {
       'body_weaknesses': body_weaknesses,
     });
   }
-  
-  //update password
-//  changePassword(){
-//    DocumentReference documentReference =
-//    Firestore.instance.collection("user").document(uid);
-//
-//    Map<String, dynamic> users = {
-//      ""
-//    };
-//  }
+
+
 
   Stream<List<userList>> get user {
     return userCollect.snapshots()
@@ -112,7 +105,7 @@ class dbService {
   List<userform> dataForm(QuerySnapshot snapshot){
     return snapshot.documents.map((doc){
       return userform(
-          uid: doc.documentID,
+          userID: doc.data['userID'] ?? '',
           day : doc.data['day'] ?? 0,
           fever : doc.data['fever'] ?? '',
           cough :  doc.data['cough'] ?? '',
@@ -145,7 +138,7 @@ class dbService {
   }
   userform _userRes(DocumentSnapshot snapshot){
     return userform(
-      uid: snapshot.documentID,
+      userID: snapshot.documentID,
       day: snapshot.data['day'],
       fever: snapshot.data['fever'],
       cough: snapshot.data['cough'],
