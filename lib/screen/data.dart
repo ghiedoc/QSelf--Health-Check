@@ -9,7 +9,7 @@ static String id;
 }
 class diagnoseForm {
   static String fever, cough, diff_breathing, sore_throat, heacache,
-      body_weaknesses;
+      body_weaknesses,userID;
     static int day = 1;
 
 }
@@ -27,15 +27,14 @@ class userList {
  final String fname, lname, nationality, passport_no;
  final String uid;
   userList({this.uid,this.fname, this.lname, this.nationality, this.passport_no});
-
 }
 
+
 class userform{
-  final String uid,fever, cough, diff_breathing, sore_throat, headache,
+  final String userID,fever, cough, diff_breathing, sore_throat, headache,
       body_weaknesses;
   final int day;
- userform({this.uid,this.day, this.fever, this.cough, this.diff_breathing, this.sore_throat, this.headache, this.body_weaknesses});
-
+ userform({this.userID,this.day, this.fever, this.cough, this.diff_breathing, this.sore_throat, this.headache, this.body_weaknesses});
 }
 
 

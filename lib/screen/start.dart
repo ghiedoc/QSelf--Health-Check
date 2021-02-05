@@ -36,7 +36,7 @@ class _startState extends State<starts> {
                     fontSize: 42
                   ),),
                   SizedBox(height: 20,),
-                  Text("an application that helps you self-diagnose for 14-days",
+                  Text("",
                     textAlign: TextAlign.left,
                     style: TextStyle(
                     color: Colors.white70,

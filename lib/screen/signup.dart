@@ -279,7 +279,7 @@ class _SignUpPageState extends State<SignUpPage> {
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10)),
                             child: Text(
-                              "Sign up",
+                              "Register",
                               style: TextStyle(
                                 fontWeight: FontWeight.w600,
                                 fontSize: 18,

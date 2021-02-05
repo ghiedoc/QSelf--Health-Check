@@ -48,6 +48,7 @@ class _LoginPageState extends State<LoginPage> {
           if (result == null) {
             unsuccessfulToast();
             print(result);
+
         }else{
             setState(() => loading = true);
             successfulToast();
@@ -271,6 +272,8 @@ class _LoginPageState extends State<LoginPage> {
                           if(data.email == "admin@email.com" && data.password == "123456"){
                             successfulToast();
                             Navigator.of(context).pushReplacementNamed(AdminDashboardPage.routeName);
+                            }else if(data.email == " " && data.password == " "){
+                            unsuccessfulToast();
                           }else{
                             validate();
                           }
