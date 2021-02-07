@@ -197,7 +197,159 @@ class _DashboardPageState extends State<DashboardPage> {
                       );
 
                     }catch(e){
-                      return Container();
+                      return Scaffold(
+                        body: StreamBuilder<userList>(
+                            stream: dbService(uid: form.uid).userData,
+                            builder: (context, snapshot) {
+                              try{
+                                userList user_list = snapshot.data;
+                                return Container(
+                                  padding: EdgeInsets.all(20.0),
+                                  child: ListView(
+                                    children: <Widget>[
+                                      Text('Hello, ${user_list.fname} ${user_list.lname}',
+                                        style: TextStyle(
+                                          fontSize: 32,
+                                          //fontWeight: FontWeight.bold,
+                                        ),),
+                                      Container(
+                                        margin: EdgeInsets.only(left: 10, bottom: 10),
+//                      child: Text(
+//                        "Dashboard",
+//                        style: TextStyle(
+//                          fontSize: 36,
+//                          fontWeight: FontWeight.bold,
+//                        ),
+//                      ),
+                                      ),
+                                      GestureDetector(
+                                        onTap: () {
+                                          Navigator.of(context).push(
+                                            MaterialPageRoute(
+                                              builder: (context) {
+                                                return;
+                                              },
+                                            ),
+                                          );
+                                        },
+                                        child: Container(
+                                          height: 130,
+                                          child: Padding(
+                                            padding: padding,
+                                            /**
+                                             * CONTAINER NG DAY 1 (1ST CARD)
+                                             */
+                                            child: Card(
+                                              shape: border,
+                                              elevation: 3.0,
+                                              child: Column(
+                                                children: [
+                                                  Row(
+                                                    children: [
+                                                      Padding(
+                                                        padding: const EdgeInsets.all(8.0),
+                                                        child: Text(
+                                                          'Day 1',
+                                                          style: TextStyle(
+                                                            fontSize: 32,
+                                                            fontWeight: FontWeight.bold,
+                                                          ),
+                                                        ),
+                                                      ),
+                                                    ],
+                                                  ),
+                                                  Align(
+                                                    alignment: Alignment.bottomRight,
+                                                    child: Text(
+                                                      '',
+                                                      style: TextStyle(
+                                                        fontSize: 18,
+                                                        fontWeight: FontWeight.bold,
+                                                      ),
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                      /**
+                                       * CONTAINER 2
+                                       */
+                                      GestureDetector(
+                                        onTap: () {
+                                          opencovidupdateURL();
+                                        },
+                                        child: Container(
+                                          height: 90,
+                                          child: Padding(
+                                            padding: padding,
+                                            child: Card(
+                                              color: Color(0xFFF78977),
+                                              shape: border,
+                                              elevation: 3.0,
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'COVID-19 News',
+                                                    style: TextStyle(
+                                                      fontSize: 30,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+
+                                      /**
+                                       * CONTAINER 3
+                                       */
+                                      GestureDetector(
+                                        onTap: () {
+                                          openGuidelinesURL();
+                                        },
+                                        child: Container(
+                                          height: 90,
+                                          child: Padding(
+                                            padding: padding,
+                                            child: Card(
+                                              color: Color(0xFFFF8A94D),
+                                              shape: border,
+                                              elevation: 3.0,
+                                              child: Column(
+                                                mainAxisAlignment: MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    'Guidelines',
+                                                    style: TextStyle(
+                                                      fontSize: 30,
+                                                      color: Colors.white,
+                                                    ),
+                                                  ),
+                                                ],
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                );
+
+                              }catch(e){
+                                return Container(child: Text("ERROR"),);
+                              }
+
+//
+                            }
+                        ),
+
+                      );
                     }
 
 //
@@ -209,7 +361,159 @@ class _DashboardPageState extends State<DashboardPage> {
             );
 
           }catch(e){
-              return Container();
+              return Scaffold(
+                body: StreamBuilder<userList>(
+                    stream: dbService(uid: form.uid).userData,
+                    builder: (context, snapshot) {
+                      try{
+                        userList user_list = snapshot.data;
+                        return Container(
+                          padding: EdgeInsets.all(20.0),
+                          child: ListView(
+                            children: <Widget>[
+                              Text('Hello, ${user_list.fname} ${user_list.lname}',
+                                style: TextStyle(
+                                  fontSize: 32,
+                                  //fontWeight: FontWeight.bold,
+                                ),),
+                              Container(
+                                margin: EdgeInsets.only(left: 10, bottom: 10),
+//                      child: Text(
+//                        "Dashboard",
+//                        style: TextStyle(
+//                          fontSize: 36,
+//                          fontWeight: FontWeight.bold,
+//                        ),
+//                      ),
+                              ),
+                              GestureDetector(
+                                onTap: () {
+                                  Navigator.of(context).push(
+                                    MaterialPageRoute(
+                                      builder: (context) {
+                                        return;
+                                      },
+                                    ),
+                                  );
+                                },
+                                child: Container(
+                                  height: 130,
+                                  child: Padding(
+                                    padding: padding,
+                                    /**
+                                     * CONTAINER NG DAY 1 (1ST CARD)
+                                     */
+                                    child: Card(
+                                      shape: border,
+                                      elevation: 3.0,
+                                      child: Column(
+                                        children: [
+                                          Row(
+                                            children: [
+                                              Padding(
+                                                padding: const EdgeInsets.all(8.0),
+                                                child: Text(
+                                                  'Day 1',
+                                                  style: TextStyle(
+                                                    fontSize: 32,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
+                                                ),
+                                              ),
+                                            ],
+                                          ),
+                                          Align(
+                                            alignment: Alignment.bottomRight,
+                                            child: Text(
+                                              '',
+                                              style: TextStyle(
+                                                fontSize: 18,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              /**
+                               * CONTAINER 2
+                               */
+                              GestureDetector(
+                                onTap: () {
+                                  opencovidupdateURL();
+                                },
+                                child: Container(
+                                  height: 90,
+                                  child: Padding(
+                                    padding: padding,
+                                    child: Card(
+                                      color: Color(0xFFF78977),
+                                      shape: border,
+                                      elevation: 3.0,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'COVID-19 News',
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+
+                              /**
+                               * CONTAINER 3
+                               */
+                              GestureDetector(
+                                onTap: () {
+                                  openGuidelinesURL();
+                                },
+                                child: Container(
+                                  height: 90,
+                                  child: Padding(
+                                    padding: padding,
+                                    child: Card(
+                                      color: Color(0xFFFF8A94D),
+                                      shape: border,
+                                      elevation: 3.0,
+                                      child: Column(
+                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          Text(
+                                            'Guidelines',
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                            ],
+                          ),
+                        );
+
+                      }catch(e){
+                        return Container();
+                      }
+
+//
+                    }
+                ),
+
+              );
           }
 
       }

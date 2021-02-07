@@ -186,7 +186,9 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }catch(e) {
-            return  loading ? Loading() : Container();
+            return  loading ? Loading() : Container(
+              child: Text('HEY'),
+            );
           }
         }
     );
