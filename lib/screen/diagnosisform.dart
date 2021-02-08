@@ -1,5 +1,4 @@
 import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -143,7 +142,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
           CoolAlert.show(
             context: context,
             type: CoolAlertType.success,
-            text: "Transaction completed successfully!",
+            text: "Responses completed successfully!",
           );
         } else {
           print(_fbKey.currentState.value);
