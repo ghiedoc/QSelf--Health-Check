@@ -23,16 +23,12 @@ class _SignUpPageState extends State<SignUpPage> {
   FocusNode myFocusNode = new FocusNode();
   bool loading = false;
 
-//
 //  validation field
   void validate() async {
     if (formkey.currentState.validate()) {
-//      dynamic result = await auth.signUp(data.email, data.password);
-//      print("pasok na: $result");
       successfulToast();
       setState(() => loading = true);
       Navigator.of(context).pushReplacementNamed(PersonalInfoPage.routeName);
-//      submit();
     } else {
       unsuccessfulToast();
       loading = false;
@@ -153,7 +149,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                           if (value.isEmpty ||
                                               !value.contains("@") ||
                                               !value.contains(".com")) {
-                                            return 'INVALID EMAIL ADDRESS';
+                                            return 'Invalid email address';
                                           }
                                           return null;
                                         },
@@ -192,7 +188,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                         controller: _passwordController,
                                         validator: (value) {
                                           if (value.isEmpty) {
-                                            return 'Enter New Passowrd';
+                                            return 'Invalid password';
                                           } else if (value.length < 8) {
                                             return 'Password must be atleast 8 characters long';
                                           } else if (!value.contains("@") &&
@@ -242,7 +238,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       validator: (value) {
                                         if (value.isEmpty ||
                                             value != _passwordController.text) {
-                                          return 'NOT MATCH PASSWORD, PLEASE TRY AGAIN';
+                                          return 'Password do not match, try again';
                                         }
                                         return null;
                                       },
@@ -271,8 +267,6 @@ class _SignUpPageState extends State<SignUpPage> {
                             height: 50,
                             onPressed: () async {
                               validate();
-//                            submit();
-//                            signUp();
                             },
                             color: Color(0xFFFF5555),
                             elevation: 0,

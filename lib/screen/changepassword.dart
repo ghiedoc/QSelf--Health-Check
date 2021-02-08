@@ -184,7 +184,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
                             }
                           } catch (e) {
                             return e;
-//      }
                           }
                         },
                         minWidth: double.infinity,
