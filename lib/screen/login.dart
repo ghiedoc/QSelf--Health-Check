@@ -258,6 +258,8 @@ class _LoginPageState extends State<LoginPage> {
                         minWidth: 300,
                         height: 50,
                         onPressed: () async {
+                          var results = formkey.currentState.validate();
+                          if(results){
                           if(data.email == "admin@email.com" && data.password == "123456"){
                             successfulToast();
                             Navigator.of(context).pushReplacementNamed(AdminDashboardPage.routeName);
@@ -266,6 +268,9 @@ class _LoginPageState extends State<LoginPage> {
                           }else{
                             validate();
                           }
+                          }else{
+                          }
+
                         },
                         color: Color(0xFFFF5555),
                         elevation: 0,
