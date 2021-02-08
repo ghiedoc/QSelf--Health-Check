@@ -174,7 +174,35 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
     try{
       if(day >= 14){
         return Container(
-            child: Text("END")
+          child:
+          Center(
+            child:
+            Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Image.asset(
+                  'assets/images/completed.png',
+                  height: 300,
+                  width: 300,
+                ),
+                Text("You're all done!",
+                    style: TextStyle(
+                      fontSize: 28,
+                      color: Colors.grey,
+                    )
+                ),
+                SizedBox(
+                    height: 10
+                ),
+                Text("Enjoy your day!",
+                    style: TextStyle(
+                      fontSize: 18,
+                      color: Colors.grey,
+                    )
+                ),
+              ],
+            ),
+          ),
         );
       }
     }catch(e){
@@ -208,7 +236,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                 ),
                               ),
                               Text(
-                                  'Do you have any of the following symptoms today?',
+                                'Do you have any of the following symptoms today?',
                                 style: TextStyle(
                                   fontSize: 18,
                                   fontWeight: FontWeight.bold,
@@ -408,11 +436,10 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
             return Container();
           }
 
-      }
+        }
     );
 
   }
-}
 
 Widget _buildButton({VoidCallback onTap, String text, Color color}) {
   return Padding(
@@ -435,5 +462,4 @@ Widget _buildButton({VoidCallback onTap, String text, Color color}) {
     ),
   );
 }
-
-
+}

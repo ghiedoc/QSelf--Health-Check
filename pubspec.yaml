@@ -51,10 +51,10 @@ flutter:
   assets:
     - assets/images/qselflogodark.png
     - assets/images/qselflogolight.png
+    - assets/images/completed.png
     - assets/qselflogodark.png
     - assets/qselflogolight.png
-    - assets/images/covid.png
-    - assets/images/building.jpg
+
   fonts:
     - family: OpenSans
       fonts:
