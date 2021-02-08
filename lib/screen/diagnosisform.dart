@@ -139,15 +139,22 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
     }
     diagnoseForm.day = day+1;
 
+    try{
+      if(day == 14){
+        return Container(
+            child: Text("END")
+        );
+      }
+    }catch(e){
+
+    }
+
     final form= Provider.of<User>(context);
     return StreamBuilder<userform>(
         stream: dbService(uid: form.uid).userRes,
         builder: (context, snapshot) {
           try{
-            userform user_form  = snapshot.data;
-//            print(user_form.day);
             return Scaffold(
-//              backgroundColor: Color(0xFFEFEFEF),
               body: Padding(
                 padding: EdgeInsets.all(10),
                 child: SingleChildScrollView(
@@ -158,7 +165,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         child: FormBuilder(
                           // context,
                           key: _fbKey,
-//                autovalidate: true,
                           readOnly: false,
                           child: Column(
                             children: <Widget>[
@@ -368,7 +374,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                   dynamic result = await auth.insertForm(data.email, data.password);
                                   print("pasok na: $result");
                                   _fbKey.currentState.reset();
-                                  //_dayIncreement(user_form.day);
                                   _showNotificationsAfterSecond();
                                   print(_fbKey.currentState.value);
                                   _fbKey.currentState.reset();

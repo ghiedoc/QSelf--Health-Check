@@ -95,7 +95,6 @@ class _HomePageState extends State<HomePage> {
             return MaterialApp(
               color: Color(0xFFFA8072),
               home: Scaffold(
-//        body: Drawable(),
                 body: PageView(
                   controller: _pageController,
                   children: _screens,
@@ -185,7 +184,9 @@ class _HomePageState extends State<HomePage> {
               ),
             );
           }catch(e) {
-            return  loading ? Loading() : Container();
+            return  loading ? Loading() : Container(
+              child: Text('HEY'),
+            );
           }
         }
     );

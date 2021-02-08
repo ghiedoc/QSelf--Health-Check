@@ -149,15 +149,4 @@ class dbService {
     );
 
   }
-  Future<String> getName() async{
-    int day;
-    DocumentSnapshot ds = await
-    Firestore.instance.collection('users').document(uid).get();
-    day = ds.data['day'];
-  }
-
-
-  Future<String> getCurrentUID() async{
-    return (await _firebaseAuth.currentUser()).uid;
-  }
 }

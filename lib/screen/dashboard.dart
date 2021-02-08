@@ -71,14 +71,6 @@ class _DashboardPageState extends State<DashboardPage> {
         child: Text('Loading')
       );
     }
-
-
-      return StreamBuilder<userform>(
-          stream: dbService(uid: 'M7Zc9pIrTPdgGzpFEy1N').userRes,
-          builder: (context, snapshot) {
-            try {
-               userform user_form = snapshot.data;
-              //print(user_form.userID);
               return Scaffold(
                 body: StreamBuilder<userList>(
                     stream: dbService(uid: user.uid).userData,
@@ -222,16 +214,10 @@ class _DashboardPageState extends State<DashboardPage> {
                       } catch (e) {
                         return Container();
                       }
-
-//
                     }
                 ),
               );
-            } catch (e) {
-              return Container();
-            }
-          }
-      );
+
     }
 
 

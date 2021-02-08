@@ -140,14 +140,4 @@ class AuthService {
     }
   }
 
-  Future<String> getCurrentUID() async {
-    return (await _auth.currentUser()).uid;
-  }
-  Future getCurrentUser() async {
-    return _auth.currentUser;
-  }
-
-//
-
-
 }

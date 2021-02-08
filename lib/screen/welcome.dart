@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_trial_three/screen/homePage.dart';
-import 'travelhistory.dart';
-import 'selfdiagnosisform.dart';
+import 'package:flutter_trial_three/screen/login.dart';
 class WelcomePage extends StatelessWidget {
   static const routeName = '/welcome';
   @override
@@ -62,7 +60,7 @@ class WelcomePage extends StatelessWidget {
                             height: 60,
                             onPressed: () {
                             Navigator.of(context).pushReplacementNamed
-                              (HomePage.routeName);
+                              (LoginPage.routeName);
                             },
                             color: Color(0xFBB1F1F1F),
                             shape: RoundedRectangleBorder(
@@ -78,7 +76,7 @@ class WelcomePage extends StatelessWidget {
                   )
                 ],
               )
-          )
+      )
       ),
     );
   }
