@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="demo.dokibooms.org.flutter_trial_three">
     <application
-        android:label="flutter_trial_three"
+        android:label="QSelf-Health Check"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

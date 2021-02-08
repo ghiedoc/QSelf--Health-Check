@@ -42,6 +42,7 @@ dependencies:
   validators: ^2.0.0
   url_launcher: ^5.7.10
   flutter_spinkit: ^4.1.2
+  awesome_dialog: ^1.3.1
 
 dev_dependencies:
   flutter_test:
@@ -51,10 +52,10 @@ flutter:
   assets:
     - assets/images/qselflogodark.png
     - assets/images/qselflogolight.png
+    - assets/images/completed.png
     - assets/qselflogodark.png
     - assets/qselflogolight.png
-    - assets/images/covid.png
-    - assets/images/building.jpg
+
   fonts:
     - family: OpenSans
       fonts:
