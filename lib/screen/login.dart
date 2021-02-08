@@ -9,12 +9,7 @@ import 'start.dart';
 import 'signup.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'data.dart';
-import 'dashboard.dart';
-import 'selfdiagnosisform.dart';
-import 'admin_result.dart';
-import 'admin_userlist.dart';
 import 'homePage.dart';
-import 'package:flutter_trial_three/database/dbFirebase.dart';
 
 enum AuthFormType { reset }
 
@@ -30,13 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   bool loading = false;
-
   final AuthService _auth = AuthService();
-
-//  String email = '';
-//  String password = '';
-//  String error = '';
-
 
 //ERROR PA DITO
   void validate() async {
