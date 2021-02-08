@@ -5,6 +5,7 @@ import 'package:provider/provider.dart';
 import 'data.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'loading.dart';
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key key}) : super(key: key);
@@ -51,6 +52,7 @@ class _DashboardPageState extends State<DashboardPage> {
 
   @override
   Widget build(BuildContext context) {
+    bool loading = true;
     int day = 0;
     final user= Provider.of<User>(context);
     final border = RoundedRectangleBorder(
@@ -64,7 +66,8 @@ class _DashboardPageState extends State<DashboardPage> {
         day++;
       }
     }}catch(e){
-      return Container(
+      return  loading ? Loading() :  Container(
+
         child: Text('Loading')
       );
     }

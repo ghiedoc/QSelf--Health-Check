@@ -96,31 +96,20 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
         padding: EdgeInsets.all(20.0),
         child: ListView(
           children: <Widget>[
-            GestureDetector(
-              onTap: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) {
-                      return ;
-                    },
-                  ),
-                );
-              },
-              child: Container(
-                height: 130,
-                child: Padding(
-                  padding: padding,
-                  child: Card(
-                    shape: border,
-                    elevation: 3.0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 20.0),
-                      child: Text(
-                        'Hi, Admin',
-                        style: TextStyle(
-                          fontSize: 32,
-                        ),
+            Container(
+              height: 130,
+              child: Padding(
+                padding: padding,
+                child: Card(
+                  shape: border,
+                  elevation: 3.0,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(
+                        vertical: 20.0, horizontal: 20.0),
+                    child: Text(
+                      'Hi, Admin',
+                      style: TextStyle(
+                        fontSize: 32,
                       ),
                     ),
                   ),

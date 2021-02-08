@@ -25,9 +25,7 @@ class _LoginPageState extends State<LoginPage> {
   GlobalKey<FormState> formkey = GlobalKey<FormState>();
 
   bool loading = false;
-
   final AuthService _auth = AuthService();
-
 
   void validate() async {
     var results = formkey.currentState.validate();
