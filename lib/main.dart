@@ -14,7 +14,6 @@ import 'package:flutter_trial_three/screen/dashboard.dart';
 import 'package:flutter_trial_three/screen/admin_dashboard.dart';
 import 'package:flutter_trial_three/screen/admin_userlist.dart';
 import 'package:flutter_trial_three/screen/admin_userinfo.dart';
-import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
 import 'package:flutter_trial_three/screen/admin_result.dart';
 import 'package:flutter_trial_three/screen/homePage.dart';
 import 'package:flutter_trial_three/screen/changepassword.dart';
@@ -23,20 +22,12 @@ import 'package:provider/provider.dart';
 
 void main() async {
 
-  /*  WidgetsFlutterBinding.ensureInitialized() is required in Flutter v1.9.4+
- *  before using any plugins if the code is executed before runApp.
- */
   WidgetsFlutterBinding.ensureInitialized();
 
 
-// Configure injecction
-//  await setupLocator();
 
   runApp(MyApp());
 }
-/**
- *  pantawag sa mga file
- */
 class MyApp extends StatelessWidget {
   static const routeName = '/personalinfo';
   @override
@@ -62,13 +53,11 @@ class MyApp extends StatelessWidget {
             AdminUserInfoPage.routeName: (ctx) => AdminUserInfoPage(),
             AdminUserListPage.routeName: (ctx) => AdminUserListPage(),
             DashboardPage.routeName: (ctx) => DashboardPage(),
-//            SelfDiagnosisFormPage.routeName: (ctx) => SelfDiagnosisFormPage(),
             AdminResultPage.routeName: (ctx) => AdminResultPage(),
             CovidUpdatePage.routeName: (ctx) => CovidUpdatePage(),
             HomePage.routeName: (ctx) => HomePage(),
             ChangePasswordPage.routeName: (ctx) => ChangePasswordPage(),
             DiagnosisForm.routeName: (ctx) => DiagnosisForm(),
-//        HomeScreen.routeName: (ctx)=> HomeScreen(),
           },
     ),
     );

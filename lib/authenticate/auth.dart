@@ -111,7 +111,7 @@ class AuthService {
           email: email, password: password);
       FirebaseUser user = res.user;
 
-      await dbService(uid: user.uid).submitForm
+      await dbService().submitForm
         (
           diagnoseForm.day,
           diagnoseForm.fever,
@@ -119,7 +119,9 @@ class AuthService {
           diagnoseForm.diff_breathing,
           diagnoseForm.sore_throat,
           diagnoseForm.heacache,
-          diagnoseForm.body_weaknesses);
+          diagnoseForm.body_weaknesses,
+          diagnoseForm.userID
+      );
 
       return _userFromdb(user);
     } catch (e) {
@@ -137,15 +139,5 @@ class AuthService {
       return Container();
     }
   }
-
-  Future<String> getCurrentUID() async {
-    return (await _auth.currentUser()).uid;
-  }
-  Future getCurrentUser() async {
-    return _auth.currentUser;
-  }
-
-//
-
 
 }

@@ -9,12 +9,7 @@ import 'start.dart';
 import 'signup.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'data.dart';
-import 'dashboard.dart';
-import 'selfdiagnosisform.dart';
-import 'admin_result.dart';
-import 'admin_userlist.dart';
 import 'homePage.dart';
-import 'package:flutter_trial_three/database/dbFirebase.dart';
 
 enum AuthFormType { reset }
 
@@ -33,12 +28,7 @@ class _LoginPageState extends State<LoginPage> {
 
   final AuthService _auth = AuthService();
 
-//  String email = '';
-//  String password = '';
-//  String error = '';
 
-
-//ERROR PA DITO
   void validate() async {
     var results = formkey.currentState.validate();
       try {
@@ -48,6 +38,7 @@ class _LoginPageState extends State<LoginPage> {
           if (result == null) {
             unsuccessfulToast();
             print(result);
+
         }else{
             setState(() => loading = true);
             successfulToast();
@@ -58,7 +49,6 @@ class _LoginPageState extends State<LoginPage> {
         }
       } catch (e) {
         return e;
-//      }
     }
   }
 
@@ -271,6 +261,8 @@ class _LoginPageState extends State<LoginPage> {
                           if(data.email == "admin@email.com" && data.password == "123456"){
                             successfulToast();
                             Navigator.of(context).pushReplacementNamed(AdminDashboardPage.routeName);
+                            }else if(data.email == " " && data.password == " "){
+                            unsuccessfulToast();
                           }else{
                             validate();
                           }

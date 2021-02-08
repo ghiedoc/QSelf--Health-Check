@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'package:flutter_trial_three/screen/covidupdates.dart';
 import 'package:flutter_trial_three/screen/dashboard.dart';
-import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
 import 'package:flutter_trial_three/screen/changepassword.dart';
 import 'package:flutter_trial_three/screen/diagnosisform.dart';
 import 'package:flutter_trial_three/screen/login.dart';
@@ -96,7 +95,6 @@ class _HomePageState extends State<HomePage> {
             return MaterialApp(
               color: Color(0xFFFA8072),
               home: Scaffold(
-//        body: Drawable(),
                 body: PageView(
                   controller: _pageController,
                   children: _screens,

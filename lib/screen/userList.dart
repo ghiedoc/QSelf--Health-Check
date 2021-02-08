@@ -11,9 +11,7 @@ class userInfo extends StatefulWidget {
 class _userInfoState extends State<userInfo> {
   @override
   Widget build(BuildContext context) {
-    final user = Provider.of<List<userList>>(context);
-    user.forEach((user){
-    });
+    final user = Provider.of<List<userList>>(context) ?? [];
 
     return Container(
       child: ListView.builder(

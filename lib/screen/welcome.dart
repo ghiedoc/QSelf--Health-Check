@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_trial_three/screen/homePage.dart';
-import 'travelhistory.dart';
-import 'selfdiagnosisform.dart';
 import 'package:flutter_trial_three/screen/login.dart';
 class WelcomePage extends StatelessWidget {
   static const routeName = '/welcome';

@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
-import 'package:flutter_trial_three/screen/selfdiagnosisform.dart';
-import 'package:flutter_trial_three/screen/covidupdates.dart';
 import 'package:provider/provider.dart';
 import 'data.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DashboardPage extends StatefulWidget {
   DashboardPage({Key key}) : super(key: key);
@@ -17,9 +16,20 @@ class DashboardPage extends StatefulWidget {
 }
 
 class _DashboardPageState extends State<DashboardPage> {
-  @override
-  void initState() {
+  //pambilang ng history (day)
+  QuerySnapshot querySnapshots;
+
+  void initState(){
     super.initState();
+    getDiagnoseForm().then((results){
+      setState(() {
+        querySnapshots = results;
+      });
+    });
+  }
+  //pang kuha ng Diagnosis
+  getDiagnoseForm() async{
+    return await Firestore.instance.collection('diagnose_form').getDocuments();
   }
 
   opencovidupdateURL() async {
@@ -38,353 +48,44 @@ class _DashboardPageState extends State<DashboardPage> {
     }
   }
 
+
   @override
   Widget build(BuildContext context) {
+    int day = 0;
     final user= Provider.of<User>(context);
-    final form = Provider.of<User>(context);
     final border = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     );
     final padding = const EdgeInsets.all(4.0);
 
-    return StreamBuilder<userform>(
-        stream: dbService(uid: form.uid).userRes,
-      builder: (context, snapshot) {
-          try{
-            userform user_form  = snapshot.data;
-            return Scaffold(
-              body: StreamBuilder<userList>(
-                  stream: dbService(uid: form.uid).userData,
-                  builder: (context, snapshot) {
-                    try{
-                      userList user_list = snapshot.data;
-                      return Container(
-                        padding: EdgeInsets.all(20.0),
-                        child: ListView(
-                          children: <Widget>[
-                            Text('Hello, ${user_list.fname} ${user_list.lname}',
-                              style: TextStyle(
-                                fontSize: 32,
-                                //fontWeight: FontWeight.bold,
-                              ),),
-                            Container(
-                              margin: EdgeInsets.only(left: 10, bottom: 10),
-//                      child: Text(
-//                        "Dashboard",
-//                        style: TextStyle(
-//                          fontSize: 36,
-//                          fontWeight: FontWeight.bold,
-//                        ),
-//                      ),
-                            ),
-                            GestureDetector(
-                              onTap: () {
-                                Navigator.of(context).push(
-                                  MaterialPageRoute(
-                                    builder: (context) {
-                                      return;
-                                    },
-                                  ),
-                                );
-                              },
-                              child: Container(
-                                height: 130,
-                                child: Padding(
-                                  padding: padding,
-                                  /**
-                                   * CONTAINER NG DAY 1 (1ST CARD)
-                                   */
-                                  child: Card(
-                                    shape: border,
-                                    elevation: 3.0,
-                                    child: Column(
-                                      children: [
-                                        Row(
-                                          children: [
-                                            Padding(
-                                              padding: const EdgeInsets.all(8.0),
-                                              child: Text(
-                                                'Day ${user_form.day}',
-                                                style: TextStyle(
-                                                  fontSize: 32,
-                                                  fontWeight: FontWeight.bold,
-                                                ),
-                                              ),
-                                            ),
-                                          ],
-                                        ),
-                                        Align(
-                                          alignment: Alignment.bottomRight,
-                                          child: Text(
-                                            '',
-                                            style: TextStyle(
-                                              fontSize: 18,
-                                              fontWeight: FontWeight.bold,
-                                            ),
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                            /**
-                             * CONTAINER 2
-                             */
-                            GestureDetector(
-                              onTap: () {
-                                opencovidupdateURL();
-                              },
-                              child: Container(
-                                height: 90,
-                                child: Padding(
-                                  padding: padding,
-                                  child: Card(
-                                    color: Color(0xFFF78977),
-                                    shape: border,
-                                    elevation: 3.0,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'COVID-19 News',
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                            /**
-                             * CONTAINER 3
-                             */
-                            GestureDetector(
-                              onTap: () {
-                                openGuidelinesURL();
-                              },
-                              child: Container(
-                                height: 90,
-                                child: Padding(
-                                  padding: padding,
-                                  child: Card(
-                                    color: Color(0xFFFF8A94D),
-                                    shape: border,
-                                    elevation: 3.0,
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: [
-                                        Text(
-                                          'Guidelines',
-                                          style: TextStyle(
-                                            fontSize: 30,
-                                            color: Colors.white,
-                                          ),
-                                        ),
-                                      ],
-                                    ),
-                                  ),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                      );
-
-                    }catch(e){
-                      return Scaffold(
-                        body: StreamBuilder<userList>(
-                            stream: dbService(uid: form.uid).userData,
-                            builder: (context, snapshot) {
-                              try{
-                                userList user_list = snapshot.data;
-                                return Container(
-                                  padding: EdgeInsets.all(20.0),
-                                  child: ListView(
-                                    children: <Widget>[
-                                      Text('Hello, ${user_list.fname} ${user_list.lname}',
-                                        style: TextStyle(
-                                          fontSize: 32,
-                                          //fontWeight: FontWeight.bold,
-                                        ),),
-                                      Container(
-                                        margin: EdgeInsets.only(left: 10, bottom: 10),
-//                      child: Text(
-//                        "Dashboard",
-//                        style: TextStyle(
-//                          fontSize: 36,
-//                          fontWeight: FontWeight.bold,
-//                        ),
-//                      ),
-                                      ),
-                                      GestureDetector(
-                                        onTap: () {
-                                          Navigator.of(context).push(
-                                            MaterialPageRoute(
-                                              builder: (context) {
-                                                return;
-                                              },
-                                            ),
-                                          );
-                                        },
-                                        child: Container(
-                                          height: 130,
-                                          child: Padding(
-                                            padding: padding,
-                                            /**
-                                             * CONTAINER NG DAY 1 (1ST CARD)
-                                             */
-                                            child: Card(
-                                              shape: border,
-                                              elevation: 3.0,
-                                              child: Column(
-                                                children: [
-                                                  Row(
-                                                    children: [
-                                                      Padding(
-                                                        padding: const EdgeInsets.all(8.0),
-                                                        child: Text(
-                                                          'Day 1',
-                                                          style: TextStyle(
-                                                            fontSize: 32,
-                                                            fontWeight: FontWeight.bold,
-                                                          ),
-                                                        ),
-                                                      ),
-                                                    ],
-                                                  ),
-                                                  Align(
-                                                    alignment: Alignment.bottomRight,
-                                                    child: Text(
-                                                      '',
-                                                      style: TextStyle(
-                                                        fontSize: 18,
-                                                        fontWeight: FontWeight.bold,
-                                                      ),
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                      /**
-                                       * CONTAINER 2
-                                       */
-                                      GestureDetector(
-                                        onTap: () {
-                                          opencovidupdateURL();
-                                        },
-                                        child: Container(
-                                          height: 90,
-                                          child: Padding(
-                                            padding: padding,
-                                            child: Card(
-                                              color: Color(0xFFF78977),
-                                              shape: border,
-                                              elevation: 3.0,
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'COVID-19 News',
-                                                    style: TextStyle(
-                                                      fontSize: 30,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-
-                                      /**
-                                       * CONTAINER 3
-                                       */
-                                      GestureDetector(
-                                        onTap: () {
-                                          openGuidelinesURL();
-                                        },
-                                        child: Container(
-                                          height: 90,
-                                          child: Padding(
-                                            padding: padding,
-                                            child: Card(
-                                              color: Color(0xFFFF8A94D),
-                                              shape: border,
-                                              elevation: 3.0,
-                                              child: Column(
-                                                mainAxisAlignment: MainAxisAlignment.center,
-                                                children: [
-                                                  Text(
-                                                    'Guidelines',
-                                                    style: TextStyle(
-                                                      fontSize: 30,
-                                                      color: Colors.white,
-                                                    ),
-                                                  ),
-                                                ],
-                                              ),
-                                            ),
-                                          ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                );
-
-                              }catch(e){
-                                return Container(child: Text("ERROR"),);
-                              }
-
-//
-                            }
-                        ),
-
-                      );
-                    }
-
-//
-                  }
-              ),
-//        height: MediaQuery.of(context).size.height,
-//        width: double.infinity,
-//        margin: EdgeInsets.only(left: 10, right: 10),
-            );
-
-          }catch(e){
+    try{
+    for(int x =0; x < querySnapshots.documents.length; x++) {
+      if (querySnapshots.documents[x].data['userID'] == user.uid) {
+        day++;
+      }
+    }}catch(e){
+      return Container(
+        child: Text('Loading')
+      );
+    }
               return Scaffold(
                 body: StreamBuilder<userList>(
-                    stream: dbService(uid: form.uid).userData,
+                    stream: dbService(uid: user.uid).userData,
                     builder: (context, snapshot) {
-                      try{
+                      try {
                         userList user_list = snapshot.data;
                         return Container(
                           padding: EdgeInsets.all(20.0),
                           child: ListView(
                             children: <Widget>[
-                              Text('Hello, ${user_list.fname} ${user_list.lname}',
+                              Text(
+                                'Hello, ${user_list.fname} ${user_list.lname}',
                                 style: TextStyle(
                                   fontSize: 32,
                                   //fontWeight: FontWeight.bold,
                                 ),),
                               Container(
                                 margin: EdgeInsets.only(left: 10, bottom: 10),
-//                      child: Text(
-//                        "Dashboard",
-//                        style: TextStyle(
-//                          fontSize: 36,
-//                          fontWeight: FontWeight.bold,
-//                        ),
-//                      ),
                               ),
                               GestureDetector(
                                 onTap: () {
@@ -411,9 +112,10 @@ class _DashboardPageState extends State<DashboardPage> {
                                           Row(
                                             children: [
                                               Padding(
-                                                padding: const EdgeInsets.all(8.0),
+                                                padding: const EdgeInsets.all(
+                                                    8.0),
                                                 child: Text(
-                                                  'Day 1',
+                                                  'Day ${day}',
                                                   style: TextStyle(
                                                     fontSize: 32,
                                                     fontWeight: FontWeight.bold,
@@ -454,7 +156,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                       shape: border,
                                       elevation: 3.0,
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment
+                                            .center,
                                         children: [
                                           Text(
                                             'COVID-19 News',
@@ -486,7 +189,8 @@ class _DashboardPageState extends State<DashboardPage> {
                                       shape: border,
                                       elevation: 3.0,
                                       child: Column(
-                                        mainAxisAlignment: MainAxisAlignment.center,
+                                        mainAxisAlignment: MainAxisAlignment
+                                            .center,
                                         children: [
                                           Text(
                                             'Guidelines',
@@ -504,20 +208,14 @@ class _DashboardPageState extends State<DashboardPage> {
                             ],
                           ),
                         );
-
-                      }catch(e){
+                      } catch (e) {
                         return Container();
                       }
-
-//
                     }
                 ),
-
               );
-          }
 
-      }
-    );
-  }
+    }
+
 
 }

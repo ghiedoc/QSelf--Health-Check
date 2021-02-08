@@ -3,26 +3,22 @@ import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'data.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
-import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
-import 'package:argon_buttons_flutter/argon_buttons_flutter.dart';
 import 'package:provider/provider.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class DiagnosisForm extends StatefulWidget {
-
   DiagnosisForm({Key key}) : super(key: key);
   static const routeName = '/DiagnosisForm';
 
   @override
   _DiagnosisFormState createState() => _DiagnosisFormState();
-
 }
 
 class _DiagnosisFormState extends State<DiagnosisForm> {
-
   final AuthService auth = AuthService();
   bool singleTap = true;
   int _counter = 0;
@@ -44,10 +40,20 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
   // ONCHANGED HERE
   ValueChanged _onChanged = (val) => print(val);
 
-  @override
-  void initState() {
+  //pambilang ng history (day)
+  QuerySnapshot querySnapshots;
+
+  void initState(){
     super.initState();
-    initialize();
+    getDiagnoseForm().then((results){
+      setState(() {
+        querySnapshots = results;
+      });
+    });
+  }
+  //pang kuha ng Diagnosis
+  getDiagnoseForm() async{
+    return await Firestore.instance.collection('diagnose_form').getDocuments();
   }
 
   final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin = FlutterLocalNotificationsPlugin();
@@ -95,7 +101,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
     if (payLoad != null) {
       print(payLoad);
     }
-
     // we can set navigator to navigate another screen
   }
 
@@ -115,27 +120,38 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
     );
   }
 
-  _dayIncreement(int count) async {
-    if(count <=14){
-      return diagnoseForm.day =diagnoseForm.day+1;
-    } else{
-      return Container(
-        child: Text('COMPLETE'),
-      );
-    }
-  }
-
   @override
   Widget build(BuildContext context) {
+    final user= Provider.of<User>(context);
+    int day=0;
+    try{
+      for(int x =0; x < querySnapshots.documents.length; x++) {
+        if (querySnapshots.documents[x].data['userID'] == user.uid) {
+          day++;
+        }
+      }}catch(e){
+      return Container(
+          child: Text('Loading')
+      );
+    }
+    diagnoseForm.day = day+1;
+
+    try{
+      if(day == 14){
+        return Container(
+            child: Text("END")
+        );
+      }
+    }catch(e){
+
+    }
+
     final form= Provider.of<User>(context);
     return StreamBuilder<userform>(
         stream: dbService(uid: form.uid).userRes,
         builder: (context, snapshot) {
           try{
-            userform user_form  = snapshot.data;
-//            print(user_form.day);
             return Scaffold(
-//              backgroundColor: Color(0xFFEFEFEF),
               body: Padding(
                 padding: EdgeInsets.all(10),
                 child: SingleChildScrollView(
@@ -146,7 +162,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                         child: FormBuilder(
                           // context,
                           key: _fbKey,
-//                autovalidate: true,
                           readOnly: false,
                           child: Column(
                             children: <Widget>[
@@ -296,6 +311,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                 //leadingInput: true,
                                 onChanged: (val){
                                   diagnoseForm.heacache = val;
+                                  diagnoseForm.userID = form.uid;
                                   print(val);
                                 },
                                 leadingInput: true,
@@ -355,9 +371,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                   dynamic result = await auth.insertForm(data.email, data.password);
                                   print("pasok na: $result");
                                   _fbKey.currentState.reset();
-                                  _dayIncreement(user_form.day);
                                   _showNotificationsAfterSecond();
-//                          print(_fbKey.currentState.value);
                                   print(_fbKey.currentState.value);
                                   _fbKey.currentState.reset();
                                 } else {
