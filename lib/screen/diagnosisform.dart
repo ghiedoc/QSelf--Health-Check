@@ -9,6 +9,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'loading.dart';
 
 class DiagnosisForm extends StatefulWidget {
   DiagnosisForm({Key key}) : super(key: key);
@@ -21,6 +22,7 @@ class DiagnosisForm extends StatefulWidget {
 class _DiagnosisFormState extends State<DiagnosisForm> {
   final AuthService auth = AuthService();
   bool singleTap = true;
+  bool loading = false;
   int _counter = 0;
   _loadCounter() async {
     SharedPreferences prefs = await SharedPreferences.getInstance();
@@ -122,6 +124,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
 
   @override
   Widget build(BuildContext context) {
+    bool loading = true;
     final user= Provider.of<User>(context);
     int day=0;
     try{
@@ -130,7 +133,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
           day++;
         }
       }}catch(e){
-      return Container(
+      return loading ? Loading() : Container(
           child: Text('Loading')
       );
     }
