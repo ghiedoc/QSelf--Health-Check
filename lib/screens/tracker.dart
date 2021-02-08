@@ -36,30 +36,9 @@ class _TrackerState extends State<Tracker> {
       body: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-
-          Expanded(
-            child: Container(
-              padding: EdgeInsets.all(20),
-              decoration: BoxDecoration(
-                color: body,
-                borderRadius: BorderRadius.only(
-//                  bottomRight: Radius.circular(50),
-//                  bottomLeft: Radius.circular(50),
-                )
-              ),
-              child: AnimatedSwitcher(
-                duration: Duration(milliseconds: 150),
-                child: navigationStatus == NavigationStatus.GLOBAL ? Global() : Country(),
-              ),
-            ),
-          ),
-
-          Container(
-            height: size.height * 0.06,
-            child: Row(
+             Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: <Widget>[
-
                 NavigationOption(
                   title: "Global",
                   selected: navigationStatus == NavigationStatus.GLOBAL,
@@ -82,6 +61,21 @@ class _TrackerState extends State<Tracker> {
                 )
 
               ],
+            ),
+
+
+          Expanded(
+            child: Container(
+              padding: EdgeInsets.all(20),
+              decoration: BoxDecoration(
+                color: body,
+                borderRadius: BorderRadius.only(
+                )
+              ),
+              child: AnimatedSwitcher(
+                duration: Duration(milliseconds: 150),
+                child: navigationStatus == NavigationStatus.GLOBAL ? Global() : Country(),
+              ),
             ),
           ),
 
