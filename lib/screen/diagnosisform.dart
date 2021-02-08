@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
@@ -9,6 +11,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:cool_alert/cool_alert.dart';
 
 class DiagnosisForm extends StatefulWidget {
   DiagnosisForm({Key key}) : super(key: key);
@@ -28,6 +31,8 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
       _counter = (prefs.getInt('counter') ?? 0);
     });
   }
+
+
 
 //  var data;
   bool autoValidate = true;
@@ -120,8 +125,38 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
     );
   }
 
+
+
+  var timeDelayed = DateTime.now().
+  add(Duration(seconds: 5));
+
   @override
   Widget build(BuildContext context) {
+    final successAlert = _buildButton(
+      onTap: () async {
+        if (_fbKey.currentState.saveAndValidate()) {
+          dynamic result = await auth.insertForm(data.email, data.password);
+          print("pasok na: $result");
+          _fbKey.currentState.reset();
+          _showNotificationsAfterSecond();
+          _fbKey.currentState.reset();
+          CoolAlert.show(
+            context: context,
+            type: CoolAlertType.success,
+            text: "Transaction completed successfully!",
+          );
+        } else {
+          print(_fbKey.currentState.value);
+          print("validation failed");
+        }
+      },
+      color: Color(0xFFFFF5555),
+      text: "Submit",
+
+    );
+
+
+
     final user= Provider.of<User>(context);
     int day=0;
     try{
@@ -137,7 +172,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
     diagnoseForm.day = day+1;
 
     try{
-      if(day == 14){
+      if(day >= 14){
         return Container(
             child: Text("END")
         );
@@ -360,26 +395,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                       Row(
                         children: <Widget>[
                           Expanded(
-                            child: MaterialButton(
-                              color: Color(0xFFFFF5555),
-                              child: Text(
-                                "Submit",
-                                style: TextStyle(color: Colors.white),
-                              ),
-                              onPressed: () async {
-                                if (_fbKey.currentState.saveAndValidate()) {
-                                  dynamic result = await auth.insertForm(data.email, data.password);
-                                  print("pasok na: $result");
-                                  _fbKey.currentState.reset();
-                                  _showNotificationsAfterSecond();
-                                  print(_fbKey.currentState.value);
-                                  _fbKey.currentState.reset();
-                                } else {
-                                  print(_fbKey.currentState.value);
-                                  print("validation failed");
-                                }
-                              },
-                            ),
+                            child:successAlert,
                           ),
                         ],
                       ),
@@ -397,3 +413,27 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
 
   }
 }
+
+Widget _buildButton({VoidCallback onTap, String text, Color color}) {
+  return Padding(
+    padding: const EdgeInsets.only(bottom: 10.0),
+    child: MaterialButton(
+      color: color,
+      minWidth: double.infinity,
+      shape:
+      RoundedRectangleBorder(borderRadius: BorderRadius.circular(30.0)),
+      onPressed: onTap,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(vertical: 15.0),
+        child: Text(
+          text,
+          style: TextStyle(
+            color: Colors.white,
+          ),
+        ),
+      ),
+    ),
+  );
+}
+
+
