@@ -68,7 +68,8 @@ class _TrackerState extends State<Tracker> {
             child: Container(
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: body,
+                color:
+                Colors.grey[100],
                 borderRadius: BorderRadius.only(
                 )
               ),
