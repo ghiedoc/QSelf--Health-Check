@@ -1,10 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_form_builder/flutter_form_builder.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
-import 'package:flutter_trial_three/screen/AlertDialog.dart';
 import 'data.dart';
-import 'package:flutter_trial_three/screen/login.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 
 class ChangePasswordPage extends StatefulWidget {
@@ -23,7 +20,6 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
 
   @override
   static const routeName = '/changepass';
-  //var _formKey = GlobalKey<FormState>();
   bool checkCurrentPasswordValid = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 

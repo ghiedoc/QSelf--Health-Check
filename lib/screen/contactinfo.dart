@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/services.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'login.dart';
-import 'start.dart';
 import 'data.dart';
 import 'travelhistory.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';

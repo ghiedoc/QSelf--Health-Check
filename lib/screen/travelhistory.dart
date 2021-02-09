@@ -2,12 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-import 'login.dart';
-import 'start.dart';
 import 'data.dart';
 import 'welcome.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
-import 'package:dio/dio.dart';
 import 'loading.dart';
 
 class TravelHistoryPage extends StatefulWidget {

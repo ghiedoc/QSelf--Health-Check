@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
-
 import '../screens/global_statistics.dart';
 import '../screens/global_loading.dart';
-
 import '../services/covid_service.dart';
-
 import '../models/global_summary.dart';
 
 CovidService covidService = CovidService();
