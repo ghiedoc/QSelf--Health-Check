@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
-import 'package:flutter_trial_three/screen/admin_userinfo.dart';
 import 'package:flutter_trial_three/screen/admin_userlist.dart';
-
 import 'login.dart';
 
 class AdminDashboardPage extends StatefulWidget {
@@ -241,8 +239,6 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 ),
               ),
             ),
-
-
           ],
         ),
       ),
