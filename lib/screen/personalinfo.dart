@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
-import 'login.dart';
-import 'start.dart';
-import 'signup.dart';
-import 'signup.dart';
 import 'data.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'contactinfo.dart';
 import 'package:fluttertoast/fluttertoast.dart';
-//import 'admin_userinfo.dart';
-import 'admin_userlist.dart';
 import 'loading.dart';
 
 class PersonalInfoPage extends StatefulWidget {

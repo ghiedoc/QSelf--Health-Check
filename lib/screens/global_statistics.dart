@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:timeago/timeago.dart' as timeago;
-
 import '../utils/constants.dart';
-
 import '../models/global_summary.dart';
 
 class GlobalStatistics extends StatelessWidget {
@@ -135,8 +133,6 @@ class GlobalStatistics extends StatelessWidget {
 
                   ],
                 ),
-
-                
               ],
             ),
           ],

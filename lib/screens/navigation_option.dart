@@ -47,8 +47,6 @@ class NavigationOption extends StatelessWidget {
             ],
           )
           : Container(),
-          
-
         ],
       ),
     );

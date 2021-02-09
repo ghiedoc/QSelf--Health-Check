@@ -1,10 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:charts_flutter/flutter.dart' as charts;
-
 import 'chart.dart';
-
 import '../utils/constants.dart';
-
 import '../models/country_summary.dart';
 import '../models/time_series_cases.dart';
 

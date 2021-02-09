@@ -52,8 +52,6 @@ flutter:
     - assets/images/qselflogodark.png
     - assets/images/qselflogolight.png
     - assets/images/completed.png
-    - assets/qselflogodark.png
-    - assets/qselflogolight.png
 
   fonts:
     - family: OpenSans

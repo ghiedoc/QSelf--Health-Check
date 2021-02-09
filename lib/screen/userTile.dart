@@ -2,19 +2,13 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'data.dart';
-import 'formList.dart';
 import 'admin_result.dart';
-import 'package:flutter_trial_three/database/dbFirebase.dart';
 
 class userTile extends StatelessWidget {
   final FirebaseAuth _firebaseAuth = FirebaseAuth.instance;
   final userList user_t;
   userTile({this.user_t});
 
-//   userList get userT {
-////     print('dito ${user_t.uid}');
-//    return user_t;
-//  }
   final AuthService _auth = AuthService();
 
   @override
