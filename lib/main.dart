@@ -13,12 +13,13 @@ import 'package:flutter_trial_three/screen/welcome.dart';
 import 'package:flutter_trial_three/screen/dashboard.dart';
 import 'package:flutter_trial_three/screen/admin_dashboard.dart';
 import 'package:flutter_trial_three/screen/admin_userlist.dart';
-import 'package:flutter_trial_three/screen/admin_userinfo.dart';
 import 'package:flutter_trial_three/screen/admin_result.dart';
 import 'package:flutter_trial_three/screen/homePage.dart';
 import 'package:flutter_trial_three/screen/changepassword.dart';
 import 'package:flutter_trial_three/screen/data.dart';
 import 'package:provider/provider.dart';
+import 'package:flutter_trial_three/admin_contact/admin_user_contact.dart';
+import 'package:flutter_trial_three/admin_user_info/admin_info.dart';
 
 void main() async {
 
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
           ),
           home: starts(),
           routes: {
+
             starts.routeName: (ctx)=> starts(),
             LoginPage.routeName: (ctx)=> LoginPage(),
             SignUpPage.routeName: (ctx)=> SignUpPage(),
@@ -50,8 +52,9 @@ class MyApp extends StatelessWidget {
             TravelHistoryPage.routeName: (ctx) => TravelHistoryPage(),
             WelcomePage.routeName: (ctx) => WelcomePage(),
             AdminDashboardPage.routeName: (ctx) => AdminDashboardPage(),
-            AdminUserInfoPage.routeName: (ctx) => AdminUserInfoPage(),
+            AdminUserContact.routeName: (ctx) => AdminUserContact(),
             AdminUserListPage.routeName: (ctx) => AdminUserListPage(),
+            adminInfo.routeName: (ctx) =>adminInfo (),
             DashboardPage.routeName: (ctx) => DashboardPage(),
             AdminResultPage.routeName: (ctx) => AdminResultPage(),
             CovidUpdatePage.routeName: (ctx) => CovidUpdatePage(),

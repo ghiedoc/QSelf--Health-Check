@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
-import 'package:flutter_trial_three/screen/admin_userinfo.dart';
 import 'package:flutter_trial_three/screen/admin_userlist.dart';
-
+import 'package:flutter_trial_three/admin_contact/admin_user_contact.dart';
+import 'package:flutter_trial_three/admin_user_info/admin_info.dart';
 import 'login.dart';
 
 class AdminDashboardPage extends StatefulWidget {
@@ -158,7 +158,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return;
+                      return AdminUserContact();
                     },
                   ),
                 );
@@ -194,7 +194,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return;
+                      return adminInfo();
                     },
                   ),
                 );
@@ -214,7 +214,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                           child: Text(
                             'User Travel Information',
                             style: TextStyle(
-                              fontSize: 32,
+                              fontSize: 27,
                             ),
                           ),
                         ),
@@ -224,8 +224,6 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 ),
               ),
             ),
-
-
           ],
         ),
       ),
