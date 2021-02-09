@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_trial_three/screen/login.dart';
+
 class WelcomePage extends StatelessWidget {
   static const routeName = '/welcome';
   @override
@@ -46,7 +47,7 @@ class WelcomePage extends StatelessWidget {
                   height: MediaQuery.of(context).size.height / 4,
                   decoration: BoxDecoration(
                     image: DecorationImage(
-                      image: AssetImage('assets/qselflogodark.png')
+                      image: AssetImage('assets/images/qselflogodark.png')
                     )
                   )
                 ),

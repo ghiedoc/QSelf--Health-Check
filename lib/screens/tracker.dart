@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../utils/constants.dart';
 import '../screens/navigation_option.dart';
 import '../screens/global.dart';
@@ -59,7 +58,6 @@ class _TrackerState extends State<Tracker> {
                     });
                   },
                 )
-
               ],
             ),
 
@@ -79,7 +77,6 @@ class _TrackerState extends State<Tracker> {
               ),
             ),
           ),
-
         ],
       ),
     );

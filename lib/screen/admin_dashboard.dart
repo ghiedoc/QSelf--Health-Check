@@ -128,26 +128,104 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 );
               },
               child: Container(
-                height: 90,
+                height: 100,
                 child: Padding(
                   padding: padding,
                   child: Card(
                     shape: border,
                     elevation: 3.0,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 20.0, horizontal: 20.0),
-                      child: Text(
-                        'User List',
-                        style: TextStyle(
-                          fontSize: 32,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20.0, horizontal: 10.0),
+                          child: Text(
+                            'User Days Result',
+                            style: TextStyle(
+                              fontSize: 32,
+                            ),
+                          ),
                         ),
-                      ),
+                      ],
                     ),
                   ),
                 ),
               ),
             ),
+
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return;
+                    },
+                  ),
+                );
+              },
+              child: Container(
+                height: 100,
+                child: Padding(
+                  padding: padding,
+                  child: Card(
+                    shape: border,
+                    elevation: 3.0,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20.0, horizontal: 10.0),
+                          child: Text(
+                            'User Contact',
+                            style: TextStyle(
+                              fontSize: 32,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+            GestureDetector(
+              onTap: () {
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) {
+                      return;
+                    },
+                  ),
+                );
+              },
+              child: Container(
+                height: 100,
+                child: Padding(
+                  padding: padding,
+                  child: Card(
+                    shape: border,
+                    elevation: 3.0,
+                    child: Column(
+                      children: [
+                        Padding(
+                          padding: const EdgeInsets.symmetric(
+                              vertical: 20.0, horizontal: 10.0),
+                          child: Text(
+                            'User Travel Information',
+                            style: TextStyle(
+                              fontSize: 32,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ),
+
+
           ],
         ),
       ),

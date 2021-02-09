@@ -102,6 +102,7 @@ class _HomePageState extends State<HomePage> {
                   physics: NeverScrollableScrollPhysics(),
                 ),
                 bottomNavigationBar: BottomNavigationBar(
+                  //backgroundColor: Color(0xFFFA8072),
                   onTap: _onItemTapped,
                   items: [
                     BottomNavigationBarItem(

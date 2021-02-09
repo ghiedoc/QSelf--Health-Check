@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_trial_three/screen/login.dart';
 import 'login.dart';
 import 'signup.dart';
-import 'loading.dart';
 
 class starts extends StatefulWidget {
   @override
@@ -52,7 +51,7 @@ class _startState extends State<starts> {
                 height: MediaQuery.of(context).size.height / 5,
                 decoration: BoxDecoration(
                   image: DecorationImage(
-                    image: AssetImage('assets/qselflogodark.png')
+                    image: AssetImage('assets/images/qselflogodark.png')
                   )
                 )
               ),

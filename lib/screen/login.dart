@@ -121,8 +121,8 @@ class _LoginPageState extends State<LoginPage> {
                           child: Container(
                             child: Image.asset(
                               'assets/images/qselflogolight.png',
-                              height: 200,
-                              width: 200,
+                              height: 170,
+                              width: 170,
                             ),
                           ),
                         ),
