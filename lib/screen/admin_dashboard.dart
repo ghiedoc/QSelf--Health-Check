@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
-import 'package:flutter_trial_three/screen/admin_userinfo.dart';
 import 'package:flutter_trial_three/screen/admin_userlist.dart';
-
+import 'package:flutter_trial_three/admin_contact/admin_user_contact.dart';
+import 'package:flutter_trial_three/admin_user_info/admin_info.dart';
 import 'login.dart';
 
 class AdminDashboardPage extends StatefulWidget {
@@ -167,7 +167,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return;
+                      return AdminUserContact();
                     },
                   ),
                 );
@@ -207,7 +207,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 Navigator.of(context).push(
                   MaterialPageRoute(
                     builder: (context) {
-                      return;
+                      return adminInfo();
                     },
                   ),
                 );
@@ -223,17 +223,13 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 20.0, horizontal: 10.0),
-                          child: Row(
-                            children: [
-                              Icon(Icons.flight, size: 50, color: Color(0xFF00af91)),
-                              Text(
-                                'User Travel Information',
-                                style: TextStyle(
-                                  fontSize: 30,
-                                ),
-                              ),
-                            ],
-                          ),
+
+                          child: Text(
+                            'User Travel Information',
+                            style: TextStyle(
+                              fontSize: 27,
+                            ),
+
                         ),
                       ],
                     ),
@@ -241,8 +237,6 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                 ),
               ),
             ),
-
-
           ],
         ),
       ),

@@ -76,8 +76,36 @@ class dbService {
       'body_weaknesses': body_weaknesses,
     });
   }
+  Stream<List<travelInfo>> get travel {
+    return travel_histo.snapshots()
+        .map(_userTravel);
+  }
+
+  List<travelInfo> _userTravel(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return travelInfo(
+          travel_arrival_date: doc.data['travel_arrival_date'] ?? 0,
+          travel_country: doc.data['travel_country'] ?? '',
+      );
+    }).toList();
+  }
 
 
+  Stream<List<AdminuserContact>> get contact {
+    return userContact.snapshots()
+        .map(_userContact);
+  }
+  List<AdminuserContact> _userContact(QuerySnapshot snapshot) {
+    return snapshot.documents.map((doc) {
+      return AdminuserContact(
+          contact_number: doc.data['contact_no'] ?? 0,
+          contact_emergency: doc.data['contact_emergency_no'] ?? 0,
+          quar_hotel: doc.data['quar_hotel'] ?? ''
+      );
+    }).toList();
+  }
+  
+  
 
   Stream<List<userList>> get user {
     return userCollect.snapshots()
