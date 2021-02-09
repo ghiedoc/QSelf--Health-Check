@@ -106,11 +106,16 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                   child: Padding(
                     padding: const EdgeInsets.symmetric(
                         vertical: 20.0, horizontal: 20.0),
-                    child: Text(
-                      'Hi, Admin',
-                      style: TextStyle(
-                        fontSize: 32,
-                      ),
+                    child: Row(
+                      children: [
+                        Icon(Icons.face_rounded, size: 50, color: Color(0xFFFF5555)),
+                        Text(
+                          'Hi, Administrator',
+                          style: TextStyle(
+                            fontSize: 32,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
                 ),
@@ -127,8 +132,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                   ),
                 );
               },
-              child: Container(
-                height: 100,
+              child: Expanded(
                 child: Padding(
                   padding: padding,
                   child: Card(
@@ -139,11 +143,16 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 20.0, horizontal: 10.0),
-                          child: Text(
-                            'User Days Result',
-                            style: TextStyle(
-                              fontSize: 32,
-                            ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.wb_sunny, size: 50, color: Color(0xFFffc75f),),
+                              Text(
+                                'User Diagnosis Result',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -163,8 +172,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                   ),
                 );
               },
-              child: Container(
-                height: 100,
+              child: Expanded(
                 child: Padding(
                   padding: padding,
                   child: Card(
@@ -175,11 +183,16 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 20.0, horizontal: 10.0),
-                          child: Text(
-                            'User Contact',
-                            style: TextStyle(
-                              fontSize: 32,
-                            ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.contact_page, size: 50, color: Color(0xFF1687a7)),
+                              Text(
+                                'User Contact',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
@@ -199,8 +212,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                   ),
                 );
               },
-              child: Container(
-                height: 100,
+              child: Expanded(
                 child: Padding(
                   padding: padding,
                   child: Card(
@@ -211,11 +223,16 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 20.0, horizontal: 10.0),
-                          child: Text(
-                            'User Travel Information',
-                            style: TextStyle(
-                              fontSize: 32,
-                            ),
+                          child: Row(
+                            children: [
+                              Icon(Icons.flight, size: 50, color: Color(0xFF00af91)),
+                              Text(
+                                'User Travel Information',
+                                style: TextStyle(
+                                  fontSize: 30,
+                                ),
+                              ),
+                            ],
                           ),
                         ),
                       ],
