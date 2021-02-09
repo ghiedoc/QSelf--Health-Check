@@ -11,6 +11,7 @@ import 'package:flutter_trial_three/database/dbFirebase.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cool_alert/cool_alert.dart';
+import 'loading.dart';
 
 class DiagnosisForm extends StatefulWidget {
   DiagnosisForm({Key key}) : super(key: key);
@@ -30,8 +31,6 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
       _counter = (prefs.getInt('counter') ?? 0);
     });
   }
-
-
 
 //  var data;
   bool autoValidate = true;
@@ -154,8 +153,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
 
     );
 
-
-
+    bool loading = true;
     final user= Provider.of<User>(context);
     int day=0;
     try{
@@ -164,7 +162,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
           day++;
         }
       }}catch(e){
-      return Container(
+      return loading ? Loading() : Container(
           child: Text('Loading')
       );
     }

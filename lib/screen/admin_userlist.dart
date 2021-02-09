@@ -32,7 +32,7 @@ class _AdminUserListPageState extends State<AdminUserListPage> {
           backgroundColor: Color(0xFFFA8072),
           elevation: 0,
           iconTheme: IconThemeData(color: Colors.black),
-          title: Text("User List"),
+          title: Text("User Diagnosis Results"),
         ),
         //BODY
         body: userInfo(),
