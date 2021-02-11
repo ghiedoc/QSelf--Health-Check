@@ -68,17 +68,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
           elevation: 0,
           brightness: Brightness.light,
           backgroundColor: Colors.white,
-//          leading: IconButton(
-//            onPressed: () {
-//              Navigator.of(context)
-//                  .pushReplacementNamed(SignUpPage.routeName);
-//            },
-//            hey: Icon(
-//              Icons.arrow_back_ios,
-//              size: 20,
-//              color: Color(0xFFFA8072),
-//            ),
-//          ),
         ),
         body: SingleChildScrollView(
           child: Container(
