@@ -337,18 +337,20 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                               ),
                               validator: (value) {
                                 if (value.toString().isEmpty) {
+                                  print('DATE HERE' + value);
                                   return 'Invalid date';
                                 }
                                 return null;
                               },
                               controller: _dateController,
-                              onChanged: (value) {
-                                travelData.travel_arrival_date = value;
+                              onSaved: (value) {
+                                  travelData.travel_arrival_date = value;
                               },
                               onTap: () {
                                 FocusScope.of(context)
                                     .requestFocus(new FocusNode());
                                 _pickDate();
+                                print(_pickDate());
                               },
                               keyboardType: TextInputType.datetime,
                             ),

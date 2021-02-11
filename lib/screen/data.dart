@@ -19,7 +19,9 @@ class contactData{
 }
 
 class travelData{
-  static String travel_arrival_date,travel_country;
+  static String travel_country;
+  static String travel_arrival_date;
+
 }
 
 

@@ -155,11 +155,25 @@ class _HomePageState extends State<HomePage> {
                   iconTheme: IconThemeData(color: Colors.black),
                   title: Text(""),
                 ),
+
+
                 drawer: Drawer(
                   child: ListView(
                     children: <Widget>[
                       new DrawerHeader(
-                        child: Text('${user_List.fname} ${user_List.lname}'),
+                        decoration: BoxDecoration(
+                          color: Color(0xFFFA8072),
+                        ),
+                        child: Column(
+                          children: [
+                            new Icon(Icons.account_circle, size: 90, color: Colors.white),
+                            new Text('${user_List.fname} ${user_List.lname}',
+                              style: TextStyle(
+                                color: Colors.white,
+                                fontSize: 22,
+                              ),),
+                          ],
+                        ),
                       ),
                       new ListTile(
                         leading: new Icon(Icons.settings),

@@ -80,6 +80,20 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
         child: ListView(
           children: <Widget>[
             new DrawerHeader(
+              decoration: BoxDecoration(
+                color: Color(0xFFFA8072),
+              ),
+              child: Column(
+                children: [
+                  new Icon(Icons.admin_panel_settings, size: 100, color: Colors.white),
+                  new Text(
+                    'Administrator Panel',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
+                  ),
+                ],
+              ),
 
             ),
             new ListTile(
@@ -223,13 +237,17 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                         Padding(
                           padding: const EdgeInsets.symmetric(
                               vertical: 20.0, horizontal: 10.0),
-
-                          child: Text(
-                            'User Travel Information',
-                            style: TextStyle(
-                              fontSize: 27,
-                            ),
-
+                          child: Row(
+                            children: [
+                              Icon(Icons.flight, size: 50, color: Color(0xFF4AA786)),
+                              Text(
+                                'User Travel Information',
+                                style: TextStyle(
+                                  fontSize: 27,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ],
                     ),
@@ -243,3 +261,4 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
     );
   }
 }
+

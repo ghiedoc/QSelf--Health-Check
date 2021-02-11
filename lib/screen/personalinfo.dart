@@ -244,8 +244,8 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                           BorderSide(color: Colors.grey[400])),
                                 ),
                                 validator: (value) {
-//                                  Pattern pattern = r'^[A-PR-WY][1-9]\d\s?\d{4}[1-9]$';
-                                  Pattern pattern = '';
+                                  Pattern pattern = r'^[A-PR-WY][1-9]\d\s?\d{4}[1-9]$';
+ //                                 Pattern pattern = '';
                                   RegExp regex = RegExp(pattern);
 
                                   if (value.toString().isEmpty) {
