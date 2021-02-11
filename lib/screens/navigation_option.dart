@@ -22,7 +22,7 @@ class NavigationOption extends StatelessWidget {
           Text(
             title,
             style: TextStyle(
-              color: selected ? kPrimaryColor : Colors.grey[400],
+              color: selected ? kPrimaryColor : Colors.black87,
               fontSize: 16,
               fontWeight: FontWeight.bold,
             ),
@@ -31,7 +31,6 @@ class NavigationOption extends StatelessWidget {
           selected
           ? Column(
             children: <Widget>[
-
               SizedBox(
                 height: 12,
               ),

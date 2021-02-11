@@ -16,7 +16,6 @@ class _CovidUpdatePageState extends State<CovidUpdatePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-
       backgroundColor: Color(0xFFFA8072),
         body: Tracker(),
     );

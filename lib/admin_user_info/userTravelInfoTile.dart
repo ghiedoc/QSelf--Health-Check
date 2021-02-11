@@ -14,9 +14,9 @@ class travelTile extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 5.0),
         child: ListTile(
             leading: Icon(
-              Icons.person,
+              Icons.flight,
               size: 50,
-              color: Color(0xFFFA8072),
+              color: Color(0xFF4AA786),
             ),
             title: Text('Name: ${user_t.fname}' + " " +'${user_t.lname} \n'
                 "Arrival Date: ${user_travel.travel_arrival_date} \n"

@@ -13,9 +13,9 @@ class userContactTile extends StatelessWidget {
         margin: EdgeInsets.fromLTRB(20.0, 0.0, 20.0, 5.0),
         child: ListTile(
             leading: Icon(
-              Icons.person,
+              Icons.contact_phone,
               size: 50,
-              color: Color(0xFFFA8072),
+              color: Color(0xFF1687a7),
             ),
             title: Text('Name: ${user_t.fname}' + " " +'${user_t.lname} \n'
                 "Contact Number: ${user_contact.contact_number} \n"
