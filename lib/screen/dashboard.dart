@@ -57,7 +57,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     bool loading = true;
-    int day = 0;
+    int day = 1;
     final user = Provider.of<User>(context);
     final border = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
