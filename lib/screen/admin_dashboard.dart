@@ -229,7 +229,7 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
                             style: TextStyle(
                               fontSize: 27,
                             ),
-
+                          ),
                         ),
                       ],
                     ),

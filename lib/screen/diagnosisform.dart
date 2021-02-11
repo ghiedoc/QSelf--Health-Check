@@ -47,6 +47,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
   QuerySnapshot querySnapshots;
 
   void initState(){
+    initialize();
     super.initState();
     getDiagnoseForm().then((results){
       setState(() {

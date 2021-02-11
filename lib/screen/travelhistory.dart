@@ -3,9 +3,9 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:fluttertoast/fluttertoast.dart';
 import 'data.dart';
-import 'welcome.dart';
 import 'package:flutter_trial_three/authenticate/auth.dart';
 import 'loading.dart';
+import 'welcome.dart';
 
 class TravelHistoryPage extends StatefulWidget {
   static const routeName = '/travelhistory';
@@ -19,18 +19,17 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
   final AuthService auth = AuthService();
   TextEditingController _dateController = TextEditingController();
 
-  DateTime pickedDate;
+  DateTime pickedDate = DateTime.now();
   int selectitem = 1;
-  String dateTime;
   String valueChoose;
   var currentItemSelected = "Afghanistan";
   bool loading = false;
 
   @override
   void initState() {
+    travelData.travel_arrival_date =pickedDate.toString();
     // TODO: implement initState
     super.initState();
-    pickedDate = DateTime.now();
   }
 
   List country = [
@@ -236,6 +235,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
     if (formkey.currentState.validate()) {
       dynamic result = await auth.tralvel_histo(data.email, data.password);
       successfulToast();
+      print(travelData.travel_arrival_date);
       setState(() => loading = true);
       print("pasok na: $result");
       Navigator.of(context).pushReplacementNamed(WelcomePage.routeName);
@@ -268,10 +268,10 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
         fontSize: 16.0);
   }
 
+
+
   @override
   Widget build(BuildContext context) {
-    String dateTime;
-
     return loading ? Loading() : Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -316,42 +316,42 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                             SizedBox(
                               height: 30.0,
                             ),
-                            TextFormField(
-                              decoration: InputDecoration(
-                                labelText: 'Arrival Date',
-                                filled: true,
-                                labelStyle: TextStyle(
-                                    color: myFocusNode.hasFocus
-                                        ? Colors.blue
-                                        : Colors.black),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide:
-                                        BorderSide(color: Colors.grey[400])),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide:
-                                        BorderSide(color: Colors.grey[400])),
-                              ),
-                              validator: (value) {
-                                if (value.toString().isEmpty) {
-                                  return 'Invalid date';
-                                }
-                                return null;
-                              },
-                              controller: _dateController,
-                              onChanged: (value) {
-                                travelData.travel_arrival_date = value;
-                              },
-                              onTap: () {
-                                FocusScope.of(context)
-                                    .requestFocus(new FocusNode());
-                                _pickDate();
-                              },
-                              keyboardType: TextInputType.datetime,
-                            ),
+                        GestureDetector(
+                          onTap:  () => _pickDate(context),
+                             child: AbsorbPointer(
+                               child: TextFormField(
+                                  onSaved: (val){
+                                    travelData.travel_arrival_date = pickedDate.toString();
+                                      },
+                                  controller: _dateController,
+                                  decoration: InputDecoration(
+                                    labelText: 'Arrival Date',
+                                    icon: Icon(Icons.calendar_today),
+                                    filled: true,
+                                    labelStyle: TextStyle(
+                                        color: myFocusNode.hasFocus
+                                            ? Colors.blue
+                                            : Colors.black),
+                                    contentPadding: EdgeInsets.symmetric(
+                                        vertical: 0, horizontal: 10),
+                                    enabledBorder: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide:
+                                            BorderSide(color: Colors.grey[400])),
+                                    border: OutlineInputBorder(
+                                        borderRadius: BorderRadius.circular(10),
+                                        borderSide:
+                                            BorderSide(color: Colors.grey[400])),
+                                  ),
+                                  validator: (value) {
+                                    if (value.toString().isEmpty) {
+                                      return 'Invalid date';
+                                    }
+                                    return null;
+                                  },
+                                ),
+                             ),
+                           ),
                             SizedBox(
                               height: 30.0,
                             ),
@@ -391,7 +391,6 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
                                   if (newValue.toString().isEmpty) {
                                     return 'Invalid Country';
                                   }
-                                  print("VALUE COMBOBOX: " + newValue);
                                   return null;
                                 },
                               ),
@@ -436,14 +435,14 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
         ));
   }
 
-  _pickDate() async {
+  _pickDate(BuildContext context) async {
     DateTime date = await showDatePicker(
       context: context,
       firstDate: DateTime(DateTime.now().year - 1),
       lastDate: DateTime(DateTime.now().year + 1),
       initialDate: pickedDate,
     );
-    if (date != null)
+    if (date != null && date !=pickedDate )
       setState(() {
         pickedDate = date;
         var dateText =

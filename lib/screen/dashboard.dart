@@ -57,7 +57,7 @@ class _DashboardPageState extends State<DashboardPage> {
   @override
   Widget build(BuildContext context) {
     bool loading = true;
-    int day = 0;
+    int day = 1;
     final user = Provider.of<User>(context);
     final border = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -73,6 +73,185 @@ class _DashboardPageState extends State<DashboardPage> {
     } catch (e) {
       return loading ? Loading() : Container(child: Text('Loading'));
     }
+
+    try {
+      if(day >= 15){
+        return Scaffold(
+          body: StreamBuilder<userList>(
+              stream: dbService(uid: user.uid).userData,
+              builder: (context, snapshot) {
+                try {
+                  userList user_list = snapshot.data;
+                  return Container(
+                    padding: EdgeInsets.all(20.0),
+                    child: ListView(
+                      children: <Widget>[
+                        Text(
+                          'Hello, ${user_list.fname} ${user_list.lname}',
+                          style: TextStyle(
+                            fontSize: 32,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                        Container(
+                          margin: EdgeInsets.only(left: 10, bottom: 10),
+                        ),
+                        GestureDetector(
+                          onTap: () {
+                            Navigator.of(context).push(
+                              MaterialPageRoute(
+                                builder: (context) {
+                                  return;
+                                },
+                              ),
+                            );
+                          },
+                          child: Container(
+                            height: 120,
+                            child: Padding(
+                              padding: padding,
+                              child: Card(
+                                shape: border,
+                                elevation: 3.0,
+                                child: Padding(
+                                  padding: const EdgeInsets.all(10.0),
+                                  child: Column(
+                                    mainAxisAlignment: MainAxisAlignment.center,
+                                    children: [
+                                      Row(
+                                        children: [
+                                          Icon(Icons.today,
+                                              size: 50, color: Color(0xFFffc75f)),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            'THE END',
+                                            style: TextStyle(
+                                              fontSize: 38,
+                                              //fontWeight: FontWeight.bold,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                      Align(
+                                        alignment: Alignment.bottomRight,
+                                        child: Text(
+                                          '',
+                                          style: TextStyle(
+                                            fontSize: 18,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                        /**
+                         * CONTAINER 2
+                         */
+                        GestureDetector(
+                          onTap: () {
+                            opencovidupdateURL();
+                          },
+                          child: Container(
+                            height: 90,
+                            child: Padding(
+                              padding: padding,
+                              child: Card(
+                                color: Color(0xFFF78977),
+                                shape: border,
+                                elevation: 3.0,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.import_contacts,
+                                              size: 50, color: Colors.white),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            'COVID-19 News',
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+
+                        /**
+                         * CONTAINER 3
+                         */
+                        GestureDetector(
+                          onTap: () {
+                            openGuidelinesURL();
+                          },
+                          child: Container(
+                            height: 90,
+                            child: Padding(
+                              padding: padding,
+                              child: Card(
+                                color: Color(0xFFFF8A94D),
+                                shape: border,
+                                elevation: 3.0,
+                                child: Column(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Row(
+                                        children: [
+                                          Icon(Icons.medical_services,
+                                              size: 50, color: Colors.white),
+                                          SizedBox(
+                                            width: 10,
+                                          ),
+                                          Text(
+                                            'Guidelines',
+                                            style: TextStyle(
+                                              fontSize: 30,
+                                              color: Colors.white,
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  );
+                } catch (e) {
+                  return Container();
+                }
+              }),
+        );
+      }
+    }catch(e){
+
+    }
+
+
     return Scaffold(
       body: StreamBuilder<userList>(
           stream: dbService(uid: user.uid).userData,

@@ -19,7 +19,9 @@ class contactData{
 }
 
 class travelData{
-  static String travel_arrival_date,travel_country;
+  static String travel_country;
+  static String travel_arrival_date;
+
 }
 
 
@@ -43,7 +45,8 @@ class AdminuserContact{
 }
 
 class travelInfo{
-  final travel_arrival_date,travel_country;
+  String travel_arrival_date;
+    final  travel_country;
   travelInfo({this.travel_arrival_date, this.travel_country});
 }
 

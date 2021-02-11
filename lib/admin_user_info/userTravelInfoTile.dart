@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_trial_three/screen/data.dart';
+import 'package:timeago/timeago.dart' as timeago;
 
 class travelTile extends StatelessWidget {
   final userList user_t;
