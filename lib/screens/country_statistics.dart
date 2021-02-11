@@ -63,9 +63,9 @@ class CountryStatistics extends StatelessWidget {
                   ),
                 ),
 
-                Expanded(
-                  child: Container(),
-                ),
+//                Expanded(
+//                  child: Container(),
+//                ),
 
                 Text(
                   "Total",

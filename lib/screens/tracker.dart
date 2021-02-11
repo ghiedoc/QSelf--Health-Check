@@ -19,10 +19,11 @@ class _TrackerState extends State<Tracker> {
 
   @override
   Widget build(BuildContext context) {
-
     Size size = MediaQuery.of(context).size;
 
     return Scaffold(
+      backgroundColor: Color(0xFFFA8072),
+      resizeToAvoidBottomInset: false,
       resizeToAvoidBottomPadding: false,
       appBar: AppBar(
         backgroundColor: body,
@@ -32,54 +33,49 @@ class _TrackerState extends State<Tracker> {
         ),
         centerTitle: true,
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.stretch,
+      body: ListView(
+        //crossAxisAlignment: CrossAxisAlignment.stretch,
         children: <Widget>[
-
+          SizedBox(
+            height: 5,
+          ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: <Widget>[
+              NavigationOption(
+                title: "Global",
+                selected: navigationStatus == NavigationStatus.GLOBAL,
+                onSelected: () {
+                  setState(() {
+                    navigationStatus = NavigationStatus.GLOBAL;
+                  });
+                },
+              ),
+              NavigationOption(
+                title: "Country",
+                selected: navigationStatus == NavigationStatus.COUNTRY,
+                onSelected: () {
+                  setState(() {
+                    navigationStatus = NavigationStatus.COUNTRY;
+                  });
+                },
+              )
+            ],
+          ),
+          SizedBox(
+            height: 5,
+          ),
           Expanded(
             child: Container(
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
-                color: body,
-                borderRadius: BorderRadius.only(
-//                  bottomRight: Radius.circular(50),
-//                  bottomLeft: Radius.circular(50),
-                )
-              ),
+                  color: Color(0xFFFA8072), borderRadius: BorderRadius.only()),
               child: AnimatedSwitcher(
                 duration: Duration(milliseconds: 150),
-                child: navigationStatus == NavigationStatus.GLOBAL ? Global() : Country(),
+                child: navigationStatus == NavigationStatus.GLOBAL
+                    ? Global()
+                    : Country(),
               ),
-            ),
-          ),
-
-          Container(
-            height: size.height * 0.06,
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: <Widget>[
-
-                NavigationOption(
-                  title: "Global",
-                  selected: navigationStatus == NavigationStatus.GLOBAL,
-                  onSelected: () {
-                    setState(() {
-                      navigationStatus = NavigationStatus.GLOBAL;
-
-                    });
-                  },
-                ),
-
-                NavigationOption(
-                  title: "Country",
-                  selected: navigationStatus == NavigationStatus.COUNTRY,
-                  onSelected: () {
-                    setState(() {
-                      navigationStatus = NavigationStatus.COUNTRY;
-                    });
-                  },
-                )
-              ],
             ),
           ),
         ],

@@ -19,7 +19,9 @@ class contactData{
 }
 
 class travelData{
-  static String travel_arrival_date,travel_country;
+  static String travel_country;
+  static String travel_arrival_date;
+
 }
 
 
@@ -35,6 +37,16 @@ class userform{
       body_weaknesses;
   final int day;
  userform({this.userID,this.day, this.fever, this.cough, this.diff_breathing, this.sore_throat, this.headache, this.body_weaknesses});
+}
+
+class AdminuserContact{
+  final String contact_number, contact_emergency, quar_hotel;
+  AdminuserContact({this.contact_number, this.contact_emergency, this.quar_hotel});
+}
+
+class travelInfo{
+  final travel_arrival_date,travel_country;
+  travelInfo({this.travel_arrival_date, this.travel_country});
 }
 
 
