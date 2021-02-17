@@ -27,8 +27,6 @@ class userTile extends StatelessWidget {
               "Passport Number: ${user_t.passport_no}"),
           subtitle: Text("Nationality: " + user_t.nationality),
           onTap: () async {
-            print(user_t.uid);
-//          print("pasok na naka log-in na siya: $result");
             Navigator.push(context, MaterialPageRoute(
               builder: (context) => AdminResultPage(uid: user_t.uid)
             ));

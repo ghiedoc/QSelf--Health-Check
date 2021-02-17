@@ -150,7 +150,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
       }
       return true;
     }
-
+    
     final successAlert = _buildButton(
       onTap: () async {
         if (_fbKey.currentState.saveAndValidate()) {
