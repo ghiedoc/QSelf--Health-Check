@@ -16,7 +16,7 @@ class ContactInfoPage extends StatefulWidget {
 class _ContactInfoPageState extends State<ContactInfoPage> {
   FocusNode myFocusNode = new FocusNode();
   String valueChoose;
-  var currentItemSelected = "Century Park Hotel";
+  var currentItemSelected = "1109 Red Manor";
 
   List hotel = [
     "1109 Red Manor",
@@ -31,7 +31,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Ascott Makati",
     "Astoria Greenbelt",
     "Astrotel Avenida",
-    "Azumi Boutique Hotel, Alabang — with conditions",
+    "Azumi Boutique Hotel, Alabang",
     "B Hotel Alabang",
     "B Hotel Quezon City",
     "Bayview Park Hotel Manila",
@@ -57,7 +57,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Conrad Manila",
     "Cosmo Hotel and Studio Suites Espana",
     "Crimson Hotel Filinvest City",
-    "Crimson Hotel, Aĺabang — with conditions",
+    "Crimson Hotel, Aĺabang",
     "Crosswind Ocean Hotel",
     "Crowne Plaza Hotel Ortigas",
     "Crowne Plaza Hotel Ortigas",
@@ -73,14 +73,12 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Exchange Regency, Ortigas",
     "Executive Hotel",
     "Fersal Inn Manila",
-    "Fil star Maritime Corporation / Dormitory Manila",
-    "G Residences – with conditions",
+    "G Residences",
     "Garden Plaza Suite",
     "Gardenia Terrace Motel",
     "Go Hotels North EDSA",
     "Go Hotels Timog",
     "Golden Phoenix Hotel Manila",
-    "Good 101 Hotel / Reddoorz Quiapo Branch",
     "Gran Prix Hotel and Resort, Ermita",
     "Great Eastern Hotel",
     "H2O Hotel",
@@ -90,7 +88,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Hilton Manila",
     "Hive Hotel",
     "Holiday Inn And Suites Makati",
-    "Holiday Inn Express Manila Newport City",
+    "Holiday Inn, Newport City",
     "Holiday Inn, Ortigas",
     "Hotel 101",
     "Hotel 2016 Manila",
@@ -107,13 +105,11 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Jen Manila By Shangri-La",
     "Jinjiang Inn- Makati",
     "Jinjiang Inn- Ortigas",
-    "Kaela Allyson Dormitory Properties, Inc. Manila",
     "Kaimito Residences",
     "Kamarote Dormitory, Malate",
     "Lucky Chinatown",
     "Luxent Hotel",
     "Luxent Hotel, Timog QC",
-    "Madison 101 Hotel and Tower, New Manila",
     "Makati Shangri-La, Manila",
     "Manila Hotel",
     "Manila Lotus Hotel",
@@ -129,7 +125,8 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Microtel By Wyndham Mall of Asia",
     "Microtel by Wyndham UP Technohub",
     "Microtel, Batangas",
-    "Midas Hotel And Casino","New World Makati Hotel",
+    "Midas Hotel And Casino",
+    "New World Makati Hotel",
     "Miramar Hotel",
     "Myplace",
     "New Orleans Hotel",
@@ -153,7 +150,6 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Ralph Anthony Suites, Ermita",
     "Ramada Manila Central",
     "Red Planet Hotel Manila Bay",
-    "Red Planet Hotels, Binondo Corporation",
     "Red Planet, Aurora Boulevard",
     "Reddoorz Plus Near Osmeňa Highway 2",
     "Richmonde Hotel Ortigas",
@@ -170,7 +166,6 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Sheraton Manila Bay",
     "Sheraton Manila Hotel",
     "Silver Oaks Suites and Hotel",
-    "Simplicity Co-living and Co-working, QC",
     "Sogo – Sta. Mesa",
     "Sogo Avenida",
     "Somerset Alabang Manila",
@@ -178,7 +173,6 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Somerset Olympia Makati",
     "Spring Hotel Avenida",
     "Stonehouse Hotel – Ermita",
-    "Sulit Dormitel Budget Hotel, Sta. Mesa",
     "Summit Hotel, Quezon City",
     "Tesoro Apartments, Ermita",
     "The Bayleaf Intramuros",
@@ -186,7 +180,6 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "The Charter House",
     "The Heritage Hotel",
     "The Linden Suite",
-    "The Linden Suites, Ortigas Center, Pasig",
     "The Mini Suites-Eton Tower Makati",
     "The Pearl Manila Hotel",
     "The TNKC Hotel",
@@ -197,9 +190,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Tryp By Wyndham Mall of Asia",
     "University Pad Residences Taft",
     "University Pad Residences Ubelt",
-    "Valero Grand Suites By Swiss-Belhotel",
     "Vieve Hotel, Malate",
-    "Wenceslao Dormitory Malate, Manila",
     "Windy Ridge, Malate, Manila",
     "Winford Hotel",
     "Winter Hotel Benitez Cubao",
@@ -420,26 +411,28 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                       color: Colors.black12, width: 2.0),
                                   borderRadius: BorderRadius.circular(10),
                                 ),
-                                child: DropdownButtonFormField(
-                                  validator: (newValue) {
-                                    if (newValue.toString().isEmpty) {
-                                      return 'INVALID QUARANTINE HOTEL';
-                                    }
-                                    return null;
-                                  },
-                                  value: currentItemSelected,
-                                  onChanged: (newValue) {
-                                    setState(() {
-                                      valueChoose = newValue;
-                                      contactData.quar_hotel = newValue;
-                                    });
-                                  },
-                                  items: hotel.map((valueItem) {
-                                    return DropdownMenuItem(
-                                      value: valueItem,
-                                      child: Text(valueItem),
-                                    );
-                                  }).toList(),
+                                child: Expanded(
+                                  child: DropdownButtonFormField(
+                                    validator: (newValue) {
+                                      if (newValue.toString().isEmpty) {
+                                        return 'INVALID QUARANTINE HOTEL';
+                                      }
+                                      return null;
+                                    },
+                                    value: currentItemSelected,
+                                    onChanged: (newValue) {
+                                      setState(() {
+                                        valueChoose = newValue;
+                                        contactData.quar_hotel = newValue;
+                                      });
+                                    },
+                                    items: hotel.map((valueItem) {
+                                      return DropdownMenuItem(
+                                        value: valueItem,
+                                        child: Text(valueItem),
+                                      );
+                                    }).toList(),
+                                  ),
                                 ),
                               ),
                             ],

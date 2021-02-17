@@ -28,7 +28,6 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
       setState(() => loading = true);
       Navigator.of(context).pushReplacementNamed(ContactInfoPage.routeName);
     } {
-      unsuccessfulToast();
       loading = false;
       print("not validated");
     }
