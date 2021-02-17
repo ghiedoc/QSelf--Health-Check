@@ -16,27 +16,10 @@ class AdminResultPage extends StatefulWidget {
 class _AdminResultPageState extends State<AdminResultPage> {
   String uid;
   _AdminResultPageState({this.uid});
-
-
-  DateTime backButtonPressTime;
+  
 
   @override
   Widget build(BuildContext context) {
-    Future<bool> btnbackdd() async {
-      DateTime currentTime = DateTime.now();
-      bool backbtn = backButtonPressTime == null ||
-          currentTime.difference(backButtonPressTime) > Duration(seconds: 3);
-      if(backbtn){
-        backButtonPressTime = currentTime;
-        Fluttertoast.showToast(
-          msg: 'Double Tap to Close app',
-          backgroundColor: Colors.black,
-          textColor: Colors.white,
-        );
-        return false;
-      }
-      return true;
-    }
 
     final border = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -52,9 +35,7 @@ class _AdminResultPageState extends State<AdminResultPage> {
           title: Text("User List"),
         ),
         //BODY
-        body: WillPopScope(
-            onWillPop: btnbackdd,
-            child: formList(selectedDiagnosis: uid)),
+        body: formList(selectedDiagnosis: uid),
       ),
     );
   }

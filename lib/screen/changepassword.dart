@@ -23,8 +23,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   bool checkCurrentPasswordValid = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
-  DateTime backButtonPressTime;
 
+  DateTime backButtonPressTime;
   String _email;
   final auth = FirebaseAuth.instance;
 
