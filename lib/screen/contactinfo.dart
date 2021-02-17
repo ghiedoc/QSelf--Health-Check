@@ -75,6 +75,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Microtel by Wyndham UP Technohub",
     "Novotel Manila Araneta City",
     "Seda Vertis North",
+    "Others"
   ];
 
   final AuthService auth = AuthService();
