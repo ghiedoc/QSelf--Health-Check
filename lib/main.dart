@@ -43,7 +43,6 @@ class MyApp extends StatelessWidget {
           ),
           home: starts(),
           routes: {
-
             starts.routeName: (ctx)=> starts(),
             LoginPage.routeName: (ctx)=> LoginPage(),
             SignUpPage.routeName: (ctx)=> SignUpPage(),

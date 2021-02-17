@@ -9,6 +9,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
 import 'data.dart';
 import 'loading.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class HomePage extends StatefulWidget {
   static const routeName = '/home';
@@ -82,9 +83,25 @@ class _HomePageState extends State<HomePage> {
     );
   }
 
+  DateTime backButtonPressTime;
 
   @override
   Widget build(BuildContext context) {
+    Future<bool> btnbackdd() async {
+      DateTime currentTime = DateTime.now();
+      bool backbtn = backButtonPressTime == null ||
+          currentTime.difference(backButtonPressTime) > Duration(seconds: 3);
+      if (backbtn) {
+        backButtonPressTime = currentTime;
+        Fluttertoast.showToast(
+          msg: 'Double Tap to Close app',
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+        );
+        return false;
+      }
+      return true;
+    }
     final user = Provider.of<User>(context);
     return StreamBuilder<userList>(
         stream: dbService(uid: user.uid).userData,
@@ -95,11 +112,14 @@ class _HomePageState extends State<HomePage> {
             return MaterialApp(
               color: Color(0xFFFA8072),
               home: Scaffold(
-                body: PageView(
-                  controller: _pageController,
-                  children: _screens,
-                  onPageChanged: _onPageChanged,
-                  physics: NeverScrollableScrollPhysics(),
+                body: WillPopScope(
+                  onWillPop: btnbackdd,
+                  child: PageView(
+                    controller: _pageController,
+                    children: _screens,
+                    onPageChanged: _onPageChanged,
+                    physics: NeverScrollableScrollPhysics(),
+                  ),
                 ),
                 bottomNavigationBar: BottomNavigationBar(
                   //backgroundColor: Color(0xFFFA8072),

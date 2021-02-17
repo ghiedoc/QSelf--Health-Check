@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'data.dart';
 import 'package:flutter_trial_three/database/dbFirebase.dart';
 import 'formList.dart';
+import 'package:fluttertoast/fluttertoast.dart';
 
 class AdminResultPage extends StatefulWidget {
   static const routeName = '/adminResult';
@@ -12,12 +13,30 @@ class AdminResultPage extends StatefulWidget {
   _AdminResultPageState createState() => _AdminResultPageState(uid: uid);
 
 }
-
 class _AdminResultPageState extends State<AdminResultPage> {
   String uid;
   _AdminResultPageState({this.uid});
+
+
+  DateTime backButtonPressTime;
+
   @override
   Widget build(BuildContext context) {
+    Future<bool> btnbackdd() async {
+      DateTime currentTime = DateTime.now();
+      bool backbtn = backButtonPressTime == null ||
+          currentTime.difference(backButtonPressTime) > Duration(seconds: 3);
+      if(backbtn){
+        backButtonPressTime = currentTime;
+        Fluttertoast.showToast(
+          msg: 'Double Tap to Close app',
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+        );
+        return false;
+      }
+      return true;
+    }
 
     final border = RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -33,7 +52,9 @@ class _AdminResultPageState extends State<AdminResultPage> {
           title: Text("User List"),
         ),
         //BODY
-        body: formList(selectedDiagnosis: uid),
+        body: WillPopScope(
+            onWillPop: btnbackdd,
+            child: formList(selectedDiagnosis: uid)),
       ),
     );
   }

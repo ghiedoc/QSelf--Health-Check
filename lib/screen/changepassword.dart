@@ -23,6 +23,8 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   bool checkCurrentPasswordValid = true;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
+  DateTime backButtonPressTime;
+
   String _email;
   final auth = FirebaseAuth.instance;
 
@@ -57,8 +59,22 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
   }
 
 
-
   Widget build(BuildContext context) {
+    Future<bool> btnbackdd() async {
+      DateTime currentTime = DateTime.now();
+      bool backbtn = backButtonPressTime == null ||
+          currentTime.difference(backButtonPressTime) > Duration(seconds: 3);
+      if (backbtn) {
+        backButtonPressTime = currentTime;
+        Fluttertoast.showToast(
+          msg: 'Double Tap to Close app',
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+        );
+        return false;
+      }
+      return true;
+    }
     dynamic res = auth.sendPasswordResetEmail(email: data.email);
     return Scaffold(
       backgroundColor: Colors.white,
@@ -68,140 +84,143 @@ class _ChangePasswordPageState extends State<ChangePasswordPage> {
         backgroundColor: Colors.white,
         iconTheme: IconThemeData(color: Colors.black),
       ),
-      body: SingleChildScrollView(
-        child: Container(
-          height: MediaQuery.of(context).size.height,
-          width: double.infinity,
-          margin: EdgeInsets.only(left: 10, right: 10),
-          padding: EdgeInsets.symmetric(vertical: 40),
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: <Widget>[
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                children: [
-                  Column(
-                    children: <Widget>[
-                      Container(
-                        child: Text(
-                          "Change Password",
-                          style: TextStyle(
-                            fontSize: 36,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
-                      ),
-                      SizedBox(
-                        height: 20,
-                      ),
-                    ],
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Column(
+      body: WillPopScope(
+        onWillPop: btnbackdd,
+        child: SingleChildScrollView(
+          child: Container(
+            height: MediaQuery.of(context).size.height,
+            width: double.infinity,
+            margin: EdgeInsets.only(left: 10, right: 10),
+            padding: EdgeInsets.symmetric(vertical: 40),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: <Widget>[
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Column(
                       children: <Widget>[
-                        SizedBox(
-                          height: 20.0,
-                        ),
-                        Form(
-                          key: _formKey,
-                          child: TextFormField(
-                            decoration: InputDecoration(
-                              labelText: 'Email',
-                              errorText: checkCurrentPasswordValid
-                                  ? null
-                                  : "Please double check your input email",
-                              filled: true,
-                              labelStyle: TextStyle(
-                                  color: myFocusNode.hasFocus
-                                      ? Colors.blue
-                                      : Colors.black),
-                              contentPadding: EdgeInsets.symmetric(
-                                  vertical: 0, horizontal: 10),
-                              enabledBorder: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[400])),
-                              border: OutlineInputBorder(
-                                  borderRadius: BorderRadius.circular(10),
-                                  borderSide:
-                                      BorderSide(color: Colors.grey[400])),
+                        Container(
+                          child: Text(
+                            "Change Password",
+                            style: TextStyle(
+                              fontSize: 36,
+                              fontWeight: FontWeight.bold,
                             ),
-                            keyboardType: TextInputType.emailAddress,
-                            onChanged: (val) {
-                              setState(() {
-                                data.email = val;
-                              });
-                            },
-                            validator: (value) {
-                              if (value.toString().isEmpty || value == null ||
-                              !value.contains("@") ||
-                              !value.contains(".com")) {
-                                return "INVALID YOUR EMAIL";
-                                }else if(res == null){
-                                return "Your email is not Register";
-                              } else {
-                                return null;
-                              }
-                            },
                           ),
                         ),
                         SizedBox(
-                          height: 30.0,
+                          height: 20,
                         ),
                       ],
                     ),
-                  ),
-                  Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 40),
-                    child: Container(
-                      padding: EdgeInsets.only(top: 3, left: 3),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(10),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      child: Column(
+                        children: <Widget>[
+                          SizedBox(
+                            height: 20.0,
+                          ),
+                          Form(
+                            key: _formKey,
+                            child: TextFormField(
+                              decoration: InputDecoration(
+                                labelText: 'Email',
+                                errorText: checkCurrentPasswordValid
+                                    ? null
+                                    : "Please double check your input email",
+                                filled: true,
+                                labelStyle: TextStyle(
+                                    color: myFocusNode.hasFocus
+                                        ? Colors.blue
+                                        : Colors.black),
+                                contentPadding: EdgeInsets.symmetric(
+                                    vertical: 0, horizontal: 10),
+                                enabledBorder: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide:
+                                        BorderSide(color: Colors.grey[400])),
+                                border: OutlineInputBorder(
+                                    borderRadius: BorderRadius.circular(10),
+                                    borderSide:
+                                        BorderSide(color: Colors.grey[400])),
+                              ),
+                              keyboardType: TextInputType.emailAddress,
+                              onChanged: (val) {
+                                setState(() {
+                                  data.email = val;
+                                });
+                              },
+                              validator: (value) {
+                                if (value.toString().isEmpty || value == null ||
+                                !value.contains("@") ||
+                                !value.contains(".com")) {
+                                  return "INVALID YOUR EMAIL";
+                                  }else if(res == null){
+                                  return "Your email is not Register";
+                                } else {
+                                  return null;
+                                }
+                              },
+                            ),
+                          ),
+                          SizedBox(
+                            height: 30.0,
+                          ),
+                        ],
                       ),
-                      //----------------PASSWORD HERE-----------------
-                      child: MaterialButton(
-                        onPressed: () async {
-                          var results = _formKey.currentState.validate();
-                          try {
-                            if (results) {
-                              dynamic result = auth.sendPasswordResetEmail(email: data.email);
-                              print("pasok na naka log-in na siya: $result");
-                              if (result == null) {
-                                unsuccessfulToast();
-                                print(result);
-                              } else {
-                                successfulToast();
+                    ),
+                    Padding(
+                      padding: EdgeInsets.symmetric(horizontal: 40),
+                      child: Container(
+                        padding: EdgeInsets.only(top: 3, left: 3),
+                        decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        //----------------PASSWORD HERE-----------------
+                        child: MaterialButton(
+                          onPressed: () async {
+                            var results = _formKey.currentState.validate();
+                            try {
+                              if (results) {
+                                dynamic result = auth.sendPasswordResetEmail(email: data.email);
+                                print("pasok na naka log-in na siya: $result");
+                                if (result == null) {
+                                  unsuccessfulToast();
+                                  print(result);
+                                } else {
+                                  successfulToast();
 //                                Navigator.of(context).pop();
+                                }
+                              } else {
+                                print("not validated");
+                                unsuccessfulToasts();
                               }
-                            } else {
-                              print("not validated");
-                              unsuccessfulToasts();
+                            } catch (e) {
+                              return e;
                             }
-                          } catch (e) {
-                            return e;
-                          }
-                        },
-                        minWidth: double.infinity,
-                        height: 50,
-                        color: Color(0xFF1F1F1F),
-                        elevation: 0,
-                        shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(10)),
-                        child: Text(
-                          "Send Request",
-                          style: TextStyle(
-                            fontWeight: FontWeight.w600,
-                            fontSize: 18,
-                            color: Colors.white,
+                          },
+                          minWidth: double.infinity,
+                          height: 50,
+                          color: Color(0xFF1F1F1F),
+                          elevation: 0,
+                          shape: RoundedRectangleBorder(
+                              borderRadius: BorderRadius.circular(10)),
+                          child: Text(
+                            "Send Request",
+                            style: TextStyle(
+                              fontWeight: FontWeight.w600,
+                              fontSize: 18,
+                              color: Colors.white,
+                            ),
                           ),
                         ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-            ],
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),

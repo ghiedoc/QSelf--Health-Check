@@ -252,9 +252,25 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
         fontSize: 16.0
     );
   }
+  DateTime backButtonPressTime;
 
   @override
   Widget build(BuildContext context) {
+    Future<bool> btnbackdd() async {
+      DateTime currentTime = DateTime.now();
+      bool backbtn = backButtonPressTime == null ||
+          currentTime.difference(backButtonPressTime) > Duration(seconds: 3);
+      if (backbtn) {
+        backButtonPressTime = currentTime;
+        Fluttertoast.showToast(
+          msg: 'Double Tap to Close app',
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+        );
+        return false;
+      }
+      return true;
+    }
     return loading ? Loading() : Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -262,203 +278,206 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
           brightness: Brightness.light,
           backgroundColor: Colors.white,
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: double.infinity,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            padding: EdgeInsets.symmetric(vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Column(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          child: Text(
-                            "Contact Information",
-                            style: TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.bold,
+        body: WillPopScope(
+          onWillPop: btnbackdd,
+          child: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: double.infinity,
+              margin: EdgeInsets.only(left: 10, right: 10),
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Column(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            child: Text(
+                              "Contact Information",
+                              style: TextStyle(
+                                fontSize: 36,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
-                      child: Form(
-                        key: formkey,
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height: 10.0,
-                            ),
-                            TextFormField(
-                              inputFormatters: [
-                                WhitelistingTextInputFormatter.digitsOnly
-                              ],
-                              decoration: InputDecoration(
-                                labelText: 'Contact Number',
-                                filled: true,
-                                labelStyle: TextStyle(
-                                    color: myFocusNode.hasFocus
-                                        ? Colors.blue
-                                        : Colors.black),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide:
-                                        BorderSide(color: Colors.grey[400])),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide:
-                                        BorderSide(color: Colors.grey[400])),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        child: Form(
+                          key: formkey,
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(
+                                height: 10.0,
                               ),
-                              validator: (value) {
-                                if (value.toString().isEmpty ||
-                                    value.length < 11) {
-                                  return 'Invalid mobile number';
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                contactData.contact_number = value;
-                              },
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            TextFormField(
-                              inputFormatters: [
-                                WhitelistingTextInputFormatter.digitsOnly
-                              ],
-                              decoration: InputDecoration(
-                                labelText: 'In case of emergency',
-                                filled: true,
-                                labelStyle: TextStyle(
-                                    color: myFocusNode.hasFocus
-                                        ? Colors.blue
-                                        : Colors.black),
-                                contentPadding: EdgeInsets.symmetric(
-                                    vertical: 0, horizontal: 10),
-                                enabledBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide:
-                                        BorderSide(color: Colors.grey[400])),
-                                border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(10),
-                                    borderSide:
-                                        BorderSide(color: Colors.grey[400])),
-                              ),
-                              validator: (value) {
-                                if (value.toString().isEmpty ||
-                                    value.length < 11) {
-                                  return 'Invalid emergency number';
-                                }
-                                return null;
-                              },
-                              onChanged: (value) {
-                                contactData.contact_emergency = value;
-                              },
-                            ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            Text(
-                              "Quarantine Hotel",
-                              style: TextStyle(
-                                fontSize: 16,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                            Divider(
-                              color: Colors.black54,
-                            ),
-                            SizedBox(
-                              height: 20.0,
-                            ),
-                            //dropdown
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Quarantine Hotel Checked in",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Color(0xFF8A8A8A),
+                              TextFormField(
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter.digitsOnly
+                                ],
+                                decoration: InputDecoration(
+                                  labelText: 'Contact Number',
+                                  filled: true,
+                                  labelStyle: TextStyle(
+                                      color: myFocusNode.hasFocus
+                                          ? Colors.blue
+                                          : Colors.black),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 10),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400])),
                                 ),
-                              ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(bottom: 100.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.black12, width: 2.0),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: DropdownButtonFormField(
-                                validator: (newValue) {
-                                  if (newValue.toString().isEmpty) {
-                                    return 'INVALID QUARANTINE HOTEL';
+                                validator: (value) {
+                                  if (value.toString().isEmpty ||
+                                      value.length < 11) {
+                                    return 'Invalid mobile number';
                                   }
                                   return null;
                                 },
-                                value: currentItemSelected,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    valueChoose = newValue;
-                                    contactData.quar_hotel = newValue;
-                                  });
+                                onChanged: (value) {
+                                  contactData.contact_number = value;
                                 },
-                                items: hotel.map((valueItem) {
-                                  return DropdownMenuItem(
-                                    value: valueItem,
-                                    child: Text(valueItem),
-                                  );
-                                }).toList(),
                               ),
-                            ),
-                          ],
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              TextFormField(
+                                inputFormatters: [
+                                  WhitelistingTextInputFormatter.digitsOnly
+                                ],
+                                decoration: InputDecoration(
+                                  labelText: 'In case of emergency',
+                                  filled: true,
+                                  labelStyle: TextStyle(
+                                      color: myFocusNode.hasFocus
+                                          ? Colors.blue
+                                          : Colors.black),
+                                  contentPadding: EdgeInsets.symmetric(
+                                      vertical: 0, horizontal: 10),
+                                  enabledBorder: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                  border: OutlineInputBorder(
+                                      borderRadius: BorderRadius.circular(10),
+                                      borderSide:
+                                          BorderSide(color: Colors.grey[400])),
+                                ),
+                                validator: (value) {
+                                  if (value.toString().isEmpty ||
+                                      value.length < 11) {
+                                    return 'Invalid emergency number';
+                                  }
+                                  return null;
+                                },
+                                onChanged: (value) {
+                                  contactData.contact_emergency = value;
+                                },
+                              ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              Text(
+                                "Quarantine Hotel",
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                              Divider(
+                                color: Colors.black54,
+                              ),
+                              SizedBox(
+                                height: 20.0,
+                              ),
+                              //dropdown
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "Quarantine Hotel Checked in",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color(0xFF8A8A8A),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(bottom: 100.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.black12, width: 2.0),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: DropdownButtonFormField(
+                                  validator: (newValue) {
+                                    if (newValue.toString().isEmpty) {
+                                      return 'INVALID QUARANTINE HOTEL';
+                                    }
+                                    return null;
+                                  },
+                                  value: currentItemSelected,
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      valueChoose = newValue;
+                                      contactData.quar_hotel = newValue;
+                                    });
+                                  },
+                                  items: hotel.map((valueItem) {
+                                    return DropdownMenuItem(
+                                      value: valueItem,
+                                      child: Text(valueItem),
+                                    );
+                                  }).toList(),
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
-                      child: Container(
-                        padding: EdgeInsets.only(top: 3, left: 3),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: MaterialButton(
-                          minWidth: double.infinity,
-                          height: 50,
-                          onPressed: () {
-                            validate();
-                          },
-                          color: Color(0xFFFF5555),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Text(
-                            "Next",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                              color: Colors.white,
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        child: Container(
+                          padding: EdgeInsets.only(top: 3, left: 3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: MaterialButton(
+                            minWidth: double.infinity,
+                            height: 50,
+                            onPressed: () {
+                              validate();
+                            },
+                            color: Color(0xFFFF5555),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                              "Next",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ));
