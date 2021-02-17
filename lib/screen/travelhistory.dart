@@ -268,10 +268,25 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
         fontSize: 16.0);
   }
 
-
+  DateTime backButtonPressTime;
 
   @override
   Widget build(BuildContext context) {
+    Future<bool> btnbackdd() async {
+      DateTime currentTime = DateTime.now();
+      bool backbtn = backButtonPressTime == null ||
+          currentTime.difference(backButtonPressTime) > Duration(seconds: 3);
+      if (backbtn) {
+        backButtonPressTime = currentTime;
+        Fluttertoast.showToast(
+          msg: 'Double Tap to Close app',
+          backgroundColor: Colors.black,
+          textColor: Colors.white,
+        );
+        return false;
+      }
+      return true;
+    }
     return loading ? Loading() : Scaffold(
         backgroundColor: Colors.white,
         appBar: AppBar(
@@ -279,157 +294,160 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
           brightness: Brightness.light,
           backgroundColor: Colors.white,
         ),
-        body: SingleChildScrollView(
-          child: Container(
-            height: MediaQuery.of(context).size.height,
-            width: double.infinity,
-            margin: EdgeInsets.only(left: 10, right: 10),
-            padding: EdgeInsets.symmetric(vertical: 20),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: <Widget>[
-                Column(
-                  children: [
-                    Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: <Widget>[
-                        Container(
-                          child: Text(
-                            "Travel History",
-                            style: TextStyle(
-                              fontSize: 36,
-                              fontWeight: FontWeight.bold,
+        body: WillPopScope(
+          onWillPop: btnbackdd,
+          child: SingleChildScrollView(
+            child: Container(
+              height: MediaQuery.of(context).size.height,
+              width: double.infinity,
+              margin: EdgeInsets.only(left: 10, right: 10),
+              padding: EdgeInsets.symmetric(vertical: 20),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: <Widget>[
+                  Column(
+                    children: [
+                      Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
+                        children: <Widget>[
+                          Container(
+                            child: Text(
+                              "Travel History",
+                              style: TextStyle(
+                                fontSize: 36,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
-                        ),
-                        SizedBox(
-                          height: 10,
-                        ),
-                      ],
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
-                      child: Form(
-                        key: formkey,
-                        child: Column(
-                          children: <Widget>[
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                        GestureDetector(
-                          onTap:  () => _pickDate(context),
-                             child: AbsorbPointer(
-                               child: TextFormField(
-                                  onSaved: (val){
-                                    travelData.travel_arrival_date = pickedDate.toString();
-                                      },
-                                  controller: _dateController,
-                                  decoration: InputDecoration(
-                                    labelText: 'Arrival Date',
-                                    icon: Icon(Icons.calendar_today),
-                                    filled: true,
-                                    labelStyle: TextStyle(
-                                        color: myFocusNode.hasFocus
-                                            ? Colors.blue
-                                            : Colors.black),
-                                    contentPadding: EdgeInsets.symmetric(
-                                        vertical: 0, horizontal: 10),
-                                    enabledBorder: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                        borderSide:
-                                            BorderSide(color: Colors.grey[400])),
-                                    border: OutlineInputBorder(
-                                        borderRadius: BorderRadius.circular(10),
-                                        borderSide:
-                                            BorderSide(color: Colors.grey[400])),
+                          SizedBox(
+                            height: 10,
+                          ),
+                        ],
+                      ),
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        child: Form(
+                          key: formkey,
+                          child: Column(
+                            children: <Widget>[
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                          GestureDetector(
+                            onTap:  () => _pickDate(context),
+                               child: AbsorbPointer(
+                                 child: TextFormField(
+                                    onSaved: (val){
+                                      travelData.travel_arrival_date = pickedDate.toString();
+                                        },
+                                    controller: _dateController,
+                                    decoration: InputDecoration(
+                                      labelText: 'Arrival Date',
+                                      icon: Icon(Icons.calendar_today),
+                                      filled: true,
+                                      labelStyle: TextStyle(
+                                          color: myFocusNode.hasFocus
+                                              ? Colors.blue
+                                              : Colors.black),
+                                      contentPadding: EdgeInsets.symmetric(
+                                          vertical: 0, horizontal: 10),
+                                      enabledBorder: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide:
+                                              BorderSide(color: Colors.grey[400])),
+                                      border: OutlineInputBorder(
+                                          borderRadius: BorderRadius.circular(10),
+                                          borderSide:
+                                              BorderSide(color: Colors.grey[400])),
+                                    ),
+                                    validator: (value) {
+                                      if (value.toString().isEmpty) {
+                                        return 'Invalid date';
+                                      }
+                                      return null;
+                                    },
                                   ),
-                                  validator: (value) {
-                                    if (value.toString().isEmpty) {
-                                      return 'Invalid date';
+                               ),
+                             ),
+                              SizedBox(
+                                height: 30.0,
+                              ),
+                              //dropdown
+                              Align(
+                                alignment: Alignment.centerLeft,
+                                child: Text(
+                                  "Port of departure(Country)",
+                                  style: TextStyle(
+                                    fontSize: 15,
+                                    color: Color(0xFF8A8A8A),
+                                  ),
+                                ),
+                              ),
+                              Container(
+                                margin: const EdgeInsets.only(bottom: 200.0),
+                                decoration: BoxDecoration(
+                                  border: Border.all(
+                                      color: Colors.black12, width: 2.0),
+                                  borderRadius: BorderRadius.circular(10),
+                                ),
+                                child: DropdownButtonFormField(
+                                  value: currentItemSelected,
+                                  onChanged: (newValue) {
+                                    setState(() {
+                                      valueChoose = newValue;
+                                      travelData.travel_country = newValue;
+                                    });
+                                  },
+                                  items: country.map((valueItem) {
+                                    return DropdownMenuItem(
+                                      value: valueItem,
+                                      child: Text(valueItem),
+                                    );
+                                  }).toList(),
+                                  validator: (newValue) {
+                                    if (newValue.toString().isEmpty) {
+                                      return 'Invalid Country';
                                     }
                                     return null;
                                   },
                                 ),
-                             ),
-                           ),
-                            SizedBox(
-                              height: 30.0,
-                            ),
-                            //dropdown
-                            Align(
-                              alignment: Alignment.centerLeft,
-                              child: Text(
-                                "Port of departure(Country)",
-                                style: TextStyle(
-                                  fontSize: 15,
-                                  color: Color(0xFF8A8A8A),
-                                ),
                               ),
-                            ),
-                            Container(
-                              margin: const EdgeInsets.only(bottom: 200.0),
-                              decoration: BoxDecoration(
-                                border: Border.all(
-                                    color: Colors.black12, width: 2.0),
-                                borderRadius: BorderRadius.circular(10),
-                              ),
-                              child: DropdownButtonFormField(
-                                value: currentItemSelected,
-                                onChanged: (newValue) {
-                                  setState(() {
-                                    valueChoose = newValue;
-                                    travelData.travel_country = newValue;
-                                  });
-                                },
-                                items: country.map((valueItem) {
-                                  return DropdownMenuItem(
-                                    value: valueItem,
-                                    child: Text(valueItem),
-                                  );
-                                }).toList(),
-                                validator: (newValue) {
-                                  if (newValue.toString().isEmpty) {
-                                    return 'Invalid Country';
-                                  }
-                                  return null;
-                                },
-                              ),
-                            ),
-                          ],
+                            ],
+                          ),
                         ),
                       ),
-                    ),
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: 40),
-                      child: Container(
-                        padding: EdgeInsets.only(top: 3, left: 3),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(10),
-                        ),
-                        child: MaterialButton(
-                          minWidth: double.infinity,
-                          height: 50,
-                          onPressed: () {
-                            validation();
-                          },
-                          color: Color(0xFFFF5555),
-                          elevation: 0,
-                          shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(10)),
-                          child: Text(
-                            "Next",
-                            style: TextStyle(
-                              fontWeight: FontWeight.w600,
-                              fontSize: 18,
-                              color: Colors.white,
+                      Padding(
+                        padding: EdgeInsets.symmetric(horizontal: 40),
+                        child: Container(
+                          padding: EdgeInsets.only(top: 3, left: 3),
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(10),
+                          ),
+                          child: MaterialButton(
+                            minWidth: double.infinity,
+                            height: 50,
+                            onPressed: () {
+                              validation();
+                            },
+                            color: Color(0xFFFF5555),
+                            elevation: 0,
+                            shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(10)),
+                            child: Text(
+                              "Next",
+                              style: TextStyle(
+                                fontWeight: FontWeight.w600,
+                                fontSize: 18,
+                                color: Colors.white,
+                              ),
                             ),
                           ),
                         ),
                       ),
-                    ),
-                  ],
-                ),
-              ],
+                    ],
+                  ),
+                ],
+              ),
             ),
           ),
         ));

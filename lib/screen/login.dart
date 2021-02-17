@@ -14,10 +14,11 @@ import 'homePage.dart';
 enum AuthFormType { reset }
 
 class LoginPage extends StatefulWidget {
-  @override
   static const routeName = '/login';
+  @override
   _LoginPageState createState() => _LoginPageState();
 }
+
 
 class _LoginPageState extends State<LoginPage> {
   TextEditingController _passwordController = new TextEditingController();
