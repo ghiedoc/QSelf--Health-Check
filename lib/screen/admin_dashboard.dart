@@ -110,6 +110,13 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
         padding: EdgeInsets.all(20.0),
         child: ListView(
           children: <Widget>[
+            Text(
+              'Here you can view information about the users.',
+              style: TextStyle(
+                fontSize: 22,
+                color: Colors.black54,
+              ),
+            ),
             Container(
               height: 130,
               child: Padding(

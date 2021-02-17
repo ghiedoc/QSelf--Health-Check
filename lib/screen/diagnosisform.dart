@@ -249,7 +249,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                   activeColor: Color(0xFFFFF5555),
                                   decoration:
                                   InputDecoration(
-                                    labelText: 'Fever (more than 38 degree Celsius)',
+                                    labelText: 'Fever above 37.6 degree Celsius (lagnat)',
                                     labelStyle: TextStyle(
                                       color: Color(0xFFFA8072),
                                       fontSize: 24,
@@ -277,7 +277,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                 activeColor: Color(0xFFFFF5555),
                                 decoration:
                                 InputDecoration(
-                                  labelText: 'Cough',
+                                  labelText: 'Cough (ubo at sipon)',
                                   labelStyle: TextStyle(
                                     color: Color(0xFFFA8072),
                                     fontSize: 24,
@@ -305,7 +305,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                 activeColor: Color(0xFFFFF5555),
                                 decoration:
                                 InputDecoration(
-                                  labelText: 'Difficulty in Breathing',
+                                  labelText: 'Difficulty in Breathing (hirap sa paghinga)',
                                   labelStyle: TextStyle(
                                     color: Color(0xFFFA8072),
                                     fontSize: 24,
@@ -333,7 +333,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                 activeColor: Color(0xFFFFF5555),
                                 decoration:
                                 InputDecoration(
-                                  labelText: 'Sorethroat',
+                                  labelText: 'Sorethroat(pananakit ng lalamunan)',
                                   labelStyle: TextStyle(
                                     color: Color(0xFFFA8072),
                                     fontSize: 24,
@@ -361,7 +361,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                 activeColor: Color(0xFFFFF5555),
                                 decoration:
                                 InputDecoration(
-                                  labelText: 'Headache',
+                                  labelText: 'Headache(pananakit ng ulo)',
                                   labelStyle: TextStyle(
                                     color: Color(0xFFFA8072),
                                     fontSize: 24,
@@ -390,7 +390,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
                                 activeColor: Color(0xFFFFF5555),
                                 decoration:
                                 InputDecoration(
-                                  labelText: 'Body Weakness',
+                                  labelText: 'Body Weakness(pananakit ng katawan)',
                                   labelStyle: TextStyle(
                                     color: Color(0xFFFA8072),
                                     fontSize: 24,
