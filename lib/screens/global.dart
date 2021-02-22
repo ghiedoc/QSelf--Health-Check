@@ -64,7 +64,7 @@ class _GlobalState extends State<Global> {
           future: summary,
           builder: (context, snapshot) {
             if (snapshot.hasError)
-              return Center(child: Text("Error"),);
+              return Center(child: Text("Unable to load, Try again later"),);
             switch (snapshot.connectionState) {
               case ConnectionState.waiting: 
                 return GlobalLoading();

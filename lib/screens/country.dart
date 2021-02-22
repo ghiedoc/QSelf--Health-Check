@@ -49,7 +49,7 @@ class _CountryState extends State<Country> {
       builder: (context, snapshot) {
         if (snapshot.hasError)
           return Center(
-            child: Text("Error"),
+            child: Text("Unable to load, Try again later"),
           );
         switch (snapshot.connectionState) {
           case ConnectionState.waiting:

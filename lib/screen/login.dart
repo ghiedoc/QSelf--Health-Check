@@ -237,7 +237,7 @@ class _LoginPageState extends State<LoginPage> {
                                           child: Icon(
                                               _obscureText ?
                                                   Icons.visibility : Icons
-                                              .visibility_off, color: Colors.deepOrange,
+                                              .visibility_off, color: Colors.black87,
                                           ),
                                         )
                                       ),

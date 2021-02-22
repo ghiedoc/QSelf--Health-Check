@@ -222,7 +222,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                                 child: Icon(
                                                   _obscureText ?
                                                   Icons.visibility : Icons
-                                                      .visibility_off, color: Colors.deepOrange,
+                                                      .visibility_off, color: Colors.black87,
                                                 ),
                                               )
                                           ),
@@ -280,7 +280,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                               child: Icon(
                                                 _obscureText2 ?
                                                 Icons.visibility : Icons
-                                                    .visibility_off, color: Colors.deepOrange,
+                                                    .visibility_off, color: Colors.black87,
                                               ),
                                             )
                                         ),
