@@ -72,6 +72,13 @@ class _LoginPageState extends State<LoginPage> {
   }
 
   DateTime backButtonPressTime;
+  bool _obscureText = true;
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
 
 
   @override
@@ -165,7 +172,7 @@ class _LoginPageState extends State<LoginPage> {
                                       decoration: InputDecoration(
                                         labelText: 'Email',
                                         filled: true,
-                                          icon: new Icon(Icons.account_circle),
+                                        prefixIcon: new Icon(Icons.email_rounded,color: Colors.black,),
                                         labelStyle: TextStyle(
                                             color: myFocusNode.hasFocus
                                                 ? Colors.blue
@@ -206,9 +213,9 @@ class _LoginPageState extends State<LoginPage> {
                                     width: 300.0,
                                     child: TextFormField(
                                       decoration: InputDecoration(
-                                        icon: new Icon(Icons.lock),
                                         labelText: 'Password',
                                         filled: true,
+                                          prefixIcon: new Icon(Icons.lock, color: Colors.black,),
                                         labelStyle: TextStyle(
                                             color: myFocusNode.hasFocus
                                                 ? Colors.blue
@@ -225,8 +232,16 @@ class _LoginPageState extends State<LoginPage> {
                                                 BorderRadius.circular(10),
                                             borderSide: BorderSide(
                                                 color: Colors.grey[400])),
+                                        suffixIcon: InkWell(
+                                          onTap: _toggle,
+                                          child: Icon(
+                                              _obscureText ?
+                                                  Icons.visibility : Icons
+                                              .visibility_off, color: Colors.deepOrange,
+                                          ),
+                                        )
                                       ),
-                                      obscureText: true,
+                                      obscureText: _obscureText,
                                       controller: _passwordController,
                                       onChanged: (val) {
                                         setState(() {

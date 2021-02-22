@@ -22,15 +22,12 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
 //  validation function
   void validation() async {
     if (formkey.currentState.validate()) {
-      dynamic result = await auth.signUp(data.email, data.password);
-      print("pasok na: $result");
+      await auth.signUp(data.email, data.password);
       successfulToast();
       setState(() => loading = true);
       Navigator.of(context).pushReplacementNamed(ContactInfoPage.routeName);
     } {
-      unsuccessfulToast();
       loading = false;
-      print("not validated");
     }
   }
 
@@ -131,6 +128,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                 decoration: InputDecoration(
                                   labelText: 'First Name',
                                   filled: true,
+                                  prefixIcon: new Icon(Icons.account_circle_rounded,color: Colors.black,),
                                   labelStyle: TextStyle(
                                       color: myFocusNode.hasFocus
                                           ? Colors.blue
@@ -147,12 +145,12 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                           BorderSide(color: Colors.grey[400])),
                                 ),
                                 validator: (value) {
-                                  Pattern pattern = r'^[a-zA-Z]+$';
+                                  Pattern pattern = r'^(?:[+0]9)?[0-9]{10}$';
                                   RegExp regex = RegExp(pattern);
 
                                   if (value.toString().isEmpty ) {
                                     return 'Invalid entry';
-                                  } else if(!regex.hasMatch(value)) {
+                                  } else if(regex.hasMatch(value)) {
                                     return 'Must contain letters only';
                                   }
                                   return null;
@@ -168,6 +166,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                   decoration: InputDecoration(
                                     labelText: 'Last Name',
                                     filled: true,
+                                    prefixIcon: new Icon(Icons.account_circle_rounded,color: Colors.black,),
                                     labelStyle: TextStyle(
                                         color: myFocusNode.hasFocus
                                             ? Colors.blue
@@ -205,6 +204,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                   decoration: InputDecoration(
                                     labelText: 'Nationality',
                                     filled: true,
+                                    prefixIcon: new Icon(Icons.flag_rounded,color: Colors.black,),
                                     labelStyle: TextStyle(
                                         color: myFocusNode.hasFocus
                                             ? Colors.blue
@@ -234,6 +234,7 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                               ),
                               TextFormField(
                                   decoration: InputDecoration(
+                                    prefixIcon: new Icon(Icons.assignment_ind_rounded,color: Colors.black,),
                                     labelText: 'Passport Number',
                                     filled: true,
                                     labelStyle: TextStyle(

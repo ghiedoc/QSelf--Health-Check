@@ -233,11 +233,10 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
   //  validation function
   void validation() async {
     if (formkey.currentState.validate()) {
-      dynamic result = await auth.tralvel_histo(data.email, data.password);
+      await auth.tralvel_histo(data.email, data.password);
       successfulToast();
       print(travelData.travel_arrival_date);
       setState(() => loading = true);
-      print("pasok na: $result");
       Navigator.of(context).pushReplacementNamed(WelcomePage.routeName);
     } else {
       unsuccessfulToast();

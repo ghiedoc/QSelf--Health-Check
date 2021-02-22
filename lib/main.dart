@@ -24,9 +24,6 @@ import 'package:flutter_trial_three/admin_user_info/admin_info.dart';
 void main() async {
 
   WidgetsFlutterBinding.ensureInitialized();
-
-
-
   runApp(MyApp());
 }
 class MyApp extends StatelessWidget {

@@ -108,7 +108,7 @@ class _DashboardPageState extends State<DashboardPage> {
                       child: ListView(
                         children: <Widget>[
                           Text(
-                            'Hello, ${user_list.fname} ${user_list.lname}',
+                            'Hello, ${user_list.fname}',
                             style: TextStyle(
                               fontSize: 32,
                               fontWeight: FontWeight.bold,
@@ -286,7 +286,7 @@ class _DashboardPageState extends State<DashboardPage> {
                   child: ListView(
                     children: <Widget>[
                       Text(
-                        'Hello, ${user_list.fname} ${user_list.lname}',
+                        'Hello, ${user_list.fname}',
                         style: TextStyle(
                           fontSize: 32,
                           fontWeight: FontWeight.bold,
