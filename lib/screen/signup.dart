@@ -58,6 +58,21 @@ class _SignUpPageState extends State<SignUpPage> {
 
   DateTime backButtonPressTime;
 
+  bool _obscureText = true;
+  bool _obscureText2 = true;
+
+  void _toggle2() {
+    setState(() {
+      _obscureText2 = !_obscureText2;
+    });
+  }
+
+  void _toggle() {
+    setState(() {
+      _obscureText = !_obscureText;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     Future<bool> btnbackdd() async {
@@ -142,7 +157,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       width: 300,
                                       child: TextFormField(
                                           decoration: InputDecoration(
-                                            icon: new Icon(Icons.email),
+                                            prefixIcon: new Icon(Icons.email_rounded,color: Colors.black,),
                                             labelText: 'Email',
                                             filled: true,
                                             labelStyle: TextStyle(
@@ -183,7 +198,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       width: 300,
                                       child: TextFormField(
                                           decoration: InputDecoration(
-                                            icon: new Icon(Icons.lock),
+                                              prefixIcon: new Icon(Icons.lock, color: Colors.black,),
                                             labelText: 'Password',
                                             filled: true,
                                             labelStyle: TextStyle(
@@ -202,8 +217,16 @@ class _SignUpPageState extends State<SignUpPage> {
                                                     BorderRadius.circular(10),
                                                 borderSide: BorderSide(
                                                     color: Colors.grey[400])),
+                                              suffixIcon: InkWell(
+                                                onTap: _toggle,
+                                                child: Icon(
+                                                  _obscureText ?
+                                                  Icons.visibility : Icons
+                                                      .visibility_off, color: Colors.deepOrange,
+                                                ),
+                                              )
                                           ),
-                                          obscureText: true,
+                                          obscureText: _obscureText,
                                           controller: _passwordController,
                                           validator: (value) {
                                             if (value.isEmpty) {
@@ -233,7 +256,7 @@ class _SignUpPageState extends State<SignUpPage> {
                                       width: 300,
                                       child: TextFormField(
                                         decoration: InputDecoration(
-                                          icon: new Icon(Icons.lock),
+                                          prefixIcon: new Icon(Icons.lock, color: Colors.black,),
                                           labelText: 'Confirm Password',
                                           filled: true,
                                           labelStyle: TextStyle(
@@ -252,8 +275,16 @@ class _SignUpPageState extends State<SignUpPage> {
                                                   BorderRadius.circular(10),
                                               borderSide: BorderSide(
                                                   color: Colors.grey[400])),
+                                            suffixIcon: InkWell(
+                                              onTap: _toggle2,
+                                              child: Icon(
+                                                _obscureText2 ?
+                                                Icons.visibility : Icons
+                                                    .visibility_off, color: Colors.deepOrange,
+                                              ),
+                                            )
                                         ),
-                                        obscureText: true,
+                                        obscureText:  _obscureText2,
                                         validator: (value) {
                                           if (value.isEmpty ||
                                               value != _passwordController.text) {
@@ -304,7 +335,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         ),
                       ),
                       Padding(
-                        padding: const EdgeInsets.all(16.0),
+                        padding: const EdgeInsets.all(8.0),
                         child: Row(
                           mainAxisAlignment: MainAxisAlignment.center,
                           children: <Widget>[

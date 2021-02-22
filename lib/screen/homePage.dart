@@ -108,7 +108,6 @@ class _HomePageState extends State<HomePage> {
         builder: (context, snapshot) {
           try {
             userList user_List = snapshot.data;
-            print('HEY ${user_List.fname}');
             return MaterialApp(
               color: Color(0xFFFA8072),
               home: Scaffold(

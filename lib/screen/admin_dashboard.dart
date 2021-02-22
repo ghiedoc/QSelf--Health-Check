@@ -29,8 +29,6 @@ class _AdminDashboardPageState extends State<AdminDashboardPage> {
       onPressed:  () async {
         try {
           await _auth.signOut();
-          setState() {
-          };
           Navigator.push(
               context,
               new MaterialPageRoute(

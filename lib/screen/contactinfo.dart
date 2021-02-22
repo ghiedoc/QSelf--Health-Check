@@ -207,10 +207,9 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
 //  validation
   void validate() async {
       if(formkey.currentState.validate())  {
-        dynamic result = await auth.contact_info(data.email,data.password);
+        await auth.contact_info(data.email,data.password);
         successfulToast();
         setState(() => loading = true);
-        print("pasok na: $result");
         Navigator.of(context)
             .pushReplacementNamed(TravelHistoryPage.routeName);
     } else {
@@ -315,6 +314,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                 decoration: InputDecoration(
                                   labelText: 'Contact Number',
                                   filled: true,
+                                  prefixIcon: new Icon(Icons.contact_phone_rounded,color: Colors.black,),
                                   labelStyle: TextStyle(
                                       color: myFocusNode.hasFocus
                                           ? Colors.blue
@@ -351,6 +351,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                 decoration: InputDecoration(
                                   labelText: 'In case of emergency',
                                   filled: true,
+                                  prefixIcon: new Icon(Icons.contact_phone_rounded,color: Colors.black,),
                                   labelStyle: TextStyle(
                                       color: myFocusNode.hasFocus
                                           ? Colors.blue
