@@ -9,7 +9,6 @@ class FormTile extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('SD: ${selectedDiagnosis} \nuser ${userRes.userID}');
     if (selectedDiagnosis == userRes.userID) {
       return Padding(
         padding: EdgeInsets.all(10.0),
@@ -36,7 +35,7 @@ class FormTile extends StatelessWidget {
           ),
         ),
       );
-    } else {
+    } else  {
       return Padding(padding: EdgeInsets.all(0.0));
     }
   }

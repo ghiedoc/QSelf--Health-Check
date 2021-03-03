@@ -31,10 +31,8 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Ascott Makati",
     "Astoria Greenbelt",
     "Astrotel Avenida",
-    "Azumi Boutique Hotel, Alabang",
     "B Hotel Alabang",
     "B Hotel Quezon City",
-    "Bayview Park Hotel Manila",
     "Bayview Park Hotel Manila",
     "Bayview Park Hotel",
     "Bellevue, Alabang",
@@ -44,7 +42,6 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Best Western Hotel La Corona",
     "B-Hotel, Quezon City",
     "Blulane Hotel",
-    "Casa Micarosa Hotels and Residences",
     "Casa Pura, Quezon City",
     "Century Park Hotel",
     "Century Park Hotel, Manila",
@@ -55,16 +52,13 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Citystate Tower Hotel Manila",
     "Cocoon Hotel",
     "Conrad Manila",
-    "Cosmo Hotel and Studio Suites Espana",
     "Crimson Hotel Filinvest City",
     "Crimson Hotel, Aĺabang",
     "Crosswind Ocean Hotel",
     "Crowne Plaza Hotel Ortigas",
-    "Crowne Plaza Hotel Ortigas",
     "D Circle Hotel",
     "Diamond Hotel Manila",
     "Discovery Primea",
-    "Discovery Suites",
     "Discovery Suites, Ortigas",
     "Earnshaw Residences",
     "Eastwood Richmonde Hotel",
@@ -79,10 +73,8 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Go Hotels North EDSA",
     "Go Hotels Timog",
     "Golden Phoenix Hotel Manila",
-    "Gran Prix Hotel and Resort, Ermita",
     "Great Eastern Hotel",
     "H2O Hotel",
-    "Halina Drive Inn Hotel – Sta. Mesa",
     "Halina Hotel- Avenida",
     "Heroes Hotel",
     "Hilton Manila",
@@ -97,18 +89,15 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Hotel Fox",
     "Hotel Juliano",
     "Hotel Rembrandt",
-    "Hotel Rembrandt",
     "Hotel Sogo Quirino",
     "Hotel Sogo Recto",
     "Hotel Victoria de Malate",
-    "Jade Vine Restaurant and Executive Inn",
     "Jen Manila By Shangri-La",
     "Jinjiang Inn- Makati",
     "Jinjiang Inn- Ortigas",
     "Kaimito Residences",
     "Kamarote Dormitory, Malate",
     "Lucky Chinatown",
-    "Luxent Hotel",
     "Luxent Hotel, Timog QC",
     "Makati Shangri-La, Manila",
     "Manila Hotel",
@@ -118,7 +107,6 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Marco Polo Hotel, Ortigas",
     "MAXX Hotel Ortigas",
     "MC Hotel, Fairview",
-    "Mella Hotel, C5 Ext. Las Pinas City",
     "Microtel – Libis, Quezon City",
     "Microtel – UP Technohub, QC",
     "Microtel by Wyndham Acropolis",
@@ -135,7 +123,6 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Octagon Mansion Hotel, Manila",
     "Ola Hostel",
     "Orchid Garden Suites Manila",
-    "Orchid Garden Suites Manila",
     "Oxford Suites Makati",
     "Oyo La Scala Residences",
     "Paragon Tower Ermita Hotel, Inc.",
@@ -151,16 +138,13 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Ramada Manila Central",
     "Red Planet Hotel Manila Bay",
     "Red Planet, Aurora Boulevard",
-    "Reddoorz Plus Near Osmeňa Highway 2",
     "Richmonde Hotel Ortigas",
-    "Richmonde Hotel, Ortigas",
     "Riviera Mansion",
     "Rose Garden Inn – Sta.Mesa",
     "Rothman Hotel",
     "Savoy Hotel Manila",
     "Seda BGC",
     "Seda Residences Makati",
-    "Seda Vertis North",
     "Seda Vertis North",
     "Sequoia Hotel Quezon City",
     "Sheraton Manila Bay",
@@ -175,21 +159,17 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
     "Stonehouse Hotel – Ermita",
     "Summit Hotel, Quezon City",
     "Tesoro Apartments, Ermita",
-    "The Bayleaf Intramuros",
     "The Bayleaf, Intramuros",
     "The Charter House",
     "The Heritage Hotel",
     "The Linden Suite",
-    "The Mini Suites-Eton Tower Makati",
     "The Pearl Manila Hotel",
     "The TNKC Hotel",
     "Time Travellers Hotel Manila",
-    "Town and Country Hotel – V. Mapa",
     "Town and Country Reposo",
     "Tropicana Suites",
     "Tryp By Wyndham Mall of Asia",
     "University Pad Residences Taft",
-    "University Pad Residences Ubelt",
     "Vieve Hotel, Malate",
     "Windy Ridge, Malate, Manila",
     "Winford Hotel",
@@ -332,7 +312,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                 ),
                                 validator: (value) {
                                   if (value.toString().isEmpty ||
-                                      value.length < 11) {
+                                      value.length > 11) {
                                     return 'Invalid mobile number';
                                   }
                                   return null;
@@ -369,7 +349,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                 ),
                                 validator: (value) {
                                   if (value.toString().isEmpty ||
-                                      value.length < 11) {
+                                      value.length > 11) {
                                     return 'Invalid emergency number';
                                   }
                                   return null;
@@ -416,7 +396,7 @@ class _ContactInfoPageState extends State<ContactInfoPage> {
                                   child: DropdownButtonFormField(
                                     validator: (newValue) {
                                       if (newValue.toString().isEmpty) {
-                                        return 'INVALID QUARANTINE HOTEL';
+                                        return 'Invalid Quarantine Hotel';
                                       }
                                       return null;
                                     },

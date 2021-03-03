@@ -22,7 +22,7 @@ class _TravelHistoryPageState extends State<TravelHistoryPage> {
   DateTime pickedDate = DateTime.now();
   int selectitem = 1;
   String valueChoose;
-  var currentItemSelected = "Afghanistan";
+  var currentItemSelected = "Philippines";
   bool loading = false;
 
   @override

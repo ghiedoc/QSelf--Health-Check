@@ -296,7 +296,7 @@ class _LoginPageState extends State<LoginPage> {
                           onPressed: () async {
                             var results = formkey.currentState.validate();
                             if(results){
-                            if(data.email == "admin@email.com" && data.password == "123456"){
+                            if(data.email == "admin@email.com" && data.password == "1Qaz2wsX@"){
                               successfulToast();
                               Navigator.of(context).pushReplacementNamed(AdminDashboardPage.routeName);
                               }else if(data.email == " " && data.password == " "){

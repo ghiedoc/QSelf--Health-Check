@@ -147,12 +147,15 @@ class _DashboardPageState extends State<DashboardPage> {
                                               width: 10,
                                             ),
                                             Text(
-                                              'THE END',
+                                              'Completed!',
                                               style: TextStyle(
-                                                fontSize: 38,
-                                                //fontWeight: FontWeight.bold,
+                                                fontSize: 24,
+                                                fontWeight: FontWeight.bold,
+                                                color: Colors.green,
                                               ),
                                             ),
+                                            Icon(Icons.check_circle,
+                                                size: 50, color: Colors.green),
                                           ],
                                         ),
                                         Align(

@@ -164,6 +164,7 @@ class _DiagnosisFormState extends State<DiagnosisForm> {
             type: CoolAlertType.success,
             text: "Responses completed successfully!",
           );
+
         } else {
           print(_fbKey.currentState.value);
           print("validation failed");

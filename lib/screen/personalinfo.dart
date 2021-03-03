@@ -221,8 +221,13 @@ class _PersonalInfoPageState extends State<PersonalInfoPage> {
                                             BorderSide(color: Colors.grey[400])),
                                   ),
                                   validator: (value) {
-                                    if (value.toString().isEmpty) {
-                                      return 'INVALID NATIONALITY';
+                                    Pattern pattern = r'^[a-zA-Z]+$';
+                                    RegExp regex = RegExp(pattern);
+
+                                    if (value.toString().isEmpty ) {
+                                      return 'Invalid entry';
+                                    } else if(!regex.hasMatch(value)) {
+                                      return 'Must contain letters only';
                                     }
                                     return null;
                                   },
